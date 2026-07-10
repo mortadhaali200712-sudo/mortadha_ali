@@ -5,36 +5,34 @@
     <title>سيرفرات مرتضى علي</title>
     <style>
         body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
-        .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+        .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
         .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
         .row { display: flex; gap: 10px; margin-bottom: 10px; }
         input { flex-grow: 1; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; }
         button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; }
-        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; display: flex; align-items: center; }
-        .checkbox { width: 25px; height: 25px; margin-left: 15px; display: none; }
+        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
+        .checkbox { position: absolute; left: 15px; top: 15px; width: 20px; height: 20px; display: none; }
     </style>
 </head>
 <body>
 
     <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات</button>
 
-    <!-- قائمة الخيارات -->
     <div id="menuBox" class="menu-box">
-        <button onclick="showPanel('add')">➕ إضافة منشور</button>
-        <button onclick="showPanel('del')">🗑️ حذف منشور</button>
+        <button onclick="showPanel('add')" style="background:#4caf50; color:white;">➕ إضافة سيرفر</button>
+        <button onclick="showPanel('del')" style="background:#ff4d4d; color:white;">🗑️ حذف سيرفر</button>
     </div>
 
-    <!-- لوحة الإضافة -->
     <div id="addPanel" class="panel-box">
-        <input type="text" id="sName" placeholder="اسم السيرفر" style="width:100%"><br>
-        <input type="text" id="sIp" placeholder="الايبي" style="width:100%"><br>
-        <input type="text" id="sPort" placeholder="البورت" style="width:100%"><br>
-        <button onclick="saveServer()" style="background:#4caf50; color:white; width:100%">نشر</button>
+        <input type="text" id="sName" placeholder="اسم السيرفر" style="width:90%"><br><br>
+        <input type="text" id="sIp" placeholder="الايبي" style="width:90%"><br><br>
+        <input type="text" id="sPort" placeholder="البورت" style="width:90%"><br><br>
+        <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
     </div>
 
-    <!-- لوحة الحذف -->
     <div id="delPanel" class="panel-box">
-        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:100%">تأكيد حذف المختار</button>
+        <p>حدد السيرفرات التي تريد حذفها:</p>
+        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">حذف المحدد</button>
     </div>
 
     <h1>السيرفرات</h1>
@@ -45,9 +43,8 @@
 
         function openMenu() {
             const pass = prompt("أدخل كلمة المرور:");
-            if(pass === "20077412") {
-                document.getElementById('menuBox').style.display = "block";
-            } else { alert("خطأ!"); }
+            if(pass === "20077412") { document.getElementById('menuBox').style.display = "block"; }
+            else { alert("خطأ!"); }
         }
 
         function showPanel(type) {
@@ -63,10 +60,9 @@
             const card = `
                 <div class="server-card">
                     <input type="checkbox" class="checkbox">
-                    <div>
-                        <h3>${document.getElementById('sName').value}</h3>
-                        <p>الايبي: ${document.getElementById('sIp').value} | البورت: ${document.getElementById('sPort').value}</p>
-                    </div>
+                    <h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3>
+                    <p>الايبي: ${document.getElementById('sIp').value}</p>
+                    <p>البورت: ${document.getElementById('sPort').value}</p>
                 </div>`;
             document.getElementById('serverList').innerHTML += card;
             localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
