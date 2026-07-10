@@ -4,15 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 20px; }
-        h1 { color: #ff9800; text-shadow: 0 0 15px #ff9800; font-size: 2.5em; margin-bottom: 20px; }
-        .container { border: 2px solid #ff9800; padding: 30px; border-radius: 20px; display: inline-block; width: 90%; max-width: 500px; background: rgba(255, 152, 0, 0.05); }
-        .btn { display: block; background: #2196f3; color: white; padding: 12px; margin: 10px 0; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: #1565c0; transform: scale(1.02); }
+        body { 
+            background-color: #000; 
+            color: #fff; 
+            font-family: 'Segoe UI', sans-serif; 
+            text-align: center; 
+            padding: 20px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container { 
+            border: 2px solid #ff9800; 
+            padding: 30px; 
+            border-radius: 20px; 
+            display: inline-block; 
+            width: 90%; 
+            max-width: 500px; 
+            background: rgba(255, 152, 0, 0.05); 
+            box-shadow: 0 0 20px rgba(255, 152, 0, 0.3);
+        }
+        .custom-img {
+            width: 150px; /* حجم الصورة */
+            height: 150px;
+            border-radius: 50%; /* لجعلها دائرية (اختياري، امسح هذا السطر إذا أردت الصورة مربعة) */
+            object-fit: cover; /* لضبط الصورة داخل الدائرة */
+            
+            /* --- هذا هو كود الإطار والإضاءة --- */
+            border: 4px solid #ff9800; /* الإطار البرتقالي الخارجي */
+            box-shadow: 0 0 15px #ff9800, 0 0 25px #2196f3; /* التوهج المزدوج (برتقالي وأزرق) */
+            /* ---------------------------------- */
+            
+            margin-bottom: 20px;
+            display: block; /* لجعل الصورة في المنتصف */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1 { 
+            color: #ff9800; 
+            text-shadow: 0 0 10px #ff9800, 0 0 20px #2196f3; 
+            font-size: 2.5em; 
+            margin: 0 0 20px 0; 
+        }
+        .links { margin-top: 20px; }
+        .btn { 
+            display: block; 
+            background: #2196f3; 
+            color: white; 
+            padding: 15px; 
+            margin: 15px 0; 
+            text-decoration: none; 
+            border-radius: 10px; 
+            font-weight: bold; 
+            font-size: 1.1em;
+            transition: 0.3s; 
+            border: 1px solid #fff;
+        }
+        .btn:hover { 
+            background: #1565c0; 
+            transform: scale(1.05); 
+            box-shadow: 0 0 10px #2196f3;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- هنا يتم وضع الصورة. قم بتغيير 'my-logo.png' إلى اسم صورتك التي رفعتها -->
+        <img src="my-logo.png" alt="Mortadha Ali Logo" class="custom-img">
+        
         <h1>MORTADHA ALI</h1>
         
         <div class="links">
