@@ -9,6 +9,7 @@
         .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
         input[type="text"] { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; margin-bottom: 10px; }
         button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; font-weight: bold; }
+        .back-btn { background: #555; color: white; width: 95%; margin-top: 10px; }
         .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
         .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
         .edit-btn { background: #ffa500; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
@@ -22,6 +23,7 @@
     <div id="menuBox" class="menu-box">
         <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 45%;">➕ إضافة منشور</button>
         <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف منشور</button>
+        <br><button class="back-btn" onclick="closeAll()">إغلاق الإعدادات</button>
     </div>
 
     <div id="addPanel" class="panel-box">
@@ -32,11 +34,13 @@
         <input type="text" id="sIp" placeholder="ايبي السيرفر">
         <input type="text" id="sPort" placeholder="بورت السيرفر">
         <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
+        <button class="back-btn" onclick="showPanel('menu')">رجوع للقائمة</button>
     </div>
 
     <div id="delPanel" class="panel-box">
         <p style="color:#ff4d4d;">حدد المربعات ثم اضغط هنا:</p>
         <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">تأكيد حذف المحدد</button>
+        <button class="back-btn" onclick="showPanel('menu')">رجوع للقائمة</button>
     </div>
 
     <h1>قائمة السيرفرات</h1>
@@ -51,14 +55,24 @@
             else { alert("كلمة مرور خاطئة!"); }
         }
 
+        function closeAll() {
+            document.getElementById('menuBox').style.display = "none";
+        }
+
         function showPanel(type) {
             document.getElementById('menuBox').style.display = "none";
+            document.getElementById('addPanel').style.display = "none";
+            document.getElementById('delPanel').style.display = "none";
+            document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "none");
+
             if(type === 'add') { 
                 document.getElementById('addPanel').style.display = "block"; 
                 document.getElementById('editIndex').value = "-1";
-            } else { 
+            } else if(type === 'del') { 
                 document.getElementById('delPanel').style.display = "block"; 
                 document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "block");
+            } else if(type === 'menu') {
+                document.getElementById('menuBox').style.display = "block";
             }
         }
 
@@ -71,7 +85,7 @@
             document.getElementById('sName').value = card.querySelector('h3').innerText;
             document.getElementById('sIp').value = card.getAttribute('data-ip');
             document.getElementById('sPort').value = card.getAttribute('data-port');
-            document.getElementById('addPanel').style.display = "block";
+            showPanel('add');
         }
 
         function saveServer() {
