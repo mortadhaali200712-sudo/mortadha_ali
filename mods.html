@@ -63,4 +63,77 @@
             <img src="https://cdn.phototourl.com/free/2026-07-10-9f1e3ed7-5721-470f-92a5-2fcb9c259923.jpg" class="mod-img">
             <div class="mod-info">
                 <span class="mod-name">مود الويستون</span>
-                <a href="
+                <a href="https://www.mediafire.com/file/sr3gt9b9f85qy33/ويستون_Legend_Hub.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('wiston')">نسخ</button>
+            </div>
+        </div>
+
+        <div class="mod-card" id="hammer">
+            <img src="https://cdn.phototourl.com/free/2026-07-10-9ebea467-3034-418a-9032-ebef6f0d7096.jpg" class="mod-img">
+            <div class="mod-info">
+                <span class="mod-name">مود الهمر</span>
+                <a href="https://www.mediafire.com/file/z8gvhyu1q0gjl2d/همر_Legend_Hub.zip/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('hammer')">نسخ</button>
+            </div>
+        </div>
+
+        <div class="mod-card" id="wand">
+            <img src="https://cdn.phototourl.com/free/2026-07-10-86308f6a-d84b-4d98-9de4-070f71cf7a13.jpg" class="mod-img">
+            <div class="mod-info">
+                <span class="mod-name">مود الواند</span>
+                <a href="https://www.mediafire.com/file/sp9zoo1hn0pr5a5/واند_Legend_Hub.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('wand')">نسخ</button>
+            </div>
+        </div>
+
+        <div class="mod-card" id="anim">
+            <img src="https://cdn.phototourl.com/free/2026-07-10-35593438-3f5b-4594-9deb-e4cd614e89ea.jpg" class="mod-img">
+            <div class="mod-info">
+                <span class="mod-name">مود الانميشن</span>
+                <a href="https://www.mediafire.com/file/01rbobhezh8qfqk/انميشن_Legend_Hub.mcpack/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('anim')">نسخ</button>
+            </div>
+        </div>
+
+        <div class="mod-card" id="carry">
+            <img src="https://cdn.phototourl.com/free/2026-07-10-751acb95-bc15-496d-8381-ce8b4b613269.webp" class="mod-img">
+            <div class="mod-info">
+                <span class="mod-name">مود حمل الموبات</span>
+                <a href="https://www.mediafire.com/file/jtxz5wu8y3bqddh/حمل_الموبات_والحيوانات_Legend_Hub.mcpack/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('carry')">نسخ</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyModLink(modId) {
+            let baseUrl = window.location.href.split('?')[0];
+            let fullLink = baseUrl + "?mod=" + modId;
+            navigator.clipboard.writeText(fullLink).then(() => {
+                alert("تم نسخ رابط المود المباشر!");
+            });
+        }
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const modId = urlParams.get('mod');
+            if (modId) {
+                const element = document.getElementById(modId);
+                if (element) {
+                    element.style.border = "2px solid #ffeb3b";
+                    element.scrollIntoView({ behavior: "smooth" });
+                }
+            }
+        };
+
+        function searchMods() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let cards = document.getElementsByClassName('mod-card');
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].innerText.toLowerCase();
+                cards[i].style.display = name.includes(input) ? "" : "none";
+            }
+        }
+    </script>
+</body>
+</html>
