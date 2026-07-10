@@ -4,57 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مرتضى علي - Mortadha Ali | الموقع الرسمي</title>
-    
-    <!-- وسوم المعاينة الاحترافية (تظهر عند مشاركة الرابط) -->
-    <meta property="og:title" content="الموقع الرسمي لـ مرتضى علي - Mortadha Ali">
-    <meta property="og:description" content="وجهتك الأولى لكل ما يخص ماين كرافت، قراند، وألعاب الشوتر.">
-    <meta property="og:image" content="https://mortadha-ali313.github.io/logo.png">
-    <meta property="og:url" content="https://mortadha-ali313.github.io/">
-    <meta property="og:type" content="website">
-
-    <!-- أيقونة الموقع -->
-    <link rel="shortcut icon" href="logo.png" type="image/png">
-    
-    <meta name="description" content="الموقع الرسمي لـ مرتضى علي (Mortadha Ali). وجهتك لكل ما يخص ماين كرافت، قراند، وألعاب الشوتر.">
-    <meta name="keywords" content="مرتضى علي, Mortadha Ali, ماين كرافت, قراند, GTA, العاب شوتر, Shooter Games, Gaming">
-    
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .container { border: 2px solid #ff9800; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; background: rgba(0, 0, 0, 0.8); box-shadow: 0 0 20px #ff9800; }
-        
-        .custom-img {
-            width: 150px; 
-            height: 150px;
-            border-radius: 50%;
-            border: 4px solid #ff9800;
-            box-shadow: 0 0 15px #ff9800, 0 0 25px #2196f3;
-            margin-bottom: 20px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        h1 { color: #ff9800; text-shadow: 0 0 10px #ff9800; font-size: 2em; margin-bottom: 20px; }
-        .description-text { color: #fff; font-size: 1.2em; margin-bottom: 30px; font-weight: bold; }
-        .btn { display: block; background: #2196f3; color: white; padding: 12px; margin: 10px 0; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: #1565c0; transform: scale(1.02); }
+        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 20px; margin: 0; }
+        .container { border: 2px solid #ff9800; padding: 20px; border-radius: 20px; width: 90%; max-width: 500px; background: rgba(0, 0, 0, 0.9); box-shadow: 0 0 20px #ff9800; margin: auto; }
+        .custom-img { width: 130px; height: 130px; border-radius: 50%; border: 4px solid #ff9800; box-shadow: 0 0 15px #2196f3; margin-bottom: 15px; }
+        h1 { color: #ff9800; margin: 10px 0; }
+        .btn { display: block; background: #2196f3; color: white; padding: 12px; margin: 8px 0; text-decoration: none; border-radius: 8px; font-weight: bold; border: none; width: 100%; cursor: pointer; transition: 0.3s; }
+        .section-btn { background: #ff9800; color: #000; }
+        .content-box { display: none; background: #1a1a1a; padding: 15px; border-radius: 10px; margin-top: 5px; border: 1px solid #ff9800; text-align: right; }
+        .item { border-bottom: 1px solid #333; padding: 10px 0; }
     </style>
 </head>
 <body>
     <div class="container">
         <img src="logo.png" alt="Mortadha Ali" class="custom-img">
-        
-        <h1>مرتضى علي - Mortadha Ali</h1>
-        
-        <p class="description-text">
-            أهلاً بكم في الموقع الرسمي لمرتضى علي (Mortadha Ali)
-        </p>
-        
+        <h1>مرتضى علي</h1>
+        <p>أهلاً بك في موقعي الرسمي</p>
+
+        <button class="btn section-btn" onclick="toggle('mods')">مودات ماين كرافت</button>
+        <div id="mods" class="content-box">
+            <div class="item">مود الأسلحة - <a href="#" style="color:#2196f3">تحميل</a></div>
+            <div class="item">مود السيارات - <a href="#" style="color:#2196f3">تحميل</a></div>
+        </div>
+
+        <button class="btn section-btn" onclick="toggle('worlds')">عوالم ماين كرافت</button>
+        <div id="worlds" class="content-box">
+            <div class="item">عالم النجاة (Survival) - <a href="#" style="color:#2196f3">تحميل</a></div>
+        </div>
+
+        <button class="btn section-btn" onclick="toggle('servers')">سيرفرات ماين كرافت</button>
+        <div id="servers" class="content-box">
+            <div class="item">السيرفر: play.server.com<br>البورت: 25565</div>
+        </div>
+
+        <button class="btn section-btn" onclick="toggle('skins')">سكنات ماين كرافت</button>
+        <div id="skins" class="content-box">
+            <div class="item">سكن مرتضى علي - <a href="#" style="color:#2196f3">تحميل</a></div>
+        </div>
+
+        <hr style="margin: 20px 0;">
+
         <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn">يوتيوب</a>
         <a href="https://www.tiktok.com/@mortadhaali313" class="btn">تيك توك</a>
-        <a href="https://web.facebook.com/mortadha.ali2" class="btn">فيسبوك</a>
-        <a href="https://www.instagram.com/mortadha_ali12/" class="btn">إنستكرام</a>
-        <a href="https://kick.com/mortadha-ali" class="btn">كيك (Kick)</a>
     </div>
+
+    <script>
+        function toggle(id) {
+            var x = document.getElementById(id);
+            x.style.display = (x.style.display === "block") ? "none" : "block";
+        }
+    </script>
 </body>
 </html>
