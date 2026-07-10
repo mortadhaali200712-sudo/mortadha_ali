@@ -4,42 +4,46 @@
     <meta charset="UTF-8">
     <title>Mortadha Ali | الموقع الرسمي</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
-        .container { border: 2px solid #ff9800; border-radius: 20px; padding: 30px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 0 15px #ff9800; }
-        img { width: 120px; border-radius: 50%; border: 3px solid #ff9800; margin-bottom: 10px; }
+        body { background-color: #000; color: #fff; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 15px; }
+        .container { border: 2px solid #ff9800; border-radius: 20px; padding: 25px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 0 20px #ff9800; background: rgba(0,0,0,0.5); }
+        img { width: 110px; border-radius: 50%; border: 3px solid #ff9800; margin-bottom: 10px; }
         h1 { color: #ff9800; font-size: 20px; margin-bottom: 5px; }
-        p { color: #ff9800; font-size: 14px; margin-bottom: 20px; }
-        .btn { display: block; width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; }
+        p { color: #ff9800; font-size: 13px; margin-bottom: 20px; }
+        
+        .btn { display: block; width: 100%; padding: 12px; margin: 6px 0; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; transition: 0.3s; }
         .btn-blue { background-color: #2196f3; color: #fff; }
         
-        /* تصميم قسم ماين كرافت الجديد */
-        .mc-section { margin-top: 30px; width: 90%; max-width: 400px; border: 2px solid #ff9800; padding: 20px; border-radius: 20px; text-align: center; }
-        .mc-title { color: #ff9800; font-size: 24px; margin-bottom: 15px; border-bottom: 2px solid #ff9800; display: inline-block; padding: 0 20px; }
-        .btn-mc { background-color: #ff9800; color: #000; }
+        /* الفاصل الجميل */
+        .divider { height: 2px; background: linear-gradient(to right, transparent, #ff9800, transparent); margin: 25px 0; }
+        
+        /* قسم ماين كرافت (مربعات أنيقة) */
+        .mc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .btn-mc { background-color: #333; border: 1px solid #ff9800; color: #ff9800; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+        .btn-mc:hover { background-color: #ff9800; color: #000; }
     </style>
 </head>
 <body>
 
-<!-- الواجهة الأصلية -->
 <div class="container">
     <img src="logo.png" alt="Mortadha Ali">
     <h1>Mortadha Ali - مرتضى علي</h1>
     <p>أهلاً بكم في الموقع الرسمي لمرتضى علي (Mortadha Ali)</p>
 
+    <!-- روابط التواصل -->
     <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn btn-blue">يوتيوب</a>
     <a href="https://www.tiktok.com/@mortadhaali313" class="btn btn-blue">تيك توك</a>
     <a href="https://web.facebook.com/mortadha.ali2" class="btn btn-blue">فيسبوك</a>
-    <a href="https://www.instagram.com/mortadha_ali12/" class="btn btn-blue">إنستكرام</a>
-    <a href="https://kick.com/mortadha-ali" class="btn btn-blue">كيك (Kick)</a>
-</div>
 
-<!-- قسم ماين كرافت الجديد كما طلبته -->
-<div class="mc-section">
-    <div class="mc-title">ماين كرافت</div>
-    <a href="mods.html" class="btn btn-mc">مودات</a>
-    <a href="skins.html" class="btn btn-mc">سكنات</a>
-    <a href="worlds.html" class="btn btn-mc">عوالم</a>
-    <a href="servers.html" class="btn btn-mc">سيرفرات</a>
+    <!-- الخط الفاصل الجميل -->
+    <div class="divider"></div>
+
+    <!-- قسم ماين كرافت (مربعات مرتبة) -->
+    <div class="mc-grid">
+        <a href="mods.html" class="btn-mc">مودات</a>
+        <a href="skins.html" class="btn-mc">سكنات</a>
+        <a href="worlds.html" class="btn-mc">عوالم</a>
+        <a href="servers.html" class="btn-mc">سيرفرات</a>
+    </div>
 </div>
 
 </body>
