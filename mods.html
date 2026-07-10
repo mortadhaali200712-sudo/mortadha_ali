@@ -4,58 +4,30 @@
     <meta charset="UTF-8">
     <title>مودات</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; }
-        .back-btn { display: inline-block; background: #555; padding: 10px 20px; border-radius: 10px; text-decoration: none; color: #fff; margin-bottom: 20px; }
-        #search { width: 90%; max-width: 400px; padding: 15px; margin-bottom: 30px; border-radius: 15px; border: 2px solid #4caf50; background: #1a1a1a; color: #fff; text-align: center; font-size: 16px; }
-        .mod-card { background: #1a1a1a; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; width: 90%; max-width: 400px; border-radius: 15px; display: flex; align-items: center; text-align: right; }
-        .mod-img { width: 80px; height: 80px; border-radius: 10px; margin-left: 15px; object-fit: cover; }
-        .mod-info { flex-grow: 1; }
-        .mod-name { font-weight: bold; font-size: 1.1em; display: block; margin-bottom: 8px; }
-        .btn { padding: 8px 12px; border-radius: 8px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; font-size: 13px; margin-left: 5px; }
-        .download-btn { background: #4caf50; color: #000; }
-        .copy-btn { background: #555; color: #fff; }
+        body { background-color: #000; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
+        .mod-card { background: #1a1a1a; border: 1px solid #4caf50; padding: 15px; margin: 10px auto; width: 350px; border-radius: 15px; text-align: right; }
+        .mod-img { width: 80px; height: 80px; border-radius: 10px; display: block; margin-bottom: 10px; }
+        .mod-name { font-weight: bold; font-size: 1.2em; display: block; margin-bottom: 10px; }
+        .btn { padding: 10px 15px; border-radius: 8px; border: none; cursor: pointer; text-decoration: none; color: #fff; font-weight: bold; margin-left: 5px; }
+        .download-btn { background: #4caf50; }
+        .copy-btn { background: #555; }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-btn">⬅ رجوع للرئيسية</a>
-    <h1>قسم المودات 📦</h1>
-    <input type="text" id="search" onkeyup="searchMods()" placeholder="🔍 ابحث عن مود...">
+    <h1>قائمة المودات</h1>
 
-    <div id="modsList">
-
-        <div class="mod-card" id="horror">
-            <img src="https://cdn.phototourl.com/free/2026-07-10-a18e8d6b-787f-4ea9-a29f-223e25e47948.webp" class="mod-img">
-            <div class="mod-info">
-                <span class="mod-name">مود الرعب</span>
-                <a href="https://www.mediafire.com/file/5570wx2ac6zvwd4/مود_الرعب_.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a>
-                <button class="btn copy-btn" onclick="copyModLink('horror')">نسخ</button>
-            </div>
-        </div>
-        <div class="mod-card" id="dino">
-            <img src="https://cdn.phototourl.com/free/2026-07-10-c127607f-0880-48b3-9ab8-adba4be81331.webp" class="mod-img">
-            <div class="mod-info">
-                <span class="mod-name">مود الديناصور</span>
-                <a href="https://www.mediafire.com/file/dr3f3wtz8nnxd37/مود_الديناصور.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a>
-                <button class="btn copy-btn" onclick="copyModLink('dino')">نسخ</button>
-            </div>
-        </div>
-
-        </div>
+    <div class="mod-card" id="m1">
+        <img src="رابط_الصورة_هنا" class="mod-img">
+        <span class="mod-name">اسم المود هنا</span>
+        <a href="رابط_التحميل_هنا" target="_blank" class="btn download-btn">تحميل</a>
+        <button class="btn copy-btn" onclick="copyModLink('m1')">نسخ</button>
+    </div>
 
     <script>
         function copyModLink(modId) {
-            let baseUrl = window.location.href.split('?')[0];
-            let fullLink = baseUrl + "?mod=" + modId;
-            navigator.clipboard.writeText(fullLink).then(() => { alert("تم النسخ!"); });
-        }
-        function searchMods() {
-            let input = document.getElementById('search').value.toLowerCase();
-            let cards = document.getElementsByClassName('mod-card');
-            for (let i = 0; i < cards.length; i++) {
-                let name = cards[i].innerText.toLowerCase();
-                cards[i].style.display = name.includes(input) ? "" : "none";
-            }
+            let fullLink = window.location.href.split('?')[0] + "?mod=" + modId;
+            navigator.clipboard.writeText(fullLink).then(() => { alert("تم نسخ الرابط!"); });
         }
     </script>
 </body>
