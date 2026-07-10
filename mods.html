@@ -2,26 +2,16 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>مودات ماين كرافت</title>
+    <title>قسم المودات</title>
     <style>
         body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; }
         .back-btn { display: inline-block; background: #555; padding: 10px 20px; border-radius: 10px; text-decoration: none; color: #fff; margin-bottom: 20px; }
-        
-        #search { 
-            width: 90%; max-width: 400px; padding: 15px; margin-bottom: 30px; 
-            border-radius: 15px; border: 2px solid #4caf50; background: #1a1a1a; 
-            color: #fff; text-align: center; font-size: 16px;
-        }
-
-        .mod-card { 
-            background: #1a1a1a; border: 1px solid #4caf50; padding: 15px; 
-            margin: 10px auto; width: 90%; max-width: 400px; border-radius: 15px; 
-            display: flex; align-items: center; text-align: right; 
-        }
-        .mod-img { width: 60px; height: 60px; border-radius: 10px; margin-left: 15px; object-fit: cover; }
+        #search { width: 90%; max-width: 400px; padding: 15px; margin-bottom: 30px; border-radius: 15px; border: 2px solid #4caf50; background: #1a1a1a; color: #fff; text-align: center; font-size: 16px; }
+        .mod-card { background: #1a1a1a; border: 1px solid #4caf50; padding: 15px; margin: 10px auto; width: 90%; max-width: 400px; border-radius: 15px; display: flex; align-items: center; text-align: right; }
+        .mod-img { width: 70px; height: 70px; border-radius: 10px; margin-left: 15px; object-fit: cover; }
         .mod-info { flex-grow: 1; }
-        .mod-name { font-weight: bold; font-size: 1.1em; display: block; margin-bottom: 5px; }
-        .btn { padding: 7px 12px; border-radius: 8px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; font-size: 14px; margin-left: 5px; }
+        .mod-name { font-weight: bold; font-size: 1.1em; display: block; margin-bottom: 8px; }
+        .btn { padding: 8px 15px; border-radius: 8px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; font-size: 14px; margin-left: 5px; }
         .download-btn { background: #4caf50; color: #000; }
         .copy-btn { background: #555; color: #fff; }
     </style>
@@ -30,21 +20,18 @@
 
     <a href="index.html" class="back-btn">⬅ رجوع للرئيسية</a>
     <h1>قسم المودات 📦</h1>
-
-    <input type="text" id="search" onkeyup="searchMods()" placeholder="🔍 ابحث عن مود هنا...">
+    <input type="text" id="search" onkeyup="searchMods()" placeholder="🔍 ابحث عن مود...">
 
     <div id="modsList">
-        <!-- قالب مود جاهز -->
+        <!-- قالب المود -->
         <div class="mod-card">
             <img src="https://cdn.phototourl.com/free/2026-07-10-fafb7b99-54f4-4f53-aeee-3368c8492f26.jpg" class="mod-img">
             <div class="mod-info">
                 <span class="mod-name">مود لايف ستيل</span>
-                <a href="https://www.mediafire.com/file/bmdz1el2qal2gcg/لايف_ستيل_.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a>
-                <button class="btn copy-btn" onclick="copyLink('https://www.mediafire.com/file/bmdz1el2qal2gcg/لايف_ستيل_.mcaddon/file')">نسخ</button>
+                <a href="رابط_التحميل_هنا" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyLink('رابط_التحميل_هنا')">نسخ</button>
             </div>
         </div>
-
-        <!-- أضف باقي المودات هنا بنفس الطريقة -->
     </div>
 
     <script>
@@ -58,7 +45,7 @@
         }
         function copyLink(link) {
             navigator.clipboard.writeText(link);
-            alert("تم نسخ الرابط!");
+            alert("تم نسخ الرابط بنجاح!");
         }
     </script>
 </body>
