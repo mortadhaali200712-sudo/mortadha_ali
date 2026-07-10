@@ -8,12 +8,10 @@
         .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
         .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
         input[type="text"] { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; margin-bottom: 10px; }
-        
         button { cursor: pointer; border: none; padding: 12px; border-radius: 5px; margin: 5px; font-weight: bold; width: 90%; display: block; margin: 10px auto; }
         .btn-green { background: #4caf50; color: white; }
         .btn-red { background: #ff4d4d; color: white; }
-        .btn-back { background: #555; color: white; border-radius: 10px; padding: 15px; font-size: 16px; border: none; }
-        
+        .btn-back { background: #555; color: white; border-radius: 5px; padding: 12px; border: none; width: 90%; margin: 10px auto; }
         .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
         .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
         .edit-btn { background: #ffa500; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
@@ -68,7 +66,6 @@
         function showPanel(type) {
             hideAll();
             document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "none");
-            
             if(type === 'add') { 
                 document.getElementById('addPanel').style.display = "block"; 
                 document.getElementById('editIndex').value = "-1";
@@ -103,12 +100,8 @@
                     <p style="margin:8px 0;">البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sPort').value}')">نسخ</button>
                     <button class="edit-btn" onclick="editServer(this)">تعديل</button></p>
                 </div>`;
-
-            if (editIndex !== -1) {
-                document.querySelectorAll('.server-card')[editIndex].outerHTML = cardHtml;
-            } else {
-                document.getElementById('serverList').innerHTML += cardHtml;
-            }
+            if (editIndex !== -1) { document.querySelectorAll('.server-card')[editIndex].outerHTML = cardHtml; } 
+            else { document.getElementById('serverList').innerHTML += cardHtml; }
             localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
             location.reload();
         }
