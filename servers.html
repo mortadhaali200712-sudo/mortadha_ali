@@ -15,10 +15,8 @@
 </head>
 <body>
 
-    <!-- زر الإعدادات -->
     <button class="admin-btn" onclick="adminLogin()">⚙️ إعدادات</button>
 
-    <!-- لوحة التحكم (مخفية) -->
     <div id="adminPanel" class="server-box">
         <h3>إضافة سيرفر جديد</h3>
         <div class="row"><input type="text" id="ver" placeholder="النسخة (Java/Bedrock)"></div>
@@ -32,12 +30,11 @@
     <div id="serverList"></div>
 
     <script>
-        // تحميل البيانات
         document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "<p>لا توجد سيرفرات حالياً</p>";
 
         function adminLogin() {
             const pass = prompt("أدخل كلمة مرور المدير:");
-            if(pass === "123") {
+            if(pass === "20077412") {
                 document.getElementById('adminPanel').style.display = "block";
             } else {
                 alert("كلمة مرور خاطئة!");
