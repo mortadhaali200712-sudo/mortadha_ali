@@ -2,53 +2,67 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>إضافة سيرفر | مرتضى علي</title>
+    <title>سيرفرات ماين كرافت</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; }
-        .server-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; width: 90%; max-width: 500px; margin: auto; }
-        .row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
-        .label { width: 120px; font-weight: bold; color: #4caf50; text-align: right; }
-        input { flex-grow: 1; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; }
-        .btn-add { background: #4caf50; color: white; padding: 10px 30px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; }
+        .server-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin-bottom: 20px; display: none; }
+        .row { display: flex; gap: 10px; margin-bottom: 10px; }
+        input { flex-grow: 1; padding: 8px; border-radius: 5px; border: none; }
+        .btn { background: #4caf50; color: #fff; padding: 10px; border-radius: 5px; cursor: pointer; border: none; }
+        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 10px 0; border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <h1>إضافة سيرفر ماين كرافت 🎮</h1>
+    <!-- زر الدخول للوحة الإضافة (مخفي للزوار) -->
+    <button onclick="adminLogin()" style="background:none; border:none; color:#555;">⚙️</button>
 
-    <div class="server-box">
-        <!-- نسخة ماين كرافت -->
-        <div class="row">
-            <span class="label">نسخة اللعبة:</span>
-            <input type="text" placeholder="مثال: Java / Bedrock">
-        </div>
-
-        <!-- إصدار السيرفر -->
-        <div class="row">
-            <span class="label">إصدار السيرفر:</span>
-            <input type="text" style="max-width: 80px;" placeholder="1.20">
-        </div>
-
-        <!-- اسم السيرفر -->
-        <div class="row">
-            <span class="label">اسم السيرفر:</span>
-            <input type="text" placeholder="اكتب اسم السيرفر هنا">
-        </div>
-
-        <!-- ايبي السيرفر -->
-        <div class="row">
-            <span class="label">ايبي (IP):</span>
-            <input type="text" placeholder="play.server.com">
-        </div>
-
-        <!-- مستطيل إضافي -->
-        <div class="row">
-            <span class="label">معلومات إضافية:</span>
-            <input type="text" placeholder="اكتب أي ملاحظة هنا">
-        </div>
-
-        <button class="btn-add">حفظ السيرفر</button>
+    <!-- لوحة الإضافة (تظهر فقط عند إدخال كلمة السر) -->
+    <div id="adminPanel" class="server-box">
+        <h3>لوحة إضافة سيرفر (للمدير فقط)</h3>
+        <div class="row"><input type="text" id="ver" placeholder="نسخة اللعبة (Java/Bedrock)"></div>
+        <div class="row"><input type="text" id="verNum" placeholder="إصدار السيرفر (مثال: 1.20)"></div>
+        <div class="row"><input type="text" id="sName" placeholder="اسم السيرفر"></div>
+        <div class="row"><input type="text" id="sIp" placeholder="ايبي السيرفر"></div>
+        <button class="btn" onclick="saveServer()">نشر السيرفر</button>
     </div>
 
+    <h1>قائمة السيرفرات المتاحة</h1>
+    <div id="serverList"></div>
+
+    <script>
+        // تحميل السيرفرات عند فتح الصفحة
+        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "لا يوجد سيرفرات حالياً";
+
+        // حماية لوحة التحكم
+        function adminLogin() {
+            const pass = prompt("أدخل كلمة مرور المدير:");
+            if(pass === "123") { // يمكنك تغيير كلمة السر هنا
+                document.getElementById('adminPanel').style.display = "block";
+            } else {
+                alert("كلمة مرور خاطئة!");
+            }
+        }
+
+        // دالة حفظ ونشر السيرفر
+        function saveServer() {
+            const ver = document.getElementById('ver').value;
+            const verNum = document.getElementById('verNum').value;
+            const sName = document.getElementById('sName').value;
+            const sIp = document.getElementById('sIp').value;
+
+            const card = `
+                <div class="server-card">
+                    <h3>${sName}</h3>
+                    <p>النسخة: ${ver} | الإصدار: ${verNum}</p>
+                    <p>الايبي: <strong>${sIp}</strong></p>
+                </div>`;
+            
+            document.getElementById('serverList').innerHTML += card;
+            // حفظ البيانات
+            localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
+            alert("تم نشر السيرفر بنجاح!");
+        }
+    </script>
 </body>
 </html>
