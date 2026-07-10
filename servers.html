@@ -11,7 +11,7 @@
         input { flex-grow: 1; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; }
         .btn-save { background: #4caf50; color: white; padding: 10px 30px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
         .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; }
-        .copy-btn { cursor: pointer; background: #444; border: none; color: #fff; padding: 2px 8px; border-radius: 4px; margin-right: 5px; font-size: 12px; }
+        .copy-btn { cursor: pointer; background: #4caf50; border: none; color: white; padding: 4px 10px; border-radius: 4px; margin-right: 5px; font-size: 12px; }
         .btn-delete { background: #ff4d4d; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; display: none; margin-top: 10px; }
     </style>
 </head>
@@ -33,20 +33,21 @@
     <div id="serverList"></div>
 
     <script>
-        // تحميل البيانات من المتصفح
         document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "<p>لا توجد سيرفرات حالياً</p>";
 
         function adminLogin() {
             const pass = prompt("أدخل كلمة مرور المدير:");
             if(pass === "20077412") {
                 document.getElementById('adminPanel').style.display = "block";
-                document.querySelectorAll('.btn-delete').forEach(btn => btn.style.display = "inline-block");
+                // إظهار أزرار الحذف فوراً عند الدخول
+                const btns = document.querySelectorAll('.btn-delete');
+                btns.forEach(b => b.style.display = "inline-block");
             } else { alert("كلمة مرور خاطئة!"); }
         }
 
         function copyText(text) {
             navigator.clipboard.writeText(text);
-            alert("تم النسخ: " + text);
+            alert("تم نسخ: " + text);
         }
 
         function saveServer() {
