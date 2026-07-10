@@ -10,8 +10,8 @@
         input[type="text"] { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; margin-bottom: 10px; }
         button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; font-weight: bold; }
         .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
-        .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 10px; }
-        .edit-btn { background: #ffa500; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; }
+        .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
+        .edit-btn { background: #ffa500; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
         .delete-checkbox { display: none; position: absolute; left: 15px; top: 15px; width: 25px; height: 25px; cursor: pointer; accent-color: #ff4d4d; }
     </style>
 </head>
@@ -24,7 +24,6 @@
         <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف منشور</button>
     </div>
 
-    <!-- لوحة الإضافة/التعديل -->
     <div id="addPanel" class="panel-box">
         <input type="hidden" id="editIndex" value="-1">
         <input type="text" id="ver" placeholder="النسخة">
@@ -32,7 +31,7 @@
         <input type="text" id="sName" placeholder="اسم السيرفر">
         <input type="text" id="sIp" placeholder="ايبي السيرفر">
         <input type="text" id="sPort" placeholder="بورت السيرفر">
-        <button id="saveBtn" onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
+        <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
     </div>
 
     <div id="delPanel" class="panel-box">
@@ -44,51 +43,47 @@
     <div id="serverList"></div>
 
     <script>
-        // تحميل البيانات
         document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "";
 
         function openMenu() {
             const pass = prompt("أدخل كلمة المرور:");
-            if(pass === "20077412") {
-                document.getElementById('menuBox').style.display = "block";
-            } else { alert("كلمة مرور خاطئة!"); }
+            if(pass === "20077412") { document.getElementById('menuBox').style.display = "block"; }
+            else { alert("كلمة مرور خاطئة!"); }
         }
 
         function showPanel(type) {
             document.getElementById('menuBox').style.display = "none";
-            if(type === 'add') {
-                document.getElementById('addPanel').style.display = "block";
+            if(type === 'add') { 
+                document.getElementById('addPanel').style.display = "block"; 
                 document.getElementById('editIndex').value = "-1";
-            } else {
-                document.getElementById('delPanel').style.display = "block";
+            } else { 
+                document.getElementById('delPanel').style.display = "block"; 
                 document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "block");
             }
         }
 
-        function editServer(index) {
-            const card = document.querySelectorAll('.server-card')[index];
+        function editServer(btn) {
+            const card = btn.parentElement.parentElement;
+            const index = Array.from(document.querySelectorAll('.server-card')).indexOf(card);
             document.getElementById('editIndex').value = index;
-            document.getElementById('ver').value = card.dataset.ver;
-            document.getElementById('verNum').value = card.dataset.verNum;
+            document.getElementById('ver').value = card.getAttribute('data-ver');
+            document.getElementById('verNum').value = card.getAttribute('data-verNum');
             document.getElementById('sName').value = card.querySelector('h3').innerText;
-            document.getElementById('sIp').value = card.dataset.ip;
-            document.getElementById('sPort').value = card.dataset.port;
+            document.getElementById('sIp').value = card.getAttribute('data-ip');
+            document.getElementById('sPort').value = card.getAttribute('data-port');
             document.getElementById('addPanel').style.display = "block";
         }
 
         function saveServer() {
             const editIndex = parseInt(document.getElementById('editIndex').value);
             const cardHtml = `
-                <div class="server-card" data-ver="${document.getElementById('ver').value}" 
-                     data-ver-num="${document.getElementById('verNum').value}" 
-                     data-ip="${document.getElementById('sIp').value}" 
-                     data-port="${document.getElementById('sPort').value}">
+                <div class="server-card" data-ver="${document.getElementById('ver').value}" data-verNum="${document.getElementById('verNum').value}" data-ip="${document.getElementById('sIp').value}" data-port="${document.getElementById('sPort').value}">
                     <input type="checkbox" class="delete-checkbox">
                     <h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3>
                     <p style="margin:8px 0;">النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p>
                     <p style="margin:8px 0;">الايبي: <strong>${document.getElementById('sIp').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sIp').value}')">نسخ</button></p>
                     <p style="margin:8px 0;">البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sPort').value}')">نسخ</button>
-                    <button class="edit-btn" onclick="editServer(${editIndex === -1 ? document.querySelectorAll('.server-card').length : editIndex})">تعديل</button></p>
+                    <button class="edit-btn" onclick="editServer(this)">تعديل</button></p>
                 </div>`;
 
             if (editIndex !== -1) {
