@@ -5,17 +5,14 @@
     <title>سيرفرات مرتضى علي</title>
     <style>
         body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
+        
+        /* زر الرجوع للرئيسية */
+        .back-home { position: fixed; top: 10px; left: 10px; background: #444; color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; border: 1px solid #4caf50; font-weight: bold; z-index: 1000; }
+
         .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
         .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
         input[type="text"] { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; margin-bottom: 10px; }
-        button { cursor: pointer; border: none; padding: 12px; border-radius: 5px; margin: 5px; font-weight: bold; width: 90%; display: block; margin: 10px auto; }
-        
-        /* تصميم زر الرجوع مطابق للصورة */
-        .btn-back { background: #555; color: white; border-radius: 10px; font-size: 16px; width: 90%; }
-        
-        .btn-green { background: #4caf50; color: white; }
-        .btn-red { background: #ff4d4d; color: white; }
-        
+        button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; font-weight: bold; }
         .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
         .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
         .edit-btn { background: #ffa500; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
@@ -24,12 +21,14 @@
 </head>
 <body>
 
+    <!-- زر الرجوع للصفحة الرئيسية -->
+    <a href="index.html" class="back-home">← رجوع للرئيسية</a>
+
     <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات</button>
 
     <div id="menuBox" class="menu-box">
-        <button class="btn-green" onclick="showPanel('add')">➕ إضافة منشور</button>
-        <button class="btn-red" onclick="showPanel('del')">🗑️ حذف منشور</button>
-        <button class="btn-back" onclick="hideAll()">رجوع للرئيسية ←</button>
+        <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 45%;">➕ إضافة منشور</button>
+        <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف منشور</button>
     </div>
 
     <div id="addPanel" class="panel-box">
@@ -39,14 +38,12 @@
         <input type="text" id="sName" placeholder="اسم السيرفر">
         <input type="text" id="sIp" placeholder="ايبي السيرفر">
         <input type="text" id="sPort" placeholder="بورت السيرفر">
-        <button class="btn-green" onclick="saveServer()">حفظ ونشر</button>
-        <button class="btn-back" onclick="hideAll()">رجوع للرئيسية ←</button>
+        <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
     </div>
 
     <div id="delPanel" class="panel-box">
         <p style="color:#ff4d4d;">حدد المربعات ثم اضغط هنا:</p>
-        <button class="btn-red" onclick="deleteSelected()">تأكيد حذف المحدد</button>
-        <button class="btn-back" onclick="hideAll()">رجوع للرئيسية ←</button>
+        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">تأكيد حذف المحدد</button>
     </div>
 
     <h1>قائمة السيرفرات</h1>
@@ -61,13 +58,6 @@
             else { alert("كلمة مرور خاطئة!"); }
         }
 
-        function hideAll() {
-            document.getElementById('menuBox').style.display = "none";
-            document.getElementById('addPanel').style.display = "none";
-            document.getElementById('delPanel').style.display = "none";
-            document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "none");
-        }
-
         function showPanel(type) {
             document.getElementById('menuBox').style.display = "none";
             if(type === 'add') { 
@@ -77,19 +67,6 @@
                 document.getElementById('delPanel').style.display = "block"; 
                 document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "block");
             }
-        }
-
-        function editServer(btn) {
-            const card = btn.parentElement.parentElement;
-            const index = Array.from(document.querySelectorAll('.server-card')).indexOf(card);
-            document.getElementById('editIndex').value = index;
-            document.getElementById('ver').value = card.getAttribute('data-ver');
-            document.getElementById('verNum').value = card.getAttribute('data-verNum');
-            document.getElementById('sName').value = card.querySelector('h3').innerText;
-            document.getElementById('sIp').value = card.getAttribute('data-ip');
-            document.getElementById('sPort').value = card.getAttribute('data-port');
-            document.getElementById('addPanel').style.display = "block";
-            document.getElementById('menuBox').style.display = "none";
         }
 
         function saveServer() {
@@ -107,6 +84,18 @@
             else { document.getElementById('serverList').innerHTML += cardHtml; }
             localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
             location.reload();
+        }
+
+        function editServer(btn) {
+            const card = btn.parentElement.parentElement;
+            const index = Array.from(document.querySelectorAll('.server-card')).indexOf(card);
+            document.getElementById('editIndex').value = index;
+            document.getElementById('ver').value = card.getAttribute('data-ver');
+            document.getElementById('verNum').value = card.getAttribute('data-verNum');
+            document.getElementById('sName').value = card.querySelector('h3').innerText;
+            document.getElementById('sIp').value = card.getAttribute('data-ip');
+            document.getElementById('sPort').value = card.getAttribute('data-port');
+            document.getElementById('addPanel').style.display = "block";
         }
 
         function copyText(text) { navigator.clipboard.writeText(text); alert("تم النسخ: " + text); }
