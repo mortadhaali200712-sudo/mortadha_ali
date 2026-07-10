@@ -23,6 +23,7 @@
         <div class="row"><input type="text" id="verNum" placeholder="إصدار السيرفر (مثال: 1.20)"></div>
         <div class="row"><input type="text" id="sName" placeholder="اسم السيرفر"></div>
         <div class="row"><input type="text" id="sIp" placeholder="ايبي السيرفر"></div>
+        <div class="row"><input type="text" id="sPort" placeholder="بورت السيرفر (Port)"></div>
         <button class="btn-save" onclick="saveServer()">نشر السيرفر</button>
     </div>
 
@@ -46,12 +47,14 @@
             const verNum = document.getElementById('verNum').value;
             const sName = document.getElementById('sName').value;
             const sIp = document.getElementById('sIp').value;
+            const sPort = document.getElementById('sPort').value;
 
             const card = `
                 <div class="server-card">
                     <h3 style="color:#4caf50; margin:0;">${sName}</h3>
                     <p style="margin:5px 0;">النسخة: ${ver} | الإصدار: ${verNum}</p>
                     <p style="margin:5px 0;">الايبي: <strong>${sIp}</strong></p>
+                    <p style="margin:5px 0;">البورت: <strong>${sPort}</strong></p>
                 </div>`;
             
             document.getElementById('serverList').innerHTML += card;
