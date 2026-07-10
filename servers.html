@@ -1,4 +1,54 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><title>سيرفرات مرتضى علي</title><style>body{background:#000;color:#fff;text-align:center;} .srv{background:#1a1a1a;margin:20px;padding:20px;border-radius:10px;border:2px solid #ff9800;}</style></head>
-<body><h1>سيرفرات ماين كرافت</h1><div class="srv"><h3>سيرفر جافا</h3><p>IP: play.server.com</p><p>Port: 25565</p></div></body></html>
+<head>
+    <meta charset="UTF-8">
+    <title>إضافة سيرفر | مرتضى علي</title>
+    <style>
+        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; }
+        .server-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; width: 90%; max-width: 500px; margin: auto; }
+        .row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+        .label { width: 120px; font-weight: bold; color: #4caf50; text-align: right; }
+        input { flex-grow: 1; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; }
+        .btn-add { background: #4caf50; color: white; padding: 10px 30px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <h1>إضافة سيرفر ماين كرافت 🎮</h1>
+
+    <div class="server-box">
+        <!-- نسخة ماين كرافت -->
+        <div class="row">
+            <span class="label">نسخة اللعبة:</span>
+            <input type="text" placeholder="مثال: Java / Bedrock">
+        </div>
+
+        <!-- إصدار السيرفر -->
+        <div class="row">
+            <span class="label">إصدار السيرفر:</span>
+            <input type="text" style="max-width: 80px;" placeholder="1.20">
+        </div>
+
+        <!-- اسم السيرفر -->
+        <div class="row">
+            <span class="label">اسم السيرفر:</span>
+            <input type="text" placeholder="اكتب اسم السيرفر هنا">
+        </div>
+
+        <!-- ايبي السيرفر -->
+        <div class="row">
+            <span class="label">ايبي (IP):</span>
+            <input type="text" placeholder="play.server.com">
+        </div>
+
+        <!-- مستطيل إضافي -->
+        <div class="row">
+            <span class="label">معلومات إضافية:</span>
+            <input type="text" placeholder="اكتب أي ملاحظة هنا">
+        </div>
+
+        <button class="btn-add">حفظ السيرفر</button>
+    </div>
+
+</body>
+</html>
