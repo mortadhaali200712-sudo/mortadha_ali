@@ -10,7 +10,8 @@
         .row { display: flex; gap: 10px; margin-bottom: 10px; }
         input { flex-grow: 1; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; }
         .btn-save { background: #4caf50; color: white; padding: 10px 30px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
-        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; }
+        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
+        .btn-delete { background: #ff4d4d; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; display: none; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -19,11 +20,11 @@
 
     <div id="adminPanel" class="server-box">
         <h3>إضافة سيرفر جديد</h3>
-        <div class="row"><input type="text" id="ver" placeholder="النسخة (Java/Bedrock)"></div>
-        <div class="row"><input type="text" id="verNum" placeholder="إصدار السيرفر (مثال: 1.20)"></div>
+        <div class="row"><input type="text" id="ver" placeholder="النسخة"></div>
+        <div class="row"><input type="text" id="verNum" placeholder="إصدار السيرفر"></div>
         <div class="row"><input type="text" id="sName" placeholder="اسم السيرفر"></div>
         <div class="row"><input type="text" id="sIp" placeholder="ايبي السيرفر"></div>
-        <div class="row"><input type="text" id="sPort" placeholder="بورت السيرفر (Port)"></div>
+        <div class="row"><input type="text" id="sPort" placeholder="بورت السيرفر"></div>
         <button class="btn-save" onclick="saveServer()">نشر السيرفر</button>
     </div>
 
@@ -31,35 +32,41 @@
     <div id="serverList"></div>
 
     <script>
+        // تحميل البيانات
         document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "<p>لا توجد سيرفرات حالياً</p>";
 
         function adminLogin() {
             const pass = prompt("أدخل كلمة مرور المدير:");
             if(pass === "20077412") {
                 document.getElementById('adminPanel').style.display = "block";
+                // إظهار أزرار الحذف لكل البطاقات
+                const delBtns = document.querySelectorAll('.btn-delete');
+                delBtns.forEach(btn => btn.style.display = "inline-block");
             } else {
                 alert("كلمة مرور خاطئة!");
             }
         }
 
         function saveServer() {
-            const ver = document.getElementById('ver').value;
-            const verNum = document.getElementById('verNum').value;
             const sName = document.getElementById('sName').value;
-            const sIp = document.getElementById('sIp').value;
-            const sPort = document.getElementById('sPort').value;
-
             const card = `
                 <div class="server-card">
                     <h3 style="color:#4caf50; margin:0;">${sName}</h3>
-                    <p style="margin:5px 0;">النسخة: ${ver} | الإصدار: ${verNum}</p>
-                    <p style="margin:5px 0;">الايبي: <strong>${sIp}</strong></p>
-                    <p style="margin:5px 0;">البورت: <strong>${sPort}</strong></p>
+                    <p>النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p>
+                    <p>الايبي: <strong>${document.getElementById('sIp').value}</strong> | البورت: <strong>${document.getElementById('sPort').value}</strong></p>
+                    <button class="btn-delete" style="display:inline-block;" onclick="deleteServer(this)">حذف السيرفر</button>
                 </div>`;
             
             document.getElementById('serverList').innerHTML += card;
             localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
             alert("تم نشر السيرفر!");
+        }
+
+        function deleteServer(btn) {
+            if(confirm("هل أنت متأكد من حذف هذا السيرفر؟")) {
+                btn.parentElement.remove();
+                localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
+            }
         }
     </script>
 </body>
