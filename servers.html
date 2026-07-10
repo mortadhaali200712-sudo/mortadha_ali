@@ -39,19 +39,18 @@
             const pass = prompt("أدخل كلمة مرور المدير:");
             if(pass === "20077412") {
                 document.getElementById('adminPanel').style.display = "block";
-                // إظهار أزرار الحذف لكل البطاقات
-                const delBtns = document.querySelectorAll('.btn-delete');
-                delBtns.forEach(btn => btn.style.display = "inline-block");
+                // إظهار أزرار الحذف في كل البطاقات الموجودة حالياً
+                const btns = document.getElementsByClassName('btn-delete');
+                for(let btn of btns) { btn.style.display = "inline-block"; }
             } else {
                 alert("كلمة مرور خاطئة!");
             }
         }
 
         function saveServer() {
-            const sName = document.getElementById('sName').value;
             const card = `
                 <div class="server-card">
-                    <h3 style="color:#4caf50; margin:0;">${sName}</h3>
+                    <h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3>
                     <p>النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p>
                     <p>الايبي: <strong>${document.getElementById('sIp').value}</strong> | البورت: <strong>${document.getElementById('sPort').value}</strong></p>
                     <button class="btn-delete" style="display:inline-block;" onclick="deleteServer(this)">حذف السيرفر</button>
@@ -59,11 +58,11 @@
             
             document.getElementById('serverList').innerHTML += card;
             localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
-            alert("تم نشر السيرفر!");
+            alert("تم النشر!");
         }
 
         function deleteServer(btn) {
-            if(confirm("هل أنت متأكد من حذف هذا السيرفر؟")) {
+            if(confirm("هل أنت متأكد؟")) {
                 btn.parentElement.remove();
                 localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
             }
