@@ -8,7 +8,14 @@
         .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
         .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
         input[type="text"] { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; margin-bottom: 10px; }
-        button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; font-weight: bold; }
+        button { cursor: pointer; border: none; padding: 12px; border-radius: 5px; margin: 5px; font-weight: bold; width: 90%; display: block; margin: 10px auto; }
+        
+        /* تصميم زر الرجوع مطابق للصورة */
+        .btn-back { background: #555; color: white; border-radius: 10px; font-size: 16px; width: 90%; }
+        
+        .btn-green { background: #4caf50; color: white; }
+        .btn-red { background: #ff4d4d; color: white; }
+        
         .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
         .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
         .edit-btn { background: #ffa500; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
@@ -20,9 +27,9 @@
     <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات</button>
 
     <div id="menuBox" class="menu-box">
-        <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 45%;">➕ إضافة منشور</button>
-        <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف منشور</button>
-        <br><button onclick="hideAll()" style="background:#555; color:white; width: 92%;">رجوع</button>
+        <button class="btn-green" onclick="showPanel('add')">➕ إضافة منشور</button>
+        <button class="btn-red" onclick="showPanel('del')">🗑️ حذف منشور</button>
+        <button class="btn-back" onclick="hideAll()">رجوع للرئيسية ←</button>
     </div>
 
     <div id="addPanel" class="panel-box">
@@ -32,14 +39,14 @@
         <input type="text" id="sName" placeholder="اسم السيرفر">
         <input type="text" id="sIp" placeholder="ايبي السيرفر">
         <input type="text" id="sPort" placeholder="بورت السيرفر">
-        <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
-        <br><button onclick="hideAll()" style="background:#555; color:white; width:95%">رجوع</button>
+        <button class="btn-green" onclick="saveServer()">حفظ ونشر</button>
+        <button class="btn-back" onclick="hideAll()">رجوع للرئيسية ←</button>
     </div>
 
     <div id="delPanel" class="panel-box">
         <p style="color:#ff4d4d;">حدد المربعات ثم اضغط هنا:</p>
-        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">تأكيد حذف المحدد</button>
-        <br><button onclick="hideAll()" style="background:#555; color:white; width:95%">رجوع</button>
+        <button class="btn-red" onclick="deleteSelected()">تأكيد حذف المحدد</button>
+        <button class="btn-back" onclick="hideAll()">رجوع للرئيسية ←</button>
     </div>
 
     <h1>قائمة السيرفرات</h1>
