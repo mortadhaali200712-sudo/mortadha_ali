@@ -2,32 +2,36 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>مودات</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
-        .mod-card { background: #1a1a1a; border: 1px solid #4caf50; padding: 15px; margin: 10px auto; width: 350px; border-radius: 15px; text-align: right; }
-        .mod-img { width: 80px; height: 80px; border-radius: 10px; display: block; margin-bottom: 10px; }
-        .mod-name { font-weight: bold; font-size: 1.2em; display: block; margin-bottom: 10px; }
-        .btn { padding: 10px 15px; border-radius: 8px; border: none; cursor: pointer; text-decoration: none; color: #fff; font-weight: bold; margin-left: 5px; }
-        .download-btn { background: #4caf50; }
-        .copy-btn { background: #555; }
+        body { background-color: #000; color: #fff; text-align: center; font-family: sans-serif; }
+        .mod-card { border: 2px solid #4caf50; padding: 20px; width: 300px; margin: 20px auto; border-radius: 15px; text-align: right; }
+        .mod-img { width: 60px; height: 60px; display: block; margin-bottom: 10px; }
+        .mod-name { font-weight: bold; display: block; margin-bottom: 10px; }
+        .download-btn { background: #4caf50; padding: 10px 20px; border-radius: 8px; color: #fff; text-decoration: none; font-weight: bold; }
+        .copy-btn { background: #555; padding: 10px 15px; border-radius: 8px; color: #fff; border: none; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <h1>قائمة المودات</h1>
 
+    <!-- قالب المود (انسخ هذا لكل مود) -->
     <div class="mod-card" id="m1">
-        <img src="رابط_الصورة_هنا" class="mod-img">
+        <img src="رابط_الصورة" class="mod-img">
         <span class="mod-name">اسم المود هنا</span>
-        <a href="رابط_التحميل_هنا" target="_blank" class="btn download-btn">تحميل</a>
-        <button class="btn copy-btn" onclick="copyModLink('m1')">نسخ</button>
+        <a href="رابط_التحميل" target="_blank" class="download-btn">تحميل</a>
+        <button class="copy-btn" onclick="copyModLink('m1')">نسخ</button>
     </div>
 
     <script>
-        function copyModLink(modId) {
-            let fullLink = window.location.href.split('?')[0] + "?mod=" + modId;
-            navigator.clipboard.writeText(fullLink).then(() => { alert("تم نسخ الرابط!"); });
+        function copyModLink(id) {
+            let url = window.location.href.split('?')[0] + "?mod=" + id;
+            navigator.clipboard.writeText(url).then(() => alert("تم نسخ الرابط"));
+        }
+
+        window.onload = function() {
+            let id = new URLSearchParams(window.location.search).get('mod');
+            if(id) document.getElementById(id).style.borderColor = "yellow";
         }
     </script>
 </body>
