@@ -4,32 +4,57 @@
     <meta charset="UTF-8">
     <title>مودات ماين كرافت</title>
     <style>
-        body { background-color: #000; color: #fff; text-align: center; padding: 20px; font-family: sans-serif; }
-        .back-btn { background: #555; padding: 10px; display: inline-block; border-radius: 8px; text-decoration: none; color: white; margin-bottom: 20px; }
+        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; }
+        .back-btn { display: inline-block; background: #555; padding: 10px 20px; border-radius: 10px; text-decoration: none; color: #fff; margin-bottom: 20px; }
         
         /* تصميم صندوق البحث */
-        #search { width: 90%; max-width: 400px; padding: 12px; margin-bottom: 20px; border-radius: 10px; border: 2px solid #4caf50; background: #222; color: #fff; text-align: center; }
-        
-        .mod-card { background: #1a1a1a; border: 1px solid #4caf50; padding: 15px; margin: 10px auto; width: 90%; max-width: 400px; border-radius: 15px; }
-        .download-btn { background: #4caf50; color: #000; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: bold; display: block; margin-top: 10px; }
+        #search { 
+            width: 90%; 
+            max-width: 400px; 
+            padding: 15px; 
+            margin-bottom: 30px; 
+            border-radius: 15px; 
+            border: 2px solid #4caf50; 
+            background: #1a1a1a; 
+            color: #fff; 
+            text-align: center; 
+            font-size: 16px;
+        }
+
+        .mod-card { 
+            background: #1a1a1a; 
+            border: 1px solid #4caf50; 
+            padding: 15px; 
+            margin: 10px auto; 
+            width: 90%; 
+            max-width: 400px; 
+            border-radius: 15px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .mod-name { font-weight: bold; font-size: 1.1em; }
+        .download-btn { background: #4caf50; color: #000; padding: 8px 15px; border-radius: 8px; text-decoration: none; font-weight: bold; border: 2px solid #fff; }
     </style>
 </head>
 <body>
 
     <a href="index.html" class="back-btn">⬅ رجوع للرئيسية</a>
-    <h1>المودات 📦</h1>
+    <h1>قسم المودات 📦</h1>
 
-    <!-- صندوق البحث -->
+    <!-- صندوق البحث هنا -->
     <input type="text" id="search" onkeyup="searchMods()" placeholder="🔍 ابحث عن مود هنا...">
 
     <div id="modsList">
-        <!-- ابدأ بإضافة المودات هنا -->
         <div class="mod-card">
             <span class="mod-name">مود الأسلحة v1</span>
-            <a href="رابط_التحميل_هنا" target="_blank" class="download-btn">تحميل</a>
+            <a href="#" class="download-btn">تحميل</a>
         </div>
         
-        <!-- عند إضافة مود جديد، ضعه هنا -->
+        <div class="mod-card">
+            <span class="mod-name">مود السيارات الرياضية</span>
+            <a href="#" class="download-btn">تحميل</a>
+        </div>
     </div>
 
     <script>
@@ -38,10 +63,13 @@
             let cards = document.getElementsByClassName('mod-card');
             for (let i = 0; i < cards.length; i++) {
                 let name = cards[i].innerText.toLowerCase();
-                cards[i].style.display = name.includes(input) ? "" : "none";
+                if (name.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
             }
         }
     </script>
-
 </body>
 </html>
