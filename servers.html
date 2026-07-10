@@ -5,77 +5,78 @@
     <title>سيرفرات مرتضى علي</title>
     <style>
         body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
-        .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
-        .server-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
+        .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+        .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
         .row { display: flex; gap: 10px; margin-bottom: 10px; }
         input { flex-grow: 1; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; }
-        .btn-save { background: #4caf50; color: white; padding: 10px 30px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 10px; }
-        .btn-delete-mode { background: #ff4d4d; color: white; padding: 10px 30px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
-        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; cursor: pointer; transition: 0.3s; }
-        .server-card:hover { border-color: #ff4d4d; }
-        .copy-btn { cursor: pointer; background: #4caf50; border: none; color: white; padding: 4px 10px; border-radius: 4px; margin-right: 5px; font-size: 12px; }
+        button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; }
+        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; display: flex; align-items: center; }
+        .checkbox { width: 25px; height: 25px; margin-left: 15px; display: none; }
     </style>
 </head>
 <body>
 
-    <button class="admin-btn" onclick="adminLogin()">⚙️ إعدادات</button>
+    <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات</button>
 
-    <div id="adminPanel" class="server-box">
-        <h3>لوحة التحكم</h3>
-        <div class="row"><input type="text" id="ver" placeholder="النسخة"></div>
-        <div class="row"><input type="text" id="verNum" placeholder="إصدار السيرفر"></div>
-        <div class="row"><input type="text" id="sName" placeholder="اسم السيرفر"></div>
-        <div class="row"><input type="text" id="sIp" placeholder="ايبي السيرفر"></div>
-        <div class="row"><input type="text" id="sPort" placeholder="بورت السيرفر"></div>
-        <button class="btn-save" onclick="saveServer()">نشر السيرفر</button>
-        <hr style="margin: 20px 0;">
-        <button class="btn-delete-mode" onclick="toggleDeleteMode()">تفعيل وضع الحذف</button>
+    <!-- قائمة الخيارات -->
+    <div id="menuBox" class="menu-box">
+        <button onclick="showPanel('add')">➕ إضافة منشور</button>
+        <button onclick="showPanel('del')">🗑️ حذف منشور</button>
     </div>
 
-    <h1>قائمة السيرفرات المتاحة</h1>
+    <!-- لوحة الإضافة -->
+    <div id="addPanel" class="panel-box">
+        <input type="text" id="sName" placeholder="اسم السيرفر" style="width:100%"><br>
+        <input type="text" id="sIp" placeholder="الايبي" style="width:100%"><br>
+        <input type="text" id="sPort" placeholder="البورت" style="width:100%"><br>
+        <button onclick="saveServer()" style="background:#4caf50; color:white; width:100%">نشر</button>
+    </div>
+
+    <!-- لوحة الحذف -->
+    <div id="delPanel" class="panel-box">
+        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:100%">تأكيد حذف المختار</button>
+    </div>
+
+    <h1>السيرفرات</h1>
     <div id="serverList"></div>
 
     <script>
-        let deleteMode = false;
-        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "<p>لا توجد سيرفرات</p>";
+        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "";
 
-        function adminLogin() {
-            const pass = prompt("أدخل كلمة مرور المدير:");
+        function openMenu() {
+            const pass = prompt("أدخل كلمة المرور:");
             if(pass === "20077412") {
-                document.getElementById('adminPanel').style.display = "block";
-            } else { alert("كلمة مرور خاطئة!"); }
+                document.getElementById('menuBox').style.display = "block";
+            } else { alert("خطأ!"); }
         }
 
-        function toggleDeleteMode() {
-            deleteMode = !deleteMode;
-            alert(deleteMode ? "تم تفعيل وضع الحذف: اضغط على أي سيرفر لحذفه" : "تم إلغاء وضع الحذف");
-        }
-
-        function copyText(text) {
-            navigator.clipboard.writeText(text);
-            alert("تم نسخ: " + text);
+        function showPanel(type) {
+            document.getElementById('menuBox').style.display = "none";
+            if(type === 'add') document.getElementById('addPanel').style.display = "block";
+            else {
+                document.getElementById('delPanel').style.display = "block";
+                document.querySelectorAll('.checkbox').forEach(c => c.style.display = "block");
+            }
         }
 
         function saveServer() {
             const card = `
-                <div class="server-card" onclick="handleCardClick(this)">
-                    <h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3>
-                    <p>النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p>
-                    <p>الايبي: <strong>${document.getElementById('sIp').value}</strong> <button class="copy-btn" onclick="event.stopPropagation(); copyText('${document.getElementById('sIp').value}')">نسخ</button></p>
-                    <p>البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="event.stopPropagation(); copyText('${document.getElementById('sPort').value}')">نسخ</button></p>
+                <div class="server-card">
+                    <input type="checkbox" class="checkbox">
+                    <div>
+                        <h3>${document.getElementById('sName').value}</h3>
+                        <p>الايبي: ${document.getElementById('sIp').value} | البورت: ${document.getElementById('sPort').value}</p>
+                    </div>
                 </div>`;
             document.getElementById('serverList').innerHTML += card;
             localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
-            alert("تم النشر!");
+            location.reload();
         }
 
-        function handleCardClick(card) {
-            if (deleteMode) {
-                if(confirm("هل تريد حذف هذا السيرفر؟")) {
-                    card.remove();
-                    localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
-                }
-            }
+        function deleteSelected() {
+            document.querySelectorAll('.checkbox:checked').forEach(c => c.parentElement.remove());
+            localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
+            location.reload();
         }
     </script>
 </body>
