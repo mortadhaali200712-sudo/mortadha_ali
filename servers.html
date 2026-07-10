@@ -10,7 +10,8 @@
         .row { display: flex; gap: 10px; margin-bottom: 10px; }
         input { flex-grow: 1; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; }
         .btn-save { background: #4caf50; color: white; padding: 10px 30px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
-        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
+        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; }
+        .copy-btn { cursor: pointer; background: #444; border: none; color: #fff; padding: 2px 8px; border-radius: 4px; margin-right: 5px; font-size: 12px; }
         .btn-delete { background: #ff4d4d; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; display: none; margin-top: 10px; }
     </style>
 </head>
@@ -32,28 +33,33 @@
     <div id="serverList"></div>
 
     <script>
-        // تحميل البيانات
         document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "<p>لا توجد سيرفرات حالياً</p>";
 
         function adminLogin() {
             const pass = prompt("أدخل كلمة مرور المدير:");
             if(pass === "20077412") {
                 document.getElementById('adminPanel').style.display = "block";
-                // إظهار أزرار الحذف في كل البطاقات الموجودة حالياً
-                const btns = document.getElementsByClassName('btn-delete');
-                for(let btn of btns) { btn.style.display = "inline-block"; }
-            } else {
-                alert("كلمة مرور خاطئة!");
-            }
+                document.querySelectorAll('.btn-delete').forEach(btn => btn.style.display = "inline-block");
+            } else { alert("كلمة مرور خاطئة!"); }
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+            alert("تم النسخ: " + text);
         }
 
         function saveServer() {
+            const sName = document.getElementById('sName').value;
+            const sIp = document.getElementById('sIp').value;
+            const sPort = document.getElementById('sPort').value;
+            
             const card = `
                 <div class="server-card">
-                    <h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3>
+                    <h3 style="color:#4caf50; margin:0;">${sName}</h3>
                     <p>النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p>
-                    <p>الايبي: <strong>${document.getElementById('sIp').value}</strong> | البورت: <strong>${document.getElementById('sPort').value}</strong></p>
-                    <button class="btn-delete" style="display:inline-block;" onclick="deleteServer(this)">حذف السيرفر</button>
+                    <p>الايبي: <strong>${sIp}</strong> <button class="copy-btn" onclick="copyText('${sIp}')">نسخ</button></p>
+                    <p>البورت: <strong>${sPort}</strong> <button class="copy-btn" onclick="copyText('${sPort}')">نسخ</button></p>
+                    <button class="btn-delete" onclick="deleteServer(this)">حذف السيرفر</button>
                 </div>`;
             
             document.getElementById('serverList').innerHTML += card;
@@ -62,7 +68,7 @@
         }
 
         function deleteServer(btn) {
-            if(confirm("هل أنت متأكد؟")) {
+            if(confirm("هل أنت متأكد من الحذف؟")) {
                 btn.parentElement.remove();
                 localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
             }
