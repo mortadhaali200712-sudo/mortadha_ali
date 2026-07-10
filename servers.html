@@ -33,6 +33,7 @@
     <div id="serverList"></div>
 
     <script>
+        // تحميل البيانات من المتصفح
         document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "<p>لا توجد سيرفرات حالياً</p>";
 
         function adminLogin() {
@@ -49,17 +50,13 @@
         }
 
         function saveServer() {
-            const sName = document.getElementById('sName').value;
-            const sIp = document.getElementById('sIp').value;
-            const sPort = document.getElementById('sPort').value;
-            
             const card = `
                 <div class="server-card">
-                    <h3 style="color:#4caf50; margin:0;">${sName}</h3>
+                    <h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3>
                     <p>النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p>
-                    <p>الايبي: <strong>${sIp}</strong> <button class="copy-btn" onclick="copyText('${sIp}')">نسخ</button></p>
-                    <p>البورت: <strong>${sPort}</strong> <button class="copy-btn" onclick="copyText('${sPort}')">نسخ</button></p>
-                    <button class="btn-delete" onclick="deleteServer(this)">حذف السيرفر</button>
+                    <p>الايبي: <strong>${document.getElementById('sIp').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sIp').value}')">نسخ</button></p>
+                    <p>البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sPort').value}')">نسخ</button></p>
+                    <button class="btn-delete" style="display:inline-block;" onclick="deleteServer(this)">حذف السيرفر</button>
                 </div>`;
             
             document.getElementById('serverList').innerHTML += card;
