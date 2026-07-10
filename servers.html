@@ -7,72 +7,120 @@
         body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
         .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
         .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
-        .row { display: flex; gap: 10px; margin-bottom: 10px; }
-        input { flex-grow: 1; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; }
-        button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; }
+        input[type="text"] { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; margin-bottom: 10px; }
+        button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; font-weight: bold; }
         .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
-        .checkbox { position: absolute; left: 15px; top: 15px; width: 20px; height: 20px; display: none; }
+        .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 10px; }
+        /* تصميم مربع الحذف */
+        .delete-checkbox { display: none; position: absolute; left: 15px; top: 15px; width: 25px; height: 25px; cursor: pointer; accent-color: #ff4d4d; }
     </style>
 </head>
 <body>
 
+    <!-- زر الإعدادات الأساسي -->
     <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات</button>
 
+    <!-- القائمة الرئيسية (تظهر بعد الباسورد) -->
     <div id="menuBox" class="menu-box">
-        <button onclick="showPanel('add')" style="background:#4caf50; color:white;">➕ إضافة سيرفر</button>
-        <button onclick="showPanel('del')" style="background:#ff4d4d; color:white;">🗑️ حذف سيرفر</button>
+        <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 45%;">➕ إضافة منشور</button>
+        <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف منشور</button>
     </div>
 
+    <!-- لوحة إضافة المنشور -->
     <div id="addPanel" class="panel-box">
-        <input type="text" id="sName" placeholder="اسم السيرفر" style="width:90%"><br><br>
-        <input type="text" id="sIp" placeholder="الايبي" style="width:90%"><br><br>
-        <input type="text" id="sPort" placeholder="البورت" style="width:90%"><br><br>
+        <input type="text" id="ver" placeholder="النسخة (مثال: بيدروك)">
+        <input type="text" id="verNum" placeholder="الإصدار (مثال: 26.32)">
+        <input type="text" id="sName" placeholder="اسم السيرفر">
+        <input type="text" id="sIp" placeholder="ايبي السيرفر">
+        <input type="text" id="sPort" placeholder="بورت السيرفر">
         <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
     </div>
 
+    <!-- لوحة تأكيد الحذف -->
     <div id="delPanel" class="panel-box">
-        <p>حدد السيرفرات التي تريد حذفها:</p>
-        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">حذف المحدد</button>
+        <p style="color:#ff4d4d;">✔️ ضع علامة (صح) على المنشورات التي تريد حذفها ثم اضغط الزر بالأسفل:</p>
+        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">تأكيد حذف المنشورات المحددة</button>
     </div>
 
-    <h1>السيرفرات</h1>
+    <h1>قائمة السيرفرات</h1>
     <div id="serverList"></div>
 
     <script>
+        // جلب المنشورات المحفوظة
         document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "";
 
         function openMenu() {
             const pass = prompt("أدخل كلمة المرور:");
-            if(pass === "20077412") { document.getElementById('menuBox').style.display = "block"; }
-            else { alert("خطأ!"); }
+            if(pass === "20077412") {
+                document.getElementById('menuBox').style.display = "block";
+                document.getElementById('addPanel').style.display = "none";
+                document.getElementById('delPanel').style.display = "none";
+            } else { alert("كلمة مرور خاطئة!"); }
         }
 
         function showPanel(type) {
             document.getElementById('menuBox').style.display = "none";
-            if(type === 'add') document.getElementById('addPanel').style.display = "block";
-            else {
+            
+            if(type === 'add') {
+                document.getElementById('addPanel').style.display = "block";
+                // إخفاء مربعات الحذف إذا كانت ظاهرة
+                document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "none");
+            } else {
                 document.getElementById('delPanel').style.display = "block";
-                document.querySelectorAll('.checkbox').forEach(c => c.style.display = "block");
+                // كود ذكي: يمر على كل المنشورات، إذا لم يكن فيها مربع الحذف (لأنها قديمة) يقوم بإنشائه!
+                const cards = document.querySelectorAll('.server-card');
+                cards.forEach(card => {
+                    let checkbox = card.querySelector('.delete-checkbox');
+                    if(!checkbox) {
+                        checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.className = 'delete-checkbox';
+                        card.appendChild(checkbox);
+                    }
+                    checkbox.style.display = "block"; // إظهار المربع
+                });
             }
         }
 
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+            alert("تم نسخ: " + text);
+        }
+
         function saveServer() {
+            const ver = document.getElementById('ver').value;
+            const verNum = document.getElementById('verNum').value;
+            const sName = document.getElementById('sName').value;
+            const sIp = document.getElementById('sIp').value;
+            const sPort = document.getElementById('sPort').value;
+
             const card = `
                 <div class="server-card">
-                    <input type="checkbox" class="checkbox">
-                    <h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3>
-                    <p>الايبي: ${document.getElementById('sIp').value}</p>
-                    <p>البورت: ${document.getElementById('sPort').value}</p>
+                    <input type="checkbox" class="delete-checkbox">
+                    <h3 style="color:#4caf50; margin:0;">${sName}</h3>
+                    <p style="margin:8px 0;">النسخة: ${ver} | الإصدار: ${verNum}</p>
+                    <p style="margin:8px 0;">الايبي: <strong>${sIp}</strong> <button class="copy-btn" onclick="copyText('${sIp}')">نسخ</button></p>
+                    <p style="margin:8px 0;">البورت: <strong>${sPort}</strong> <button class="copy-btn" onclick="copyText('${sPort}')">نسخ</button></p>
                 </div>`;
+            
             document.getElementById('serverList').innerHTML += card;
             localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
-            location.reload();
+            location.reload(); // تحديث الصفحة لتأكيد الحفظ
         }
 
         function deleteSelected() {
-            document.querySelectorAll('.checkbox:checked').forEach(c => c.parentElement.remove());
-            localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
-            location.reload();
+            // جلب كل المربعات التي تم وضع علامة صح عليها وحذف المنشور الخاص بها
+            const checkedBoxes = document.querySelectorAll('.delete-checkbox:checked');
+            if(checkedBoxes.length === 0) {
+                alert("لم تقم بتحديد أي منشور للحذف!");
+                return;
+            }
+
+            if(confirm("هل أنت متأكد من حذف المنشورات المحددة؟")) {
+                checkedBoxes.forEach(box => box.parentElement.remove());
+                localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
+                location.reload(); // تحديث الصفحة
+            }
         }
     </script>
 </body>
