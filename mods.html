@@ -2,49 +2,137 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>قسم المودات</title>
+    <title>المودات</title>
     <style>
-        body { background: #000; color: #fff; text-align: center; font-family: sans-serif; padding: 20px; }
-        .mod-card { background: #1a1a1a; border: 1px solid #4caf50; padding: 15px; margin: 10px auto; width: 300px; border-radius: 15px; }
-        .mod-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 10px; }
-        .btn { padding: 10px; margin: 5px; cursor: pointer; border: none; border-radius: 5px; }
-        .add-box { background: #222; padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px dashed #4caf50; }
+        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; }
+        .back-btn { display: inline-block; background: #555; padding: 10px 20px; border-radius: 10px; text-decoration: none; color: #fff; margin-bottom: 20px; }
+        #search { width: 90%; max-width: 400px; padding: 15px; margin-bottom: 30px; border-radius: 15px; border: 2px solid #4caf50; background: #1a1a1a; color: #fff; text-align: center; font-size: 16px; }
+        .mod-card { background: #1a1a1a; border: 1px solid #4caf50; padding: 15px; margin: 10px auto; width: 90%; max-width: 400px; border-radius: 15px; display: flex; align-items: center; text-align: right; transition: border 0.3s; }
+        .mod-img { width: 80px; height: 80px; border-radius: 10px; margin-left: 15px; object-fit: cover; }
+        .mod-info { flex-grow: 1; }
+        .mod-name { font-weight: bold; font-size: 1.1em; display: block; margin-bottom: 8px; }
+        .btn { padding: 8px 12px; border-radius: 8px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; font-size: 13px; margin-left: 5px; }
+        .download-btn { background: #4caf50; color: #000; }
+        .copy-btn { background: #555; color: #fff; }
     </style>
 </head>
 <body>
 
-    <div class="add-box">
-        <h3>إضافة مود جديد</h3>
-        <input type="text" id="name" placeholder="اسم المود"><br>
-        <input type="text" id="desc" placeholder="الوصف"><br>
-        <input type="text" id="link" placeholder="رابط التحميل"><br>
-        <input type="file" id="imgFile" accept="image/*"><br>
-        <button class="btn" onclick="addMod()">نشر المود</button>
+    <a href="index.html" class="back-btn">⬅ رجوع للرئيسية</a>
+    <h1>قسم المودات 📦</h1>
+    <input type="text" id="search" onkeyup="searchMods()" placeholder="🔍 ابحث عن مود...">
+
+    <div id="modsList">
+        <div class="mod-card" id="horror">
+            <img src="https://cdn.phototourl.com/free/2026-07-10-a18e8d6b-787f-4ea9-a29f-223e25e47948.webp" class="mod-img">
+            <div class="mod-info">
+                <span class="mod-name">مود الرعب</span>
+                <a href="https://www.mediafire.com/file/5570wx2ac6zvwd4/مود_الرعب_.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('horror')">نسخ</button>
+            </div>
+        </div>
+
+        <div class="mod-card" id="dino">
+            <img src="https://cdn.phototourl.com/free/2026-07-10-c127607f-0880-48b3-9ab8-adba4be81331.webp" class="mod-img">
+            <div class="mod-info">
+                <span class="mod-name">مود الديناصور</span>
+                <a href="https://www.mediafire.com/file/dr3f3wtz8nnxd37/مود_الديناصور.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('dino')">نسخ</button>
+            </div>
+        </div>
+
+        <div class="mod-card" id="drill">
+            <img src="https://cdn.phototourl.com/free/2026-07-10-052f9825-8d9f-4452-bca6-3a5f0a3c96ba.jpg" class="mod-img">
+            <div class="mod-info">
+                <span class="mod-name">مود الدريل</span>
+                <a href="https://www.mediafire.com/file/ife8novip8dv03g/دريل_Legend_Hub.mcpack/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('drill')">نسخ</button>
+            </div>
+        </div>
+
+        <div class="mod-card" id="guns">
+            <img src="https://cdn.phototourl.com/free/2026-07-10-7e637dd6-219c-40ce-b0da-2dd24013b625.webp" class="mod-img">
+            <div class="mod-info">
+                <span class="mod-name">مود الاسلحة الحقيقية</span>
+                <a href="https://www.mediafire.com/file/30pgf2fayhhf4hm/أسلحة_حقيقية_(واقعية)_Legend_Hub/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('guns')">نسخ</button>
+            </div>
+        </div>
+
+        <div class="mod-card" id="wiston">
+            <img src="https://cdn.phototourl.com/free/2026-07-10-9f1e3ed7-5721-470f-92a5-2fcb9c259923.jpg" class="mod-img">
+            <div class="mod-info">
+                <span class="mod-name">مود الويستون</span>
+                <a href="https://www.mediafire.com/file/sr3gt9b9f85qy33/ويستون_Legend_Hub.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('wiston')">نسخ</button>
+            </div>
+        </div>
+
+        <div class="mod-card" id="hammer">
+            <img src="https://cdn.phototourl.com/free/2026-07-10-9ebea467-3034-418a-9032-ebef6f0d7096.jpg" class="mod-img">
+            <div class="mod-info">
+                <span class="mod-name">مود الهمر</span>
+                <a href="https://www.mediafire.com/file/z8gvhyu1q0gjl2d/همر_Legend_Hub.zip/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('hammer')">نسخ</button>
+            </div>
+        </div>
+
+        <div class="mod-card" id="wand">
+            <img src="https://cdn.phototourl.com/free/2026-07-10-86308f6a-d84b-4d98-9de4-070f71cf7a13.jpg" class="mod-img">
+            <div class="mod-info">
+                <span class="mod-name">مود الواند</span>
+                <a href="https://www.mediafire.com/file/sp9zoo1hn0pr5a5/واند_Legend_Hub.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('wand')">نسخ</button>
+            </div>
+        </div>
+
+        <div class="mod-card" id="anim">
+            <img src="https://cdn.phototourl.com/free/2026-07-10-35593438-3f5b-4594-9deb-e4cd614e89ea.jpg" class="mod-img">
+            <div class="mod-info">
+                <span class="mod-name">مود الانميشن</span>
+                <a href="https://www.mediafire.com/file/01rbobhezh8qfqk/انميشن_Legend_Hub.mcpack/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('anim')">نسخ</button>
+            </div>
+        </div>
+
+        <div class="mod-card" id="carry">
+            <img src="https://cdn.phototourl.com/free/2026-07-10-751acb95-bc15-496d-8381-ce8b4b613269.webp" class="mod-img">
+            <div class="mod-info">
+                <span class="mod-name">مود حمل الموبات</span>
+                <a href="https://www.mediafire.com/file/jtxz5wu8y3bqddh/حمل_الموبات_والحيوانات_Legend_Hub.mcpack/file" target="_blank" class="btn download-btn">تحميل</a>
+                <button class="btn copy-btn" onclick="copyModLink('carry')">نسخ</button>
+            </div>
+        </div>
     </div>
 
-    <div id="modsList"></div>
-
     <script>
-        function addMod() {
-            const name = document.getElementById('name').value;
-            const desc = document.getElementById('desc').value;
-            const link = document.getElementById('link').value;
-            const file = document.getElementById('imgFile').files[0];
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = e.target.result; // تحويل الصورة لكود
-                const card = `
-                    <div class="mod-card">
-                        <img src="${img}" class="mod-img">
-                        <h3>${name}</h3>
-                        <p>${desc}</p>
-                        <a href="${link}" class="btn" style="background:#4caf50">تحميل</a>
-                    </div>`;
-                document.getElementById('modsList').innerHTML += card;
-                alert("تم إضافة المود!");
-            };
-            reader.readAsDataURL(file);
+        function copyModLink(modId) {
+            let baseUrl = window.location.href.split('?')[0];
+            let fullLink = baseUrl + "?mod=" + modId;
+            navigator.clipboard.writeText(fullLink).then(() => {
+                alert("تم نسخ رابط المود المباشر!");
+            });
+        }
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const modId = urlParams.get('mod');
+            if (modId) {
+                const element = document.getElementById(modId);
+                if (element) {
+                    element.style.border = "2px solid #ffeb3b";
+                    element.scrollIntoView({ behavior: "smooth" });
+                }
+            }
+        };
+
+        function searchMods() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let cards = document.getElementsByClassName('mod-card');
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].innerText.toLowerCase();
+                cards[i].style.display = name.includes(input) ? "" : "none";
+            }
         }
     </script>
 </body>
