@@ -9,10 +9,11 @@
         .server-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
         .row { display: flex; gap: 10px; margin-bottom: 10px; }
         input { flex-grow: 1; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; }
-        .btn-save { background: #4caf50; color: white; padding: 10px 30px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
-        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; }
+        .btn-save { background: #4caf50; color: white; padding: 10px 30px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; margin-top: 10px; }
+        .btn-delete-mode { background: #ff4d4d; color: white; padding: 10px 30px; border: none; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; }
+        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; cursor: pointer; transition: 0.3s; }
+        .server-card:hover { border-color: #ff4d4d; }
         .copy-btn { cursor: pointer; background: #4caf50; border: none; color: white; padding: 4px 10px; border-radius: 4px; margin-right: 5px; font-size: 12px; }
-        .btn-delete { background: #ff4d4d; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; display: none; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -20,29 +21,34 @@
     <button class="admin-btn" onclick="adminLogin()">⚙️ إعدادات</button>
 
     <div id="adminPanel" class="server-box">
-        <h3>إضافة سيرفر جديد</h3>
+        <h3>لوحة التحكم</h3>
         <div class="row"><input type="text" id="ver" placeholder="النسخة"></div>
         <div class="row"><input type="text" id="verNum" placeholder="إصدار السيرفر"></div>
         <div class="row"><input type="text" id="sName" placeholder="اسم السيرفر"></div>
         <div class="row"><input type="text" id="sIp" placeholder="ايبي السيرفر"></div>
         <div class="row"><input type="text" id="sPort" placeholder="بورت السيرفر"></div>
         <button class="btn-save" onclick="saveServer()">نشر السيرفر</button>
+        <hr style="margin: 20px 0;">
+        <button class="btn-delete-mode" onclick="toggleDeleteMode()">تفعيل وضع الحذف</button>
     </div>
 
     <h1>قائمة السيرفرات المتاحة</h1>
     <div id="serverList"></div>
 
     <script>
-        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "<p>لا توجد سيرفرات حالياً</p>";
+        let deleteMode = false;
+        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "<p>لا توجد سيرفرات</p>";
 
         function adminLogin() {
             const pass = prompt("أدخل كلمة مرور المدير:");
             if(pass === "20077412") {
                 document.getElementById('adminPanel').style.display = "block";
-                // إظهار أزرار الحذف فوراً عند الدخول
-                const btns = document.querySelectorAll('.btn-delete');
-                btns.forEach(b => b.style.display = "inline-block");
             } else { alert("كلمة مرور خاطئة!"); }
+        }
+
+        function toggleDeleteMode() {
+            deleteMode = !deleteMode;
+            alert(deleteMode ? "تم تفعيل وضع الحذف: اضغط على أي سيرفر لحذفه" : "تم إلغاء وضع الحذف");
         }
 
         function copyText(text) {
@@ -52,23 +58,23 @@
 
         function saveServer() {
             const card = `
-                <div class="server-card">
+                <div class="server-card" onclick="handleCardClick(this)">
                     <h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3>
                     <p>النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p>
-                    <p>الايبي: <strong>${document.getElementById('sIp').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sIp').value}')">نسخ</button></p>
-                    <p>البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sPort').value}')">نسخ</button></p>
-                    <button class="btn-delete" style="display:inline-block;" onclick="deleteServer(this)">حذف السيرفر</button>
+                    <p>الايبي: <strong>${document.getElementById('sIp').value}</strong> <button class="copy-btn" onclick="event.stopPropagation(); copyText('${document.getElementById('sIp').value}')">نسخ</button></p>
+                    <p>البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="event.stopPropagation(); copyText('${document.getElementById('sPort').value}')">نسخ</button></p>
                 </div>`;
-            
             document.getElementById('serverList').innerHTML += card;
             localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
             alert("تم النشر!");
         }
 
-        function deleteServer(btn) {
-            if(confirm("هل أنت متأكد من الحذف؟")) {
-                btn.parentElement.remove();
-                localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
+        function handleCardClick(card) {
+            if (deleteMode) {
+                if(confirm("هل تريد حذف هذا السيرفر؟")) {
+                    card.remove();
+                    localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
+                }
             }
         }
     </script>
