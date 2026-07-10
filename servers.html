@@ -11,116 +11,100 @@
         button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; font-weight: bold; }
         .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
         .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 10px; }
-        /* تصميم مربع الحذف */
+        .edit-btn { background: #ffa500; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; }
         .delete-checkbox { display: none; position: absolute; left: 15px; top: 15px; width: 25px; height: 25px; cursor: pointer; accent-color: #ff4d4d; }
     </style>
 </head>
 <body>
 
-    <!-- زر الإعدادات الأساسي -->
     <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات</button>
 
-    <!-- القائمة الرئيسية (تظهر بعد الباسورد) -->
     <div id="menuBox" class="menu-box">
         <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 45%;">➕ إضافة منشور</button>
         <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف منشور</button>
     </div>
 
-    <!-- لوحة إضافة المنشور -->
+    <!-- لوحة الإضافة/التعديل -->
     <div id="addPanel" class="panel-box">
-        <input type="text" id="ver" placeholder="النسخة (مثال: بيدروك)">
-        <input type="text" id="verNum" placeholder="الإصدار (مثال: 26.32)">
+        <input type="hidden" id="editIndex" value="-1">
+        <input type="text" id="ver" placeholder="النسخة">
+        <input type="text" id="verNum" placeholder="الإصدار">
         <input type="text" id="sName" placeholder="اسم السيرفر">
         <input type="text" id="sIp" placeholder="ايبي السيرفر">
         <input type="text" id="sPort" placeholder="بورت السيرفر">
-        <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
+        <button id="saveBtn" onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
     </div>
 
-    <!-- لوحة تأكيد الحذف -->
     <div id="delPanel" class="panel-box">
-        <p style="color:#ff4d4d;">✔️ ضع علامة (صح) على المنشورات التي تريد حذفها ثم اضغط الزر بالأسفل:</p>
-        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">تأكيد حذف المنشورات المحددة</button>
+        <p style="color:#ff4d4d;">حدد المربعات ثم اضغط هنا:</p>
+        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">تأكيد حذف المحدد</button>
     </div>
 
     <h1>قائمة السيرفرات</h1>
     <div id="serverList"></div>
 
     <script>
-        // جلب المنشورات المحفوظة
+        // تحميل البيانات
         document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "";
 
         function openMenu() {
             const pass = prompt("أدخل كلمة المرور:");
             if(pass === "20077412") {
                 document.getElementById('menuBox').style.display = "block";
-                document.getElementById('addPanel').style.display = "none";
-                document.getElementById('delPanel').style.display = "none";
             } else { alert("كلمة مرور خاطئة!"); }
         }
 
         function showPanel(type) {
             document.getElementById('menuBox').style.display = "none";
-            
             if(type === 'add') {
                 document.getElementById('addPanel').style.display = "block";
-                // إخفاء مربعات الحذف إذا كانت ظاهرة
-                document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "none");
+                document.getElementById('editIndex').value = "-1";
             } else {
                 document.getElementById('delPanel').style.display = "block";
-                // كود ذكي: يمر على كل المنشورات، إذا لم يكن فيها مربع الحذف (لأنها قديمة) يقوم بإنشائه!
-                const cards = document.querySelectorAll('.server-card');
-                cards.forEach(card => {
-                    let checkbox = card.querySelector('.delete-checkbox');
-                    if(!checkbox) {
-                        checkbox = document.createElement('input');
-                        checkbox.type = 'checkbox';
-                        checkbox.className = 'delete-checkbox';
-                        card.appendChild(checkbox);
-                    }
-                    checkbox.style.display = "block"; // إظهار المربع
-                });
+                document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "block");
             }
         }
 
-        function copyText(text) {
-            navigator.clipboard.writeText(text);
-            alert("تم نسخ: " + text);
+        function editServer(index) {
+            const card = document.querySelectorAll('.server-card')[index];
+            document.getElementById('editIndex').value = index;
+            document.getElementById('ver').value = card.dataset.ver;
+            document.getElementById('verNum').value = card.dataset.verNum;
+            document.getElementById('sName').value = card.querySelector('h3').innerText;
+            document.getElementById('sIp').value = card.dataset.ip;
+            document.getElementById('sPort').value = card.dataset.port;
+            document.getElementById('addPanel').style.display = "block";
         }
 
         function saveServer() {
-            const ver = document.getElementById('ver').value;
-            const verNum = document.getElementById('verNum').value;
-            const sName = document.getElementById('sName').value;
-            const sIp = document.getElementById('sIp').value;
-            const sPort = document.getElementById('sPort').value;
-
-            const card = `
-                <div class="server-card">
+            const editIndex = parseInt(document.getElementById('editIndex').value);
+            const cardHtml = `
+                <div class="server-card" data-ver="${document.getElementById('ver').value}" 
+                     data-ver-num="${document.getElementById('verNum').value}" 
+                     data-ip="${document.getElementById('sIp').value}" 
+                     data-port="${document.getElementById('sPort').value}">
                     <input type="checkbox" class="delete-checkbox">
-                    <h3 style="color:#4caf50; margin:0;">${sName}</h3>
-                    <p style="margin:8px 0;">النسخة: ${ver} | الإصدار: ${verNum}</p>
-                    <p style="margin:8px 0;">الايبي: <strong>${sIp}</strong> <button class="copy-btn" onclick="copyText('${sIp}')">نسخ</button></p>
-                    <p style="margin:8px 0;">البورت: <strong>${sPort}</strong> <button class="copy-btn" onclick="copyText('${sPort}')">نسخ</button></p>
+                    <h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3>
+                    <p style="margin:8px 0;">النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p>
+                    <p style="margin:8px 0;">الايبي: <strong>${document.getElementById('sIp').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sIp').value}')">نسخ</button></p>
+                    <p style="margin:8px 0;">البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sPort').value}')">نسخ</button>
+                    <button class="edit-btn" onclick="editServer(${editIndex === -1 ? document.querySelectorAll('.server-card').length : editIndex})">تعديل</button></p>
                 </div>`;
-            
-            document.getElementById('serverList').innerHTML += card;
+
+            if (editIndex !== -1) {
+                document.querySelectorAll('.server-card')[editIndex].outerHTML = cardHtml;
+            } else {
+                document.getElementById('serverList').innerHTML += cardHtml;
+            }
             localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
-            location.reload(); // تحديث الصفحة لتأكيد الحفظ
+            location.reload();
         }
 
+        function copyText(text) { navigator.clipboard.writeText(text); alert("تم النسخ: " + text); }
         function deleteSelected() {
-            // جلب كل المربعات التي تم وضع علامة صح عليها وحذف المنشور الخاص بها
-            const checkedBoxes = document.querySelectorAll('.delete-checkbox:checked');
-            if(checkedBoxes.length === 0) {
-                alert("لم تقم بتحديد أي منشور للحذف!");
-                return;
-            }
-
-            if(confirm("هل أنت متأكد من حذف المنشورات المحددة؟")) {
-                checkedBoxes.forEach(box => box.parentElement.remove());
-                localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
-                location.reload(); // تحديث الصفحة
-            }
+            document.querySelectorAll('.delete-checkbox:checked').forEach(c => c.parentElement.remove());
+            localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
+            location.reload();
         }
     </script>
 </body>
