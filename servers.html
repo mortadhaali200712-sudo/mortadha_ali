@@ -11,7 +11,7 @@
         button { cursor: pointer; border: none; padding: 12px; border-radius: 5px; margin: 5px; font-weight: bold; width: 90%; display: block; margin: 10px auto; }
         .btn-green { background: #4caf50; color: white; }
         .btn-red { background: #ff4d4d; color: white; }
-        .btn-back { background: #555; color: white; border-radius: 5px; padding: 12px; border: none; width: 90%; margin: 10px auto; }
+        .btn-back { background: #555; color: white; border-radius: 10px; padding: 15px; font-size: 16px; border: none; }
         .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
         .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
         .edit-btn { background: #ffa500; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
@@ -49,7 +49,7 @@
     <div id="serverList"></div>
 
     <script>
-        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "";
+        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers_v2') || "";
 
         function openMenu() {
             const pass = prompt("أدخل كلمة المرور:");
@@ -102,14 +102,14 @@
                 </div>`;
             if (editIndex !== -1) { document.querySelectorAll('.server-card')[editIndex].outerHTML = cardHtml; } 
             else { document.getElementById('serverList').innerHTML += cardHtml; }
-            localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
+            localStorage.setItem('myServers_v2', document.getElementById('serverList').innerHTML);
             location.reload();
         }
 
         function copyText(text) { navigator.clipboard.writeText(text); alert("تم النسخ: " + text); }
         function deleteSelected() {
             document.querySelectorAll('.delete-checkbox:checked').forEach(c => c.parentElement.remove());
-            localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
+            localStorage.setItem('myServers_v2', document.getElementById('serverList').innerHTML);
             location.reload();
         }
     </script>
