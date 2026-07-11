@@ -10,27 +10,19 @@
         .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
         input[type="text"] { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; margin-bottom: 10px; }
         button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; font-weight: bold; }
-        
-        .apply-container { background: #1a1a1a; padding: 15px; border-radius: 15px; border: 2px solid #ff9800; margin: 20px auto; max-width: 500px; }
-        iframe { width: 100%; height: 400px; border: none; border-radius: 10px; background: #fff; }
-        
         .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
         .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
         .delete-checkbox { display: none; position: absolute; left: 15px; top: 15px; width: 25px; height: 25px; cursor: pointer; accent-color: #ff4d4d; }
-        
-        /* تصميم قائمة المقبولين */
-        .accepted-card { background: #1a1a1a; border: 1px solid #4caf50; padding: 10px; margin: 10px auto; border-radius: 8px; width: 90%; max-width: 500px; }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-home">← رجوع</a>
+    <a href="index.html" class="back-home">← رجوع للرئيسية</a>
     <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات</button>
 
     <div id="menuBox" class="menu-box">
-        <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 45%;">➕ إضافة سيرفر</button>
-        <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف سيرفر</button>
-        <button onclick="showPanel('accept')" style="background:#007bff; color:white; width: 95%; margin-top:10px;">✅ إضافة مقبول</button>
+        <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 45%;">➕ إضافة منشور</button>
+        <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف منشور</button>
     </div>
 
     <div id="addPanel" class="panel-box">
@@ -39,36 +31,20 @@
         <input type="text" id="sName" placeholder="اسم السيرفر">
         <input type="text" id="sIp" placeholder="ايبي السيرفر">
         <input type="text" id="sPort" placeholder="بورت السيرفر">
-        <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">نشر السيرفر</button>
+        <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
     </div>
 
     <div id="delPanel" class="panel-box">
         <p style="color:#ff4d4d;">حدد المربعات ثم اضغط هنا:</p>
-        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">حذف المحدد</button>
+        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">تأكيد حذف المحدد</button>
     </div>
 
-    <!-- لوحة إضافة مقبول -->
-    <div id="acceptPanel" class="panel-box">
-        <input type="text" id="pName" placeholder="اسم المتابع المقبول">
-        <input type="text" id="pIp" placeholder="الإيبي">
-        <input type="text" id="pPort" placeholder="البورت">
-        <button onclick="addAccepted()" style="background:#007bff; color:white; width:95%">إضافة للقائمة</button>
-    </div>
-
-    <h1>تقديم على السيرفر 📝</h1>
-    <div class="apply-container">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegRLmefcrIzVP6Az9vrhC1PP1M42i7LWDnIXLfy0l2VLrQfQ/viewform?embedded=true">جارٍ التحميل...</iframe>
-    </div>
-
-    <h1>قائمة المقبولين ✅</h1>
-    <div id="acceptedList"></div>
-
-    <h1>قائمة السيرفرات المتاحة</h1>
+    <h1>قائمة السيرفرات</h1>
     <div id="serverList"></div>
 
     <script>
-        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers_v4') || "";
-        document.getElementById('acceptedList').innerHTML = localStorage.getItem('acceptedPlayers') || "";
+        // نستخدم مفتاح v3 لضمان تحديث البيانات في المتصفح
+        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers_v3') || "";
 
         function openMenu() {
             const pass = prompt("أدخل كلمة المرور:");
@@ -78,32 +54,32 @@
 
         function showPanel(type) {
             document.getElementById('menuBox').style.display = "none";
-            if(type === 'add') { document.getElementById('addPanel').style.display = "block"; } 
-            else if(type === 'accept') { document.getElementById('acceptPanel').style.display = "block"; }
-            else { 
+            if(type === 'add') { 
+                document.getElementById('addPanel').style.display = "block"; 
+            } else { 
                 document.getElementById('delPanel').style.display = "block"; 
                 document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "block");
             }
         }
 
         function saveServer() {
-            const cardHtml = `<div class="server-card"><input type="checkbox" class="delete-checkbox" style="display:block;"><h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3><p style="margin:8px 0;">النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p><p style="margin:8px 0;">الايبي: <strong>${document.getElementById('sIp').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sIp').value}')">نسخ</button></p><p style="margin:8px 0;">البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sPort').value}')">نسخ</button></p></div>`;
+            const cardHtml = `
+                <div class="server-card">
+                    <input type="checkbox" class="delete-checkbox">
+                    <h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3>
+                    <p style="margin:8px 0;">النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p>
+                    <p style="margin:8px 0;">الايبي: <strong>${document.getElementById('sIp').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sIp').value}')">نسخ</button></p>
+                    <p style="margin:8px 0;">البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sPort').value}')">نسخ</button></p>
+                </div>`;
             document.getElementById('serverList').innerHTML += cardHtml;
-            localStorage.setItem('myServers_v4', document.getElementById('serverList').innerHTML);
-            location.reload();
-        }
-
-        function addAccepted() {
-            const html = `<div class="accepted-card"><h3>${document.getElementById('pName').value}</h3><p>الإيبي: ${document.getElementById('pIp').value} | البورت: ${document.getElementById('pPort').value}</p></div>`;
-            document.getElementById('acceptedList').innerHTML += html;
-            localStorage.setItem('acceptedPlayers', document.getElementById('acceptedList').innerHTML);
+            localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML);
             location.reload();
         }
 
         function copyText(text) { navigator.clipboard.writeText(text); alert("تم النسخ: " + text); }
         function deleteSelected() {
             document.querySelectorAll('.delete-checkbox:checked').forEach(c => c.parentElement.remove());
-            localStorage.setItem('myServers_v4', document.getElementById('serverList').innerHTML);
+            localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML);
             location.reload();
         }
     </script>
