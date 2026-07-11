@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Mortadha Ali | مرتضى علي</title>
     <link rel="icon" href="logo2.png" type="image/png">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body { 
@@ -14,10 +13,20 @@
             color: #fff; font-family: 'Segoe UI', sans-serif; 
             display: flex; flex-direction: column; align-items: center; 
             min-height: 100vh; margin: 0; padding: 20px; scroll-behavior: smooth; 
+            overflow-x: hidden; position: relative;
         }
+
+        /* كود الإيموجيات الجانبية */
+        .emoji-side {
+            position: fixed; top: 0; height: 100%; display: flex; flex-direction: column; 
+            justify-content: space-around; font-size: 30px; opacity: 0.4; z-index: 0; pointer-events: none;
+        }
+        .left { left: 5%; }
+        .right { right: 5%; }
+
         @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         
-        .container, .mc-section { animation: fadeIn 0.8s ease-in-out; }
+        .container, .mc-section { animation: fadeIn 0.8s ease-in-out; position: relative; z-index: 1; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         .pulse-btn { animation: pulse 2s infinite !important; border: 2px solid red !important; }
@@ -30,20 +39,13 @@
         .container { border: 2px solid #ff9800; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; background: rgba(0, 0, 0, 0.8); box-shadow: 0 0 20px #ff9800; text-align: center; margin-bottom: 40px; }
         
         .custom-img { 
-            width: 150px; 
-            height: 150px; 
-            border-radius: 50% !important; 
-            border: 4px solid #ff9800; 
-            box-shadow: 0 0 20px #ff9800; 
-            margin-bottom: 20px; 
-            transition: 0.3s; 
-            object-fit: cover !important; 
-            clip-path: circle(50% at 50% 50%); 
+            width: 150px; height: 150px; border-radius: 50% !important; border: 4px solid #ff9800; 
+            box-shadow: 0 0 20px #ff9800; margin-bottom: 20px; transition: 0.3s; 
+            object-fit: cover !important; clip-path: circle(50% at 50% 50%); 
         }
         .custom-img:hover { box-shadow: 0 0 40px #ff9800; }
         
         h1 { color: #ff9800; font-size: 2em; margin-bottom: 10px; }
-        
         .btn, .mc-btn { transition: 0.3s; cursor: pointer; }
         .btn:active, .mc-btn:active { transform: scale(0.95); }
         .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #222; border: 1px solid #555; color: white; padding: 12px; margin: 10px 0; text-decoration: none; border-radius: 8px; font-weight: bold; width: 100%; box-sizing: border-box; }
@@ -62,6 +64,10 @@
     </style>
 </head>
 <body onload="showWelcome()">
+
+    <!-- الإيموجيات الجانبية -->
+    <div class="emoji-side left"><span>🎮</span><span>🔥</span><span>⚡</span><span>👑</span><span>💎</span></div>
+    <div class="emoji-side right"><span>⛏️</span><span>🚀</span><span>👾</span><span>🔥</span><span>🎮</span></div>
 
     <div id="welcome-toast">أهلاً بك يا بطل في موقع مرتضى علي! 👑</div>
     
