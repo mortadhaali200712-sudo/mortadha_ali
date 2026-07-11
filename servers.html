@@ -5,10 +5,7 @@
     <title>سيرفرات مرتضى علي</title>
     <style>
         body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
-        
-        /* زر الرجوع للرئيسية */
         .back-home { position: fixed; top: 10px; left: 10px; background: #444; color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; border: 1px solid #4caf50; font-weight: bold; z-index: 1000; }
-
         .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
         .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
         input[type="text"] { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; margin-bottom: 10px; }
@@ -20,9 +17,7 @@
 </head>
 <body>
 
-    <!-- زر الرجوع للصفحة الرئيسية -->
     <a href="index.html" class="back-home">← رجوع للرئيسية</a>
-
     <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات</button>
 
     <div id="menuBox" class="menu-box">
@@ -48,7 +43,8 @@
     <div id="serverList"></div>
 
     <script>
-        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers') || "";
+        // نستخدم مفتاح v3 لضمان تحديث البيانات في المتصفح
+        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers_v3') || "";
 
         function openMenu() {
             const pass = prompt("أدخل كلمة المرور:");
@@ -76,14 +72,14 @@
                     <p style="margin:8px 0;">البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sPort').value}')">نسخ</button></p>
                 </div>`;
             document.getElementById('serverList').innerHTML += cardHtml;
-            localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
+            localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML);
             location.reload();
         }
 
         function copyText(text) { navigator.clipboard.writeText(text); alert("تم النسخ: " + text); }
         function deleteSelected() {
             document.querySelectorAll('.delete-checkbox:checked').forEach(c => c.parentElement.remove());
-            localStorage.setItem('myServers', document.getElementById('serverList').innerHTML);
+            localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML);
             location.reload();
         }
     </script>
