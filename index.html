@@ -5,7 +5,7 @@
     <title>Mortadha Ali | مرتضى علي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* الخلفية المتحركة الأصلية */
+        /* إضافة الخلفية المتحركة */
         body { 
             background: linear-gradient(135deg, #000000, #1a1a1a, #000000); 
             background-size: 400% 400%; 
@@ -40,9 +40,9 @@
         .custom-img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid #ff9800; box-shadow: 0 0 15px #ff9800; margin-bottom: 20px; }
         h1 { color: #ff9800; font-size: 2em; margin-bottom: 10px; }
         
-        .btn, .mc-btn { transition: 0.3s; cursor: pointer; }
+        .btn, .mc-btn { transition: 0.3s; }
         .btn:active, .mc-btn:active { transform: scale(0.95); }
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #222; border: 1px solid #555; color: white; padding: 12px; margin: 10px 0; text-decoration: none; border-radius: 8px; font-weight: bold; width: 100%; box-sizing: border-box; }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #222; border: 1px solid #555; color: white; padding: 12px; margin: 10px 0; text-decoration: none; border-radius: 8px; font-weight: bold; }
         .btn:hover { background: #333; border-color: #ff9800; box-shadow: 0 0 15px rgba(255, 152, 0, 0.5); }
         
         .mc-section { width: 90%; max-width: 500px; background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 0 15px #4caf50; }
@@ -52,9 +52,6 @@
         .mc-btn:hover { background: #4caf50; color: #000; box-shadow: 0 0 15px rgba(76, 175, 80, 0.5); }
 
         .top-btn { position: fixed; bottom: 20px; right: 20px; background: #ff9800; color: black; padding: 10px 15px; border-radius: 50%; cursor: pointer; text-decoration: none; font-weight: bold; }
-
-        /* ستايل زر المشاركة */
-        .share-btn { border: 1px solid #ff9800; color: #ff9800; background: #000; }
     </style>
 </head>
 <body>
@@ -70,9 +67,6 @@
         <a href="https://www.instagram.com/mortadha_ali12/" class="btn"><i class="fab fa-instagram" style="color:#e1306c;"></i> إنستكرام</a>
         <a href="https://discord.gg/qFWsBe4udR" class="btn"><i class="fab fa-discord" style="color:#5865f2;"></i> دسكورد</a>
         <a href="https://kick.com/mortadha-ali" class="btn"><i class="fas fa-gamepad" style="color:#53fc18;"></i> كيك (Kick)</a>
-        
-        <!-- زر مشاركة الموقع الجديد -->
-        <button onclick="copyLink()" class="btn share-btn"><i class="fas fa-share-alt"></i> مشاركة الموقع</button>
     </div>
 
     <div class="mc-section">
@@ -87,11 +81,5 @@
 
     <a href="#" class="top-btn"><i class="fas fa-arrow-up"></i></a>
 
-    <script>
-        function copyLink() {
-            navigator.clipboard.writeText(window.location.href);
-            alert("تم نسخ رابط الموقع بنجاح!");
-        }
-    </script>
 </body>
 </html>
