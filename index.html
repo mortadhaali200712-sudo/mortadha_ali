@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Mortadha Ali | مرتضى علي</title>
-    <!-- هذا السطر يطلب من المتصفح عرض الصورة -->
+    <!-- أيقونة الموقع -->
     <link rel="icon" href="logo.png" type="image/png">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* إجبار المتصفح على عرض الأيقونة بشكل دائري (يعمل في أغلب المتصفحات الحديثة) */
-        link[rel="icon"] { border-radius: 50%; }
-
         body { 
             background: linear-gradient(135deg, #000000, #1a1a1a, #000000); 
             background-size: 400% 400%; 
@@ -33,7 +30,17 @@
 
         .container { border: 2px solid #ff9800; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; background: rgba(0, 0, 0, 0.8); box-shadow: 0 0 20px #ff9800; text-align: center; margin-bottom: 40px; }
         
-        .custom-img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid #ff9800; box-shadow: 0 0 20px #ff9800; margin-bottom: 20px; transition: 0.3s; object-fit: cover; }
+        /* التعديل هنا لضمان دائرية الصورة برمجياً */
+        .custom-img { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            border: 4px solid #ff9800; 
+            box-shadow: 0 0 20px #ff9800; 
+            margin-bottom: 20px; 
+            transition: 0.3s; 
+            object-fit: cover; /* هذا يضمن قص الصورة لتملأ الدائرة بشكل صحيح */
+        }
         .custom-img:hover { box-shadow: 0 0 40px #ff9800; }
         
         h1 { color: #ff9800; font-size: 2em; margin-bottom: 10px; }
