@@ -5,7 +5,26 @@
     <title>Mortadha Ali | مرتضى علي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; scroll-behavior: smooth; }
+        /* إضافة الخلفية المتحركة */
+        body { 
+            background: linear-gradient(135deg, #000000, #1a1a1a, #000000); 
+            background-size: 400% 400%; 
+            animation: gradientBG 15s ease infinite; 
+            color: #fff; 
+            font-family: 'Segoe UI', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px; 
+            scroll-behavior: smooth; 
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         
         .container, .mc-section { animation: fadeIn 0.8s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -32,7 +51,6 @@
         .mc-btn { background: #333; color: #fff; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; border: 1px solid #4caf50; }
         .mc-btn:hover { background: #4caf50; color: #000; box-shadow: 0 0 15px rgba(76, 175, 80, 0.5); }
 
-        /* زر العودة للأعلى */
         .top-btn { position: fixed; bottom: 20px; right: 20px; background: #ff9800; color: black; padding: 10px 15px; border-radius: 50%; cursor: pointer; text-decoration: none; font-weight: bold; }
     </style>
 </head>
@@ -61,7 +79,6 @@
         </div>
     </div>
 
-    <!-- زر العودة للأعلى -->
     <a href="#" class="top-btn"><i class="fas fa-arrow-up"></i></a>
 
 </body>
