@@ -2,68 +2,85 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>السيرفرات والتكتات | مرتضى علي</title>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <title>سيرفرات مرتضى علي</title>
     <style>
-        body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; margin: 0; }
-        
-        /* زر الرجوع */
-        .back-btn { 
-            position: fixed; top: 20px; left: 20px; background: linear-gradient(45deg, #4caf50, #2e7d32); 
-            color: white; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-weight: bold; z-index: 1000;
-        }
-
-        /* صندوق التكتات */
-        .ticket-box { 
-            background: #121212; border: 2px solid #ff9800; padding: 30px; 
-            border-radius: 25px; margin: 80px auto; width: 90%; max-width: 500px;
-            box-shadow: 0 10px 30px rgba(255, 152, 0, 0.2);
-        }
-        
-        .ticket-input { 
-            width: 80%; padding: 12px; border-radius: 10px; border: 1px solid #ff9800; 
-            background: #222; color: white; margin-bottom: 15px; text-align: center;
-        }
-        
-        .btn-ticket { 
-            background: #ff9800; color: white; padding: 12px 30px; border: none; 
-            border-radius: 10px; cursor: pointer; font-weight: bold; width: 85%;
-        }
-        
-        h2 { color: #ff9800; margin-bottom: 20px; }
+        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
+        .back-home { position: fixed; top: 10px; left: 10px; background: #444; color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; border: 1px solid #4caf50; font-weight: bold; z-index: 1000; }
+        .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
+        .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
+        input[type="text"] { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; margin-bottom: 10px; }
+        button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; font-weight: bold; }
+        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
+        .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
+        .delete-checkbox { display: none; position: absolute; left: 15px; top: 15px; width: 25px; height: 25px; cursor: pointer; accent-color: #ff4d4d; }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-btn">← عودة للرئيسية</a>
+    <a href="index.html" class="back-home">← رجوع للرئيسية</a>
+    <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات</button>
 
-    <!-- قسم التكتات فقط -->
-    <div class="ticket-box">
-        <h2>هل لديك استفسار؟ 💬</h2>
-        <input type="text" id="username" class="ticket-input" placeholder="اكتب اسمك هنا...">
-        <br>
-        <button class="btn-ticket" onclick="createTicket()">➕ فتح تكت جديد</button>
+    <div id="menuBox" class="menu-box">
+        <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 45%;">➕ إضافة منشور</button>
+        <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف منشور</button>
     </div>
 
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyCeuQF67GtK8JWBAEo9zKHM-RxLVeAhgcs",
-            authDomain: "murtadaserver-bbe52.firebaseapp.com",
-            databaseURL: "https://murtadaserver-bbe52-default-rtdb.firebaseio.com",
-            projectId: "murtadaserver-bbe52",
-            storageBucket: "murtadaserver-bbe52.firebasestorage.app",
-            messagingSenderId: "816833804949",
-            appId: "1:816833804949:web:c4793ec95fa69ea44c399c"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
+    <div id="addPanel" class="panel-box">
+        <input type="text" id="ver" placeholder="النسخة">
+        <input type="text" id="verNum" placeholder="الإصدار">
+        <input type="text" id="sName" placeholder="اسم السيرفر">
+        <input type="text" id="sIp" placeholder="ايبي السيرفر">
+        <input type="text" id="sPort" placeholder="بورت السيرفر">
+        <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
+    </div>
 
-        function createTicket() {
-            const name = document.getElementById('username').value;
-            if (!name) { alert("يرجى كتابة اسمك أولاً!"); return; }
-            const newTicket = db.ref('tickets/').push({ user: name, status: 'open' });
-            window.location.href = "ticket.html?id=" + newTicket.key + "&name=" + encodeURIComponent(name);
+    <div id="delPanel" class="panel-box">
+        <p style="color:#ff4d4d;">حدد المربعات ثم اضغط هنا:</p>
+        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">تأكيد حذف المحدد</button>
+    </div>
+
+    <h1>قائمة السيرفرات</h1>
+    <div id="serverList"></div>
+
+    <script>
+        // نستخدم مفتاح v3 لضمان تحديث البيانات في المتصفح
+        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers_v3') || "";
+
+        function openMenu() {
+            const pass = prompt("أدخل كلمة المرور:");
+            if(pass === "20077412") { document.getElementById('menuBox').style.display = "block"; }
+            else { alert("كلمة مرور خاطئة!"); }
+        }
+
+        function showPanel(type) {
+            document.getElementById('menuBox').style.display = "none";
+            if(type === 'add') { 
+                document.getElementById('addPanel').style.display = "block"; 
+            } else { 
+                document.getElementById('delPanel').style.display = "block"; 
+                document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "block");
+            }
+        }
+
+        function saveServer() {
+            const cardHtml = `
+                <div class="server-card">
+                    <input type="checkbox" class="delete-checkbox">
+                    <h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3>
+                    <p style="margin:8px 0;">النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p>
+                    <p style="margin:8px 0;">الايبي: <strong>${document.getElementById('sIp').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sIp').value}')">نسخ</button></p>
+                    <p style="margin:8px 0;">البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sPort').value}')">نسخ</button></p>
+                </div>`;
+            document.getElementById('serverList').innerHTML += cardHtml;
+            localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML);
+            location.reload();
+        }
+
+        function copyText(text) { navigator.clipboard.writeText(text); alert("تم النسخ: " + text); }
+        function deleteSelected() {
+            document.querySelectorAll('.delete-checkbox:checked').forEach(c => c.parentElement.remove());
+            localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML);
+            location.reload();
         }
     </script>
 </body>
