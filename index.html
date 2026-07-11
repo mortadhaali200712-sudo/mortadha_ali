@@ -5,16 +5,11 @@
     <title>Mortadha Ali | مرتضى علي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; scroll-behavior: smooth; }
         
-        /* 1. تأثير الظهور الناعم */
         .container, .mc-section { animation: fadeIn 0.8s ease-in-out; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 2. تأثير النبض لزر يوتيوب */
         .pulse-btn { animation: pulse 2s infinite !important; border: 2px solid red !important; }
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
@@ -28,7 +23,6 @@
         
         .btn, .mc-btn { transition: 0.3s; }
         .btn:active, .mc-btn:active { transform: scale(0.95); }
-        
         .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #222; border: 1px solid #555; color: white; padding: 12px; margin: 10px 0; text-decoration: none; border-radius: 8px; font-weight: bold; }
         .btn:hover { background: #333; border-color: #ff9800; box-shadow: 0 0 15px rgba(255, 152, 0, 0.5); }
         
@@ -37,6 +31,9 @@
         .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .mc-btn { background: #333; color: #fff; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; border: 1px solid #4caf50; }
         .mc-btn:hover { background: #4caf50; color: #000; box-shadow: 0 0 15px rgba(76, 175, 80, 0.5); }
+
+        /* زر العودة للأعلى */
+        .top-btn { position: fixed; bottom: 20px; right: 20px; background: #ff9800; color: black; padding: 10px 15px; border-radius: 50%; cursor: pointer; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -46,7 +43,6 @@
         <h1>مرتضى علي</h1>
         <p>أهلاً بكم في الموقع الرسمي لمرتضى علي</p>
         
-        <!-- لاحظ أنني أضفت فئة pulse-btn هنا -->
         <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn pulse-btn"><i class="fab fa-youtube" style="color:red;"></i> يوتيوب</a>
         <a href="https://www.tiktok.com/@mortadhaali313" class="btn"><i class="fab fa-tiktok"></i> تيك توك</a>
         <a href="https://web.facebook.com/mortadha.ali2" class="btn"><i class="fab fa-facebook" style="color:#1877f2;"></i> فيسبوك</a>
@@ -64,6 +60,9 @@
             <a href="servers.html" class="mc-btn">سيرفرات</a>
         </div>
     </div>
+
+    <!-- زر العودة للأعلى -->
+    <a href="#" class="top-btn"><i class="fas fa-arrow-up"></i></a>
 
 </body>
 </html>
