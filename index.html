@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Mortadha Ali | مرتضى علي</title>
-    <!-- تأكد أن اسم الملف هنا يطابق اسم صورتك المرفوعة بالضبط -->
     <link rel="icon" href="logo.png" type="image/png">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -30,18 +29,22 @@
 
         .container { border: 2px solid #ff9800; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; background: rgba(0, 0, 0, 0.8); box-shadow: 0 0 20px #ff9800; text-align: center; margin-bottom: 40px; }
         
+        /* الكود المعدل لفرض دائرية الصورة */
         .custom-img { 
-            width: 150px; 
-            height: 150px; 
+            width: 150px !important; 
+            height: 150px !important; 
             border-radius: 50% !important; 
-            border: 4px solid #ff9800; 
-            box-shadow: 0 0 20px #ff9800; 
-            margin-bottom: 20px; 
-            transition: 0.3s; 
+            border: 4px solid #ff9800 !important; 
+            box-shadow: 0 0 20px #ff9800 !important; 
+            margin-bottom: 20px !important; 
+            transition: 0.3s !important; 
             object-fit: cover !important; 
-            clip-path: circle(50% at 50% 50%); 
+            clip-path: circle(50% at 50% 50%) !important; 
+            display: block !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
         }
-        .custom-img:hover { box-shadow: 0 0 40px #ff9800; }
+        .custom-img:hover { box-shadow: 0 0 40px #ff9800 !important; }
         
         h1 { color: #ff9800; font-size: 2em; margin-bottom: 10px; }
         
@@ -67,7 +70,6 @@
     <div id="welcome-toast">أهلاً بك يا بطل في موقع مرتضى علي! 👑</div>
     
     <div class="container">
-        <!-- تأكد أن اسم الملف هنا يطابق اسم صورتك المرفوعة بالضبط -->
         <img src="logo.png" alt="Mortadha Ali" class="custom-img">
         <h1>مرتضى علي</h1>
         <p>أهلاً بكم في الموقع الرسمي لمرتضى علي</p>
