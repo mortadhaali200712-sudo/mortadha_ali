@@ -2,66 +2,60 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>سيرفرات مرتضى علي</title>
+    <title>التقديم على السيرفر | مرتضى علي</title>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
     <style>
-        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
-        .back-home { position: fixed; top: 10px; left: 10px; background: #444; color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; border: 1px solid #4caf50; font-weight: bold; z-index: 1000; }
-        .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
-        .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
-        input[type="text"] { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; margin-bottom: 10px; }
-        button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; font-weight: bold; }
-        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
-        .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
-        .delete-checkbox { display: none; position: absolute; left: 15px; top: 15px; width: 25px; height: 25px; cursor: pointer; accent-color: #ff4d4d; }
-        .form-container { width: 90%; max-width: 600px; margin: 30px auto; background: #1a1a1a; padding: 10px; border-radius: 20px; border: 2px solid #4caf50; }
-        .ticket-box { background: #222; border: 1px solid #ff9800; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; }
+        body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; margin: 0; }
+        
+        /* زر الرجوع العائم والأنيق */
+        .back-btn { 
+            position: fixed; top: 20px; left: 20px; background: linear-gradient(45deg, #4caf50, #2e7d32); 
+            color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; 
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3); transition: 0.3s; z-index: 1000;
+        }
+        .back-btn:hover { transform: scale(1.05); }
+
+        .section-box { 
+            background: #121212; border: 1px solid #4caf50; padding: 30px; 
+            border-radius: 25px; margin: 50px auto; width: 90%; max-width: 700px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        h1 { color: #4caf50; margin-bottom: 10px; }
+        
+        .ticket-input { 
+            width: 80%; padding: 12px; border-radius: 10px; border: 1px solid #4caf50; 
+            background: #222; color: white; margin-bottom: 15px; text-align: center;
+        }
+        .btn-main { 
+            background: #ff9800; color: white; padding: 12px 30px; border: none; 
+            border-radius: 10px; cursor: pointer; font-weight: bold; transition: 0.3s;
+        }
+        .btn-main:hover { background: #e68900; }
+        
+        iframe { border-radius: 15px; border: 2px solid #333; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-home">← رجوع للرئيسية</a>
-    <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات</button>
+    <a href="index.html" class="back-btn">← عودة للرئيسية</a>
 
-    <div class="ticket-box">
-        <h3 style="color:#ff9800">هل لديك استفسار؟ افتح تكت خاص 💬</h3>
-        <input type="text" id="username" placeholder="اكتب اسمك هنا...">
-        <button onclick="createTicket()" style="background:#ff9800; color:white; width: 95%;">➕ فتح تكت جديد</button>
+    <div class="section-box">
+        <h1>التقديم على السيرفر 🛡️</h1>
+        <p>املأ نموذج الانضمام أدناه بدقة:</p>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegRLmefcrIzVP6Az9vrhC1PP1M42i7LWDnIXLfy0l2VLrQfQ/viewform?embedded=true" 
+                width="100%" height="600px" frameborder="0">جارٍ التحميل…</iframe>
     </div>
 
-    <div id="menuBox" class="menu-box">
-        <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 45%;">➕ إضافة منشور</button>
-        <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف منشور</button>
+    <div class="section-box" style="border-color: #ff9800;">
+        <h2 style="color: #ff9800;">هل لديك استفسار؟ 💬</h2>
+        <input type="text" id="username" class="ticket-input" placeholder="اكتب اسمك هنا...">
+        <br>
+        <button class="btn-main" onclick="createTicket()">➕ فتح تكت خاص</button>
     </div>
-
-    <div id="addPanel" class="panel-box">
-        <input type="text" id="ver" placeholder="النسخة">
-        <input type="text" id="verNum" placeholder="الإصدار">
-        <input type="text" id="sName" placeholder="اسم السيرفر">
-        <input type="text" id="sIp" placeholder="ايبي السيرفر">
-        <input type="text" id="sPort" placeholder="بورت السيرفر">
-        <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
-    </div>
-
-    <div id="delPanel" class="panel-box">
-        <p style="color:#ff4d4d;">حدد المربعات ثم اضغط هنا:</p>
-        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">تأكيد حذف المحدد</button>
-    </div>
-
-    <div style="text-align: center; margin-top: 50px;">
-        <h2 style="color: #4caf50;">تقديم طلب انضمام للسيرفر</h2>
-        <div class="form-container">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegRLmefcrIzVP6Az9vrhC1PP1M42i7LWDnIXLfy0l2VLrQfQ/viewform?embedded=true" 
-                    width="100%" height="800px" frameborder="0" style="border-radius: 15px;">جارٍ التحميل…</iframe>
-        </div>
-    </div>
-
-    <h1>قائمة السيرفرات</h1>
-    <div id="serverList"></div>
 
     <script>
-        // إعدادات Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyCeuQF67GtK8JWBAEo9zKHM-RxLVeAhgcs",
             authDomain: "murtadaserver-bbe52.firebaseapp.com",
@@ -74,21 +68,12 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // دالة التكتات
         function createTicket() {
             const name = document.getElementById('username').value;
             if (!name) { alert("يرجى كتابة اسمك أولاً!"); return; }
             const newTicket = db.ref('tickets/').push({ user: name, status: 'open' });
             window.location.href = "ticket.html?id=" + newTicket.key + "&name=" + encodeURIComponent(name);
         }
-
-        // كود السيرفرات الأصلي الخاص بك
-        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers_v3') || "";
-        function openMenu() { const pass = prompt("أدخل كلمة المرور:"); if(pass === "20077412") { document.getElementById('menuBox').style.display = "block"; } else { alert("كلمة مرور خاطئة!"); } }
-        function showPanel(type) { document.getElementById('menuBox').style.display = "none"; if(type === 'add') { document.getElementById('addPanel').style.display = "block"; } else { document.getElementById('delPanel').style.display = "block"; document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "block"); } }
-        function saveServer() { const cardHtml = `<div class="server-card"><input type="checkbox" class="delete-checkbox"><h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3><p>النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p><p>الايبي: <strong>${document.getElementById('sIp').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sIp').value}')">نسخ</button></p><p>البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sPort').value}')">نسخ</button></p></div>`; document.getElementById('serverList').innerHTML += cardHtml; localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML); location.reload(); }
-        function copyText(text) { navigator.clipboard.writeText(text); alert("تم النسخ: " + text); }
-        function deleteSelected() { document.querySelectorAll('.delete-checkbox:checked').forEach(c => c.parentElement.remove()); localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML); location.reload(); }
     </script>
 </body>
 </html>
