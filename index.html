@@ -5,56 +5,46 @@
     <title>Mortadha Ali | مرتضى علي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
+        /* حركة الموجة الذهبية والسوداء */
         body { 
-            margin: 0; padding: 0; min-height: 100vh;
-            background: #000;
+            margin: 0; padding: 20px;
+            min-height: 100vh;
             display: flex; flex-direction: column; align-items: center;
-            font-family: 'Segoe UI', sans-serif; color: #fff;
-            overflow-x: hidden;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(-45deg, #000000, #1a1500, #4d3d00, #000000);
+            background-size: 400% 400%;
+            animation: gradient-wave 10s ease infinite;
+            color: #fff;
         }
 
-        /* حاوية التموج الذهبي */
-        .wave-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: linear-gradient(180deg, #000 0%, #1a1500 50%, #4d3d00 100%);
+        @keyframes gradient-wave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .wave {
-            position: absolute; bottom: 0; left: 0; width: 200%; height: 30%;
-            background: rgba(255, 215, 0, 0.15); /* لون ذهبي شفاف */
-            border-radius: 40% 45%;
-            animation: wave-animation 10s infinite linear;
-        }
-
-        @keyframes wave-animation {
-            0% { transform: translateX(0) rotate(0deg); }
-            50% { transform: translateX(-25%) rotate(5deg); }
-            100% { transform: translateX(0) rotate(0deg); }
-        }
-
-        /* تنسيق العناصر */
+        /* تنسيق العناصر الأساسي */
         .container, .mc-section { 
-            background: rgba(0, 0, 0, 0.7); 
-            border: 1px solid #ffd700; 
+            background: rgba(0, 0, 0, 0.85); 
+            border: 2px solid #ffd700; 
             padding: 30px; 
             border-radius: 20px; 
             width: 90%; max-width: 500px; 
             text-align: center; 
-            margin: 20px 0;
-            backdrop-filter: blur(8px);
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
         }
         
-        .custom-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 20px; box-shadow: 0 0 15px #ffd700; }
-        h1 { color: #ffd700; }
+        .custom-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 20px; }
+        h1 { color: #ffd700; margin-bottom: 10px; }
         
-        .btn, .mc-btn { 
+        .btn { 
             display: block; padding: 15px; margin: 10px 0; border: 1px solid #ffd700;
             color: #fff; text-decoration: none; border-radius: 10px; transition: 0.3s;
         }
-        .btn:hover, .mc-btn:hover { background: #ffd700; color: #000; font-weight: bold; }
+        .btn:hover { background: #ffd700; color: #000; font-weight: bold; }
         
-        .pulse-btn { animation: pulse 2s infinite; border: 2px solid #ffd700 !important; }
+        .pulse { animation: pulse 2s infinite; border: 2px solid #ffd700 !important; }
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 0 10px #ffd700; }
             50% { transform: scale(1.05); box-shadow: 0 0 20px #ffd700; }
@@ -64,21 +54,19 @@
 </head>
 <body>
 
-    <div class="wave-bg"><div class="wave"></div></div>
-
     <div class="container">
         <img src="logo.png" alt="Mortadha Ali" class="custom-img">
         <h1>مرتضى علي</h1>
         <p>الموقع الرسمي</p>
-        <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn pulse-btn"><i class="fab fa-youtube"></i> يوتيوب</a>
+        <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn pulse"><i class="fab fa-youtube"></i> يوتيوب</a>
         <a href="https://www.tiktok.com/@mortadhaali313" class="btn"><i class="fab fa-tiktok"></i> تيك توك</a>
     </div>
 
     <div class="mc-section">
         <h2>قسم ماين كرافت ⛏️</h2>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <a href="mods.html" class="mc-btn">مودات</a>
-            <a href="skins.html" class="mc-btn">سكنات</a>
+            <a href="mods.html" class="btn">مودات</a>
+            <a href="skins.html" class="btn">سكنات</a>
         </div>
     </div>
 
