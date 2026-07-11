@@ -40,12 +40,12 @@
         .custom-img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid #ff9800; box-shadow: 0 0 15px #ff9800; margin-bottom: 20px; }
         h1 { color: #ff9800; font-size: 2em; margin-bottom: 10px; }
         
-        .btn, .mc-btn { transition: 0.3s; }
+        .btn, .mc-btn { transition: 0.3s; cursor: pointer; }
         .btn:active, .mc-btn:active { transform: scale(0.95); }
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #222; border: 1px solid #555; color: white; padding: 12px; margin: 10px 0; text-decoration: none; border-radius: 8px; font-weight: bold; }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #222; border: 1px solid #555; color: white; padding: 12px; margin: 10px 0; text-decoration: none; border-radius: 8px; font-weight: bold; width: 100%; box-sizing: border-box; }
         .btn:hover { background: #333; border-color: #ff9800; box-shadow: 0 0 15px rgba(255, 152, 0, 0.5); }
         
-        .mc-section { width: 90%; max-width: 500px; background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 0 15px #4caf50; }
+        .mc-section { width: 90%; max-width: 500px; background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 0 15px #4caf50; margin-bottom: 20px; }
         .mc-header { color: #4caf50; font-size: 1.8em; margin-bottom: 20px; border-bottom: 2px solid #4caf50; padding-bottom: 10px; }
         .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .mc-btn { background: #333; color: #fff; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; border: 1px solid #4caf50; }
@@ -67,6 +67,9 @@
         <a href="https://www.instagram.com/mortadha_ali12/" class="btn"><i class="fab fa-instagram" style="color:#e1306c;"></i> إنستكرام</a>
         <a href="https://discord.gg/qFWsBe4udR" class="btn"><i class="fab fa-discord" style="color:#5865f2;"></i> دسكورد</a>
         <a href="https://kick.com/mortadha-ali" class="btn"><i class="fas fa-gamepad" style="color:#53fc18;"></i> كيك (Kick)</a>
+        
+        <!-- زر مشاركة الموقع -->
+        <button onclick="copyLink()" class="btn"><i class="fas fa-share-alt"></i> مشاركة الموقع</button>
     </div>
 
     <div class="mc-section">
@@ -81,5 +84,11 @@
 
     <a href="#" class="top-btn"><i class="fas fa-arrow-up"></i></a>
 
+    <script>
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert("تم نسخ رابط الموقع بنجاح!");
+        }
+    </script>
 </body>
 </html>
