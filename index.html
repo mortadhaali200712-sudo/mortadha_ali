@@ -7,6 +7,13 @@
     <style>
         body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
         
+        /* إضافة الظهور الناعم لكل العناصر */
+        .container, .mc-section { animation: fadeIn 0.8s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .container { border: 2px solid #ff9800; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; background: rgba(0, 0, 0, 0.8); box-shadow: 0 0 20px #ff9800; text-align: center; margin-bottom: 40px; }
         .custom-img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid #ff9800; box-shadow: 0 0 15px #ff9800; margin-bottom: 20px; }
         h1 { color: #ff9800; font-size: 2em; margin-bottom: 10px; }
