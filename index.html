@@ -5,11 +5,11 @@
     <title>Mortadha Ali | مرتضى علي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* خلفية متموجة فخمة */
+        /* تأثير الماء المتساقط (Liquid Flow Effect) */
         body { 
-            background: linear-gradient(-45deg, #000000, #1a0000, #001a00, #1a1a00);
-            background-size: 400% 400%;
-            animation: wave 10s ease infinite;
+            background: linear-gradient(180deg, #000000, #1a1500, #4d3d00, #000000);
+            background-size: 100% 400%;
+            animation: liquidFlow 10s ease infinite;
             color: #fff; 
             font-family: 'Segoe UI', sans-serif; 
             display: flex; 
@@ -20,38 +20,38 @@
             padding: 20px; 
             scroll-behavior: smooth; 
         }
-        @keyframes wave {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes liquidFlow {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
         }
         
-        .container, .mc-section { animation: fadeIn 0.8s ease-in-out; }
+        .container, .mc-section { animation: fadeIn 0.8s ease-in-out; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .pulse-btn { animation: pulse 2s infinite !important; border: 2px solid red !important; }
+        .pulse-btn { animation: pulse 2s infinite !important; border: 2px solid #ffd700 !important; }
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+            0% { transform: scale(1); box-shadow: 0 0 10px #ffd700; }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px #ffd700; }
+            100% { transform: scale(1); box-shadow: 0 0 10px #ffd700; }
         }
 
-        .container { border: 2px solid #ff9800; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; background: rgba(0, 0, 0, 0.7); box-shadow: 0 0 20px #ff9800; text-align: center; margin-bottom: 40px; }
-        .custom-img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid #ff9800; box-shadow: 0 0 15px #ff9800; margin-bottom: 20px; }
-        h1 { color: #ff9800; font-size: 2em; margin-bottom: 10px; }
+        .container { border: 1px solid #ffd700; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; text-align: center; margin-bottom: 40px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+        .custom-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #ffd700; box-shadow: 0 0 20px #ffd700; margin-bottom: 20px; }
+        h1 { color: #ffd700; font-size: 2em; margin-bottom: 10px; text-shadow: 0 0 10px rgba(255, 215, 0, 0.5); }
         
         .btn, .mc-btn { transition: 0.3s; }
         .btn:active, .mc-btn:active { transform: scale(0.95); }
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #222; border: 1px solid #555; color: white; padding: 12px; margin: 10px 0; text-decoration: none; border-radius: 8px; font-weight: bold; }
-        .btn:hover { background: #333; border-color: #ff9800; box-shadow: 0 0 15px rgba(255, 152, 0, 0.5); }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid #ffd700; color: white; padding: 12px; margin: 10px 0; text-decoration: none; border-radius: 8px; font-weight: bold; }
+        .btn:hover { background: #ffd700; color: #000; box-shadow: 0 0 20px #ffd700; }
         
-        .mc-section { width: 90%; max-width: 500px; background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 0 15px #4caf50; }
-        .mc-header { color: #4caf50; font-size: 1.8em; margin-bottom: 20px; border-bottom: 2px solid #4caf50; padding-bottom: 10px; }
+        .mc-section { width: 90%; max-width: 500px; border: 1px solid #ffd700; padding: 20px; border-radius: 20px; text-align: center; }
+        .mc-header { color: #ffd700; font-size: 1.8em; margin-bottom: 20px; border-bottom: 1px solid #ffd700; padding-bottom: 10px; }
         .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .mc-btn { background: #333; color: #fff; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; border: 1px solid #4caf50; }
-        .mc-btn:hover { background: #4caf50; color: #000; box-shadow: 0 0 15px rgba(76, 175, 80, 0.5); }
+        .mc-btn { background: rgba(255, 255, 255, 0.05); color: #fff; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; border: 1px solid #ffd700; }
+        .mc-btn:hover { background: #ffd700; color: #000; box-shadow: 0 0 20px #ffd700; }
 
-        .top-btn { position: fixed; bottom: 20px; right: 20px; background: #ff9800; color: black; padding: 10px 15px; border-radius: 50%; cursor: pointer; text-decoration: none; font-weight: bold; }
+        .top-btn { position: fixed; bottom: 20px; right: 20px; background: #ffd700; color: black; padding: 10px 15px; border-radius: 50%; cursor: pointer; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -61,12 +61,12 @@
         <h1>مرتضى علي</h1>
         <p>أهلاً بكم في الموقع الرسمي لمرتضى علي</p>
         
-        <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn pulse-btn"><i class="fab fa-youtube" style="color:red;"></i> يوتيوب</a>
+        <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn pulse-btn"><i class="fab fa-youtube"></i> يوتيوب</a>
         <a href="https://www.tiktok.com/@mortadhaali313" class="btn"><i class="fab fa-tiktok"></i> تيك توك</a>
-        <a href="https://web.facebook.com/mortadha.ali2" class="btn"><i class="fab fa-facebook" style="color:#1877f2;"></i> فيسبوك</a>
-        <a href="https://www.instagram.com/mortadha_ali12/" class="btn"><i class="fab fa-instagram" style="color:#e1306c;"></i> إنستكرام</a>
-        <a href="https://discord.gg/qFWsBe4udR" class="btn"><i class="fab fa-discord" style="color:#5865f2;"></i> دسكورد</a>
-        <a href="https://kick.com/mortadha-ali" class="btn"><i class="fas fa-gamepad" style="color:#53fc18;"></i> كيك (Kick)</a>
+        <a href="https://web.facebook.com/mortadha.ali2" class="btn"><i class="fab fa-facebook"></i> فيسبوك</a>
+        <a href="https://www.instagram.com/mortadha_ali12/" class="btn"><i class="fab fa-instagram"></i> إنستكرام</a>
+        <a href="https://discord.gg/qFWsBe4udR" class="btn"><i class="fab fa-discord"></i> دسكورد</a>
+        <a href="https://kick.com/mortadha-ali" class="btn"><i class="fas fa-gamepad"></i> كيك (Kick)</a>
     </div>
 
     <div class="mc-section">
