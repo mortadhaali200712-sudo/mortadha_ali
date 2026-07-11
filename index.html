@@ -3,28 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Mortadha Ali | مرتضى علي</title>
+    <!-- الأيقونة -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968601.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* إضافة الخلفية المتحركة */
         body { 
             background: linear-gradient(135deg, #000000, #1a1a1a, #000000); 
             background-size: 400% 400%; 
             animation: gradientBG 15s ease infinite; 
-            color: #fff; 
-            font-family: 'Segoe UI', sans-serif; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            min-height: 100vh; 
-            margin: 0; 
-            padding: 20px; 
-            scroll-behavior: smooth; 
+            color: #fff; font-family: 'Segoe UI', sans-serif; 
+            display: flex; flex-direction: column; align-items: center; 
+            min-height: 100vh; margin: 0; padding: 20px; scroll-behavior: smooth; 
         }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         
         .container, .mc-section { animation: fadeIn 0.8s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -37,7 +28,11 @@
         }
 
         .container { border: 2px solid #ff9800; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; background: rgba(0, 0, 0, 0.8); box-shadow: 0 0 20px #ff9800; text-align: center; margin-bottom: 40px; }
-        .custom-img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid #ff9800; box-shadow: 0 0 15px #ff9800; margin-bottom: 20px; }
+        
+        /* الوميض الذهبي الخفيف */
+        .custom-img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid #ff9800; box-shadow: 0 0 20px #ff9800; margin-bottom: 20px; transition: 0.3s; }
+        .custom-img:hover { box-shadow: 0 0 40px #ff9800; }
+        
         h1 { color: #ff9800; font-size: 2em; margin-bottom: 10px; }
         
         .btn, .mc-btn { transition: 0.3s; cursor: pointer; }
@@ -52,10 +47,17 @@
         .mc-btn:hover { background: #4caf50; color: #000; box-shadow: 0 0 15px rgba(76, 175, 80, 0.5); }
 
         .top-btn { position: fixed; bottom: 20px; right: 20px; background: #ff9800; color: black; padding: 10px 15px; border-radius: 50%; cursor: pointer; text-decoration: none; font-weight: bold; }
+
+        /* رسالة الترحيب (Toast) */
+        #welcome-toast { visibility: hidden; min-width: 250px; background: #111; color: #ff9800; text-align: center; border-radius: 8px; padding: 15px; position: fixed; top: 30px; border: 1px solid #ff9800; z-index: 1000; box-shadow: 0 0 15px #ff9800; }
+        #copy-toast { visibility: hidden; min-width: 250px; background: #111; color: #ff9800; text-align: center; border-radius: 8px; padding: 15px; position: fixed; bottom: 30px; border: 1px solid #ff9800; z-index: 1000; }
     </style>
 </head>
-<body>
+<body onload="showWelcome()">
 
+    <!-- رسالة الترحيب -->
+    <div id="welcome-toast">أهلاً بك يا بطل في موقع مرتضى علي! 👑</div>
+    
     <div class="container">
         <img src="logo.png" alt="Mortadha Ali" class="custom-img">
         <h1>مرتضى علي</h1>
@@ -68,8 +70,7 @@
         <a href="https://discord.gg/qFWsBe4udR" class="btn"><i class="fab fa-discord" style="color:#5865f2;"></i> دسكورد</a>
         <a href="https://kick.com/mortadha-ali" class="btn"><i class="fas fa-gamepad" style="color:#53fc18;"></i> كيك (Kick)</a>
         
-        <!-- زر مشاركة الموقع -->
-        <button onclick="copyLink()" class="btn"><i class="fas fa-share-alt"></i> مشاركة الموقع</button>
+        <button onclick="copyLink()" class="btn" style="border: 1px solid #ff9800;"><i class="fas fa-share-alt"></i> مشاركة الموقع</button>
     </div>
 
     <div class="mc-section">
@@ -82,12 +83,20 @@
         </div>
     </div>
 
+    <div id="copy-toast">تم نسخ رابط الموقع بنجاح!</div>
     <a href="#" class="top-btn"><i class="fas fa-arrow-up"></i></a>
 
     <script>
+        function showWelcome() {
+            var x = document.getElementById("welcome-toast");
+            x.style.visibility = "visible";
+            setTimeout(function(){ x.style.visibility = "hidden"; }, 4000);
+        }
         function copyLink() {
             navigator.clipboard.writeText(window.location.href);
-            alert("تم نسخ رابط الموقع بنجاح!");
+            var x = document.getElementById("copy-toast");
+            x.style.visibility = "visible";
+            setTimeout(function(){ x.style.visibility = "hidden"; }, 3000);
         }
     </script>
 </body>
