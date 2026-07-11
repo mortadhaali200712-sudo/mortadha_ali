@@ -5,33 +5,53 @@
     <title>Mortadha Ali | مرتضى علي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
+        /* إضافة الخلفية المتحركة */
         body { 
-            margin: 0; padding: 20px;
-            min-height: 100vh;
-            display: flex; flex-direction: column; align-items: center;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #000;
-            color: #fff;
+            background: linear-gradient(135deg, #000000, #1a1a1a, #000000); 
+            background-size: 400% 400%; 
+            animation: gradientBG 15s ease infinite; 
+            color: #fff; 
+            font-family: 'Segoe UI', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px; 
+            scroll-behavior: smooth; 
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container, .mc-section { animation: fadeIn 0.8s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .pulse-btn { animation: pulse 2s infinite !important; border: 2px solid red !important; }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
         }
 
-        .container, .mc-section { 
-            background: #111; 
-            border: 2px solid #ffd700; 
-            padding: 30px; 
-            border-radius: 20px; 
-            width: 90%; max-width: 500px; 
-            text-align: center; 
-            margin-bottom: 20px;
-        }
+        .container { border: 2px solid #ff9800; padding: 30px; border-radius: 20px; width: 90%; max-width: 500px; background: rgba(0, 0, 0, 0.8); box-shadow: 0 0 20px #ff9800; text-align: center; margin-bottom: 40px; }
+        .custom-img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid #ff9800; box-shadow: 0 0 15px #ff9800; margin-bottom: 20px; }
+        h1 { color: #ff9800; font-size: 2em; margin-bottom: 10px; }
         
-        .custom-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 20px; }
-        h1 { color: #ffd700; margin-bottom: 10px; }
+        .btn, .mc-btn { transition: 0.3s; }
+        .btn:active, .mc-btn:active { transform: scale(0.95); }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #222; border: 1px solid #555; color: white; padding: 12px; margin: 10px 0; text-decoration: none; border-radius: 8px; font-weight: bold; }
+        .btn:hover { background: #333; border-color: #ff9800; box-shadow: 0 0 15px rgba(255, 152, 0, 0.5); }
         
-        .btn { 
-            display: block; padding: 15px; margin: 10px 0; border: 1px solid #ffd700;
-            color: #fff; text-decoration: none; border-radius: 10px; transition: 0.3s;
-        }
-        .btn:hover { background: #ffd700; color: #000; font-weight: bold; }
+        .mc-section { width: 90%; max-width: 500px; background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 0 15px #4caf50; }
+        .mc-header { color: #4caf50; font-size: 1.8em; margin-bottom: 20px; border-bottom: 2px solid #4caf50; padding-bottom: 10px; }
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .mc-btn { background: #333; color: #fff; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; border: 1px solid #4caf50; }
+        .mc-btn:hover { background: #4caf50; color: #000; box-shadow: 0 0 15px rgba(76, 175, 80, 0.5); }
+
+        .top-btn { position: fixed; bottom: 20px; right: 20px; background: #ff9800; color: black; padding: 10px 15px; border-radius: 50%; cursor: pointer; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -39,24 +59,27 @@
     <div class="container">
         <img src="logo.png" alt="Mortadha Ali" class="custom-img">
         <h1>مرتضى علي</h1>
-        <p>الموقع الرسمي</p>
-        <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn"><i class="fab fa-youtube"></i> يوتيوب</a>
+        <p>أهلاً بكم في الموقع الرسمي لمرتضى علي</p>
+        
+        <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn pulse-btn"><i class="fab fa-youtube" style="color:red;"></i> يوتيوب</a>
         <a href="https://www.tiktok.com/@mortadhaali313" class="btn"><i class="fab fa-tiktok"></i> تيك توك</a>
-        <a href="https://web.facebook.com/mortadha.ali2" class="btn"><i class="fab fa-facebook"></i> فيسبوك</a>
-        <a href="https://www.instagram.com/mortadha_ali12/" class="btn"><i class="fab fa-instagram"></i> إنستكرام</a>
-        <a href="https://discord.gg/qFWsBe4udR" class="btn"><i class="fab fa-discord"></i> دسكورد</a>
-        <a href="https://kick.com/mortadha-ali" class="btn"><i class="fas fa-gamepad"></i> كيك (Kick)</a>
+        <a href="https://web.facebook.com/mortadha.ali2" class="btn"><i class="fab fa-facebook" style="color:#1877f2;"></i> فيسبوك</a>
+        <a href="https://www.instagram.com/mortadha_ali12/" class="btn"><i class="fab fa-instagram" style="color:#e1306c;"></i> إنستكرام</a>
+        <a href="https://discord.gg/qFWsBe4udR" class="btn"><i class="fab fa-discord" style="color:#5865f2;"></i> دسكورد</a>
+        <a href="https://kick.com/mortadha-ali" class="btn"><i class="fas fa-gamepad" style="color:#53fc18;"></i> كيك (Kick)</a>
     </div>
 
     <div class="mc-section">
-        <h2>قسم ماين كرافت ⛏️</h2>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-            <a href="mods.html" class="btn">مودات</a>
-            <a href="skins.html" class="btn">سكنات</a>
-            <a href="worlds.html" class="btn">عوالم</a>
-            <a href="servers.html" class="btn">سيرفرات</a>
+        <h2 class="mc-header">قسم ماين كرافت ⛏️</h2>
+        <div class="grid-container">
+            <a href="mods.html" class="mc-btn">مودات</a>
+            <a href="skins.html" class="mc-btn">سكنات</a>
+            <a href="worlds.html" class="mc-btn">عوالم</a>
+            <a href="servers.html" class="mc-btn">سيرفرات</a>
         </div>
     </div>
+
+    <a href="#" class="top-btn"><i class="fas fa-arrow-up"></i></a>
 
 </body>
 </html>
