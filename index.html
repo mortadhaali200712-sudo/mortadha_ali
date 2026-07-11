@@ -5,34 +5,23 @@
     <title>Mortadha Ali | مرتضى علي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* حركة الموجة الذهبية والسوداء */
         body { 
             margin: 0; padding: 20px;
             min-height: 100vh;
             display: flex; flex-direction: column; align-items: center;
             font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(-45deg, #000000, #1a1500, #4d3d00, #000000);
-            background-size: 400% 400%;
-            animation: gradient-wave 10s ease infinite;
+            background-color: #000;
             color: #fff;
         }
 
-        @keyframes gradient-wave {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* تنسيق العناصر الأساسي */
         .container, .mc-section { 
-            background: rgba(0, 0, 0, 0.85); 
+            background: #111; 
             border: 2px solid #ffd700; 
             padding: 30px; 
             border-radius: 20px; 
             width: 90%; max-width: 500px; 
             text-align: center; 
             margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
         }
         
         .custom-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #ffd700; margin-bottom: 20px; }
@@ -43,13 +32,6 @@
             color: #fff; text-decoration: none; border-radius: 10px; transition: 0.3s;
         }
         .btn:hover { background: #ffd700; color: #000; font-weight: bold; }
-        
-        .pulse { animation: pulse 2s infinite; border: 2px solid #ffd700 !important; }
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 10px #ffd700; }
-            50% { transform: scale(1.05); box-shadow: 0 0 20px #ffd700; }
-            100% { transform: scale(1); box-shadow: 0 0 10px #ffd700; }
-        }
     </style>
 </head>
 <body>
@@ -58,8 +40,12 @@
         <img src="logo.png" alt="Mortadha Ali" class="custom-img">
         <h1>مرتضى علي</h1>
         <p>الموقع الرسمي</p>
-        <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn pulse"><i class="fab fa-youtube"></i> يوتيوب</a>
+        <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn"><i class="fab fa-youtube"></i> يوتيوب</a>
         <a href="https://www.tiktok.com/@mortadhaali313" class="btn"><i class="fab fa-tiktok"></i> تيك توك</a>
+        <a href="https://web.facebook.com/mortadha.ali2" class="btn"><i class="fab fa-facebook"></i> فيسبوك</a>
+        <a href="https://www.instagram.com/mortadha_ali12/" class="btn"><i class="fab fa-instagram"></i> إنستكرام</a>
+        <a href="https://discord.gg/qFWsBe4udR" class="btn"><i class="fab fa-discord"></i> دسكورد</a>
+        <a href="https://kick.com/mortadha-ali" class="btn"><i class="fas fa-gamepad"></i> كيك (Kick)</a>
     </div>
 
     <div class="mc-section">
@@ -67,6 +53,8 @@
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
             <a href="mods.html" class="btn">مودات</a>
             <a href="skins.html" class="btn">سكنات</a>
+            <a href="worlds.html" class="btn">عوالم</a>
+            <a href="servers.html" class="btn">سيرفرات</a>
         </div>
     </div>
 
