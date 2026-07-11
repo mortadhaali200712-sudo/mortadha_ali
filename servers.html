@@ -5,14 +5,13 @@
     <title>سيرفرات مرتضى علي</title>
     <style>
         body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
-        .back-home { position: fixed; top: 10px; left: 10px; background: #444; color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; border: 1px solid #4caf50; font-weight: bold; z-index: 1000; }
-        .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
-        .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
-        input[type="text"] { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; margin-bottom: 10px; }
-        button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; font-weight: bold; }
-        .server-card, .app-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
-        .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
-        .delete-checkbox { display: none; position: absolute; left: 15px; top: 15px; width: 25px; height: 25px; cursor: pointer; accent-color: #ff4d4d; }
+        .back-home { position: fixed; top: 10px; left: 10px; background: #444; color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; border: 1px solid #4caf50; font-weight: bold; }
+        .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+        .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
+        .visible { display: block !important; }
+        input { width: 90%; padding: 10px; margin-bottom: 10px; background: #333; color: white; border: 1px solid #555; border-radius: 5px; }
+        button { cursor: pointer; padding: 10px; border: none; border-radius: 5px; margin: 5px; font-weight: bold; }
+        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; }
     </style>
 </head>
 <body>
@@ -20,32 +19,22 @@
     <a href="index.html" class="back-home">← رجوع</a>
     <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات</button>
 
-    <div id="menuBox" class="menu-box">
-        <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 45%;">➕ إضافة سيرفر</button>
-        <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف</button>
-    </div>
-
-    <div id="addPanel" class="panel-box">
+    <div id="adminPanel" class="panel-box">
         <input type="text" id="sName" placeholder="اسم السيرفر">
         <input type="text" id="sIp" placeholder="الايبي">
         <input type="text" id="sPort" placeholder="البورت">
-        <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">نشر السيرفر</button>
+        <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">نشر سيرفر</button>
+        <hr>
+        <h3>طلبات التقديم 📥</h3>
+        <div id="appsList"></div>
     </div>
 
-    <div id="delPanel" class="panel-box">
-        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">حذف المحدد</button>
-    </div>
-
-    <!-- قسم التقديم -->
-    <div class="panel-box" style="display:block; border-color: #ff9800;">
+    <div class="panel-box visible" style="border-color: #ff9800;">
         <h2>تقديم على السيرفر 📝</h2>
         <input type="text" id="mName" placeholder="اسمك">
         <input type="text" id="mVer" placeholder="النسخة/الإصدار">
         <button onclick="sendApp()" style="background:#ff9800; color:white; width:95%">إرسال الطلب</button>
     </div>
-
-    <h1>طلبات التقديم (خاص بالمدير) ⚙️</h1>
-    <div id="appsList"></div>
 
     <h1>قائمة المقبولين ✅</h1>
     <div id="acceptedList"></div>
@@ -59,22 +48,15 @@
         document.getElementById('acceptedList').innerHTML = localStorage.getItem('myAccepted_v4') || "";
 
         function openMenu() {
-            const pass = prompt("أدخل كلمة المرور:");
-            if(pass === "20077412") { document.getElementById('menuBox').style.display = "block"; }
+            const pass = prompt("كلمة المرور:");
+            if(pass === "20077412") { document.getElementById('adminPanel').classList.toggle('visible'); }
             else { alert("خطأ!"); }
-        }
-
-        function showPanel(type) {
-            document.getElementById('menuBox').style.display = "none";
-            document.getElementById('addPanel').style.display = (type === 'add') ? "block" : "none";
-            document.getElementById('delPanel').style.display = (type === 'del') ? "block" : "none";
-            document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = (type === 'del') ? "block" : "none");
         }
 
         function sendApp() {
             const name = document.getElementById('mName').value;
             const ver = document.getElementById('mVer').value;
-            const card = `<div class="app-card"><h3>${name}</h3><p>الطلب: ${ver}</p><button onclick="approve(this, '${name}')" style="background:#007bff">موافقة</button></div>`;
+            const card = `<div class="server-card"><h3>${name}</h3><p>الطلب: ${ver}</p><button onclick="approve(this, '${name}')" style="background:#007bff; color:white">موافقة</button></div>`;
             document.getElementById('appsList').innerHTML += card;
             localStorage.setItem('myApps_v4', document.getElementById('appsList').innerHTML);
             alert("تم إرسال طلبك!");
@@ -89,16 +71,10 @@
         }
 
         function saveServer() {
-            const card = `<div class="server-card"><input type="checkbox" class="delete-checkbox"><h3>${document.getElementById('sName').value}</h3><p>الايبي: ${document.getElementById('sIp').value}</p></div>`;
+            const card = `<div class="server-card"><h3>${document.getElementById('sName').value}</h3><p>الايبي: ${document.getElementById('sIp').value}</p></div>`;
             document.getElementById('serverList').innerHTML += card;
             localStorage.setItem('myServers_v4', document.getElementById('serverList').innerHTML);
-            location.reload();
-        }
-
-        function deleteSelected() {
-            document.querySelectorAll('.delete-checkbox:checked').forEach(c => c.parentElement.remove());
-            localStorage.setItem('myServers_v4', document.getElementById('serverList').innerHTML);
-            location.reload();
+            alert("تم النشر!");
         }
     </script>
 </body>
