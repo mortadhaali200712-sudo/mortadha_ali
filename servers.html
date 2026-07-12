@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <title>سيرفرات مرتضى علي</title>
     <style>
-        /* دمج تنسيقاتك مع تنسيق الشات الجديد */
+        /* تنسيقات الموقع */
         body { background: #000; color: #fff; font-family: sans-serif; display: flex; margin: 0; min-height: 100vh; }
         
-        /* تنسيقات الشات الجانبية */
+        /* تصميم الشات الجانبي */
         #chat-sidebar { width: 300px; background: #1a1a1a; border-left: 2px solid #4caf50; display: flex; flex-direction: column; padding: 10px; }
-        #chatBox { flex: 1; overflow-y: auto; text-align: right; margin-bottom: 10px; }
+        #chatBox { flex: 1; overflow-y: auto; text-align: right; margin-bottom: 10px; border: 1px solid #333; padding: 5px; }
         .msg { background: #333; padding: 8px; border-radius: 5px; margin-bottom: 5px; font-size: 13px; }
 
-        /* تنسيقاتك الأصلية */
+        /* المحتوى الرئيسي */
         #main-content { flex: 1; padding: 20px; text-align: center; overflow-y: auto; }
         .back-home { position: fixed; top: 10px; left: 10px; background: #444; color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; border: 1px solid #4caf50; font-weight: bold; z-index: 1000; }
         .admin-btn { position: fixed; top: 10px; right: 320px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
@@ -65,7 +65,12 @@
         import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
         import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-        const firebaseConfig = { databaseURL: "https://mychatapp-87d3e-default-rtdb.firebaseio.com/", apiKey: "AIzaSyCdWY5KWaRDqfkQhIuGfBjHShYKiKAalsY", projectId: "mychatapp-87d3e" };
+        const firebaseConfig = { 
+            apiKey: "AIzaSyCdWY5KWaRDqfkQhIuGfBjHShYKiKAalsY", 
+            authDomain: "mychatapp-87d3e.firebaseapp.com",
+            databaseURL: "https://mychatapp-87d3e-default-rtdb.firebaseio.com/", 
+            projectId: "mychatapp-87d3e" 
+        };
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
         const auth = getAuth(app);
