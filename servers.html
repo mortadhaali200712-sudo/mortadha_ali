@@ -2,89 +2,94 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>سيرفرات مرتضى علي - نظام احترافي</title>
+    <title>سيرفرات مرتضى علي</title>
     <style>
-        body { background: #36393f; color: #fff; font-family: sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
+        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; }
+        .back-home { position: fixed; top: 10px; left: 10px; background: #444; color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; border: 1px solid #4caf50; font-weight: bold; z-index: 1000; }
+        .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
+        .chat-btn { position: fixed; top: 10px; right: 120px; background: #5865F2; border: 1px solid #7289da; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
+        .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
+        input[type="text"] { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; margin-bottom: 10px; }
+        button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; font-weight: bold; }
+        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
+        .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
+        .delete-checkbox { display: none; position: absolute; left: 15px; top: 15px; width: 25px; height: 25px; cursor: pointer; accent-color: #ff4d4d; }
         
-        /* القائمة الجانبية (التكت والسيرفرات) */
-        #left-panel { width: 300px; background: #2f3136; border-left: 1px solid #202225; display: flex; flex-direction: column; }
-        .panel-header { padding: 15px; border-bottom: 1px solid #202225; font-weight: bold; color: #4caf50; }
-        #serverList { flex: 1; padding: 15px; overflow-y: auto; }
-        
-        /* منطقة الشات (الوسط) */
-        #chat-main { flex: 1; display: flex; flex-direction: column; background: #36393f; }
-        #chat-box { flex: 1; padding: 20px; overflow-y: auto; }
-        
-        /* شكل رسائل الشات */
-        .msg-container { display: flex; margin-bottom: 15px; align-items: flex-start; }
-        .avatar { width: 40px; height: 40px; border-radius: 50%; background: #5865F2; margin-left: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
-        .msg-content { background: #40444b; padding: 10px; border-radius: 8px; width: 100%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        
-        /* حقل الإدخال */
-        .chat-input { padding: 20px; background: #2f3136; display: flex; gap: 10px; }
-        input { flex: 1; padding: 12px; border-radius: 5px; border: none; background: #40444b; color: white; }
-        button { padding: 10px 20px; background: #4caf50; border: none; color: white; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        /* تصميم الشات المنبثق */
+        #chatPopup { display: none; position: fixed; bottom: 20px; right: 20px; width: 300px; height: 400px; background: #2f3136; border-radius: 10px; border: 2px solid #5865F2; overflow: hidden; flex-direction: column; z-index: 2000; }
+        #chatBox { flex: 1; overflow-y: auto; padding: 10px; text-align: right; }
+        .msg { background: #40444b; padding: 8px; margin: 5px; border-radius: 5px; font-size: 13px; }
     </style>
 </head>
 <body>
 
-    <div id="left-panel">
-        <div class="panel-header">📋 قائمة السيرفرات والتكتات</div>
-        <div id="serverList"></div>
-    </div>
+    <a href="index.html" class="back-home">← رجوع للرئيسية</a>
+    <button class="chat-btn" onclick="toggleChat()">💬 شات</button>
+    <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات</button>
 
-    <div id="chat-main">
-        <div id="chat-box"></div>
-        <div class="chat-input">
-            <input type="text" id="msg" placeholder="اكتب رسالتك هنا...">
-            <button onclick="sendMessage()">إرسال</button>
+    <div id="chatPopup">
+        <div style="background:#5865F2; padding:10px; cursor:pointer;" onclick="toggleChat()">إغلاق الشات</div>
+        <div id="chatBox"></div>
+        <div style="padding:10px;">
+            <input type="text" id="msgInput" placeholder="اكتب رسالتك...">
+            <button onclick="sendMsg()" style="background:#4caf50; width:100%">إرسال</button>
         </div>
     </div>
+
+    <div id="menuBox" class="menu-box">
+        <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 45%;">➕ إضافة منشور</button>
+        <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف منشور</button>
+    </div>
+
+    <div id="addPanel" class="panel-box">
+        <input type="text" id="ver" placeholder="النسخة">
+        <input type="text" id="verNum" placeholder="الإصدار">
+        <input type="text" id="sName" placeholder="اسم السيرفر">
+        <input type="text" id="sIp" placeholder="ايبي السيرفر">
+        <input type="text" id="sPort" placeholder="بورت السيرفر">
+        <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
+    </div>
+
+    <div id="delPanel" class="panel-box">
+        <p style="color:#ff4d4d;">حدد المربعات ثم اضغط هنا:</p>
+        <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">تأكيد حذف المحدد</button>
+    </div>
+
+    <h1>قائمة السيرفرات</h1>
+    <div id="serverList"></div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
         import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
-        const firebaseConfig = {
-            databaseURL: "https://mychatapp-87d3e-default-rtdb.firebaseio.com/",
-            apiKey: "AIzaSyCdWY5KWaRDqfkQhIuGfBjHShYKiKAalsY",
-            projectId: "mychatapp-87d3e"
-        };
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
+        const firebaseConfig = { databaseURL: "https://mychatapp-87d3e-default-rtdb.firebaseio.com/", apiKey: "AIzaSyCdWY5KWaRDqfkQhIuGfBjHShYKiKAalsY", projectId: "mychatapp-87d3e" };
+        const db = getDatabase(initializeApp(firebaseConfig));
 
-        // طلب اسم المستخدم عند التحميل
-        const userName = prompt("أدخل اسمك الكريم:") || "زائر";
-
-        // إرسال الرسالة
-        window.sendMessage = () => {
-            const msgInput = document.getElementById("msg");
-            if(msgInput.value.trim()){
-                push(ref(db, 'chat/'), { name: userName, text: msgInput.value, time: new Date().toLocaleTimeString() });
-                msgInput.value = "";
-            }
+        window.toggleChat = () => {
+            const cp = document.getElementById('chatPopup');
+            cp.style.display = (cp.style.display === 'flex') ? 'none' : 'flex';
         };
 
-        // عرض الرسائل
-        onValue(ref(db, 'chat/'), (snapshot) => {
-            const chat = document.getElementById("chat-box");
-            chat.innerHTML = "";
-            snapshot.forEach((c) => {
-                const data = c.val();
-                chat.innerHTML += `
-                    <div class="msg-container">
-                        <div class="avatar">${data.name.charAt(0)}</div>
-                        <div class="msg-content">
-                            <strong>${data.name}</strong> <span style="font-size: 10px; color: #aaa;">${data.time}</span><br>
-                            ${data.text}
-                        </div>
-                    </div>`;
-            });
-            chat.scrollTop = chat.scrollHeight;
+        window.sendMsg = () => {
+            const m = document.getElementById('msgInput');
+            if(m.value) { push(ref(db, 'chat/'), { text: m.value }); m.value = ""; }
+        };
+
+        onValue(ref(db, 'chat/'), (s) => {
+            const box = document.getElementById('chatBox');
+            box.innerHTML = "";
+            s.forEach((c) => { box.innerHTML += `<div class="msg">${c.val().text}</div>`; });
+            box.scrollTop = box.scrollHeight;
         });
+    </script>
 
-        // استدعاء السيرفرات المحفوظة
-        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers_v3') || "<p style='padding:10px; color:#aaa;'>لا توجد سيرفرات مضافة حالياً.</p>";
+    <script>
+        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers_v3') || "";
+        function openMenu() { const pass = prompt("أدخل كلمة المرور:"); if(pass === "20077412") { document.getElementById('menuBox').style.display = "block"; } else { alert("كلمة مرور خاطئة!"); } }
+        function showPanel(type) { document.getElementById('menuBox').style.display = "none"; if(type === 'add') { document.getElementById('addPanel').style.display = "block"; } else { document.getElementById('delPanel').style.display = "block"; document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "block"); } }
+        function saveServer() { const cardHtml = `<div class="server-card"><input type="checkbox" class="delete-checkbox"><h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3><p style="margin:8px 0;">النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p><p style="margin:8px 0;">الايبي: <strong>${document.getElementById('sIp').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sIp').value}')">نسخ</button></p><p style="margin:8px 0;">البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sPort').value}')">نسخ</button></p></div>`; document.getElementById('serverList').innerHTML += cardHtml; localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML); location.reload(); }
+        function copyText(text) { navigator.clipboard.writeText(text); alert("تم النسخ: " + text); }
+        function deleteSelected() { document.querySelectorAll('.delete-checkbox:checked').forEach(c => c.parentElement.remove()); localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML); location.reload(); }
     </script>
 </body>
 </html>
