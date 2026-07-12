@@ -1,4 +1,64 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><title>سكنات مرتضى علي</title><style>body{background:#000;color:#fff;text-align:center;} .skin{display:inline-block;margin:15px;padding:15px;border:1px solid #ff9800;}</style></head>
-<body><h1>قسم السكنات</h1><div class="skin"><h3>سكن مرتضى</h3><img src="logo.png" width="80"><br><a href="#">تحميل</a></div></body></html>
+<head>
+    <meta charset="UTF-8">
+    <title>مكتبة السكنات | مرتضى علي</title>
+    <style>
+        body { background: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; }
+        
+        /* زر الرجوع */
+        .back-btn { 
+            position: fixed; top: 20px; left: 20px; 
+            background: #444; color: white; padding: 10px 20px; 
+            border-radius: 10px; text-decoration: none; border: 1px solid #ff9800; 
+            font-weight: bold; z-index: 1000; 
+        }
+
+        .skins-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+            gap: 20px; 
+            margin-top: 50px; 
+        }
+        
+        .skin-card { 
+            background: #1a1a1a; border: 1px solid #333; 
+            padding: 15px; border-radius: 15px; 
+            transition: 0.3s; 
+        }
+        .skin-card:hover { border-color: #ff9800; transform: translateY(-5px); }
+        
+        .skin-img { width: 100%; height: auto; border-radius: 10px; margin-bottom: 10px; }
+        
+        .download-btn { 
+            display: block; background: #ff9800; color: black; 
+            text-decoration: none; padding: 10px; border-radius: 8px; 
+            font-weight: bold; margin-top: 10px; 
+        }
+        .download-btn:hover { background: #e68900; }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">← الرئيسية</a>
+
+    <h1>مكتبة السكنات 👕</h1>
+    <p>اختر السكن وحمله مباشرة</p>
+
+    <div class="skins-grid">
+        <!-- نموذج سكن (كرره لكل سكن لديك) -->
+        <div class="skin-card">
+            <img src="skin1.png" alt="Skin" class="skin-img">
+            <p>اسم السكن 1</p>
+            <a href="skin1.png" download class="download-btn">تحميل السكن</a>
+        </div>
+
+        <div class="skin-card">
+            <img src="skin2.png" alt="Skin" class="skin-img">
+            <p>اسم السكن 2</p>
+            <a href="skin2.png" download class="download-btn">تحميل السكن</a>
+        </div>
+    </div>
+
+</body>
+</html>
