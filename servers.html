@@ -13,7 +13,6 @@
         button { cursor: pointer; border: none; padding: 12px; border-radius: 10px; margin: 5px; font-weight: bold; transition: 0.3s; }
         .server-card, .player-card { background: #111; border-right: 5px solid #4caf50; padding: 15px; margin: 10px auto; border-radius: 15px; width: 90%; max-width: 400px; text-align: right; position: relative; }
         .player-card { border-right: 5px solid #2196f3; }
-        .copy-btn { background: #4caf50; color: white; padding: 5px 10px; border-radius: 5px; font-size: 11px; margin-right: 5px; }
         .delete-checkbox { position: absolute; left: 15px; top: 15px; width: 20px; height: 20px; cursor: pointer; accent-color: #ff4d4d; }
         .form-wrapper { width: 95%; max-width: 600px; margin: 30px auto; background: #fff; border-radius: 15px; overflow: hidden; padding: 5px; }
         iframe { width: 100%; height: 800px; border: none; }
@@ -24,14 +23,12 @@
     <a href="index.html" class="back-home">← الرئيسية</a>
     <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات الإدارة</button>
 
-    <!-- قائمة الخيارات -->
     <div id="menuBox" class="panel-box">
         <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 30%;">➕ سيرفر</button>
         <button onclick="showPanel('addPlayer')" style="background:#2196f3; color:white; width: 30%;">👤 لاعب</button>
         <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 30%;">🗑️ حذف</button>
     </div>
 
-    <!-- إضافة سيرفر -->
     <div id="addPanel" class="panel-box">
         <input type="text" id="sName" placeholder="اسم السيرفر">
         <input type="text" id="sIp" placeholder="عنوان IP">
@@ -39,13 +36,11 @@
         <button onclick="saveServer()" style="background:#4caf50; color:white; width:100%">حفظ ونشر السيرفر</button>
     </div>
 
-    <!-- إضافة لاعب -->
     <div id="addPlayerPanel" class="panel-box">
         <input type="text" id="pName" placeholder="اسم اللاعب">
         <button onclick="savePlayer()" style="background:#2196f3; color:white; width:100%">إضافة للقائمة</button>
     </div>
 
-    <!-- لوحة الحذف -->
     <div id="delPanel" class="panel-box">
         <p style="color:#ff4d4d;">حدد ما تريد حذفه ثم اضغط:</p>
         <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:100%">حذف المحدد</button>
@@ -54,12 +49,13 @@
     <h2 style="color: #ff9800;">قائمة السيرفرات المتاحة 🎮</h2>
     <div id="serverList"></div>
 
-    <h2 style="color: #2196f3;">قائمة اللاعبين المقبولين ✅</h2>
-    <div id="playersList"></div>
-
+    <h2 style="color: #4caf50;">قدم طلب انضمام للسيرفر 📝</h2>
     <div class="form-wrapper">
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegRLmefcrIzVP6Az9vrhC1PP1M42i7LWDnIXLfy0l2VLrQfQ/viewform?embedded=true" frameborder="0"></iframe>
     </div>
+
+    <h2 style="color: #2196f3;">قائمة اللاعبين المقبولين ✅</h2>
+    <div id="playersList"></div>
 
     <script>
         document.getElementById('serverList').innerHTML = localStorage.getItem('myServers_v3') || "";
