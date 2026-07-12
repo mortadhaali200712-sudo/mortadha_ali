@@ -2,41 +2,80 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سكنات مرتضى علي</title>
     <style>
-        body { background: #111; color: white; text-align: center; font-family: sans-serif; padding: 20px; }
-        .skin-box { display: inline-block; margin: 15px; background: #222; padding: 15px; border-radius: 10px; border: 1px solid #444; width: 160px; }
-        img { width: 100%; border-radius: 5px; margin-bottom: 10px; }
-        .btn { display: block; background: #ff9800; color: black; padding: 10px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 10px; }
+        body { 
+            background: #050505; 
+            color: white; 
+            text-align: center; 
+            font-family: 'Segoe UI', sans-serif; 
+            padding: 20px; 
+            margin: 0; 
+        }
         
-        /* هذا هو زر الرجوع */
+        h1 { color: #ff9800; margin-bottom: 20px; }
+
+        /* حاوية مرنة للهاتف */
+        .skins-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+            gap: 15px; 
+            max-width: 500px; 
+            margin: 0 auto; 
+        }
+
+        .skin-box { 
+            background: #1a1a1a; 
+            padding: 15px; 
+            border-radius: 15px; 
+            border: 1px solid #333; 
+            transition: 0.3s;
+        }
+
+        img { 
+            width: 100%; 
+            height: 150px; 
+            object-fit: contain; 
+            border-radius: 10px; 
+            margin-bottom: 10px; 
+            background: #222;
+        }
+
+        .btn { 
+            display: block; 
+            background: #ff9800; 
+            color: black; 
+            padding: 12px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            font-size: 14px;
+        }
+        
         .back-btn { 
             display: inline-block; 
-            margin-bottom: 20px; 
+            margin-bottom: 30px; 
             color: #ff9800; 
             text-decoration: none; 
             border: 1px solid #ff9800; 
-            padding: 8px 20px; 
-            border-radius: 5px; 
+            padding: 10px 25px; 
+            border-radius: 10px; 
             font-weight: bold;
         }
-        .back-btn:hover { background: #ff9800; color: black; }
     </style>
 </head>
 <body>
 
-    <h1>مكتبة السكنات</h1>
-    
-    <!-- زر الرجوع موجود هنا في الأسفل -->
+    <h1>مكتبة السكنات 👕</h1>
     <a href="index.html" class="back-btn">← الرجوع للرئيسية</a>
-    <br>
 
     <div class="skins-container">
-        <!-- سكن قودي الجميل -->
+        <!-- يمكنك تكرار هذا الـ div لكل سكن جديد -->
         <div class="skin-box">
             <img src="https://cdn.phototourl.com/free/2026-07-12-3230b6e3-e85b-4419-b90c-66edbed4dbe7.png" alt="قودي الجميل">
-            <p>قودي الجميل</p>
-            <a href="https://www.mediafire.com/file/g5h3cykxzi3s52m/%25D9%2581%25D9%2588%25D8%25AF%25D9%258A_%25D8%25A7%25D9%2584%25D8%25AC%25D9%2585%25D9%258A%25D9%2584_.png/file" class="btn" download>تحميل</a>
+            <p style="margin: 5px 0; font-size: 14px;">قودي الجميل</p>
+            <a href="https://www.mediafire.com/file/g5h3cykxzi3s52m/%25D9%2581%25D9%2588%25D8%25AF%25D9%258A_%25D8%25A7%25D9%2584%25D8%25AC%25D9%2585%25D9%258A%25D9%2584_.png/file" class="btn">تحميل</a>
         </div>
     </div>
 
