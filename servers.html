@@ -6,39 +6,17 @@
     <title>سيرفرات مرتضى علي</title>
     <style>
         body { background: #050505; color: #fff; font-family: 'Segoe UI', Tahoma, sans-serif; padding: 15px; text-align: center; margin: 0; }
-        
         .back-home { display: inline-block; background: #222; color: #ff9800; padding: 10px 20px; border-radius: 12px; text-decoration: none; border: 1px solid #ff9800; font-weight: bold; margin-bottom: 20px; }
-        
         .admin-btn { background: #333; border: 1px solid #4caf50; color: white; padding: 10px 20px; border-radius: 10px; cursor: pointer; display: block; margin: 0 auto 20px; }
-        
         .panel-box { background: #1a1a1a; border: 1px solid #333; padding: 20px; border-radius: 20px; margin: 10px auto; width: 90%; max-width: 400px; display: none; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        
         input { width: 90%; padding: 12px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #444; background: #222; color: white; box-sizing: border-box; }
-        
         button { cursor: pointer; border: none; padding: 12px; border-radius: 10px; margin: 5px; font-weight: bold; transition: 0.3s; }
-        
-        .server-card { 
-            background: #111; 
-            border-right: 5px solid #4caf50; 
-            padding: 20px; 
-            margin: 15px auto; 
-            border-radius: 15px; 
-            width: 90%; 
-            max-width: 400px; 
-            text-align: right; 
-            position: relative;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        
-        .server-card h3 { color: #4caf50; margin-top: 0; }
-        
-        .copy-btn { background: #4caf50; color: white; padding: 6px 12px; border-radius: 6px; font-size: 12px; margin-right: 10px; }
-        
+        .server-card, .player-card { background: #111; border-right: 5px solid #4caf50; padding: 15px; margin: 10px auto; border-radius: 15px; width: 90%; max-width: 400px; text-align: right; position: relative; }
+        .player-card { border-right: 5px solid #2196f3; }
+        .copy-btn { background: #4caf50; color: white; padding: 5px 10px; border-radius: 5px; font-size: 11px; margin-right: 5px; }
         .delete-checkbox { position: absolute; left: 15px; top: 15px; width: 20px; height: 20px; cursor: pointer; accent-color: #ff4d4d; }
-
-        /* تنسيق النموذج الجديد المتوافق مع الهواتف */
         .form-wrapper { width: 95%; max-width: 600px; margin: 30px auto; background: #fff; border-radius: 15px; overflow: hidden; padding: 5px; }
-        .form-wrapper iframe { width: 100%; height: 800px; border: none; }
+        iframe { width: 100%; height: 800px; border: none; }
     </style>
 </head>
 <body>
@@ -46,34 +24,46 @@
     <a href="index.html" class="back-home">← الرئيسية</a>
     <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات الإدارة</button>
 
+    <!-- قائمة الخيارات -->
     <div id="menuBox" class="panel-box">
-        <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 45%;">➕ إضافة</button>
-        <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف</button>
+        <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 30%;">➕ سيرفر</button>
+        <button onclick="showPanel('addPlayer')" style="background:#2196f3; color:white; width: 30%;">👤 لاعب</button>
+        <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 30%;">🗑️ حذف</button>
     </div>
 
+    <!-- إضافة سيرفر -->
     <div id="addPanel" class="panel-box">
-        <input type="text" id="ver" placeholder="النسخة (مثال: 1.20)">
-        <input type="text" id="verNum" placeholder="الإصدار">
         <input type="text" id="sName" placeholder="اسم السيرفر">
         <input type="text" id="sIp" placeholder="عنوان IP">
         <input type="text" id="sPort" placeholder="رقم البورت">
         <button onclick="saveServer()" style="background:#4caf50; color:white; width:100%">حفظ ونشر السيرفر</button>
     </div>
 
+    <!-- إضافة لاعب -->
+    <div id="addPlayerPanel" class="panel-box">
+        <input type="text" id="pName" placeholder="اسم اللاعب">
+        <button onclick="savePlayer()" style="background:#2196f3; color:white; width:100%">إضافة للقائمة</button>
+    </div>
+
+    <!-- لوحة الحذف -->
     <div id="delPanel" class="panel-box">
-        <p style="color:#ff4d4d;">حدد السيرفرات التي تريد حذفها:</p>
+        <p style="color:#ff4d4d;">حدد ما تريد حذفه ثم اضغط:</p>
         <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:100%">حذف المحدد</button>
     </div>
 
     <h2 style="color: #ff9800;">قائمة السيرفرات المتاحة 🎮</h2>
     <div id="serverList"></div>
 
+    <h2 style="color: #2196f3;">قائمة اللاعبين المقبولين ✅</h2>
+    <div id="playersList"></div>
+
     <div class="form-wrapper">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegRLmefcrIzVP6Az9vrhC1PP1M42i7LWDnIXLfy0l2VLrQfQ/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">جارٍ التحميل…</iframe>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegRLmefcrIzVP6Az9vrhC1PP1M42i7LWDnIXLfy0l2VLrQfQ/viewform?embedded=true" frameborder="0"></iframe>
     </div>
 
     <script>
-        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers_v3') || "<p style='color:#777'>لا توجد سيرفرات حالياً</p>";
+        document.getElementById('serverList').innerHTML = localStorage.getItem('myServers_v3') || "";
+        document.getElementById('playersList').innerHTML = localStorage.getItem('myPlayers_v3') || "";
 
         function openMenu() {
             const pass = prompt("أدخل كلمة المرور:");
@@ -83,35 +73,30 @@
 
         function showPanel(type) {
             document.getElementById('menuBox').style.display = "none";
-            if(type === 'add') { document.getElementById('addPanel').style.display = "block"; } 
-            else { 
-                document.getElementById('delPanel').style.display = "block"; 
-                document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "block");
-            }
+            document.getElementById('addPanel').style.display = (type === 'add') ? 'block' : 'none';
+            document.getElementById('addPlayerPanel').style.display = (type === 'addPlayer') ? 'block' : 'none';
+            document.getElementById('delPanel').style.display = (type === 'del') ? 'block' : 'none';
+            if(type === 'del') document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "block");
         }
 
         function saveServer() {
-            const cardHtml = `
-                <div class="server-card">
-                    <input type="checkbox" class="delete-checkbox" style="display:none">
-                    <h3>${document.getElementById('sName').value}</h3>
-                    <p style="font-size: 0.9em; color: #aaa;">النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p>
-                    <p>الايبي: <strong>${document.getElementById('sIp').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sIp').value}')">نسخ</button></p>
-                    <p>البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sPort').value}')">نسخ</button></p>
-                </div>`;
-            
-            let list = document.getElementById('serverList');
-            if(list.innerHTML.includes("لا توجد سيرفرات")) list.innerHTML = "";
-            list.innerHTML += cardHtml;
-            localStorage.setItem('myServers_v3', list.innerHTML);
+            const card = `<div class="server-card"><input type="checkbox" class="delete-checkbox" style="display:none"><h3>${document.getElementById('sName').value}</h3><p>IP: ${document.getElementById('sIp').value}</p><p>Port: ${document.getElementById('sPort').value}</p></div>`;
+            document.getElementById('serverList').innerHTML += card;
+            localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML);
             location.reload();
         }
 
-        function copyText(text) { navigator.clipboard.writeText(text); alert("تم نسخ: " + text); }
-        
+        function savePlayer() {
+            const p = `<div class="player-card"><input type="checkbox" class="delete-checkbox" style="display:none"><h3>👤 ${document.getElementById('pName').value}</h3></div>`;
+            document.getElementById('playersList').innerHTML += p;
+            localStorage.setItem('myPlayers_v3', document.getElementById('playersList').innerHTML);
+            location.reload();
+        }
+
         function deleteSelected() {
             document.querySelectorAll('.delete-checkbox:checked').forEach(c => c.parentElement.remove());
             localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML);
+            localStorage.setItem('myPlayers_v3', document.getElementById('playersList').innerHTML);
             location.reload();
         }
     </script>
