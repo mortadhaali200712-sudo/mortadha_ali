@@ -2,56 +2,59 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>سيرفرات مرتضى علي - النظام المتكامل</title>
+    <title>سيرفرات مرتضى علي</title>
     <style>
-        body { background: #1a1a1a; color: #fff; font-family: sans-serif; margin: 0; display: flex; height: 100vh; overflow: hidden; }
-        
-        /* شريط الشات الجانبي */
-        #chat-sidebar { width: 350px; background: #2f3136; border-left: 1px solid #202225; display: flex; flex-direction: column; }
-        #chatBox { flex: 1; overflow-y: auto; padding: 15px; }
-        .msg { background: #40444b; padding: 10px; border-radius: 8px; margin-bottom: 10px; border-right: 3px solid #5865F2; font-size: 14px; }
-        
-        /* منطقة المحتوى */
-        #content { flex: 1; padding: 20px; overflow-y: auto; text-align: center; }
-        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
-        
-        /* الإعدادات */
+        /* تنسيقاتك الأصلية كما هي */
+        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; text-align: center; display: flex; }
+        .back-home { position: fixed; top: 10px; left: 10px; background: #444; color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; border: 1px solid #4caf50; font-weight: bold; z-index: 1000; }
+        .admin-btn { position: fixed; top: 10px; right: 10px; background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; z-index: 1000; }
         .menu-box, .panel-box { background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 15px; margin: 20px auto; width: 90%; max-width: 500px; display: none; }
         input[type="text"] { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #555; background: #333; color: white; margin-bottom: 10px; }
         button { cursor: pointer; border: none; padding: 10px; border-radius: 5px; margin: 5px; font-weight: bold; }
-        .admin-btn { background: #333; border: 1px solid #4caf50; color: white; padding: 8px 15px; }
-        .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; }
+        .server-card { background: #222; border: 1px solid #4caf50; padding: 15px; margin: 15px auto; border-radius: 10px; width: 90%; max-width: 500px; text-align: right; position: relative; }
+        .copy-btn { background: #4caf50; color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px; margin-right: 5px; }
+        .delete-checkbox { display: none; position: absolute; left: 15px; top: 15px; width: 25px; height: 25px; cursor: pointer; accent-color: #ff4d4d; }
+        
+        /* تنسيق إضافي للشات */
+        #chat-sidebar { width: 300px; background: #1a1a1a; border-left: 1px solid #4caf50; padding: 10px; height: 90vh; overflow-y: auto; }
     </style>
 </head>
 <body>
 
+    <!-- قسم الشات المدمج -->
     <div id="chat-sidebar">
-        <div id="user-info" style="padding:10px; text-align:center;">
-            <button id="loginBtn" onclick="loginWithGoogle()" style="background:#5865F2; padding:10px; border:none; color:white; border-radius:5px;">تسجيل دخول بجوجل</button>
-        </div>
-        <div id="chatBox"></div>
-        <div style="padding:10px; display:flex;">
-            <input type="text" id="msgInput" placeholder="رسالتك..." style="flex:1;">
-            <button onclick="sendMsg()" style="background:#4caf50; color:white;">إرسال</button>
-        </div>
+        <h3>الدردشة العامة</h3>
+        <div id="user-area"><button onclick="loginWithGoogle()">تسجيل دخول بجوجل</button></div>
+        <div id="chatBox" style="text-align: right; margin-top: 10px;"></div>
+        <input type="text" id="msgInput" placeholder="رسالتك...">
+        <button onclick="sendMsg()" style="background:#4caf50; color:white;">إرسال</button>
     </div>
 
-    <div id="content">
-        <h1>سيرفرات مرتضى علي</h1>
-        <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات الإدارة</button>
-        
+    <!-- المحتوى الأصلي الخاص بك -->
+    <div style="flex:1;">
+        <a href="index.html" class="back-home">← رجوع للرئيسية</a>
+        <button class="admin-btn" onclick="openMenu()">⚙️ إعدادات</button>
+
         <div id="menuBox" class="menu-box">
-            <button onclick="showPanel('add')" style="background:#4caf50; color:white;">➕ إضافة</button>
-            <button onclick="showPanel('del')" style="background:#ff4d4d; color:white;">🗑️ حذف</button>
+            <button onclick="showPanel('add')" style="background:#4caf50; color:white; width: 45%;">➕ إضافة منشور</button>
+            <button onclick="showPanel('del')" style="background:#ff4d4d; color:white; width: 45%;">🗑️ حذف منشور</button>
         </div>
 
         <div id="addPanel" class="panel-box">
+            <input type="text" id="ver" placeholder="النسخة">
+            <input type="text" id="verNum" placeholder="الإصدار">
             <input type="text" id="sName" placeholder="اسم السيرفر">
-            <input type="text" id="sIp" placeholder="الايبي">
-            <input type="text" id="sPort" placeholder="البورت">
-            <button onclick="saveServer()" style="background:#4caf50; color:white;">حفظ ونشر</button>
+            <input type="text" id="sIp" placeholder="ايبي السيرفر">
+            <input type="text" id="sPort" placeholder="بورت السيرفر">
+            <button onclick="saveServer()" style="background:#4caf50; color:white; width:95%">حفظ ونشر</button>
         </div>
 
+        <div id="delPanel" class="panel-box">
+            <p style="color:#ff4d4d;">حدد المربعات ثم اضغط هنا:</p>
+            <button onclick="deleteSelected()" style="background:#ff4d4d; color:white; width:95%">تأكيد حذف المحدد</button>
+        </div>
+
+        <h1>قائمة السيرفرات</h1>
         <div id="serverList"></div>
     </div>
 
@@ -66,29 +69,50 @@
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        // الشات
-        window.loginWithGoogle = () => signInWithPopup(auth, provider).then(r => document.getElementById('user-info').innerHTML = `أهلاً: ${r.user.displayName}`);
+        window.loginWithGoogle = () => {
+            signInWithPopup(auth, provider).then(res => {
+                document.getElementById('user-area').innerHTML = `مرحباً: ${res.user.displayName}`;
+            });
+        };
+
         window.sendMsg = () => {
             if(!auth.currentUser) return alert("سجل دخول أولاً!");
             push(ref(db, 'chat/'), { name: auth.currentUser.displayName, text: document.getElementById('msgInput').value });
             document.getElementById('msgInput').value = "";
         };
+
         onValue(ref(db, 'chat/'), (s) => {
             const box = document.getElementById('chatBox');
             box.innerHTML = "";
-            s.forEach(c => box.innerHTML += `<div class="msg"><b>${c.val().name}:</b> ${c.val().text}</div>`);
+            s.forEach(c => box.innerHTML += `<div style="font-size:12px; margin-bottom:5px;"><b>${c.val().name}:</b> ${c.val().text}</div>`);
         });
+    </script>
 
-        // إدارة السيرفرات
+    <script>
+        /* كود السيرفرات الخاص بك كما هو تماماً */
         document.getElementById('serverList').innerHTML = localStorage.getItem('myServers_v3') || "";
-        window.openMenu = () => { const p = prompt("كلمة المرور:"); if(p === "20077412") document.getElementById('menuBox').style.display = "block"; };
-        window.showPanel = (t) => { document.getElementById('menuBox').style.display = "none"; document.getElementById('addPanel').style.display = "block"; };
-        window.saveServer = () => {
-            const html = `<div class="server-card"><h3>${document.getElementById('sName').value}</h3><p>الايبي: ${document.getElementById('sIp').value}</p><p>البورت: ${document.getElementById('sPort').value}</p></div>`;
-            document.getElementById('serverList').innerHTML += html;
+        function openMenu() {
+            const pass = prompt("أدخل كلمة المرور:");
+            if(pass === "20077412") { document.getElementById('menuBox').style.display = "block"; }
+            else { alert("كلمة مرور خاطئة!"); }
+        }
+        function showPanel(type) {
+            document.getElementById('menuBox').style.display = "none";
+            if(type === 'add') { document.getElementById('addPanel').style.display = "block"; }
+            else { document.getElementById('delPanel').style.display = "block"; document.querySelectorAll('.delete-checkbox').forEach(c => c.style.display = "block"); }
+        }
+        function saveServer() {
+            const cardHtml = `<div class="server-card"><input type="checkbox" class="delete-checkbox"><h3 style="color:#4caf50; margin:0;">${document.getElementById('sName').value}</h3><p style="margin:8px 0;">النسخة: ${document.getElementById('ver').value} | الإصدار: ${document.getElementById('verNum').value}</p><p style="margin:8px 0;">الايبي: <strong>${document.getElementById('sIp').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sIp').value}')">نسخ</button></p><p style="margin:8px 0;">البورت: <strong>${document.getElementById('sPort').value}</strong> <button class="copy-btn" onclick="copyText('${document.getElementById('sPort').value}')">نسخ</button></p></div>`;
+            document.getElementById('serverList').innerHTML += cardHtml;
             localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML);
             location.reload();
-        };
+        }
+        function copyText(text) { navigator.clipboard.writeText(text); alert("تم النسخ: " + text); }
+        function deleteSelected() {
+            document.querySelectorAll('.delete-checkbox:checked').forEach(c => c.parentElement.remove());
+            localStorage.setItem('myServers_v3', document.getElementById('serverList').innerHTML);
+            location.reload();
+        }
     </script>
 </body>
 </html>
