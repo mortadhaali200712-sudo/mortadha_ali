@@ -9,10 +9,9 @@
         .back-btn { display: inline-block; background: #555; padding: 10px 20px; border-radius: 10px; text-decoration: none; color: #fff; margin-bottom: 20px; }
         #search { width: 90%; max-width: 400px; padding: 15px; margin-bottom: 30px; border-radius: 15px; border: 2px solid #4caf50; background: #1a1a1a; color: #fff; text-align: center; font-size: 16px; }
         
-        /* تنسيق البطاقة لتكون الصورة كبيرة في الأعلى */
         .mod-card { 
             background: #1a1a1a; 
-            border: 1px solid #4caf50; 
+            border: 2px solid #4caf50; 
             padding: 15px; 
             margin: 20px auto; 
             width: 90%; 
@@ -21,7 +20,7 @@
             display: flex; 
             flex-direction: column; 
             align-items: center; 
-            transition: border 0.3s; 
+            transition: all 0.5s ease; 
         }
         .mod-img { 
             width: 100%; 
@@ -57,11 +56,25 @@
     </div>
 
     <script>
+        // دالة النسخ مع الرابط المباشر
         function copyModLink(modId) {
-            let baseUrl = window.location.href.split('?')[0];
-            let fullLink = baseUrl + "?mod=" + modId;
-            navigator.clipboard.writeText(fullLink).then(() => { alert("تم نسخ رابط المود المباشر!"); });
+            let fullLink = window.location.origin + window.location.pathname + "?mod=" + modId;
+            navigator.clipboard.writeText(fullLink).then(() => { alert("تم نسخ رابط المود بنجاح!"); });
         }
+
+        // دالة الانتقال للمود عند فتح الرابط
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const modId = urlParams.get('mod');
+            if (modId) {
+                const element = document.getElementById(modId);
+                if (element) {
+                    element.style.border = "4px solid #ffeb3b"; // إضاءة المود المختار
+                    element.scrollIntoView({ behavior: "smooth" });
+                }
+            }
+        };
+
         function searchMods() {
             let input = document.getElementById('search').value.toLowerCase();
             let cards = document.getElementsByClassName('mod-card');
