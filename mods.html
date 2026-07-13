@@ -7,14 +7,10 @@
     <style>
         body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; }
         .back-btn { display: inline-block; background: #555; padding: 10px 20px; border-radius: 10px; text-decoration: none; color: #fff; margin-bottom: 20px; }
-        
-        /* لوحة التحكم */
         .admin-panel { background: #1a1a1a; padding: 20px; border-radius: 15px; margin: 20px auto; border: 1px solid #4caf50; display: none; }
         input { width: 90%; max-width: 300px; padding: 10px; margin: 5px; border-radius: 8px; border: 1px solid #444; background: #222; color: #fff; }
-        
-        #search { width: 90%; max-width: 400px; padding: 15px; margin-bottom: 30px; border-radius: 15px; border: 2px solid #4caf50; background: #1a1a1a; color: #fff; text-align: center; font-size: 16px; }
-        
-        .mod-card { background: #1a1a1a; border: 2px solid #4caf50; padding: 15px; margin: 20px auto; width: 90%; max-width: 400px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; }
+        #search { width: 90%; max-width: 400px; padding: 15px; margin-bottom: 30px; border-radius: 15px; border: 2px solid #4caf50; background: #1a1a1a; color: #fff; text-align: center; }
+        .mod-card { background: #1a1a1a; border: 2px solid #4caf50; padding: 15px; margin: 20px auto; width: 90%; max-width: 400px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; transition: 0.3s; }
         .mod-img { width: 100%; height: 220px; border-radius: 15px; margin-bottom: 15px; object-fit: cover; }
         .mod-name { font-weight: bold; font-size: 1.3em; margin-bottom: 15px; color: #4caf50; display: block; }
         .btn { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; margin: 0 5px; }
@@ -29,7 +25,7 @@
 
     <div id="adminPanel" class="admin-panel">
         <h3>➕ إضافة مود جديد</h3>
-        <input type="text" id="mName" placeholder="اسم المود">
+        <input type="text" id="mName" placeholder="اسم المود (مثال: modName)">
         <input type="text" id="mImg" placeholder="رابط صورة المود">
         <input type="text" id="mLink" placeholder="رابط تحميل المود">
         <button class="btn download-btn" onclick="addMod()">حفظ ونشر المود</button>
@@ -40,23 +36,22 @@
 
     <div id="modsList">
         <div class="mod-card" id="magic"><img src="https://cdn.phototourl.com/free/2026-07-11-c4659a13-57c3-459a-89c3-cd9208cc422b.png" class="mod-img"><div class="mod-info"><span class="mod-name">مود سحر كرافت</span><a href="https://www.mediafire.com/file/f5tulyguyqhdij3/سحر_كرافت_.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('magic')">نسخ</button></div></div>
-        
+        <div class="mod-card" id="horror"><img src="https://cdn.phototourl.com/free/2026-07-10-a18e8d6b-787f-4ea9-a29f-223e25e47948.webp" class="mod-img"><div class="mod-info"><span class="mod-name">مود الرعب</span><a href="https://www.mediafire.com/file/5570wx2ac6zvwd4/مود_الرعب_.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('horror')">نسخ</button></div></div>
         </div>
 
     <script>
-        // دالة كلمة السر للإدارة
+        // تحميل المودات المضافة يدوياً
+        document.getElementById('modsList').innerHTML += localStorage.getItem('myModsList') || "";
+
         function openAdmin() {
-            if(prompt("أدخل كلمة المرور:") === "20077412") {
-                document.getElementById('adminPanel').style.display = "block";
-            }
+            if(prompt("كلمة المرور:") === "20077412") document.getElementById('adminPanel').style.display = "block";
         }
 
-        // دالة حفظ المود الجديد
         function addMod() {
             let name = document.getElementById('mName').value;
             let img = document.getElementById('mImg').value;
             let link = document.getElementById('mLink').value;
-            let id = name.replace(/\s+/g, '');
+            let id = name.replace(/\s+/g, ''); // صنع معرف فريد للمود
 
             let newMod = `
             <div class="mod-card" id="${id}">
@@ -68,20 +63,27 @@
                 </div>
             </div>`;
 
-            let list = document.getElementById('modsList');
-            list.innerHTML += newMod;
-            localStorage.setItem('myModsList', list.innerHTML);
+            document.getElementById('modsList').innerHTML += newMod;
+            localStorage.setItem('myModsList', document.getElementById('modsList').innerHTML.split('')[1]);
             location.reload();
         }
 
-        // تحميل المودات المحفوظة
-        document.getElementById('modsList').innerHTML += localStorage.getItem('myModsList') || "";
-
-        // دوال النسخ والبحث
         function copyModLink(modId) {
-            let fullLink = window.location.origin + window.location.pathname + "?mod=" + modId;
-            navigator.clipboard.writeText(fullLink).then(() => { alert("تم نسخ رابط المود!"); });
+            let fullLink = window.location.href.split('?')[0] + "?mod=" + modId;
+            navigator.clipboard.writeText(fullLink).then(() => { alert("تم نسخ رابط المود المباشر!"); });
         }
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const modId = urlParams.get('mod');
+            if (modId) {
+                const element = document.getElementById(modId);
+                if (element) {
+                    element.style.border = "4px solid #ffeb3b";
+                    element.scrollIntoView({ behavior: "smooth" });
+                }
+            }
+        };
 
         function searchMods() {
             let input = document.getElementById('search').value.toLowerCase();
