@@ -8,8 +8,8 @@
         body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; }
         .back-btn { display: inline-block; background: #555; padding: 10px 20px; border-radius: 10px; text-decoration: none; color: #fff; margin-bottom: 20px; }
         
-        /* تنسيق لوحة الإدارة */
-        .admin-panel { background: #1a1a1a; padding: 20px; border-radius: 15px; margin: 20px auto; border: 2px solid #4caf50; display: none; width: 90%; max-width: 400px; }
+        /* تصميم لوحة الإدارة */
+        .admin-box { background: #1a1a1a; padding: 20px; border-radius: 15px; margin: 20px auto; border: 1px solid #4caf50; display: none; width: 90%; max-width: 400px; }
         .admin-input { width: 90%; padding: 10px; margin: 5px; border-radius: 8px; border: 1px solid #444; background: #000; color: #fff; }
         
         #search { width: 90%; max-width: 400px; padding: 15px; margin-bottom: 30px; border-radius: 15px; border: 2px solid #4caf50; background: #1a1a1a; color: #fff; text-align: center; font-size: 16px; }
@@ -38,14 +38,15 @@
 <body>
 
     <a href="index.html" class="back-btn">⬅ رجوع للرئيسية</a>
-    <button onclick="openAdmin()" class="btn" style="background:#4caf50; color:black; margin-bottom: 20px;">⚙️ لوحة الإدارة</button>
+    <br>
+    <button onclick="toggleAdmin()" class="btn" style="background:#333; color:#fff;">⚙️ لوحة الإدارة</button>
 
-    <div id="adminPanel" class="admin-panel">
-        <h3>➕ إضافة مود جديد</h3>
-        <input type="text" id="mName" class="admin-input" placeholder="اسم المود (مثال: modName)">
+    <div id="adminPanel" class="admin-box">
+        <h3>➕ نشر مود جديد</h3>
+        <input type="text" id="mName" class="admin-input" placeholder="اسم المود (بدون مسافات مثل: modName)">
         <input type="text" id="mImg" class="admin-input" placeholder="رابط صورة المود">
-        <input type="text" id="mLink" class="admin-input" placeholder="رابط التحميل">
-        <button class="btn download-btn" onclick="saveNewMod()">نشر المود</button>
+        <input type="text" id="mLink" class="admin-input" placeholder="رابط تحميل المود">
+        <button class="btn download-btn" onclick="saveNewMod()">حفظ ونشر المود</button>
     </div>
 
     <h1>قسم المودات 📦</h1>
@@ -65,12 +66,13 @@
     </div>
 
     <script>
-        // تحميل المودات المضافة سابقاً
+        // تحميل المودات الجديدة المحفوظة
         document.getElementById('modsList').innerHTML += localStorage.getItem('addedMods') || "";
 
-        function openAdmin() {
-            if(prompt("كلمة المرور:") === "20077412") {
-                document.getElementById('adminPanel').style.display = "block";
+        function toggleAdmin() {
+            if(prompt("كلمة السر:") === "20077412") {
+                let p = document.getElementById('adminPanel');
+                p.style.display = (p.style.display === "block") ? "none" : "block";
             }
         }
 
@@ -80,7 +82,7 @@
             let link = document.getElementById('mLink').value;
             let id = name.replace(/\s+/g, '');
 
-            let html = `
+            let newCard = `
             <div class="mod-card" id="${id}">
                 <img src="${img}" class="mod-img">
                 <div class="mod-info">
@@ -90,15 +92,15 @@
                 </div>
             </div>`;
 
-            document.getElementById('modsList').innerHTML += html;
-            localStorage.setItem('addedMods', document.getElementById('modsList').innerHTML.split('')[1]);
+            document.getElementById('modsList').innerHTML += newCard;
+            localStorage.setItem('addedMods', document.getElementById('modsList').innerHTML.split('')[1] || "");
             alert("تم نشر المود بنجاح!");
             location.reload();
         }
 
         function copyModLink(modId) {
             let fullLink = window.location.href.split('?')[0] + "?mod=" + modId;
-            navigator.clipboard.writeText(fullLink).then(() => { alert("تم نسخ رابط المود بنجاح!"); });
+            navigator.clipboard.writeText(fullLink).then(() => { alert("تم نسخ رابط المود المباشر!"); });
         }
 
         window.onload = function() {
