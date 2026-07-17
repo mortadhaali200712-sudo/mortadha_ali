@@ -27,40 +27,50 @@
 
     <a href="index.html" class="back-btn">⬅ رجوع للرئيسية</a>
     
-    <!-- الأزرار -->
     <div class="tabs">
-        <button class="tab-btn active" onclick="showSection('bedrock')">بيدروك</button>
-        <button class="tab-btn" onclick="showSection('java')">جافا</button>
+        <button class="tab-btn active" onclick="showSection('bedrock', this)">بيدروك</button>
+        <button class="tab-btn" onclick="showSection('java', this)">جافا</button>
     </div>
 
     <h1>قسم المودات 📦</h1>
     <input type="text" id="search" onkeyup="searchMods()" placeholder="🔍 ابحث عن مود...">
 
-    <!-- قسم البيدروك -->
+    <!-- قسم البيدروك (كل المودات موجودة هنا) -->
     <div id="bedrockSection">
-        <div class="mod-card" id="space"><img src="https://cdn.phototourl.com/free/2026-07-17-3329e4cb-b611-4d7f-99cb-b008bd43eca3.png" class="mod-img"><div class="mod-info"><span class="mod-name">مود الفضاء</span><a href="#" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('space')">نسخ</button></div></div>
-        <!-- (باقي مودات البيدروك هنا بنفس التنسيق) -->
-        <div class="mod-card" id="skyblock"><img src="https://cdn.phototourl.com/free/2026-07-16-f4f8c00d-fa54-4665-a6a2-a70341c2ea84.png" class="mod-img"><div class="mod-info"><span class="mod-name">Skyblock 26.20</span><a href="#" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('skyblock')">نسخ</button></div></div>
+        <div class="mod-card" id="space"><img src="https://cdn.phototourl.com/free/2026-07-17-3329e4cb-b611-4d7f-99cb-b008bd43eca3.png" class="mod-img"><div class="mod-info"><span class="mod-name">مود الفضاء</span><a href="https://download937.mediafire.com/bj6rn1umhpygOgROq2bvO-IUNUiUOfAn0Wx-FekYSvwooPmWGetqSgKIqvY7ndXkJD1QLIRk84-_KgiSK_1EinkkV26PXHV9n3NxX0DBKDp0gpMZJ2bKP_VxIAvIEDSYhfWdF50X_qc7sIKLeAoN1EcnczQKEt53HD7YGIMMwTWJ1ss/bvl0o7f1zv6rsjy/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D9%81%D8%B6%D8%A7%D8%A1+.mcaddon" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('space')">نسخ</button></div></div>
+        <div class="mod-card" id="skyblock"><img src="https://cdn.phototourl.com/free/2026-07-16-f4f8c00d-fa54-4665-a6a2-a70341c2ea84.png" class="mod-img"><div class="mod-info"><span class="mod-name">Skyblock 26.20</span><a href="https://download2284.mediafire.com/ii5ndblxc7ggLTDUQ_ihanRaPIUR2zJo2PBDiif4bRr2ulXV2XLqlrbGkHh7K4sosSNiNDc551OpUMTo_GkMXXOUAogPag35FmxC7rjMSJEvOuEVtSo_blYE4_e8dBUu3BLeinui6v7eKn1rkVYlvXnT2NiN-SK85Gtv3ezFRcYuiA/5lvbrnrlqtnm08c/%D8%B3%D9%83%D8%A7%D9%8A+%D8%A8%D9%84%D9%88%D9%83+.mcworld" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('skyblock')">نسخ</button></div></div>
+        <div class="mod-card" id="lantern"><img src="https://cdn.phototourl.com/free/2026-07-15-32399c5a-45e6-4774-a4ef-fc8157778ea9.png" class="mod-img"><div class="mod-info"><span class="mod-name">مود الانتيرن الصيني</span><a href="https://download1649.mediafire.com/rknftz97fetgJCEhl3koG0pV0XTOskcc0e80qAMpRC5BIus9rdwQTEVHwsRxaBobdcDcOMivNn9rh6i7Oxie_UO9icRE2DZ0qIROdf5b8Hvz9mTLMoKOkIv5nzNGOkDwmrg0PfJ4RAq-c4uEa2eM38e5WiLWCHeu0i2Y8PD3AmuzDA/5zl2s5z3u5bww1y/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D9%8A%D8%B1%D9%86+%D8%A7%D9%84%D8%B5%D9%8A%D9%86%D9%8A+.mcpack" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('lantern')">نسخ</button></div></div>
+        <div class="mod-card" id="map-world"><img src="https://iili.io/CEkuApn.md.png" class="mod-img"><div class="mod-info"><span class="mod-name">ماب خريطة العالم</span><a href="https://www.mediafire.com/file/v4a5xoc2j21pdsn/%25D9%2585%25D8%25A7%25D8%25A8_%25D8%25AE%25D8%25B1%25D9%258A%25D8%25B7%25D8%25A9_%25D8%25A7%25D9%2584%25D8%25B9%25D8%25A7%25D9%2584%25D9%2585_.mcworld/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('map-world')">نسخ</button></div></div>
+        <div class="mod-card" id="spawn"><img src="https://cdn.phototourl.com/free/2026-07-13-9421c042-3f8d-4deb-8bd3-63f92343fcef.webp" class="mod-img"><div class="mod-info"><span class="mod-name">مود الاسبون</span><a href="https://www.mediafire.com/file/jw6itjsh2vcb41d/مود+الاسبون.mcworld/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('spawn')">نسخ</button></div></div>
+        <div class="mod-card" id="magic"><img src="https://cdn.phototourl.com/free/2026-07-11-c4659a13-57c3-459a-89c3-cd9208cc422b.png" class="mod-img"><div class="mod-info"><span class="mod-name">مود سحر كرافت</span><a href="https://www.mediafire.com/file/f5tulyguyqhdij3/%25D8%25B3%25D8%25AD%25D8%25B1_%25D9%2583%25D8%25B1%25D8%25A7%25D9%2581%25D8%25AA_.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('magic')">نسخ</button></div></div>
+        <div class="mod-card" id="horror"><img src="https://cdn.phototourl.com/free/2026-07-10-a18e8d6b-787f-4ea9-a29f-223e25e47948.webp" class="mod-img"><div class="mod-info"><span class="mod-name">مود الرعب</span><a href="https://www.mediafire.com/file/5570wx2ac6zvwd4/مود_الرعب_.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('horror')">نسخ</button></div></div>
+        <div class="mod-card" id="dino"><img src="https://cdn.phototourl.com/free/2026-07-10-c127607f-0880-48b3-9ab8-adba4be81331.webp" class="mod-img"><div class="mod-info"><span class="mod-name">مود الديناصور</span><a href="https://www.mediafire.com/file/dr3f3wtz8nnxd37/مود_الديناصور.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('dino')">نسخ</button></div></div>
+        <div class="mod-card" id="drill"><img src="https://cdn.phototourl.com/free/2026-07-10-052f9825-8d9f-4452-bca6-3a5f0a3c96ba.jpg" class="mod-img"><div class="mod-info"><span class="mod-name">مود الدريل</span><a href="https://www.mediafire.com/file/ife8novip8dv03g/دريل_Legend_Hub.mcpack/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('drill')">نسخ</button></div></div>
+        <div class="mod-card" id="guns"><img src="https://cdn.phototourl.com/free/2026-07-10-7e637dd6-219c-40ce-b0da-2dd24013b625.webp" class="mod-img"><div class="mod-info"><span class="mod-name">مود الاسلحة الحقيقية</span><a href="https://www.mediafire.com/file/30pgf2fayhhf4hm/أسلحة_حقيقية_(واقعية)_Legend_Hub/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('guns')">نسخ</button></div></div>
+        <div class="mod-card" id="wiston"><img src="https://cdn.phototourl.com/free/2026-07-10-9f1e3ed7-5721-470f-92a5-2fcb9c259923.jpg" class="mod-img"><div class="mod-info"><span class="mod-name">مود الويستون</span><a href="https://www.mediafire.com/file/sr3gt9b9f85qy33/ويستون_Legend_Hub.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('wiston')">نسخ</button></div></div>
+        <div class="mod-card" id="hammer"><img src="https://cdn.phototourl.com/free/2026-07-10-9ebea467-3034-418a-9032-ebef6f0d7096.jpg" class="mod-img"><div class="mod-info"><span class="mod-name">مود الهمر</span><a href="https://www.mediafire.com/file/z8gvhyu1q0gjl2d/همر_Legend_Hub.zip/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('hammer')">نسخ</button></div></div>
+        <div class="mod-card" id="wand"><img src="https://cdn.phototourl.com/free/2026-07-10-86308f6a-d84b-4d98-9de4-070f71cf7a13.jpg" class="mod-img"><div class="mod-info"><span class="mod-name">مود الواند</span><a href="https://www.mediafire.com/file/sp9zoo1hn0pr5a5/واند_Legend_Hub.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('wand')">نسخ</button></div></div>
+        <div class="mod-card" id="anim"><img src="https://cdn.phototourl.com/free/2026-07-10-35593438-3f5b-4594-9deb-e4cd614e89ea.jpg" class="mod-img"><div class="mod-info"><span class="mod-name">مود الانميشن</span><a href="https://www.mediafire.com/file/01rbobhezh8qfqk/انميشن_Legend_Hub.mcpack/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('anim')">نسخ</button></div></div>
+        <div class="mod-card" id="carry"><img src="https://cdn.phototourl.com/free/2026-07-10-751acb95-bc15-496d-8381-ce8b4b613269.webp" class="mod-img"><div class="mod-info"><span class="mod-name">مود حمل الموبات</span><a href="https://www.mediafire.com/file/jtxz5wu8y3bqddh/حمل_الموبات_والحيوانات_Legend_Hub.mcpack/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('carry')">نسخ</button></div></div>
     </div>
 
-    <!-- قسم الجافا -->
+    <!-- قسم الجافا (بانتظار إضافاتك) -->
     <div id="javaSection" style="display: none;">
         <p style="color: #888; margin-top: 50px;">لا توجد مودات جافا حالياً. سأضيفها عند طلبك!</p>
     </div>
 
     <script>
-        function showSection(section) {
+        function showSection(section, btn) {
             document.getElementById('bedrockSection').style.display = (section === 'bedrock') ? 'block' : 'none';
             document.getElementById('javaSection').style.display = (section === 'java') ? 'block' : 'none';
             
-            // تحديث شكل الأزرار
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
         }
 
         function copyModLink(modId) {
             let fullLink = window.location.origin + window.location.pathname + "?mod=" + modId;
-            navigator.clipboard.writeText(fullLink).then(() => { alert("تم نسخ الرابط!"); });
+            navigator.clipboard.writeText(fullLink).then(() => { alert("تم نسخ الرابط بنجاح!"); });
         }
 
         function searchMods() {
