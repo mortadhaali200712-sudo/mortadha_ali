@@ -7,6 +7,7 @@
     <style>
         body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; }
         .back-btn { display: inline-block; background: #555; padding: 10px 20px; border-radius: 10px; text-decoration: none; color: #fff; margin-bottom: 20px; }
+        h2 { color: #4caf50; border-bottom: 2px solid #4caf50; display: inline-block; padding-bottom: 10px; margin-top: 30px; }
         #search { width: 90%; max-width: 400px; padding: 15px; margin-bottom: 30px; border-radius: 15px; border: 2px solid #4caf50; background: #1a1a1a; color: #fff; text-align: center; font-size: 16px; }
         
         .mod-card { 
@@ -22,13 +23,7 @@
             align-items: center; 
             transition: all 0.5s ease; 
         }
-        .mod-img { 
-            width: 100%; 
-            height: 220px; 
-            border-radius: 15px; 
-            margin-bottom: 15px; 
-            object-fit: cover; 
-        }
+        .mod-img { width: 100%; height: 220px; border-radius: 15px; margin-bottom: 15px; object-fit: cover; }
         .mod-info { width: 100%; }
         .mod-name { font-weight: bold; font-size: 1.3em; display: block; margin-bottom: 15px; color: #4caf50; }
         .btn { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; font-size: 14px; margin: 0 5px; }
@@ -42,11 +37,10 @@
     <h1>قسم المودات 📦</h1>
     <input type="text" id="search" onkeyup="searchMods()" placeholder="🔍 ابحث عن مود...">
 
-    <div id="modsList">
-        <!-- المود الجديد: مود الفضاء -->
+    <!-- قسم البيدروك -->
+    <h2>مودات بيدروك (Bedrock)</h2>
+    <div id="bedrockList">
         <div class="mod-card" id="space"><img src="https://cdn.phototourl.com/free/2026-07-17-3329e4cb-b611-4d7f-99cb-b008bd43eca3.png" class="mod-img"><div class="mod-info"><span class="mod-name">مود الفضاء</span><a href="https://download937.mediafire.com/bj6rn1umhpygOgROq2bvO-IUNUiUOfAn0Wx-FekYSvwooPmWGetqSgKIqvY7ndXkJD1QLIRk84-_KgiSK_1EinkkV26PXHV9n3NxX0DBKDp0gpMZJ2bKP_VxIAvIEDSYhfWdF50X_qc7sIKLeAoN1EcnczQKEt53HD7YGIMMwTWJ1ss/bvl0o7f1zv6rsjy/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D9%81%D8%B6%D8%A7%D8%A1+.mcaddon" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('space')">نسخ</button></div></div>
-
-        <!-- المودات السابقة -->
         <div class="mod-card" id="skyblock"><img src="https://cdn.phototourl.com/free/2026-07-16-f4f8c00d-fa54-4665-a6a2-a70341c2ea84.png" class="mod-img"><div class="mod-info"><span class="mod-name">Skyblock 26.20</span><a href="https://download2284.mediafire.com/ii5ndblxc7ggLTDUQ_ihanRaPIUR2zJo2PBDiif4bRr2ulXV2XLqlrbGkHh7K4sosSNiNDc551OpUMTo_GkMXXOUAogPag35FmxC7rjMSJEvOuEVtSo_blYE4_e8dBUu3BLeinui6v7eKn1rkVYlvXnT2NiN-SK85Gtv3ezFRcYuiA/5lvbrnrlqtnm08c/%D8%B3%D9%83%D8%A7%D9%8A+%D8%A8%D9%84%D9%88%D9%83+.mcworld" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('skyblock')">نسخ</button></div></div>
         <div class="mod-card" id="lantern"><img src="https://cdn.phototourl.com/free/2026-07-15-32399c5a-45e6-4774-a4ef-fc8157778ea9.png" class="mod-img"><div class="mod-info"><span class="mod-name">مود الانتيرن الصيني</span><a href="https://download1649.mediafire.com/rknftz97fetgJCEhl3koG0pV0XTOskcc0e80qAMpRC5BIus9rdwQTEVHwsRxaBobdcDcOMivNn9rh6i7Oxie_UO9icRE2DZ0qIROdf5b8Hvz9mTLMoKOkIv5nzNGOkDwmrg0PfJ4RAq-c4uEa2eM38e5WiLWCHeu0i2Y8PD3AmuzDA/5zl2s5z3u5bww1y/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D9%8A%D8%B1%D9%86+%D8%A7%D9%84%D8%B5%D9%8A%D9%86%D9%8A+.mcpack" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('lantern')">نسخ</button></div></div>
         <div class="mod-card" id="map-world"><img src="https://iili.io/CEkuApn.md.png" class="mod-img"><div class="mod-info"><span class="mod-name">ماب خريطة العالم</span><a href="https://www.mediafire.com/file/v4a5xoc2j21pdsn/%25D9%2585%25D8%25A7%25D8%25A8_%25D8%25AE%25D8%25B1%25D9%258A%25D8%25B7%25D8%25A9_%25D8%25A7%25D9%2584%25D8%25B9%25D8%25A7%25D9%2584%25D9%2585_.mcworld/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('map-world')">نسخ</button></div></div>
@@ -61,6 +55,12 @@
         <div class="mod-card" id="wand"><img src="https://cdn.phototourl.com/free/2026-07-10-86308f6a-d84b-4d98-9de4-070f71cf7a13.jpg" class="mod-img"><div class="mod-info"><span class="mod-name">مود الواند</span><a href="https://www.mediafire.com/file/sp9zoo1hn0pr5a5/واند_Legend_Hub.mcaddon/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('wand')">نسخ</button></div></div>
         <div class="mod-card" id="anim"><img src="https://cdn.phototourl.com/free/2026-07-10-35593438-3f5b-4594-9deb-e4cd614e89ea.jpg" class="mod-img"><div class="mod-info"><span class="mod-name">مود الانميشن</span><a href="https://www.mediafire.com/file/01rbobhezh8qfqk/انميشن_Legend_Hub.mcpack/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('anim')">نسخ</button></div></div>
         <div class="mod-card" id="carry"><img src="https://cdn.phototourl.com/free/2026-07-10-751acb95-bc15-496d-8381-ce8b4b613269.webp" class="mod-img"><div class="mod-info"><span class="mod-name">مود حمل الموبات</span><a href="https://www.mediafire.com/file/jtxz5wu8y3bqddh/حمل_الموبات_والحيوانات_Legend_Hub.mcpack/file" target="_blank" class="btn download-btn">تحميل</a><button class="btn copy-btn" onclick="copyModLink('carry')">نسخ</button></div></div>
+    </div>
+
+    <!-- قسم الجافا -->
+    <h2>مودات جافا (Java)</h2>
+    <div id="javaList">
+        <p style="color: #888;">قريباً... يتم تجهيز القسم.</p>
     </div>
 
     <script>
