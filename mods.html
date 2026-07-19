@@ -11,7 +11,8 @@
         .tab-btn { background: #1a1a1a; border: 2px solid #4caf50; color: #fff; padding: 15px 30px; border-radius: 15px; cursor: pointer; font-size: 18px; font-weight: bold; width: 150px; transition: 0.3s; }
         .tab-btn:hover, .tab-btn.active { background: #4caf50; color: #000; }
         #search { width: 90%; max-width: 400px; padding: 15px; margin-bottom: 30px; border-radius: 15px; border: 2px solid #4caf50; background: #1a1a1a; color: #fff; text-align: center; font-size: 16px; }
-        .mod-card { background: #1a1a1a; border: 2px solid #4caf50; padding: 15px; margin: 20px auto; width: 90%; max-width: 400px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; }
+        .mod-card { background: #1a1a1a; border: 2px solid #4caf50; padding: 15px; margin: 20px auto; width: 90%; max-width: 400px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; transition: 0.5s; }
+        .mod-card.highlight { border-color: #ffeb3b; box-shadow: 0 0 20px #ffeb3b; }
         .mod-img { width: 100%; height: 220px; border-radius: 15px; margin-bottom: 15px; object-fit: cover; }
         .mod-name { font-weight: bold; font-size: 1.3em; display: block; margin-bottom: 15px; color: #4caf50; }
         .btn { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; font-size: 14px; margin: 0 5px; }
@@ -59,7 +60,6 @@
 
         function renderMods(list, containerId) {
             const container = document.getElementById(containerId);
-            if (list.length === 0) return;
             list.forEach(mod => {
                 container.innerHTML += `
                 <div class="mod-card" id="${mod.id}">
@@ -76,6 +76,23 @@
         renderMods(bedrockList, 'bedrockSection');
         renderMods(javaList, 'javaSection');
 
+        // التوجيه التلقائي عند فتح الرابط
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const modId = urlParams.get('mod');
+            if (modId) {
+                const element = document.getElementById(modId);
+                if (element) {
+                    // تحديد القسم الصحيح (جافا أو بيدروك)
+                    if (modId === 'night-vision') showSection('java', document.querySelector('[onclick*="java"]'));
+                    
+                    element.scrollIntoView({ behavior: 'smooth' });
+                    element.classList.add('highlight');
+                    setTimeout(() => element.classList.remove('highlight'), 2000);
+                }
+            }
+        };
+
         function showSection(section, btn) {
             document.getElementById('bedrockSection').style.display = (section === 'bedrock') ? 'block' : 'none';
             document.getElementById('javaSection').style.display = (section === 'java') ? 'block' : 'none';
@@ -85,7 +102,7 @@
 
         function copyModLink(modId) {
             let fullLink = window.location.href.split('?')[0] + "?mod=" + modId;
-            navigator.clipboard.writeText(fullLink).then(() => { alert("تم النسخ بنجاح!"); });
+            navigator.clipboard.writeText(fullLink).then(() => { alert("تم نسخ الرابط! عند مشاركته سيذهب المستخدم للمود مباشرة."); });
         }
 
         function searchMods() {
