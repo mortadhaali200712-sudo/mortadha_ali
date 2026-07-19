@@ -67,7 +67,7 @@
                     <div class="mod-info">
                         <span class="mod-name">${mod.name}</span>
                         <a href="${mod.link}" target="_blank" class="btn download-btn">تحميل</a>
-                        <button class="btn copy-btn" onclick="copyModLink('${mod.id}')">نسخ</button>
+                        <button class="btn copy-btn" onclick="copyModLink('${mod.id}')">نسخ الرابط</button>
                     </div>
                 </div>`;
             });
@@ -76,16 +76,13 @@
         renderMods(bedrockList, 'bedrockSection');
         renderMods(javaList, 'javaSection');
 
-        // التوجيه التلقائي عند فتح الرابط
         window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
             const modId = urlParams.get('mod');
             if (modId) {
                 const element = document.getElementById(modId);
                 if (element) {
-                    // تحديد القسم الصحيح (جافا أو بيدروك)
                     if (modId === 'night-vision') showSection('java', document.querySelector('[onclick*="java"]'));
-                    
                     element.scrollIntoView({ behavior: 'smooth' });
                     element.classList.add('highlight');
                     setTimeout(() => element.classList.remove('highlight'), 2000);
