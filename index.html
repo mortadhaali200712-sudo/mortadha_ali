@@ -16,21 +16,14 @@
             --warning: #F59E0B;
             --dark: #0B1220;
             --dark-card: #111827;
-            --card-bg: rgba(255, 255, 255, 0.035);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --glass-bg: rgba(11, 18, 32, 0.78);
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(11, 18, 32, 0.85);
             --text-main: #FFFFFF;
             --text-muted: #94A3B8;
-            --glow-primary: rgba(37, 99, 235, 0.35);
-            --glow-secondary: rgba(56, 189, 248, 0.35);
-            
-            /* متغيرات التحكم الديناميكي بالأحجام باستخدام Clamp لضمان التوافق مع 4K والشاشات الصغيرة */
-            --container-max: clamp(420px, 90vw, 720px);
-            --spacing-unit: clamp(16px, 3vw, 32px);
-            --font-scale: clamp(0.95rem, 1.2vw, 1.15rem);
         }
 
-        /* إعادة الضبط والأساسيات مع تحسين الأداء */
+        /* إعادة الضبط والأساسيات */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -41,7 +34,6 @@
 
         html {
             scroll-behavior: smooth;
-            font-size: 16px;
         }
 
         body {
@@ -53,22 +45,21 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: clamp(20px, 4vh, 60px) clamp(12px, 3vw, 24px);
+            padding: 20px 15px;
             overflow-x: hidden;
             position: relative;
-            font-size: var(--font-scale);
         }
 
-        /* شريط التمرير المخصص الاحترافي */
+        /* شريط التمرير المخصص */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 8px;
         }
         ::-webkit-scrollbar-track {
             background: var(--dark);
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
             background: var(--primary);
@@ -84,28 +75,27 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-            will-change: opacity;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
         #page-loader.loaded {
             opacity: 0;
             visibility: hidden;
         }
         .loader-spinner {
-            width: 55px;
-            height: 55px;
-            border: 4px solid rgba(255,255,255,0.08);
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255,255,255,0.1);
             border-top-color: var(--primary);
             border-right-color: var(--secondary);
             border-radius: 50%;
-            animation: spin 0.9s linear infinite;
-            margin-bottom: 18px;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 15px;
         }
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
         .loader-text {
-            font-size: 1.1em;
+            font-size: 1.05em;
             font-weight: 700;
             background: linear-gradient(135deg, var(--text-main), var(--secondary));
             -webkit-background-clip: text;
@@ -113,7 +103,7 @@
             letter-spacing: 2px;
         }
 
-        /* خلفية متطورة تدمج Aurora Effect, Animated Gradient و Floating Blur Shapes للشاشات الكبيرة */
+        /* الخلفية المتحركة وإضاءات الأورورا */
         .ambient-background {
             position: fixed;
             inset: 0;
@@ -121,7 +111,7 @@
             overflow: hidden;
             background: linear-gradient(135deg, #050811 0%, #0B1220 50%, #04070d 100%);
             background-size: 400% 400%;
-            animation: auroraGradient 20s ease infinite;
+            animation: auroraGradient 18s ease infinite;
         }
         @keyframes auroraGradient {
             0% { background-position: 0% 50%; }
@@ -132,39 +122,30 @@
         .floating-shape {
             position: absolute;
             border-radius: 50%;
-            filter: blur(120px);
+            filter: blur(100px);
             opacity: 0.3;
             pointer-events: none;
-            will-change: transform;
-            animation: floatShape 14s ease-in-out infinite alternate;
+            animation: floatShape 12s ease-in-out infinite alternate;
         }
         .shape-1 {
-            width: clamp(300px, 40vw, 600px);
-            height: clamp(300px, 40vw, 600px);
+            width: 400px;
+            height: 400px;
             background: var(--primary);
-            top: -10%;
-            right: -10%;
+            top: -100px;
+            right: -100px;
         }
         .shape-2 {
-            width: clamp(350px, 45vw, 650px);
-            height: clamp(350px, 45vw, 650px);
+            width: 450px;
+            height: 450px;
             background: var(--success);
-            bottom: -15%;
-            left: -15%;
-            animation-delay: -5s;
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -4s;
             animation-direction: alternate-reverse;
-        }
-        .shape-3 {
-            width: clamp(250px, 35vw, 500px);
-            height: clamp(250px, 35vw, 500px);
-            background: var(--warning);
-            top: 35%;
-            left: 55%;
-            animation-delay: -9s;
         }
         @keyframes floatShape {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, -60px) scale(1.15); }
+            100% { transform: translate(30px, -40px) scale(1.1); }
         }
 
         /* تأثير مطر الإيموجي */
@@ -175,81 +156,46 @@
             pointer-events: none;
             user-select: none;
             animation: rainFall linear forwards;
-            will-change: transform;
         }
         @keyframes rainFall {
             to { transform: translateY(105vh) rotate(360deg); }
         }
 
-        /* الغلاف الرئيسي (Main Container) متوافق مع كافة الشاشات مع دعم CSS Grid/Flexbox للشاشات الكبيرة */
-        .main-wrapper {
+        /* الحاوية الأساسية لتنظيم المحتوى بشكل مثالي ومتجاوب تماماً */
+        .page-container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 480px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 24px;
+            gap: 20px;
             z-index: 1;
         }
 
-        /* تخطيط الشاشات الكبيرة (Desktop Grid Layout) لتفادي تمدد الهاتف */
-        @media (min-width: 1024px) {
-            .main-wrapper {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto;
-                gap: 30px;
-                align-items: start;
-                max-width: 1050px;
-            }
-            .container {
-                grid-column: 1 / 2;
-                grid-row: 1 / 3;
-                margin-bottom: 0 !important;
-                height: 100%;
-            }
-            .mc-section {
-                grid-column: 2 / 3;
-                grid-row: 1 / 2;
-                margin-bottom: 0 !important;
-            }
-            .extra-section-wrapper {
-                grid-column: 2 / 3;
-                grid-row: 2 / 3;
-                display: flex;
-                flex-direction: column;
-                gap: 24px;
-                width: 100%;
-            }
-        }
-
-        .container, .mc-section, .extra-section {
+        /* البطاقات الفاخرة (Container & MC-Section) */
+        .card-box {
             border: 1px solid var(--card-border);
-            padding: clamp(24px, 4vw, 40px);
-            border-radius: 28px;
+            padding: 28px 22px;
+            border-radius: 24px;
             width: 100%;
-            max-width: var(--container-max);
             background: var(--glass-bg);
-            backdrop-filter: blur(22px);
-            -webkit-backdrop-filter: blur(22px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(37, 99, 235, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(37, 99, 235, 0.1);
             text-align: center;
-            position: relative;
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            will-change: transform, opacity;
+            animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(25px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         /* صورة الحساب مع إطار زجاجي متوهج */
         .avatar-container {
             position: relative;
-            width: clamp(120px, 15vw, 150px);
-            height: clamp(120px, 15vw, 150px);
-            margin: 0 auto 20px;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 18px;
         }
 
         .avatar-glow-ring {
@@ -258,10 +204,10 @@
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--secondary), var(--success));
             background-size: 300% 300%;
-            animation: borderRotate 6s linear infinite;
+            animation: borderRotate 5s linear infinite;
             z-index: 0;
-            filter: blur(5px);
-            opacity: 0.85;
+            filter: blur(4px);
+            opacity: 0.8;
         }
 
         @keyframes borderRotate {
@@ -278,149 +224,124 @@
             border: 3px solid var(--dark);
             object-fit: cover !important;
             z-index: 1;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            transition: transform 0.35s ease;
         }
 
         .custom-img:hover {
-            transform: scale(1.08) rotate(3deg);
+            transform: scale(1.06);
         }
 
         h1 {
             color: var(--text-main);
-            font-size: clamp(1.8rem, 2.5vw, 2.3rem);
+            font-size: 1.8em;
             font-weight: 900;
-            margin: 8px 0 6px;
-            letter-spacing: -0.5px;
+            margin: 8px 0 4px;
             background: linear-gradient(135deg, #FFFFFF, var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .container p {
+        .card-box p {
             color: var(--text-muted);
-            font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-            margin-bottom: 24px;
+            font-size: 0.98em;
+            margin-bottom: 22px;
             font-weight: 500;
         }
 
-        /* الأزرار الاحترافية (Buttons) مع تأثيرات متقدمة وسلاسة 60FPS */
+        /* الأزرار الاحترافية */
         .btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 14px;
+            gap: 12px;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             color: var(--text-main);
-            padding: clamp(14px, 1.8vw, 18px) clamp(18px, 2.5vw, 24px);
-            margin: 12px 0;
+            padding: 15px 20px;
+            margin: 10px 0;
             text-decoration: none;
-            border-radius: 16px;
+            border-radius: 14px;
             font-weight: 700;
-            font-size: clamp(1rem, 1.2vw, 1.12rem);
+            font-size: 1.05em;
             width: 100%;
             box-sizing: border-box;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            will-change: transform;
         }
 
         .btn i {
-            font-size: 1.3em;
+            font-size: 1.25em;
             transition: transform 0.3s ease;
         }
 
         .btn:hover i {
-            transform: scale(1.2) rotate(6deg);
-        }
-
-        .btn::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            transition: width 0.5s ease-out, height 0.5s ease-out, opacity 0.5s ease-out;
-            opacity: 1;
-        }
-
-        .btn:active::after {
-            width: 350px;
-            height: 350px;
-            opacity: 0;
-            transition: 0s;
+            transform: scale(1.15) rotate(5deg);
         }
 
         .btn:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
             background: rgba(255, 255, 255, 0.07);
         }
 
-        /* ألوان التفاعل الرسمية لكل منصة */
-        .btn-youtube:hover { border-color: #ff0000; box-shadow: 0 10px 30px rgba(255, 0, 0, 0.35); color: #ff5555; }
-        .btn-tiktok:hover { border-color: #ff0050; box-shadow: 0 10px 30px rgba(255, 0, 80, 0.35); color: #ff3377; }
-        .btn-facebook:hover { border-color: #1877f2; box-shadow: 0 10px 30px rgba(24, 119, 242, 0.35); color: #4499ff; }
-        .btn-instagram:hover { border-color: #e1306c; box-shadow: 0 10px 30px rgba(225, 48, 108, 0.35); color: #ff5599; }
-        .btn-discord:hover { border-color: #5865f2; box-shadow: 0 10px 30px rgba(88, 101, 242, 0.35); color: #7788ff; }
-        .btn-kick:hover { border-color: #53fc18; box-shadow: 0 10px 30px rgba(83, 252, 24, 0.35); color: #77ff44; }
-        .btn-share:hover { border-color: var(--warning); box-shadow: 0 10px 30px rgba(245, 158, 11, 0.35); color: var(--warning); }
+        /* ألوان التفاعل للمنصات */
+        .btn-youtube:hover { border-color: #ff0000; box-shadow: 0 8px 25px rgba(255, 0, 0, 0.3); color: #ff5555; }
+        .btn-tiktok:hover { border-color: #ff0050; box-shadow: 0 8px 25px rgba(255, 0, 80, 0.3); color: #ff3377; }
+        .btn-facebook:hover { border-color: #1877f2; box-shadow: 0 8px 25px rgba(24, 119, 242, 0.3); color: #4499ff; }
+        .btn-instagram:hover { border-color: #e1306c; box-shadow: 0 8px 25px rgba(225, 48, 108, 0.3); color: #ff5599; }
+        .btn-discord:hover { border-color: #5865f2; box-shadow: 0 8px 25px rgba(88, 101, 242, 0.3); color: #7788ff; }
+        .btn-kick:hover { border-color: #53fc18; box-shadow: 0 8px 25px rgba(83, 252, 24, 0.3); color: #77ff44; }
+        .btn-share:hover { border-color: var(--warning); box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3); color: var(--warning); }
 
-        /* قسم ماين كرافت كبطاقات ألعاب حديثة (Gaming Cards) */
+        /* قسم ماين كرافت بطاقات الألعاب */
         .mc-section {
             border-color: rgba(34, 197, 94, 0.3);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(34, 197, 94, 0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(34, 197, 94, 0.1);
         }
 
         .mc-section h2 {
             color: var(--success);
-            margin: 0 0 20px 0;
-            font-size: clamp(1.4rem, 2vw, 1.7rem);
+            margin: 0 0 18px 0;
+            font-size: 1.5em;
             font-weight: 800;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .grid-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: clamp(12px, 2vw, 18px);
+            gap: 12px;
         }
 
         .mc-btn {
             background: var(--card-bg);
             color: var(--text-main);
-            padding: clamp(16px, 2vw, 22px) 12px;
-            border-radius: 18px;
+            padding: 16px 12px;
+            border-radius: 16px;
             text-decoration: none;
             font-weight: 700;
-            font-size: clamp(1rem, 1.2vw, 1.15rem);
+            font-size: 1.05em;
             border: 1px solid rgba(34, 197, 94, 0.25);
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 8px;
-            position: relative;
-            overflow: hidden;
-            will-change: transform;
         }
 
         .mc-btn i {
-            font-size: clamp(1.6rem, 2.2vw, 2rem);
+            font-size: 1.7em;
             color: var(--success);
             transition: transform 0.3s ease;
         }
 
         .mc-btn span {
-            font-size: clamp(0.75rem, 0.9vw, 0.88rem);
+            font-size: 0.8em;
             color: var(--text-muted);
             font-weight: 400;
         }
@@ -429,8 +350,8 @@
             background: var(--success);
             color: var(--dark);
             border-color: var(--success);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(34, 197, 94, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(34, 197, 94, 0.35);
         }
 
         .mc-btn:hover i, .mc-btn:hover span {
@@ -438,117 +359,32 @@
         }
 
         .mc-btn:hover i {
-            transform: scale(1.2) rotate(8deg);
-        }
-
-        /* الأقسام الإضافية (الإحصائيات والأسئلة الشائعة) */
-        .extra-section {
-            width: 100%;
-            max-width: 100%;
-            text-align: right;
-        }
-
-        .extra-section h3 {
-            color: var(--secondary);
-            font-size: clamp(1.15rem, 1.6vw, 1.35rem);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 800;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            text-align: center;
-        }
-        .stat-box {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--card-border);
-            padding: clamp(12px, 1.5vw, 18px) 8px;
-            border-radius: 14px;
-        }
-        .stat-number {
-            font-size: clamp(1.2rem, 1.8vw, 1.5rem);
-            font-weight: 900;
-            color: var(--secondary);
-            margin-bottom: 4px;
-        }
-        .stat-label {
-            font-size: clamp(0.75rem, 0.95vw, 0.88rem);
-            color: var(--text-muted);
-        }
-
-        .faq-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--card-border);
-            border-radius: 14px;
-            margin-bottom: 12px;
-            overflow: hidden;
-            transition: border-color 0.3s;
-        }
-        .faq-item:hover {
-            border-color: var(--primary);
-        }
-        .faq-question {
-            padding: clamp(12px, 1.5vw, 16px) clamp(16px, 2vw, 20px);
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: clamp(0.92rem, 1.1vw, 1.02rem);
-        }
-        .faq-answer {
-            padding: 0 clamp(16px, 2vw, 20px);
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            color: var(--text-muted);
-            font-size: clamp(0.88rem, 1vw, 0.96rem);
-            line-height: 1.6;
-        }
-        .faq-item.active .faq-answer {
-            padding: 0 clamp(16px, 2vw, 20px) 16px clamp(16px, 2vw, 20px);
-            max-height: 180px;
-        }
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-            color: var(--secondary);
-        }
-        .faq-question i {
-            transition: transform 0.3s;
+            transform: scale(1.15) rotate(6deg);
         }
 
         /* الفوتر وشريط العدّاد */
         .site-footer {
             width: 100%;
-            max-width: 1200px;
             text-align: center;
-            padding: 20px 0 40px;
+            padding: 10px 0 30px;
             color: var(--text-muted);
-            font-size: 0.9em;
-            z-index: 1;
+            font-size: 0.88em;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             align-items: center;
-            grid-column: 1 / -1;
         }
 
         .visitor-counter {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--card-border);
-            padding: 10px 22px;
+            padding: 8px 18px;
             border-radius: 30px;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             font-weight: 700;
             color: var(--text-main);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         .visitor-counter i {
             color: var(--warning);
@@ -556,10 +392,10 @@
 
         .back-to-top {
             position: fixed;
-            bottom: 30px;
-            left: 30px;
-            width: 48px;
-            height: 48px;
+            bottom: 25px;
+            left: 25px;
+            width: 44px;
+            height: 44px;
             background: var(--primary);
             color: #fff;
             border: none;
@@ -568,8 +404,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2em;
-            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.5);
+            font-size: 1.1em;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -580,26 +416,26 @@
             visibility: visible;
         }
         .back-to-top:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             background: var(--secondary);
         }
 
-        /* Toast الإشعارات العصرية */
+        /* إشعار النسخ Toast */
         #copy-toast {
             visibility: hidden;
             background: var(--warning);
             color: #000000;
             text-align: center;
-            border-radius: 14px;
-            padding: 16px 28px;
+            border-radius: 12px;
+            padding: 14px 24px;
             position: fixed;
-            bottom: 30px;
+            bottom: 25px;
             z-index: 10000;
             font-weight: 800;
-            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.4);
-            transform: translateY(30px);
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.4);
+            transform: translateY(20px);
             opacity: 0;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.3s ease;
         }
 
         #copy-toast.show {
@@ -608,22 +444,24 @@
             opacity: 1;
         }
 
-        /* تحسين الأداء للشاشات ذات الدقة العالية (2K & 4K) */
-        @media (min-width: 1920px) {
-            .main-wrapper {
-                max-width: 1350px;
-                gap: 40px;
+        /* تحسين العرض على أجهزة الكمبيوتر والشاشات الكبيرة (Desktop Viewport) */
+        @media (min-width: 850px) {
+            body {
+                padding: 40px 20px;
             }
-            html {
-                font-size: 18px;
+            .page-container {
+                max-width: 520px;
+                gap: 24px;
+            }
+            .card-box {
+                padding: 35px 30px;
             }
         }
 
-        /* تحسينات للشاشات الصغيرة جداً والهواتف الضيقة */
-        @media (max-width: 420px) {
+        @media (max-width: 400px) {
             body { padding: 15px 10px; }
-            .container, .mc-section, .extra-section { padding: 20px 14px; }
-            .grid-container { gap: 10px; }
+            .card-box { padding: 22px 16px; }
+            h1 { font-size: 1.6em; }
         }
     </style>
 </head>
@@ -635,17 +473,16 @@
         <div class="loader-text">MORTADHA ALI</div>
     </div>
 
-    <!-- الخلفيات المتحركة وإضاءات الأورورا -->
+    <!-- الخلفيات المتحركة -->
     <div class="ambient-background"></div>
     <div class="floating-shape shape-1"></div>
     <div class="floating-shape shape-2"></div>
-    <div class="floating-shape shape-3"></div>
 
-    <!-- الحاوية الرئيسية العامة لتنظيم التصميم المتجاوب للشاشات الكبيرة والهواتف -->
-    <div class="main-wrapper">
+    <!-- حاوية الصفحة المتجاوبة -->
+    <div class="page-container">
 
         <!-- البطاقة الرئيسية والهيدر -->
-        <div class="container">
+        <div class="card-box">
             <div class="avatar-container">
                 <div class="avatar-glow-ring"></div>
                 <img src="logo2.png" alt="Mortadha Ali" class="custom-img" loading="lazy">
@@ -664,78 +501,33 @@
         </div>
 
         <!-- قسم ماين كرافت كبطاقات ألعاب حديثة -->
-        <div class="mc-section">
+        <div class="card-box mc-section">
             <h2><i class="fas fa-cube"></i> قسم ماين كرافت ⛏️</h2>
             <div class="grid-container">
                 <a href="mods.html" class="mc-btn">
                     <i class="fas fa-puzzle-piece"></i>
                     مودات
-                    <span>إضافات ومودات حصرية</span>
+                    <span>إضافات حصرية</span>
                 </a>
                 <a href="skins.html" class="mc-btn">
                     <i class="fas fa-user-ninja"></i>
                     سكنات
-                    <span>أروع السكنات المميزة</span>
+                    <span>أروع السكنات</span>
                 </a>
                 <a href="worlds.html" class="mc-btn">
                     <i class="fas fa-globe-americas"></i>
                     عوالم
-                    <span>خرائط وعوالم مذهلة</span>
+                    <span>خرائط مذهلة</span>
                 </a>
                 <a href="servers.html" class="mc-btn">
                     <i class="fas fa-server"></i>
                     سيرفرات
-                    <span>أقوى سيرفرات اللعب</span>
+                    <span>أقوى السيرفرات</span>
                 </a>
             </div>
         </div>
 
-        <!-- الأقسام الإضافية المرتبة للشاشات الكبيرة والهواتف -->
-        <div class="extra-section-wrapper">
-            <!-- قسم الإحصائيات -->
-            <div class="extra-section container" style="max-width: 100%; margin-bottom: 0;">
-                <h3><i class="fas fa-chart-line"></i> إحصائيات المنصة</h3>
-                <div class="stats-grid">
-                    <div class="stat-box">
-                        <div class="stat-number">+100K</div>
-                        <div class="stat-label">متابع ومتفاعل</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number">+50</div>
-                        <div class="stat-label">مود وعالم جاهز</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">دعم ونشاط مستمر</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- قسم الأسئلة الشائعة -->
-            <div class="extra-section container" style="max-width: 100%; margin-bottom: 0;">
-                <h3><i class="fas fa-question-circle"></i> الأسئلة الشائعة</h3>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>كيف يمكنني تحميل المودات والعوالم؟</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        بكل سهولة يمكنك الانتقال إلى قسم ماين كرافت واختيار القسم المطلوب ثم النقر على زر التحميل المباشر المتوفر لكل عنصر.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>هل جميع الروابط آمنة؟</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        نعم، جميع الروابط وملفات التحميل المباشرة تم فحصها وتجهيزها بعناية لضمان تجربة آمنة وسريعة للجميع.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- الفوتر وشريط العدّاد -->
+        <!-- الفوتر -->
         <footer class="site-footer">
             <div class="visitor-counter">
                 <i class="fas fa-eye"></i>
@@ -755,7 +547,7 @@
     <div id="copy-toast">تم نسخ رابط الموقع بنجاح!</div>
 
     <script>
-        // إخفاء مؤشر التحميل عند اكتمال تحميل الصفحة لضمان تجربة سلسة
+        // إخفاء مؤشر التحميل عند اكتمال تحميل الصفحة
         window.addEventListener('load', () => {
             const loader = document.getElementById('page-loader');
             setTimeout(() => {
@@ -773,23 +565,10 @@
             }, 3000);
         }
 
-        // تفاعلية الأسئلة الشائعة (FAQ Accordion)
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                const isOpen = item.classList.contains('active');
-                faqItems.forEach(i => i.classList.remove('active'));
-                if (!isOpen) {
-                    item.classList.add('active');
-                }
-            });
-        });
-
         // إظهار وإخفاء زر العودة للأعلى
         const backToTopBtn = document.getElementById('backToTopBtn');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
+            if (window.scrollY > 250) {
                 backToTopBtn.classList.add('show');
             } else {
                 backToTopBtn.classList.remove('show');
@@ -803,7 +582,7 @@
             });
         }
 
-        // نظام مطر الإيموجيات المحسن والخفيف على الأداء لضمان سلاسة 60FPS
+        // مطر الإيموجي السلس والموزون
         function createEmojiRain() {
             const emojis = ['🎮', '⛏️', '🕹️', '👾', '🔥', '💎', '🚀', '⚡', '⚔️', '🛡️', '🌍', '✨', '🏆', '🎯', '📦'];
             const emoji = document.createElement('div');
@@ -811,12 +590,12 @@
             emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
             emoji.style.left = Math.random() * 100 + 'vw';
             emoji.style.fontSize = (Math.random() * 14 + 14) + 'px';
-            emoji.style.animationDuration = (Math.random() * 3 + 3.5) + 's';
-            emoji.style.opacity = Math.random() * 0.4 + 0.2;
+            emoji.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            emoji.style.opacity = Math.random() * 0.35 + 0.15;
             document.body.appendChild(emoji);
-            setTimeout(() => { emoji.remove(); }, 7000);
+            setTimeout(() => { emoji.remove(); }, 6000);
         }
-        setInterval(createEmojiRain, 400);
+        setInterval(createEmojiRain, 450);
     </script>
 </body>
 </html>
