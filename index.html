@@ -10,33 +10,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-glow: rgba(79, 70, 229, 0.4);
-            --secondary: #06b6d4;
+            --primary: #2563EB;
+            --primary-glow: rgba(37, 99, 235, 0.35);
+            --secondary: #38BDF8;
+            --accent: #67E8F9;
+            --purple-glow: rgba(167, 139, 250, 0.25);
             --success: #10b981;
             --warning: #f59e0b;
-            --bg-color: #05070b;
-            --surface: #0b0f19;
-            --surface-glass: rgba(11, 15, 25, 0.78);
-            --border-color: rgba(255, 255, 255, 0.08);
+            --bg-color: #0B1220;
+            --surface: #0F172A;
+            --surface-glass: rgba(15, 23, 42, 0.65);
+            --border-color: rgba(125, 211, 252, 0.12);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --glass-blur: blur(24px);
-            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --glass-blur: blur(28px);
+            --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         html.light {
-            --primary: #4338ca;
-            --primary-glow: rgba(67, 56, 202, 0.25);
-            --secondary: #0891b2;
+            --primary: #1E3A8A;
+            --primary-glow: rgba(30, 58, 138, 0.2);
+            --secondary: #2563EB;
+            --accent: #0284c7;
+            --purple-glow: rgba(139, 92, 246, 0.15);
             --success: #059669;
             --warning: #d97706;
-            --bg-color: #f1f5f9;
+            --bg-color: #f0fdf4;
             --surface: #ffffff;
-            --surface-glass: rgba(255, 255, 255, 0.88);
-            --border-color: rgba(0, 0, 0, 0.08);
-            --text-main: #0f172a;
-            --text-muted: #64748b;
+            --surface-glass: rgba(255, 255, 255, 0.8);
+            --border-color: rgba(56, 189, 248, 0.2);
+            --text-main: #0B1220;
+            --text-muted: #475569;
         }
 
         * {
@@ -58,7 +62,7 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            transition: background-color 0.4s ease, color 0.4s ease;
+            transition: background-color 0.6s ease, color 0.6s ease;
         }
 
         @media (max-width: 1024px) {
@@ -75,12 +79,11 @@
             background: var(--bg-color);
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--text-muted);
-            opacity: 0.2;
+            background: rgba(56, 189, 248, 0.3);
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary);
+            background: var(--secondary);
         }
 
         /* شاشة التحميل الافتتاحية */
@@ -93,7 +96,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
         #page-loader.loaded {
             opacity: 0;
@@ -103,10 +106,10 @@
             width: 50px;
             height: 50px;
             border: 3px solid var(--border-color);
-            border-top-color: var(--primary);
-            border-right-color: var(--secondary);
+            border-top-color: var(--secondary);
+            border-right-color: var(--accent);
             border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+            animation: spin 1s linear infinite;
             margin-bottom: 15px;
         }
         @keyframes spin {
@@ -121,28 +124,66 @@
             letter-spacing: 3px;
         }
 
-        /* الخلفية السينمائية */
-        .ambient-bg {
+        /* خلفية الماء المتحركة (Liquid Waves & Aurora Animated Gradient) */
+        .liquid-bg-container {
             position: fixed;
             inset: 0;
             z-index: -2;
+            overflow: hidden;
             pointer-events: none;
-            background: radial-gradient(circle at 15% 10%, rgba(79, 70, 229, 0.08) 0%, transparent 40%),
-                        radial-gradient(circle at 85% 90%, rgba(6, 182, 212, 0.08) 0%, transparent 40%);
+            background: #0B1220;
+            transition: background 0.6s ease;
         }
-        .ambient-glow {
-            position: absolute;
-            width: 700px;
-            height: 700px;
-            border-radius: 50%;
-            filter: blur(160px);
-            opacity: 0.35;
-            pointer-events: none;
+        html.light .liquid-bg-container {
+            background: #e0f2fe;
         }
-        .glow-1 { background: var(--primary); top: -250px; right: -250px; }
-        .glow-2 { background: var(--secondary); bottom: -250px; left: -250px; }
 
-        /* شريط التنقل العلوي */
+        .liquid-wave {
+            position: absolute;
+            width: 200vw;
+            height: 200vh;
+            top: -50vh;
+            left: -50vw;
+            background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15) 0%, rgba(56, 189, 248, 0.1) 30%, rgba(167, 139, 250, 0.08) 60%, transparent 80%);
+            opacity: 0.7;
+            animation: waveDrift 18s ease-in-out infinite alternate;
+        }
+        .liquid-wave.wave-2 {
+            background: radial-gradient(circle at 30% 70%, rgba(103, 232, 249, 0.12) 0%, rgba(30, 58, 138, 0.18) 40%, transparent 70%);
+            animation: waveDriftReverse 24s ease-in-out infinite alternate;
+        }
+        @keyframes waveDrift {
+            0% { transform: translate(-5%, -5%) rotate(0deg) scale(1); }
+            50% { transform: translate(5%, 8%) rotate(3deg) scale(1.08); }
+            100% { transform: translate(-3%, 4%) rotate(-2deg) scale(1); }
+        }
+        @keyframes waveDriftReverse {
+            0% { transform: translate(5%, 5%) rotate(0deg) scale(1.05); }
+            50% { transform: translate(-6%, -4%) rotate(-4deg) scale(0.95); }
+            100% { transform: translate(4%, -6%) rotate(3deg) scale(1.02); }
+        }
+
+        /* انعكاسات ضوء ناعمة وأورورا متحركة بطيئة */
+        .ambient-aurora {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.25;
+            animation: auroraFloat 15s ease-in-out infinite alternate;
+        }
+        .aurora-1 { background: #2563EB; top: -100px; right: -100px; }
+        .aurora-2 { background: #67E8F9; bottom: -150px; left: -100px; animation-delay: -5s; }
+        .aurora-3 { background: #A78BFA; top: 40%; left: 30%; animation-delay: -10s; opacity: 0.15; }
+
+        @keyframes auroraFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, -40px) scale(1.15); }
+            100% { transform: translate(-30px, 40px) scale(0.9); }
+        }
+
+        /* شريط التنقل العلوي الزجاجي */
         .global-navbar {
             position: sticky;
             top: 0;
@@ -157,7 +198,7 @@
             justify-content: space-between;
             padding: 0 50px;
             z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
         .nav-brand {
             display: flex;
@@ -169,8 +210,9 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            border: 2px solid var(--primary);
+            border: 2px solid var(--secondary);
             object-fit: cover;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
         }
         .nav-title {
             font-size: 1.25em;
@@ -192,13 +234,15 @@
             transition: var(--transition-smooth);
         }
         .nav-menu a:hover {
-            color: var(--text-main);
+            color: var(--secondary);
         }
         .nav-actions {
             display: flex;
             align-items: center;
             gap: 15px;
         }
+
+        /* البحث السريع داخل عناصر الموقع */
         .search-box-wrap {
             position: relative;
             display: flex;
@@ -209,17 +253,18 @@
             border: 1px solid var(--border-color);
             color: var(--text-main);
             padding: 9px 18px 9px 40px;
-            border-radius: 12px;
+            border-radius: 14px;
             font-family: inherit;
             font-size: 0.9em;
             width: 240px;
             transition: var(--transition-smooth);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
         }
         .search-input:focus {
             outline: none;
-            border-color: var(--primary);
+            border-color: var(--secondary);
             width: 300px;
-            box-shadow: 0 0 20px var(--primary-glow);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3), inset 0 2px 4px rgba(0,0,0,0.1);
         }
         .search-box-wrap i {
             position: absolute;
@@ -227,13 +272,14 @@
             color: var(--text-muted);
             pointer-events: none;
         }
+
         .theme-toggle-btn {
             background: var(--surface);
             border: 1px solid var(--border-color);
             color: var(--text-main);
             width: 42px;
             height: 42px;
-            border-radius: 12px;
+            border-radius: 14px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -241,9 +287,10 @@
             transition: var(--transition-smooth);
         }
         .theme-toggle-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
+            border-color: var(--secondary);
+            color: var(--secondary);
             transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
         }
 
         /* الحاوية الرئيسية للمحتوى */
@@ -256,7 +303,7 @@
             gap: 50px;
         }
 
-        /* Hero Section الأول مع دمج منصات التصفح والتواصل بالكامل بداخله */
+        /* Hero Section مع تأثيرات الانعكاس والزجاج الشفاف (Glassmorphism) */
         .hero-section {
             display: grid;
             grid-template-columns: 1.3fr 1fr;
@@ -268,9 +315,18 @@
             padding: 50px 60px;
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.5), transparent);
         }
         .hero-content {
             display: flex;
@@ -292,22 +348,23 @@
             border-radius: 30px;
             font-size: 0.85em;
             font-weight: 700;
+            backdrop-filter: blur(10px);
         }
         .official-pill {
-            background: rgba(16, 185, 129, 0.12);
+            background: rgba(16, 185, 129, 0.15);
             color: var(--success);
-            border: 1px solid rgba(16, 185, 129, 0.3);
+            border: 1px solid rgba(16, 185, 129, 0.35);
         }
         .verified-pill {
-            background: rgba(6, 182, 212, 0.12);
+            background: rgba(56, 189, 248, 0.15);
             color: var(--secondary);
-            border: 1px solid rgba(6, 182, 212, 0.3);
+            border: 1px solid rgba(56, 189, 248, 0.35);
         }
         .hero-title-area h1 {
             font-size: 3em;
             font-weight: 900;
             line-height: 1.15;
-            background: linear-gradient(135deg, var(--text-main), var(--secondary));
+            background: linear-gradient(135deg, var(--text-main), var(--secondary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
@@ -334,12 +391,14 @@
             padding: 14px 18px;
             background: var(--surface);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
+            border-radius: 16px;
             color: var(--text-main);
             text-decoration: none;
             font-weight: 700;
             font-size: 0.95em;
             transition: var(--transition-smooth);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.05);
         }
         .social-card-info {
             display: flex;
@@ -348,7 +407,7 @@
         }
         .social-card-item i {
             font-size: 1.25em;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
         .social-card-item .arrow {
             font-size: 0.8em;
@@ -363,16 +422,18 @@
             transform: scale(1.15) rotate(5deg);
         }
         .social-card-item:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            border-color: var(--secondary);
+            box-shadow: 0 12px 30px rgba(56, 189, 248, 0.2);
         }
 
-        .sc-youtube:hover { border-color: #ff0000; box-shadow: 0 8px 25px rgba(255, 0, 0, 0.25); color: #ff4d4d; }
-        .sc-tiktok:hover { border-color: #fe2c55; box-shadow: 0 8px 25px rgba(254, 44, 85, 0.25); color: #ff4d79; }
-        .sc-facebook:hover { border-color: #1877f2; box-shadow: 0 8px 25px rgba(24, 119, 242, 0.25); color: #4d95ff; }
-        .sc-instagram:hover { border-color: #e1306c; box-shadow: 0 8px 25px rgba(225, 48, 108, 0.25); color: #ff5c93; }
-        .sc-discord:hover { border-color: #5865f2; box-shadow: 0 8px 25px rgba(88, 101, 242, 0.25); color: #7a85f7; }
-        .sc-kick:hover { border-color: #53fc18; box-shadow: 0 8px 25px rgba(83, 252, 24, 0.25); color: #76fd4b; }
-        .sc-share:hover { border-color: var(--warning); box-shadow: 0 8px 25px rgba(245, 158, 11, 0.25); color: var(--warning); grid-column: span 2; }
+        .sc-youtube:hover { border-color: #ff0000; box-shadow: 0 12px 30px rgba(255, 0, 0, 0.25); color: #ff4d4d; }
+        .sc-tiktok:hover { border-color: #fe2c55; box-shadow: 0 12px 30px rgba(254, 44, 85, 0.25); color: #ff4d79; }
+        .sc-facebook:hover { border-color: #1877f2; box-shadow: 0 12px 30px rgba(24, 119, 242, 0.25); color: #4d95ff; }
+        .sc-instagram:hover { border-color: #e1306c; box-shadow: 0 12px 30px rgba(225, 48, 108, 0.25); color: #ff5c93; }
+        .sc-discord:hover { border-color: #5865f2; box-shadow: 0 12px 30px rgba(88, 101, 242, 0.25); color: #7a85f7; }
+        .sc-kick:hover { border-color: #53fc18; box-shadow: 0 12px 30px rgba(83, 252, 24, 0.25); color: #76fd4b; }
+        .sc-share:hover { border-color: var(--warning); box-shadow: 0 12px 30px rgba(245, 158, 11, 0.25); color: var(--warning); grid-column: span 2; }
 
         .hero-visual-area {
             position: relative;
@@ -382,13 +443,13 @@
         }
         .hero-avatar-glow {
             position: absolute;
-            inset: -15px;
+            inset: -20px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--success));
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
             background-size: 300% 300%;
-            animation: gradientRotate 6s linear infinite;
-            filter: blur(25px);
-            opacity: 0.6;
+            animation: gradientRotate 10s linear infinite;
+            filter: blur(30px);
+            opacity: 0.5;
         }
         @keyframes gradientRotate {
             0% { background-position: 0% 50%; }
@@ -406,18 +467,18 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        /* شريط الإحصائيات الصغير والمضغوط الذي يحل محل المربعات الضخمة */
+        /* شريط الإحصائيات الصغير والمضغوط */
         .compact-stats-bar {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
             background: var(--surface-glass);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
+            border-radius: 22px;
             padding: 18px 24px;
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.05);
         }
         .compact-stat-item {
             display: flex;
@@ -425,23 +486,24 @@
             gap: 14px;
         }
         .compact-stat-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: rgba(79, 70, 229, 0.1);
-            color: var(--primary);
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: rgba(37, 99, 235, 0.12);
+            color: var(--secondary);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.25em;
             flex-shrink: 0;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
         }
         .compact-stat-data {
             display: flex;
             flex-direction: column;
         }
         .compact-stat-number {
-            font-size: 1.3em;
+            font-size: 1.35em;
             font-weight: 900;
             color: var(--text-main);
             line-height: 1.2;
@@ -452,7 +514,7 @@
             font-weight: 600;
         }
 
-        /* تخطيط المنتصف للكمبيوتر (قسم ماين كرافت يتوسط الشاشة بعرض مناسب، وقسم الأسئلة جانبه أو يليه) */
+        /* تخطيط المنتصف لعرض قسم ماين كرافت متمركزاً في الشاشة */
         .center-layout-container {
             display: flex;
             flex-direction: column;
@@ -468,13 +530,15 @@
             padding: 40px;
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.08);
             display: flex;
             flex-direction: column;
             gap: 25px;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* قسم ماين كرافت متمركز في الشاشة بعرض أنيق ومدروس للكمبيوتر */
+        /* قسم ماين كرافت متمركز في الشاشة بعرض مناسب للكمبيوتر */
         .minecraft-centered-section {
             width: 100%;
             max-width: 900px;
@@ -490,7 +554,7 @@
             gap: 12px;
         }
 
-        /* قسم ماين كرافت بتصميم Grid احترافي */
+        /* قسم ماين كرافت بتصميم Grid احترافي وانعكاسات زجاجية */
         .minecraft-grid-box {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -498,7 +562,7 @@
         }
         .mc-gaming-card {
             background: var(--surface);
-            border: 1px solid rgba(16, 185, 129, 0.25);
+            border: 1px solid rgba(56, 189, 248, 0.2);
             border-radius: 20px;
             padding: 24px 20px;
             text-decoration: none;
@@ -509,6 +573,7 @@
             transition: var(--transition-smooth);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.05);
         }
         .mc-card-icon {
             width: 50px;
@@ -521,6 +586,7 @@
             justify-content: center;
             font-size: 1.6em;
             transition: var(--transition-smooth);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
         }
         .mc-gaming-card h3 {
             font-size: 1.15em;
@@ -536,7 +602,7 @@
             color: #05070b;
             border-color: var(--success);
             transform: translateY(-4px);
-            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.35);
         }
         .mc-gaming-card:hover .mc-card-icon {
             background: #05070b;
@@ -563,10 +629,10 @@
             border: 1px solid var(--border-color);
             border-radius: 16px;
             overflow: hidden;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.4s ease;
         }
         .faq-card-item:hover {
-            border-color: var(--primary);
+            border-color: var(--secondary);
         }
         .faq-q-row {
             padding: 16px 20px;
@@ -581,7 +647,7 @@
             padding: 0 20px;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
             color: var(--text-muted);
             font-size: 0.92em;
             line-height: 1.6;
@@ -595,11 +661,24 @@
             color: var(--secondary);
         }
         .faq-q-row i {
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
             color: var(--text-muted);
         }
 
-        /* Footer بعرض الشاشة بالكامل (مع زر الزيارات فوقه وتحته حقوق النشر تماماً كما طلبت) */
+        /* رسالة عدم توفر نتائج البحث */
+        .no-search-results {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-weight: 700;
+            display: none;
+            grid-column: span 2;
+            background: var(--surface);
+            border-radius: 16px;
+            border: 1px dashed var(--border-color);
+        }
+
+        /* Footer بعرض الشاشة بالكامل مع زر الزيارات فوقه وحقوق النشر تماماً في الأسفل */
         .full-width-footer {
             width: 100vw;
             position: relative;
@@ -608,7 +687,7 @@
             border-top: 1px solid var(--border-color);
             padding: 50px 0 35px;
             margin-top: 40px;
-            box-shadow: 0 -20px 40px rgba(0,0,0,0.05);
+            box-shadow: 0 -20px 40px rgba(0,0,0,0.1);
         }
         .footer-inner-wrap {
             max-width: 1400px;
@@ -621,7 +700,7 @@
             text-align: center;
         }
         .visitor-counter-pill {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(56, 189, 248, 0.08);
             border: 1px solid var(--border-color);
             padding: 12px 30px;
             border-radius: 30px;
@@ -631,6 +710,7 @@
             font-weight: 700;
             font-size: 1.05em;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
         }
         .visitor-counter-pill i {
             color: var(--warning);
@@ -723,10 +803,13 @@
         <div class="loader-brand">MORTADHA ALI</div>
     </div>
 
-    <!-- الخلفيات السينمائية الثابتة -->
-    <div class="ambient-bg">
-        <div class="ambient-glow glow-1"></div>
-        <div class="ambient-glow glow-2"></div>
+    <!-- خلفية الماء المتحركة والتموجات (Liquid Waves & Aurora) -->
+    <div class="liquid-bg-container">
+        <div class="liquid-wave"></div>
+        <div class="liquid-wave wave-2"></div>
+        <div class="ambient-aurora aurora-1"></div>
+        <div class="ambient-aurora aurora-2"></div>
+        <div class="ambient-aurora aurora-3"></div>
     </div>
 
     <!-- Navbar احترافي ثابت بالأعلى -->
@@ -743,7 +826,7 @@
         <div class="nav-actions">
             <div class="search-box-wrap">
                 <i class="fas fa-search"></i>
-                <input type="text" id="siteSearch" class="search-input" placeholder="بحث سريع...">
+                <input type="text" id="siteSearch" class="search-input" placeholder="ابحث داخل الموقع (مودات، يوتيوب...)">
             </div>
             <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="تبديل السمات">
                 <i class="fas fa-moon" id="themeIcon"></i>
@@ -771,43 +854,43 @@
                 </div>
 
                 <!-- منصات التصفح والتواصل الرسمي مدمجة في الواجهة الأولى -->
-                <div class="hero-social-grid">
-                    <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="social-card-item sc-youtube" target="_blank" rel="noopener">
+                <div class="hero-social-grid" id="socialGrid">
+                    <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="social-card-item sc-youtube search-item" target="_blank" rel="noopener" data-keywords="يوتيوب قناة youtube">
                         <div class="social-card-info">
                             <i class="fab fa-youtube"></i>
                             <span>يوتيوب</span>
                         </div>
                         <i class="fas fa-chevron-left arrow"></i>
                     </a>
-                    <a href="https://www.tiktok.com/@mortadhaali313" class="social-card-item sc-tiktok" target="_blank" rel="noopener">
+                    <a href="https://www.tiktok.com/@mortadhaali313" class="social-card-item sc-tiktok search-item" target="_blank" rel="noopener" data-keywords="تيك توك tiktok">
                         <div class="social-card-info">
                             <i class="fab fa-tiktok"></i>
                             <span>تيك توك</span>
                         </div>
                         <i class="fas fa-chevron-left arrow"></i>
                     </a>
-                    <a href="https://web.facebook.com/mortadha.ali2" class="social-card-item sc-facebook" target="_blank" rel="noopener">
+                    <a href="https://web.facebook.com/mortadha.ali2" class="social-card-item sc-facebook search-item" target="_blank" rel="noopener" data-keywords="فيسبوك facebook">
                         <div class="social-card-info">
                             <i class="fab fa-facebook"></i>
                             <span>فيسبوك</span>
                         </div>
                         <i class="fas fa-chevron-left arrow"></i>
                     </a>
-                    <a href="https://www.instagram.com/mortadha_ali12/" class="social-card-item sc-instagram" target="_blank" rel="noopener">
+                    <a href="https://www.instagram.com/mortadha_ali12/" class="social-card-item sc-instagram search-item" target="_blank" rel="noopener" data-keywords="إنستكرام انستغرام instagram">
                         <div class="social-card-info">
                             <i class="fab fa-instagram"></i>
                             <span>إنستكرام</span>
                         </div>
                         <i class="fas fa-chevron-left arrow"></i>
                     </a>
-                    <a href="https://discord.gg/qFWsBe4udR" class="social-card-item sc-discord" target="_blank" rel="noopener">
+                    <a href="https://discord.gg/qFWsBe4udR" class="social-card-item sc-discord search-item" target="_blank" rel="noopener" data-keywords="دسكورد discord مجتمع">
                         <div class="social-card-info">
                             <i class="fab fa-discord"></i>
                             <span>دسكورد</span>
                         </div>
                         <i class="fas fa-chevron-left arrow"></i>
                     </a>
-                    <a href="https://kick.com/mortadha-ali" class="social-card-item sc-kick" target="_blank" rel="noopener">
+                    <a href="https://kick.com/mortadha-ali" class="social-card-item sc-kick search-item" target="_blank" rel="noopener" data-keywords="كيك kick بثث مباشر">
                         <div class="social-card-info">
                             <i class="fas fa-gamepad"></i>
                             <span>كيك (Kick)</span>
@@ -815,7 +898,7 @@
                         <i class="fas fa-chevron-left arrow"></i>
                     </a>
                     
-                    <button onclick="copySiteLink()" class="social-card-item sc-share" style="cursor: pointer; width: 100%; border: 1px solid var(--border-color);">
+                    <button onclick="copySiteLink()" class="social-card-item sc-share search-item" style="cursor: pointer; width: 100%; border: 1px solid var(--border-color);" data-keywords="مشاركة رابط الموقع">
                         <div class="social-card-info">
                             <i class="fas fa-share-alt"></i>
                             <span>مشاركة رابط الموقع الرسمي</span>
@@ -864,27 +947,28 @@
                 <div class="section-heading">
                     <i class="fas fa-cube" style="color: var(--success);"></i> قسم ماين كرافت ⛏️
                 </div>
-                <div class="minecraft-grid-box">
-                    <a href="mods.html" class="mc-gaming-card">
+                <div class="minecraft-grid-box" id="minecraftGrid">
+                    <a href="mods.html" class="mc-gaming-card search-item" data-keywords="مودات اضافات مود minecraft mods">
                         <div class="mc-card-icon"><i class="fas fa-puzzle-piece"></i></div>
                         <h3>مودات</h3>
                         <p>أحدث الإضافات والمودات الحصرية للعبة.</p>
                     </a>
-                    <a href="skins.html" class="mc-gaming-card">
+                    <a href="skins.html" class="mc-gaming-card search-item" data-keywords="سكنات شخصيات skin">
                         <div class="mc-card-icon"><i class="fas fa-user-ninja"></i></div>
                         <h3>سكنات</h3>
                         <p>أروع السكنات المميزة والمصممة بعناية.</p>
                     </a>
-                    <a href="worlds.html" class="mc-gaming-card">
+                    <a href="worlds.html" class="mc-gaming-card search-item" data-keywords="عوالم خرائط world map">
                         <div class="mc-card-icon"><i class="fas fa-globe-americas"></i></div>
                         <h3>عوالم</h3>
                         <p>خرائط وعوالم مذهلة لاستكشافها.</p>
                     </a>
-                    <a href="servers.html" class="mc-gaming-card">
+                    <a href="servers.html" class="mc-gaming-card search-item" data-keywords="سيرفرات لعب جماعي server">
                         <div class="mc-card-icon"><i class="fas fa-server"></i></div>
                         <h3>سيرفرات</h3>
                         <p>أقوى وأفضل سيرفرات اللعب الجماعي.</p>
                     </a>
+                    <div id="noMinecraftResults" class="no-search-results">لا توجد نتائج تطابق بحثك في قسم ماين كرافت</div>
                 </div>
             </div>
 
@@ -894,7 +978,7 @@
                     <i class="fas fa-question-circle" style="color: var(--warning);"></i> الأسئلة الشائعة
                 </div>
                 <div class="faq-accordion-box">
-                    <div class="faq-card-item">
+                    <div class="faq-card-item search-item" data-keywords="كيف تحميل المودات والعوالم الأسئلة">
                         <div class="faq-q-row">
                             <span>كيف يمكنني تحميل المودات والعوالم؟</span>
                             <i class="fas fa-chevron-down"></i>
@@ -903,7 +987,7 @@
                             انتقل إلى قسم ماين كرافت واختار القسم المطلوب ثم انقر على زر التحميل المباشر المتوفر لكل عنصر.
                         </div>
                     </div>
-                    <div class="faq-card-item">
+                    <div class="faq-card-item search-item" data-keywords="هل الروابط آمنة الأسئلة">
                         <div class="faq-q-row">
                             <span>هل جميع الروابط آمنة؟</span>
                             <i class="fas fa-chevron-down"></i>
@@ -919,7 +1003,7 @@
 
     </main>
 
-    <!-- Footer بعرض الشاشة بالكامل (مع زر الزيارات فوقه وتحته حقوق النشر تماماً في الأسفل) -->
+    <!-- Footer بعرض الشاشة بالكامل (مع زر الزيارات وفوقه وتحته حقوق النشر تماماً في الأسفل) -->
     <footer class="full-width-footer">
         <div class="footer-inner-wrap">
             <div class="visitor-counter-pill">
@@ -927,7 +1011,7 @@
                 <span>الزوار النشطون اليوم: <strong id="visitor-count">1,482</strong></span>
             </div>
 
-            <p class="copyright-tag">&copy; 2026 Mortadha Ali. جميع الحقوق محفوظة. تصميم عالمي فاخر (Desktop & Mobile Edition).</p>
+            <p class="copyright-tag">&copy; 2026 Mortadha Ali. جميع الحقوق محفوظة. تصميم الماء المتحرك الفاخر (Liquid UI Edition).</p>
         </div>
     </footer>
 
@@ -993,19 +1077,29 @@
             });
         });
 
+        // محرك البحث الداخلي الذكي داخل عناصر ومحتوى الموقع
         const searchInput = document.getElementById('siteSearch');
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.trim().toLowerCase();
-            const gamingCards = document.querySelectorAll('.mc-gaming-card');
-            
-            gamingCards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                if (text.includes(query) || query === '') {
-                    card.style.display = 'flex';
+            const searchItems = document.querySelectorAll('.search-item');
+            let mcMatchCount = 0;
+
+            searchItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const keywords = (item.getAttribute('data-keywords') || '').toLowerCase();
+                
+                if (text.includes(query) || keywords.includes(query) || query === '') {
+                    item.style.display = item.classList.contains('social-card-item') ? 'flex' : (item.classList.contains('mc-gaming-card') ? 'flex' : 'block');
+                    if (item.classList.contains('mc-gaming-card')) mcMatchCount++;
                 } else {
-                    card.style.display = 'none';
+                    item.style.display = 'none';
                 }
             });
+
+            const noMcResults = document.getElementById('noMinecraftResults');
+            if (noMcResults) {
+                noMcResults.style.display = (mcMatchCount === 0 && query !== '') ? 'block' : 'none';
+            }
         });
 
         const backToTopBtn = document.getElementById('backToTopBtn');
