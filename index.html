@@ -6,91 +6,390 @@
     <title>Mortadha Ali | مرتضى علي</title>
     <link rel="icon" href="logo2.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        body { 
-            background: linear-gradient(135deg, #000000, #1a1a1a, #000000); 
-            background-size: 400% 400%; 
-            animation: gradientBG 15s ease infinite; 
-            color: #fff; font-family: 'Segoe UI', sans-serif; 
-            display: flex; flex-direction: column; align-items: center; 
-            min-height: 100vh; margin: 0; padding: 15px; 
-            overflow-x: hidden;
+        :root {
+            --bg-deep: #0B1220;
+            --bg-card: #111827;
+            --primary-blue: #2563EB;
+            --light-blue: #38BDF8;
+            --accent-green: #22C55E;
+            --accent-yellow: #F59E0B;
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
+            --glass-bg: rgba(17, 24, 39, 0.7);
+            --glass-border: rgba(56, 189, 248, 0.2);
+            --glow-shadow: 0 0 25px rgba(37, 99, 235, 0.3);
         }
-        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        
-        .container { border: 2px solid #ff9800; padding: 20px; border-radius: 20px; width: 100%; max-width: 450px; background: rgba(0, 0, 0, 0.8); box-shadow: 0 0 20px #ff9800; text-align: center; margin-bottom: 20px; box-sizing: border-box; z-index: 1; }
-        
-        .custom-img { width: 120px; height: 120px; border-radius: 50% !important; border: 4px solid #ff9800; box-shadow: 0 0 20px #ff9800; margin-bottom: 15px; object-fit: cover !important; }
-        
-        h1 { color: #ff9800; font-size: 1.5em; margin: 10px 0; }
-        
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #222; border: 1px solid #555; color: white; padding: 15px; margin: 8px 0; text-decoration: none; border-radius: 12px; font-weight: bold; width: 100%; box-sizing: border-box; transition: 0.3s; cursor: pointer; }
-        .btn:hover { background: #333; border-color: #ff9800; }
-        
-        .mc-section { width: 100%; max-width: 450px; background: #1a1a1a; border: 2px solid #4caf50; padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 0 15px #4caf50; margin-bottom: 20px; box-sizing: border-box; z-index: 1; }
-        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-        .mc-btn { background: #333; color: #fff; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; border: 1px solid #4caf50; transition: 0.3s; }
-        .mc-btn:hover { background: #4caf50; color: #000; }
 
-        /* ستايل المطر */
-        .emoji-rain { position: fixed; top: -50px; z-index: 0; pointer-events: none; user-select: none; animation: rain linear forwards; }
-        @keyframes rain { to { transform: translateY(100vh); } }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        #copy-toast { visibility: hidden; background: #ff9800; color: black; text-align: center; border-radius: 8px; padding: 15px; position: fixed; bottom: 30px; z-index: 1000; font-weight: bold; }
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Tajawal', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 30px 15px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* خلفية Aurora / Animated Gradient المتحركة وإضاءات الضبابية */
+        .aurora-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            background: linear-gradient(135deg, #0B1220 0%, #111827 50%, #0B1220 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.35;
+        }
+
+        .orb-1 {
+            width: 350px;
+            height: 350px;
+            background: var(--primary-blue);
+            top: -100px;
+            right: -100px;
+            animation: floatOrb 8s ease-in-out infinite alternate;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-green);
+            bottom: -150px;
+            left: -150px;
+            animation: floatOrb 10s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(30px) scale(1.1); }
+        }
+
+        /* تأثير الظهور عند الفتح (FadeIn & SlideUp) */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            border: 1px solid var(--glass-border);
+            padding: 30px 25px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 480px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), var(--glow-shadow);
+            text-align: center;
+            margin-bottom: 25px;
+            z-index: 1;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* صورة الحساب داخل إطار متوهج بإضاءة ناعمة */
+        .avatar-wrapper {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 20px;
+        }
+
+        .custom-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50% !important;
+            border: 3px solid var(--light-blue);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+            object-fit: cover !important;
+            transition: transform 0.4s ease;
+        }
+
+        .custom-img:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            color: var(--text-main);
+            font-size: 1.8em;
+            font-weight: 900;
+            margin: 10px 0 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .container p {
+            color: var(--text-muted);
+            font-size: 0.95em;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* الأزرار الاحترافية مع تأثيرات Hover ناعمة وتوهج */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+            padding: 16px 20px;
+            margin: 12px 0;
+            text-decoration: none;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1.05em;
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--light-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
+        }
+
+        /* أزرار التواصل الاجتماعي الملونة حسب المنصة مع تأثير Glow عند المرور */
+        .btn-youtube:hover { border-color: #ff0000; box-shadow: 0 8px 25px rgba(255, 0, 0, 0.35); }
+        .btn-tiktok:hover { border-color: #ff0050; box-shadow: 0 8px 25px rgba(255, 0, 80, 0.35); }
+        .btn-facebook:hover { border-color: #1877f2; box-shadow: 0 8px 25px rgba(24, 119, 242, 0.35); }
+        .btn-instagram:hover { border-color: #e1306c; box-shadow: 0 8px 25px rgba(225, 48, 108, 0.35); }
+        .btn-discord:hover { border-color: #5865f2; box-shadow: 0 8px 25px rgba(88, 101, 242, 0.35); }
+        .btn-kick:hover { border-color: #53fc18; box-shadow: 0 8px 25px rgba(83, 252, 24, 0.35); }
+        .btn-share:hover { border-color: var(--accent-yellow); box-shadow: 0 8px 25px rgba(245, 158, 11, 0.35); }
+
+        /* قسم Minecraft كبطاقات ألعاب حديثة */
+        .mc-section {
+            width: 100%;
+            max-width: 480px;
+            background: var(--glass-bg);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 25px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(34, 197, 94, 0.15);
+            margin-bottom: 25px;
+            box-sizing: border-box;
+            z-index: 1;
+            animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .mc-section h2 {
+            color: var(--accent-green);
+            margin: 0 0 20px 0;
+            font-size: 1.5em;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .mc-btn {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-main);
+            padding: 18px 15px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05em;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mc-btn i {
+            font-size: 1.5em;
+            color: var(--accent-green);
+            transition: transform 0.3s ease;
+        }
+
+        .mc-btn:hover {
+            background: var(--accent-green);
+            color: #000000;
+            border-color: var(--accent-green);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
+        }
+
+        .mc-btn:hover i {
+            color: #000000;
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        /* ستايل المطر الإيموجي */
+        .emoji-rain {
+            position: fixed;
+            top: -50px;
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
+            animation: rain linear forwards;
+        }
+
+        @keyframes rain {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* تحسين Toast لنسخ الرابط */
+        #copy-toast {
+            visibility: hidden;
+            background: var(--accent-yellow);
+            color: #000000;
+            text-align: center;
+            border-radius: 12px;
+            padding: 15px 25px;
+            position: fixed;
+            bottom: 30px;
+            z-index: 1000;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        #copy-toast.show {
+            visibility: visible;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* التوافق الكامل مع الهواتف والأجهزة المختلفة (Responsive) */
+        @media (max-width: 480px) {
+            body { padding: 15px 10px; }
+            .container, .mc-section { padding: 20px 15px; }
+            h1 { font-size: 1.5em; }
+            .btn, .mc-btn { padding: 14px; font-size: 1em; }
+        }
     </style>
 </head>
 <body>
 
+    <!-- الخلفيات والإضاءات الضبابية المتطورة -->
+    <div class="aurora-bg"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
     <div class="container">
-        <img src="logo2.png" alt="Mortadha Ali" class="custom-img">
+        <div class="avatar-wrapper">
+            <img src="logo2.png" alt="Mortadha Ali" class="custom-img">
+        </div>
         <h1>مرتضى علي</h1>
         <p>الموقع الرسمي لمرتضى علي</p>
         
-        <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn"><i class="fab fa-youtube" style="color:red;"></i> يوتيوب</a>
-        <a href="https://www.tiktok.com/@mortadhaali313" class="btn"><i class="fab fa-tiktok"></i> تيك توك</a>
-        <a href="https://web.facebook.com/mortadha.ali2" class="btn"><i class="fab fa-facebook" style="color:#1877f2;"></i> فيسبوك</a>
-        <a href="https://www.instagram.com/mortadha_ali12/" class="btn"><i class="fab fa-instagram" style="color:#e1306c;"></i> إنستكرام</a>
-        <a href="https://discord.gg/qFWsBe4udR" class="btn"><i class="fab fa-discord" style="color:#5865f2;"></i> دسكورد</a>
-        <a href="https://kick.com/mortadha-ali" class="btn"><i class="fas fa-gamepad" style="color:#53fc18;"></i> كيك (Kick)</a>
+        <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn btn-youtube" target="_blank"><i class="fab fa-youtube" style="color:#ff0000; font-size: 1.3em;"></i> يوتيوب</a>
+        <a href="https://www.tiktok.com/@mortadhaali313" class="btn btn-tiktok" target="_blank"><i class="fab fa-tiktok" style="color:#ff0050; font-size: 1.2em;"></i> تيك توك</a>
+        <a href="https://web.facebook.com/mortadha.ali2" class="btn btn-facebook" target="_blank"><i class="fab fa-facebook" style="color:#1877f2; font-size: 1.2em;"></i> فيسبوك</a>
+        <a href="https://www.instagram.com/mortadha_ali12/" class="btn btn-instagram" target="_blank"><i class="fab fa-instagram" style="color:#e1306c; font-size: 1.2em;"></i> إنستكرام</a>
+        <a href="https://discord.gg/qFWsBe4udR" class="btn btn-discord" target="_blank"><i class="fab fa-discord" style="color:#5865f2; font-size: 1.2em;"></i> دسكورد</a>
+        <a href="https://kick.com/mortadha-ali" class="btn btn-kick" target="_blank"><i class="fas fa-gamepad" style="color:#53fc18; font-size: 1.2em;"></i> كيك (Kick)</a>
         
-        <button onclick="copyLink()" class="btn" style="border: 1px solid #ff9800;"><i class="fas fa-share-alt"></i> مشاركة الموقع</button>
+        <button onclick="copyLink()" class="btn btn-share"><i class="fas fa-share-alt" style="color:var(--accent-yellow); font-size: 1.2em;"></i> مشاركة الموقع</button>
     </div>
 
     <div class="mc-section">
-        <h2 style="color: #4caf50; margin: 0; font-size: 1.5em;">قسم ماين كرافت ⛏️</h2>
+        <h2><i class="fas fa-cube"></i> قسم ماين كرافت ⛏️</h2>
         <div class="grid-container">
-            <a href="mods.html" class="mc-btn">مودات</a>
-            <a href="skins.html" class="mc-btn">سكنات</a>
-            <a href="worlds.html" class="mc-btn">عوالم</a>
-            <a href="servers.html" class="mc-btn">سيرفرات</a>
+            <a href="mods.html" class="mc-btn"><i class="fas fa-puzzle-piece"></i> مودات</a>
+            <a href="skins.html" class="mc-btn"><i class="fas fa-user-ninja"></i> سكنات</a>
+            <a href="worlds.html" class="mc-btn"><i class="fas fa-globe-americas"></i> عوالم</a>
+            <a href="servers.html" class="mc-btn"><i class="fas fa-server"></i> سيرفرات</a>
         </div>
     </div>
 
     <div id="copy-toast">تم نسخ رابط الموقع بنجاح!</div>
 
     <script>
-        // دالة نسخ الرابط
+        // دالة نسخ الرابط مع Toast احترافي
         function copyLink() {
             navigator.clipboard.writeText(window.location.href);
             var x = document.getElementById("copy-toast");
-            x.style.visibility = "visible";
-            setTimeout(function(){ x.style.visibility = "hidden"; }, 3000);
+            x.className = "show";
+            setTimeout(function(){ 
+                x.className = x.className.replace("show", ""); 
+            }, 3000);
         }
 
-        // دالة مطر الإيموجيات
+        // دالة مطر الإيموجيات المحسنة
         function createEmojiRain() {
             const emojis = ['🎮', '⛏️', '🕹️', '👾', '🔥', '💎', '🚀', '⚡', '💣', '⚔️', '🛡️', '🌍', '🧟', '✨', '🏆', '🎯', '📦'];
             const emoji = document.createElement('div');
             emoji.className = 'emoji-rain';
             emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
             emoji.style.left = Math.random() * 100 + 'vw';
-            emoji.style.fontSize = (Math.random() * 20 + 15) + 'px';
-            emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            emoji.style.opacity = Math.random() * 0.7 + 0.3;
+            emoji.style.fontSize = (Math.random() * 18 + 14) + 'px';
+            emoji.style.animationDuration = (Math.random() * 3 + 2.5) + 's';
+            emoji.style.opacity = Math.random() * 0.6 + 0.2;
             document.body.appendChild(emoji);
-            setTimeout(() => { emoji.remove(); }, 5000);
+            setTimeout(() => { emoji.remove(); }, 6000);
         }
-        setInterval(createEmojiRain, 150);
+        setInterval(createEmojiRain, 200);
     </script>
 </body>
 </html>
