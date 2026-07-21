@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="الموقع الرسمي لمرتضى علي - صانع محتوى ومنصة الألعاب والملحقات الحصرية">
     <title>Mortadha Ali | مرتضى علي — الموقع الرسمي</title>
     <link rel="icon" href="logo2.png" type="image/png">
@@ -17,7 +17,7 @@
             --warning: #f59e0b;
             --bg-color: #05070b;
             --surface: #0b0f19;
-            --surface-glass: rgba(11, 15, 25, 0.75);
+            --surface-glass: rgba(11, 15, 25, 0.78);
             --border-color: rgba(255, 255, 255, 0.08);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
@@ -33,7 +33,7 @@
             --warning: #d97706;
             --bg-color: #f1f5f9;
             --surface: #ffffff;
-            --surface-glass: rgba(255, 255, 255, 0.85);
+            --surface-glass: rgba(255, 255, 255, 0.88);
             --border-color: rgba(0, 0, 0, 0.08);
             --text-main: #0f172a;
             --text-muted: #64748b;
@@ -61,7 +61,14 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* تخصيص شريط التمرير */
+        /* منع التمرير المرن أو الاهتزاز في الهواتف الذكية وتثبيت الشاشة تماماً */
+        @media (max-width: 1024px) {
+            body {
+                overscroll-behavior-y: none;
+                touch-action: pan-y;
+            }
+        }
+
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -115,7 +122,7 @@
             letter-spacing: 3px;
         }
 
-        /* خلفية سينمائية فاخرة الثبات */
+        /* الخلفية السينمائية */
         .ambient-bg {
             position: fixed;
             inset: 0;
@@ -136,7 +143,7 @@
         .glow-1 { background: var(--primary); top: -250px; right: -250px; }
         .glow-2 { background: var(--secondary); bottom: -250px; left: -250px; }
 
-        /* شريط التنقل العلوي الاحترافي للكمبيوتر والصفحة */
+        /* شريط التنقل العلوي */
         .global-navbar {
             position: sticky;
             top: 0;
@@ -240,26 +247,26 @@
             transform: scale(1.05);
         }
 
-        /* الحاوية الرئيسية للمحتوى بعرض احترافي */
+        /* الحاوية الرئيسية للمحتوى */
         .main-container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 50px 30px;
             display: flex;
             flex-direction: column;
-            gap: 60px;
+            gap: 50px;
         }
 
-        /* 1. Hero Section كبير يغطي أول الشاشة بتصميم استثنائي */
+        /* 1. Hero Section الأول مع دمج منصات التصفح والتواصل بالكامل بداخله */
         .hero-section {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            grid-template-columns: 1.3fr 1fr;
             gap: 50px;
             align-items: center;
             background: var(--surface-glass);
             border: 1px solid var(--border-color);
             border-radius: 36px;
-            padding: 60px;
+            padding: 50px 60px;
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
             box-shadow: 0 30px 60px rgba(0,0,0,0.15);
@@ -270,7 +277,8 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 24px;
+            gap: 22px;
+            width: 100%;
         }
         .hero-badges {
             display: flex;
@@ -297,47 +305,76 @@
             border: 1px solid rgba(6, 182, 212, 0.3);
         }
         .hero-title-area h1 {
-            font-size: 3.2em;
+            font-size: 3em;
             font-weight: 900;
             line-height: 1.15;
             background: linear-gradient(135deg, var(--text-main), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
         .hero-title-area p {
-            font-size: 1.15em;
+            font-size: 1.1em;
             color: var(--text-muted);
             line-height: 1.6;
             font-weight: 500;
         }
-        .hero-cta-group {
-            display: flex;
-            gap: 15px;
+
+        /* شبكة أزرار ومنصات التصفح والتواصل المدمجة في الواجهة الأولى */
+        .hero-social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
             width: 100%;
+            margin-top: 5px;
         }
-        .btn-primary-action {
-            background: var(--primary);
-            color: #fff;
-            padding: 16px 32px;
-            border-radius: 16px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.05em;
-            display: inline-flex;
+        .social-card-item {
+            display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95em;
             transition: var(--transition-smooth);
-            box-shadow: 0 10px 30px var(--primary-glow);
-            border: none;
-            cursor: pointer;
         }
-        .btn-primary-action:hover {
-            transform: translateY(-3px);
-            opacity: 0.95;
-            box-shadow: 0 15px 35px var(--primary-glow);
+        .social-card-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        
+        .social-card-item i {
+            font-size: 1.25em;
+            transition: transform 0.3s ease;
+        }
+        .social-card-item .arrow {
+            font-size: 0.8em;
+            opacity: 0.4;
+            transition: var(--transition-smooth);
+        }
+        .social-card-item:hover .arrow {
+            opacity: 1;
+            transform: translateX(-3px);
+        }
+        .social-card-item:hover i {
+            transform: scale(1.15) rotate(5deg);
+        }
+        .social-card-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .sc-youtube:hover { border-color: #ff0000; box-shadow: 0 8px 25px rgba(255, 0, 0, 0.25); color: #ff4d4d; }
+        .sc-tiktok:hover { border-color: #fe2c55; box-shadow: 0 8px 25px rgba(254, 44, 85, 0.25); color: #ff4d79; }
+        .sc-facebook:hover { border-color: #1877f2; box-shadow: 0 8px 25px rgba(24, 119, 242, 0.25); color: #4d95ff; }
+        .sc-instagram:hover { border-color: #e1306c; box-shadow: 0 8px 25px rgba(225, 48, 108, 0.25); color: #ff5c93; }
+        .sc-discord:hover { border-color: #5865f2; box-shadow: 0 8px 25px rgba(88, 101, 242, 0.25); color: #7a85f7; }
+        .sc-kick:hover { border-color: #53fc18; box-shadow: 0 8px 25px rgba(83, 252, 24, 0.25); color: #76fd4b; }
+        .sc-share:hover { border-color: var(--warning); box-shadow: 0 8px 25px rgba(245, 158, 11, 0.25); color: var(--warning); grid-column: span 2; }
+
         .hero-visual-area {
             position: relative;
             display: flex;
@@ -361,8 +398,8 @@
         }
         .hero-img {
             position: relative;
-            width: 280px;
-            height: 280px;
+            width: 270px;
+            height: 270px;
             border-radius: 50%;
             border: 4px solid var(--surface);
             object-fit: cover;
@@ -380,7 +417,7 @@
             background: var(--surface-glass);
             border: 1px solid var(--border-color);
             border-radius: 22px;
-            padding: 30px;
+            padding: 26px 30px;
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
             display: flex;
@@ -391,35 +428,35 @@
         }
         .stat-card:hover {
             border-color: var(--primary);
-            transform: translateY(-4px);
+            transform: translateY(-3px);
         }
         .stat-icon {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 16px;
             background: rgba(79, 70, 229, 0.1);
             color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8em;
+            font-size: 1.6em;
         }
         .stat-info .stat-number {
-            font-size: 2em;
+            font-size: 1.8em;
             font-weight: 900;
             color: var(--text-main);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         .stat-info .stat-label {
-            font-size: 0.95em;
+            font-size: 0.9em;
             color: var(--text-muted);
             font-weight: 600;
         }
 
-        /* 3. تخطيط المجلة (Magazine Layout) للأقسام الرئيسية (التواصل وماين كرافت والأسئلة) */
+        /* 3. قسم المودات (ماين كرافت) وأسفله قسم الأسئلة الشائعة وتنسيق المجلة */
         .magazine-grid {
             display: grid;
-            grid-template-columns: 1fr 1.3fr;
+            grid-template-columns: 1.3fr 1fr;
             gap: 30px;
             align-items: start;
         }
@@ -437,7 +474,7 @@
             gap: 25px;
         }
         .section-heading {
-            font-size: 1.5em;
+            font-size: 1.45em;
             font-weight: 800;
             color: var(--text-main);
             display: flex;
@@ -445,60 +482,7 @@
             gap: 12px;
         }
 
-        /* بطاقات التواصل الاجتماعي الفاخرة داخل Card مستقلة */
-        .social-cards-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
-        }
-        .social-card-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 20px;
-            background: var(--surface);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1em;
-            transition: var(--transition-smooth);
-        }
-        .social-card-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .social-card-item i {
-            font-size: 1.35em;
-            transition: transform 0.3s ease;
-        }
-        .social-card-item .arrow {
-            font-size: 0.85em;
-            opacity: 0.4;
-            transition: var(--transition-smooth);
-        }
-        .social-card-item:hover .arrow {
-            opacity: 1;
-            transform: translateX(-3px);
-        }
-        .social-card-item:hover i {
-            transform: scale(1.15) rotate(5deg);
-        }
-        .social-card-item:hover {
-            transform: translateY(-3px);
-        }
-
-        .sc-youtube:hover { border-color: #ff0000; box-shadow: 0 10px 25px rgba(255, 0, 0, 0.25); color: #ff4d4d; }
-        .sc-tiktok:hover { border-color: #fe2c55; box-shadow: 0 10px 25px rgba(254, 44, 85, 0.25); color: #ff4d79; }
-        .sc-facebook:hover { border-color: #1877f2; box-shadow: 0 10px 25px rgba(24, 119, 242, 0.25); color: #4d95ff; }
-        .sc-instagram:hover { border-color: #e1306c; box-shadow: 0 10px 25px rgba(225, 48, 108, 0.25); color: #ff5c93; }
-        .sc-discord:hover { border-color: #5865f2; box-shadow: 0 10px 25px rgba(88, 101, 242, 0.25); color: #7a85f7; }
-        .sc-kick:hover { border-color: #53fc18; box-shadow: 0 10px 25px rgba(83, 252, 24, 0.25); color: #76fd4b; }
-        .sc-share:hover { border-color: var(--warning); box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25); color: var(--warning); grid-column: span 2; }
-
-        /* قسم ماين كرافت بتصميم Grid احترافي ومتقدم */
+        /* قسم ماين كرافت بتصميم Grid احترافي */
         .minecraft-grid-box {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -602,7 +586,7 @@
             color: var(--text-muted);
         }
 
-        /* 4. Footer بعرض الشاشة بالكامل بتصميم فاخر وعالمي */
+        /* 4. Footer بعرض الشاشة بالكامل (مع جعل زر الزيارات وتحت زر الزيارات في الأسفل تماماً كما طلبت) */
         .full-width-footer {
             width: 100vw;
             position: relative;
@@ -620,49 +604,24 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 30px;
+            gap: 25px;
             text-align: center;
-        }
-        .footer-social-row {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .footer-social-circle {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            text-decoration: none;
-            transition: var(--transition-smooth);
-        }
-        .footer-social-circle:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: #fff;
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px var(--primary-glow);
         }
         .visitor-counter-pill {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-color);
-            padding: 10px 26px;
+            padding: 12px 30px;
             border-radius: 30px;
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-weight: 700;
-            font-size: 0.95em;
+            font-size: 1.05em;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         .visitor-counter-pill i {
             color: var(--warning);
+            font-size: 1.2em;
         }
         .copyright-tag {
             color: var(--text-muted);
@@ -725,19 +684,19 @@
             opacity: 1;
         }
 
-        /* الاستجابة الذكية للشاشات الأقل عرضًا والهواتف */
+        /* التوافق الهاتفي مع تثبيت الشاشة وعدم السماح بأي حركة اهتزاز جانبية */
         @media (max-width: 1024px) {
             .global-navbar { padding: 0 20px; height: 75px; }
             .nav-menu { display: none; }
-            .main-container { padding: 30px 15px; gap: 40px; }
-            .hero-section { grid-template-columns: 1fr; padding: 40px 25px; text-align: center; }
+            .main-container { padding: 25px 12px; gap: 35px; }
+            .hero-section { grid-template-columns: 1fr; padding: 35px 20px; text-align: center; }
             .hero-content { align-items: center; }
             .hero-badges { justify-content: center; }
-            .hero-title-area h1 { font-size: 2.3em; }
+            .hero-title-area h1 { font-size: 2.2em; }
+            .hero-social-grid { grid-template-columns: 1fr; }
+            .sc-share { grid-column: span 1; }
             .stats-banner { grid-template-columns: 1fr; }
             .magazine-grid { grid-template-columns: 1fr; }
-            .social-cards-grid { grid-template-columns: 1fr; }
-            .sc-share { grid-column: span 1; }
             .minecraft-grid-box { grid-template-columns: 1fr; }
         }
     </style>
@@ -750,7 +709,7 @@
         <div class="loader-brand">MORTADHA ALI</div>
     </div>
 
-    <!-- الخلفيات السينمائية المظلمة والمضيئة -->
+    <!-- الخلفيات السينمائية الثابتة -->
     <div class="ambient-bg">
         <div class="ambient-glow glow-1"></div>
         <div class="ambient-glow glow-2"></div>
@@ -765,7 +724,6 @@
         <ul class="nav-menu">
             <li><a href="#hero">الرئيسية</a></li>
             <li><a href="#minecraft">ماين كرافت</a></li>
-            <li><a href="#socials">التواصل</a></li>
             <li><a href="#faq">الأسئلة الشائعة</a></li>
         </ul>
         <div class="nav-actions">
@@ -780,9 +738,9 @@
     </nav>
 
     <!-- المحتوى داخل Container بعرض احترافي -->
-    <div class="main-container">
+    <main class="main-container">
 
-        <!-- Hero Section كبير يغطي أول الشاشة مع تفاصيل النبذة والصورة الشخصية -->
+        <!-- Hero Section الأول (يحتوي على النبذة، الصورة، ومنصات التصفح والتواصل الرسمي مجتمعة معاً) -->
         <section class="hero-section" id="hero">
             <div class="hero-content">
                 <div class="hero-badges">
@@ -795,54 +753,11 @@
                 </div>
                 <div class="hero-title-area">
                     <h1>مرتضى علي</h1>
-                    <p>صانع محتوى ومنصة الألعاب والملحقات الحصرية. نقدم لك تجربة فريدة في عالم الألعاب والمودات والعوالم الرقمية بأعلى مستويات الجودة والاحترافية.</p>
+                    <p>الموقع الرسمي لمرتضى علي - صانع محتوى ومنصة الألعاب والملحقات الحصرية. تصفح منصاتنا الرسمية وانضم إلى مجتمعنا الرقمي بأعلى مستويات الجودة والاحترافية.</p>
                 </div>
-                <div class="hero-cta-group">
-                    <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="btn-primary-action" target="_blank" rel="noopener">
-                        <i class="fab fa-youtube"></i> تصفح القناة الرسمية
-                    </a>
-                </div>
-            </div>
-            <div class="hero-visual-area">
-                <div class="hero-avatar-glow"></div>
-                <img src="logo2.png" alt="Mortadha Ali" class="hero-img" loading="lazy">
-            </div>
-        </section>
 
-        <!-- قسم الإحصائيات أسفل الـ Hero مباشرة -->
-        <div class="stats-banner">
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-users"></i></div>
-                <div class="stat-info">
-                    <div class="stat-number">+100K</div>
-                    <div class="stat-label">متابع ومتفاعل نشط</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-cube"></i></div>
-                <div class="stat-info">
-                    <div class="stat-number">+50</div>
-                    <div class="stat-label">عالم ومود واختيار جاهز</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-bolt"></i></div>
-                <div class="stat-info">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">دعم ونشاط مستمر</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- تخطيط المجلة (Magazine Layout) لتقسيم الصفحة إلى Sections واضحة -->
-        <div class="magazine-grid">
-
-            <!-- بطاقة شبكة التواصل الاجتماعي الفاخرة -->
-            <div class="section-box" id="socials">
-                <div class="section-heading">
-                    <i class="fas fa-share-nodes" style="color: var(--primary);"></i> منصات التواصل الرسمي
-                </div>
-                <div class="social-cards-grid">
+                <!-- منصات التصفح والتواصل الرسمي مدمجة في الواجهة الأولى -->
+                <div class="hero-social-grid">
                     <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="social-card-item sc-youtube" target="_blank" rel="noopener">
                         <div class="social-card-info">
                             <i class="fab fa-youtube"></i>
@@ -896,6 +811,40 @@
                 </div>
             </div>
 
+            <div class="hero-visual-area">
+                <div class="hero-avatar-glow"></div>
+                <img src="logo2.png" alt="Mortadha Ali" class="hero-img" loading="lazy">
+            </div>
+        </section>
+
+        <!-- قسم الإحصائيات أسفل الـ Hero مباشرة -->
+        <div class="stats-banner">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-info">
+                    <div class="stat-number">+100K</div>
+                    <div class="stat-label">متابع ومتفاعل نشط</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-cube"></i></div>
+                <div class="stat-info">
+                    <div class="stat-number">+50</div>
+                    <div class="stat-label">عالم ومود واختيار جاهز</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-bolt"></i></div>
+                <div class="stat-info">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">دعم ونشاط مستمر</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم المودات (ماين كرافت) وأسفله قسم الأسئلة الشائعة -->
+        <div class="magazine-grid">
+
             <!-- قسم ماين كرافت بتصميم Grid احترافي -->
             <div class="section-box" id="minecraft">
                 <div class="section-heading">
@@ -925,55 +874,46 @@
                 </div>
             </div>
 
-        </div>
-
-        <!-- قسم الأسئلة الشائعة -->
-        <div class="section-box" id="faq" style="max-width: 100%;">
-            <div class="section-heading">
-                <i class="fas fa-question-circle" style="color: var(--warning);"></i> الأسئلة الشائعة
-            </div>
-            <div class="faq-accordion-box">
-                <div class="faq-card-item">
-                    <div class="faq-q-row">
-                        <span>كيف يمكنني تحميل المودات والعوالم؟</span>
-                        <i class="fas fa-chevron-down"></i>
+            <!-- قسم الأسئلة الشائعة -->
+            <div class="section-box" id="faq">
+                <div class="section-heading">
+                    <i class="fas fa-question-circle" style="color: var(--warning);"></i> الأسئلة الشائعة
+                </div>
+                <div class="faq-accordion-box">
+                    <div class="faq-card-item">
+                        <div class="faq-q-row">
+                            <span>كيف يمكنني تحميل المودات والعوالم؟</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-a-row">
+                            انتقل إلى قسم ماين كرافت واختار القسم المطلوب ثم انقر على زر التحميل المباشر المتوفر لكل عنصر.
+                        </div>
                     </div>
-                    <div class="faq-a-row">
-                        انتقل إلى قسم ماين كرافت واختار القسم المطلوب (مودات، سكنات، عوالم) ثم انقر على زر التحميل المباشر المتوفر لكل عنصر.
+                    <div class="faq-card-item">
+                        <div class="faq-q-row">
+                            <span>هل جميع الروابط آمنة؟</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-a-row">
+                            نعم، جميع الروابط وملفات التحميل تم فحصها وتجهيزها بعناية فائقة لضمان تجربة آمنة وسريعة للجميع.
+                        </div>
                     </div>
                 </div>
-                <div class="faq-card-item">
-                    <div class="faq-q-row">
-                        <span>هل جميع الروابط آمنة؟</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-a-row">
-                        نعم، جميع الروابط وملفات التحميل تم فحصها وتجهيزها بعناية فائقة لضمان تجربة آمنة وسريعة للجميع.
-                    </div>
-                </div>
             </div>
+
         </div>
 
-    </div>
+    </main>
 
-    <!-- Footer بعرض الشاشة بالكامل -->
+    <!-- Footer بعرض الشاشة بالكامل (مع زر الزيارات وتحته حقوق النشر في الأسفل تماماً) -->
     <footer class="full-width-footer">
         <div class="footer-inner-wrap">
-            <div class="footer-social-row">
-                <a href="https://www.youtube.com/channel/UC0eoyZZM8IjplSyoaFmZJFA" class="footer-social-circle" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.tiktok.com/@mortadhaali313" class="footer-social-circle" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                <a href="https://web.facebook.com/mortadha.ali2" class="footer-social-circle" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/mortadha_ali12/" class="footer-social-circle" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://discord.gg/qFWsBe4udR" class="footer-social-circle" target="_blank" rel="noopener" aria-label="Discord"><i class="fab fa-discord"></i></a>
-                <a href="https://kick.com/mortadha-ali" class="footer-social-circle" target="_blank" rel="noopener" aria-label="Kick"><i class="fas fa-gamepad"></i></a>
-            </div>
-
             <div class="visitor-counter-pill">
                 <i class="fas fa-eye"></i>
                 <span>الزوار النشطون اليوم: <strong id="visitor-count">1,482</strong></span>
             </div>
 
-            <p class="copyright-tag">&copy; 2026 Mortadha Ali. جميع الحقوق محفوظة. تصميم عالمي فاخر (Desktop Edition).</p>
+            <p class="copyright-tag">&copy; 2026 Mortadha Ali. جميع الحقوق محفوظة. تصميم عالمي فاخر (Desktop & Mobile Edition).</p>
         </div>
     </footer>
 
