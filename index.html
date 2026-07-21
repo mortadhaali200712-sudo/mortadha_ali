@@ -67,40 +67,6 @@
             background: var(--primary);
         }
 
-        /* مؤشر الماوس المخصص ومؤثر الضوء المتبقي (Mouse Glow / Custom Cursor) */
-        .cursor-dot, .cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: opacity 0.3s ease;
-        }
-        .cursor-dot {
-            width: 6px;
-            height: 6px;
-            background-color: var(--secondary);
-        }
-        .cursor-outline {
-            width: 36px;
-            height: 36px;
-            border: 1px solid rgba(56, 189, 248, 0.5);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-        .mouse-glow {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, rgba(56, 189, 248, 0.05) 40%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s;
-        }
-
         /* مؤشر تحميل الصفحة (Page Loading Overlay) */
         #page-loader {
             position: fixed;
@@ -626,11 +592,6 @@
         <div class="loader-text">MORTADHA ALI</div>
     </div>
 
-    <!-- مؤشرات الماوس الاحترافية -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-    <div class="mouse-glow"></div>
-
     <!-- الخلفيات المتحركة وإضاءات الأورورا -->
     <div class="ambient-background"></div>
     <div class="floating-shape shape-1"></div>
@@ -749,33 +710,6 @@
             setTimeout(() => {
                 loader.classList.add('loaded');
             }, 400);
-        });
-
-        // تأثير مؤشر الماوس المتحرك (Custom Cursor & Glow)
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
-        const mouseGlow = document.querySelector('.mouse-glow');
-
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-
-            cursorDot.style.transform = `translate(${posX}px, ${posY}px)`;
-            cursorOutline.style.transform = `translate(${posX}px, ${posY}px)`;
-            mouseGlow.style.transform = `translate(${posX}px, ${posY}px)`;
-        });
-
-        // تأثير التفاعل عند مرور الماوس على العناصر القابلة للنقر
-        const interactiveElements = document.querySelectorAll('a, button, .faq-question');
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorOutline.style.transform += ' scale(1.6)';
-                cursorOutline.style.backgroundColor = 'rgba(56, 189, 248, 0.1)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorOutline.style.transform = cursorOutline.style.transform.replace(' scale(1.6)', '');
-                cursorOutline.style.backgroundColor = 'transparent';
-            });
         });
 
         // دالة نسخ الرابط مع Toast احترافي
