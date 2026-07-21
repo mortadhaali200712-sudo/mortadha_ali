@@ -61,7 +61,6 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* منع التمرير المرن أو الاهتزاز في الهواتف الذكية وتثبيت الشاشة تماماً */
         @media (max-width: 1024px) {
             body {
                 overscroll-behavior-y: none;
@@ -257,7 +256,7 @@
             gap: 50px;
         }
 
-        /* 1. Hero Section الأول مع دمج منصات التصفح والتواصل بالكامل بداخله */
+        /* Hero Section الأول مع دمج منصات التصفح والتواصل بالكامل بداخله */
         .hero-section {
             display: grid;
             grid-template-columns: 1.3fr 1fr;
@@ -407,58 +406,59 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        /* 2. قسم الإحصائيات أسفل الـ Hero مباشرة */
-        .stats-banner {
+        /* شريط الإحصائيات الصغير والمضغوط الذي يحل محل المربعات الضخمة */
+        .compact-stats-bar {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-        .stat-card {
+            gap: 16px;
             background: var(--surface-glass);
             border: 1px solid var(--border-color);
-            border-radius: 22px;
-            padding: 26px 30px;
+            border-radius: 20px;
+            padding: 18px 24px;
             backdrop-filter: var(--glass-blur);
             -webkit-backdrop-filter: var(--glass-blur);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+        .compact-stat-item {
             display: flex;
             align-items: center;
-            gap: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-            transition: var(--transition-smooth);
+            gap: 14px;
         }
-        .stat-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-3px);
-        }
-        .stat-icon {
-            width: 55px;
-            height: 55px;
-            border-radius: 16px;
+        .compact-stat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
             background: rgba(79, 70, 229, 0.1);
             color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6em;
+            font-size: 1.25em;
+            flex-shrink: 0;
         }
-        .stat-info .stat-number {
-            font-size: 1.8em;
+        .compact-stat-data {
+            display: flex;
+            flex-direction: column;
+        }
+        .compact-stat-number {
+            font-size: 1.3em;
             font-weight: 900;
             color: var(--text-main);
-            margin-bottom: 2px;
+            line-height: 1.2;
         }
-        .stat-info .stat-label {
-            font-size: 0.9em;
+        .compact-stat-label {
+            font-size: 0.8em;
             color: var(--text-muted);
             font-weight: 600;
         }
 
-        /* 3. قسم المودات (ماين كرافت) وأسفله قسم الأسئلة الشائعة وتنسيق المجلة */
-        .magazine-grid {
-            display: grid;
-            grid-template-columns: 1.3fr 1fr;
+        /* تخطيط المنتصف للكمبيوتر (قسم ماين كرافت يتوسط الشاشة بعرض مناسب، وقسم الأسئلة جانبه أو يليه) */
+        .center-layout-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             gap: 30px;
-            align-items: start;
+            width: 100%;
         }
 
         .section-box {
@@ -473,6 +473,14 @@
             flex-direction: column;
             gap: 25px;
         }
+
+        /* قسم ماين كرافت متمركز في الشاشة بعرض أنيق ومدروس للكمبيوتر */
+        .minecraft-centered-section {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
         .section-heading {
             font-size: 1.45em;
             font-weight: 800;
@@ -540,6 +548,11 @@
         }
 
         /* الأسئلة الشائعة وتنسيق الأكورديون */
+        .faq-section-box {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
         .faq-accordion-box {
             display: flex;
             flex-direction: column;
@@ -586,14 +599,14 @@
             color: var(--text-muted);
         }
 
-        /* 4. Footer بعرض الشاشة بالكامل (مع جعل زر الزيارات وتحت زر الزيارات في الأسفل تماماً كما طلبت) */
+        /* Footer بعرض الشاشة بالكامل (مع زر الزيارات فوقه وتحته حقوق النشر تماماً كما طلبت) */
         .full-width-footer {
             width: 100vw;
             position: relative;
             left: calc(-50vw + 50%);
             background: var(--surface);
             border-top: 1px solid var(--border-color);
-            padding: 60px 0 40px;
+            padding: 50px 0 35px;
             margin-top: 40px;
             box-shadow: 0 -20px 40px rgba(0,0,0,0.05);
         }
@@ -604,7 +617,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 25px;
+            gap: 22px;
             text-align: center;
         }
         .visitor-counter-pill {
@@ -688,15 +701,16 @@
         @media (max-width: 1024px) {
             .global-navbar { padding: 0 20px; height: 75px; }
             .nav-menu { display: none; }
-            .main-container { padding: 25px 12px; gap: 35px; }
+            .main-container { padding: 25px 12px; gap: 30px; }
             .hero-section { grid-template-columns: 1fr; padding: 35px 20px; text-align: center; }
             .hero-content { align-items: center; }
             .hero-badges { justify-content: center; }
             .hero-title-area h1 { font-size: 2.2em; }
             .hero-social-grid { grid-template-columns: 1fr; }
             .sc-share { grid-column: span 1; }
-            .stats-banner { grid-template-columns: 1fr; }
-            .magazine-grid { grid-template-columns: 1fr; }
+            .compact-stats-bar { grid-template-columns: 1fr; padding: 14px 18px; }
+            .minecraft-centered-section { max-width: 100%; padding: 25px 18px; }
+            .faq-section-box { max-width: 100%; padding: 25px 18px; }
             .minecraft-grid-box { grid-template-columns: 1fr; }
         }
     </style>
@@ -817,36 +831,36 @@
             </div>
         </section>
 
-        <!-- قسم الإحصائيات أسفل الـ Hero مباشرة -->
-        <div class="stats-banner">
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-users"></i></div>
-                <div class="stat-info">
-                    <div class="stat-number">+100K</div>
-                    <div class="stat-label">متابع ومتفاعل نشط</div>
+        <!-- شريط الإحصائيات الصغير والمضغوط البديل للمربعات الضخمة -->
+        <div class="compact-stats-bar">
+            <div class="compact-stat-item">
+                <div class="compact-stat-icon"><i class="fas fa-users"></i></div>
+                <div class="compact-stat-data">
+                    <span class="compact-stat-number">+100K</span>
+                    <span class="compact-stat-label">متابع نشط</span>
                 </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-cube"></i></div>
-                <div class="stat-info">
-                    <div class="stat-number">+50</div>
-                    <div class="stat-label">عالم ومود واختيار جاهز</div>
+            <div class="compact-stat-item">
+                <div class="compact-stat-icon"><i class="fas fa-cube"></i></div>
+                <div class="compact-stat-data">
+                    <span class="compact-stat-number">+50</span>
+                    <span class="compact-stat-label">مود وعالم</span>
                 </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon"><i class="fas fa-bolt"></i></div>
-                <div class="stat-info">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">دعم ونشاط مستمر</div>
+            <div class="compact-stat-item">
+                <div class="compact-stat-icon"><i class="fas fa-bolt"></i></div>
+                <div class="compact-stat-data">
+                    <span class="compact-stat-number">24/7</span>
+                    <span class="compact-stat-label">دعم مستمر</span>
                 </div>
             </div>
         </div>
 
-        <!-- قسم المودات (ماين كرافت) وأسفله قسم الأسئلة الشائعة -->
-        <div class="magazine-grid">
+        <!-- تخطيط المنتصف لعرض قسم ماين كرافت متمركزاً في الشاشة -->
+        <div class="center-layout-container">
 
-            <!-- قسم ماين كرافت بتصميم Grid احترافي -->
-            <div class="section-box" id="minecraft">
+            <!-- قسم المودات (ماين كرافت) متمركز في منتصف الشاشة -->
+            <div class="section-box minecraft-centered-section" id="minecraft">
                 <div class="section-heading">
                     <i class="fas fa-cube" style="color: var(--success);"></i> قسم ماين كرافت ⛏️
                 </div>
@@ -874,8 +888,8 @@
                 </div>
             </div>
 
-            <!-- قسم الأسئلة الشائعة -->
-            <div class="section-box" id="faq">
+            <!-- قسم الأسئلة الشائعة متمركز أسفله -->
+            <div class="section-box faq-section-box" id="faq">
                 <div class="section-heading">
                     <i class="fas fa-question-circle" style="color: var(--warning);"></i> الأسئلة الشائعة
                 </div>
@@ -905,7 +919,7 @@
 
     </main>
 
-    <!-- Footer بعرض الشاشة بالكامل (مع زر الزيارات وتحته حقوق النشر في الأسفل تماماً) -->
+    <!-- Footer بعرض الشاشة بالكامل (مع زر الزيارات فوقه وتحته حقوق النشر تماماً في الأسفل) -->
     <footer class="full-width-footer">
         <div class="footer-inner-wrap">
             <div class="visitor-counter-pill">
