@@ -1,39 +1,463 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المودات</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="قسم المودات الرسمي - منصة مرتضى عُلي للألعاب والترفيه الرقمي">
+    <title>قسم المودات 📦 | مرتضى عُلي</title>
+    <link rel="icon" href="logo2.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 20px; text-align: center; }
-        .back-btn { display: inline-block; background: #555; padding: 10px 20px; border-radius: 10px; text-decoration: none; color: #fff; margin-bottom: 20px; }
-        .tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 30px; }
-        .tab-btn { background: #1a1a1a; border: 2px solid #4caf50; color: #fff; padding: 15px 30px; border-radius: 15px; cursor: pointer; font-size: 18px; font-weight: bold; width: 150px; transition: 0.3s; }
-        .tab-btn:hover, .tab-btn.active { background: #4caf50; color: #000; }
-        #search { width: 90%; max-width: 400px; padding: 15px; margin-bottom: 30px; border-radius: 15px; border: 2px solid #4caf50; background: #1a1a1a; color: #fff; text-align: center; font-size: 16px; }
-        .mod-card { background: #1a1a1a; border: 2px solid #4caf50; padding: 15px; margin: 20px auto; width: 90%; max-width: 400px; border-radius: 20px; display: flex; flex-direction: column; align-items: center; transition: 0.5s; }
-        .mod-card.highlight { border-color: #ffeb3b; box-shadow: 0 0 20px #ffeb3b; }
-        .mod-img { width: 100%; height: 220px; border-radius: 15px; margin-bottom: 15px; object-fit: cover; }
-        .mod-name { font-weight: bold; font-size: 1.3em; display: block; margin-bottom: 15px; color: #4caf50; }
-        .btn { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; border: none; cursor: pointer; font-size: 14px; margin: 0 5px; }
-        .download-btn { background: #4caf50; color: #000; }
-        .copy-btn { background: #555; color: #fff; }
+        :root {
+            --brand-primary: #10b981;
+            --brand-secondary: #059669;
+            --brand-accent: #3b82f6;
+            --bg-base: #030712;
+            --bg-surface: #0b1329;
+            --bg-glass: rgba(11, 19, 41, 0.78);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --warning-glow: #ffeb3b;
+            --transition-swift: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            padding: 30px 5% 60px;
+        }
+
+        /* تخصيص Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(16, 185, 129, 0.3);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--brand-primary);
+        }
+
+        /* خلفية Aurora الديناميكية */
+        .aurora-background {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+            background: var(--bg-base);
+        }
+        .aurora-orb {
+            position: absolute;
+            width: 55vw;
+            height: 55vw;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.15;
+            animation: auroraFloat 18s ease-in-out infinite alternate;
+        }
+        .orb-one { background: var(--brand-primary); top: -20%; right: -10%; }
+        .orb-two { background: var(--brand-accent); bottom: -20%; left: -10%; animation-delay: -6s; }
+
+        @keyframes auroraFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(35px, -25px) scale(1.08); }
+            100% { transform: translate(-25px, 35px) scale(0.95); }
+        }
+
+        /* زر الرجوع */
+        .back-btn-container {
+            display: flex;
+            justify-content: flex-start;
+            max-width: 1400px;
+            margin: 0 auto 25px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            padding: 12px 24px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition-swift);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .back-btn:hover {
+            border-color: var(--brand-primary);
+            color: var(--brand-primary);
+            transform: translateX(-4px);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
+        }
+
+        /* الهيدر والعنوان الرئيسي */
+        .page-header-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .page-header-container h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--text-primary) 20%, var(--brand-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        /* صندوق البحث الاحترافي */
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+        #search {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border-radius: 18px;
+            border: 1px solid var(--border-glass);
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            color: var(--text-primary);
+            text-align: right;
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: 600;
+            transition: var(--transition-swift);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.1);
+        }
+        #search:focus {
+            outline: none;
+            border-color: var(--brand-primary);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+        }
+        .search-icon-pos {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+        #search:focus ~ .search-icon-pos {
+            color: var(--brand-primary);
+        }
+
+        /* التبويبات الفاخرة (Tabs) */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .tab-btn {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            color: var(--text-secondary);
+            padding: 14px 36px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            font-weight: 800;
+            font-family: inherit;
+            min-width: 160px;
+            transition: var(--transition-swift);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .tab-btn:hover {
+            border-color: var(--brand-primary);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+        .tab-btn.active {
+            background: var(--brand-primary);
+            border-color: var(--brand-primary);
+            color: #030712;
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.35);
+        }
+
+        /* شبكة عرض المودات (CSS Grid متطورة للاستفادة الكاملة من الشاشة) */
+        .mods-grid-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        @media (max-width: 1280px) {
+            .mods-grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 900px) {
+            .mods-grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .mods-grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* بطاقة المود الفاخرة (Mod Card) */
+        .mod-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: var(--transition-swift);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .mod-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(16,185,129,0.3), transparent 60%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        .mod-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--brand-primary);
+            box-shadow: 0 25px 50px rgba(16, 185, 129, 0.22);
+        }
+
+        .mod-card.highlight {
+            border-color: var(--warning-glow);
+            box-shadow: 0 0 35px rgba(255, 235, 59, 0.4);
+            animation: pulseHighlight 1.5s infinite alternate;
+        }
+
+        @keyframes pulseHighlight {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.02); }
+        }
+
+        .mod-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 210px;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            background: rgba(255,255,255,0.03);
+        }
+
+        .mod-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mod-card:hover .mod-img {
+            transform: scale(1.08);
+        }
+
+        .mod-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .mod-name {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-align: right;
+        }
+
+        .mod-actions-group {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition-swift);
+        }
+
+        .download-btn {
+            background: var(--brand-primary);
+            color: #030712;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .download-btn:hover {
+            background: #34d399;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.45);
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-glass);
+            color: var(--text-primary);
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--text-secondary);
+            transform: translateY(-2px);
+        }
+
+        /* تأثير التموج (Ripple Effect) */
+        .ripple-effect {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleAnim 0.5s linear;
+            pointer-events: none;
+        }
+        @keyframes rippleAnim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* إشعار Toast العصري بدلاً من Alert التقليدي */
+        .toast-notification {
+            visibility: hidden;
+            background: var(--bg-glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--brand-primary);
+            color: var(--text-primary);
+            border-radius: 16px;
+            padding: 16px 28px;
+            position: fixed;
+            bottom: 35px;
+            right: 35px;
+            z-index: 99999;
+            font-weight: 800;
+            font-size: 0.95rem;
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.25);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition-swift);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .toast-notification i {
+            color: var(--brand-primary);
+            font-size: 1.3rem;
+        }
+        .toast-notification.active {
+            visibility: visible;
+            transform: translateY(0);
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-btn">⬅ رجوع للرئيسية</a>
-    
-    <div class="tabs">
-        <button class="tab-btn active" onclick="showSection('bedrock', this)">بيدروك</button>
-        <button class="tab-btn" onclick="showSection('java', this)">جافا</button>
+    <!-- خلفية تفاعلية ضوئية -->
+    <div class="aurora-background">
+        <div class="aurora-orb orb-one"></div>
+        <div class="aurora-orb orb-two"></div>
     </div>
 
-    <h1>قسم المودات 📦</h1>
-    <input type="text" id="search" onkeyup="searchMods()" placeholder="🔍 ابحث عن مود...">
+    <!-- زر الرجوع للرئيسية -->
+    <div class="back-btn-container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-right"></i> رجوع للرئيسية
+        </a>
+    </div>
 
-    <div id="bedrockSection"></div>
-    <div id="javaSection" style="display: none;"></div>
+    <!-- هيدر الصفحة والبحث -->
+    <header class="page-header-container">
+        <h1>قسم المودات 📦</h1>
+        <div class="search-wrapper">
+            <input type="text" id="search" onkeyup="searchMods()" placeholder="🔍 ابحث عن مود...">
+            <i class="fas fa-search search-icon-pos"></i>
+        </div>
+    </header>
+
+    <!-- تبويبات الأقسام -->
+    <nav class="tabs" aria-label="أقسام المودات">
+        <button class="tab-btn active" onclick="showSection('bedrock', this)">بيدروك</button>
+        <button class="tab-btn" onclick="showSection('java', this)">جافا</button>
+    </nav>
+
+    <!-- حاويات أقسام المودات بمعمارية Grid عالمية -->
+    <section id="bedrockSection" class="mods-grid-container"></section>
+    <section id="javaSection" class="mods-grid-container" style="display: none;"></section>
+
+    <!-- إشعار Toast التفاعلي -->
+    <div id="copyToast" class="toast-notification">
+        <i class="fas fa-check-circle"></i>
+        <span>تم نسخ رابط المود بنجاح!</span>
+    </div>
 
     <script>
         const bedrockList = [
@@ -55,19 +479,28 @@
         ];
 
         const javaList = [
-            { id: "night-vision", name: "مود النايت فجن 26.1.2", img: "https://cdn.phototourl.com/free/2026-07-19-9bfe1583-6441-4d4d-beda-f6ed3fb72a1b.webp", link: "https://download2281.mediafire.com/t0w5ca5anf9ghbVnsX3v5f2OVtpiJbqZZRBolQoZy9x5p99El7gOVnVuwhqqr-LNBY5BiW-xG-2nEi8kIP7SKga5VabZOVJAZjnPfRPOdXPUMfJNcXJED75iUhwtlYTg_JnIo7lemqMeDNN9v191pb5J3LDry90HsxWTcVkZf9T9f0ky/2z094nhuuraf1ki/%D9%86%D8%A7%D9%8A%D8%AA+%D9%81%D8%AC%D9%86+%D9%84%D9%84%D8%AC%D8%A7%D9%81%D8%A7+26.1.2+.zip" }
+            { id: "night-vision", name: "مود النايت فجن 26.1.2", img: "https://cdn.phototourl.com/free/2026-07-19-9bfe1583-6441-4d4d-beda-f6ed3fb72a1b.webp", link: "https://download2281.mediafire.com/t0w5ca5anf9ghbVnsX3v5f2OVtpiJbqZZRBolQoZy9x5p99El7gOVnVuwhqqr-LNBY5BiW-xG-2nEi8kIP7SKga5VabZOVJAZjnPfRPOdXPUMfJNcXJED75iUhwtlYTg_JnIo7lemqMeDNN9v191pb5J3LDry90HsxWTcVkZf9T9f0ky/2z094nhuuraf1ki/%D9%86%D8%A7%D9%8A%D8%AA+%D9%81%D8%AC%D9%86+%D9%84%D9%84%D8%AC%D8%A7%D9%81%D8%A1+26.1.2+.zip" }
         ];
 
         function renderMods(list, containerId) {
             const container = document.getElementById(containerId);
+            container.innerHTML = '';
             list.forEach(mod => {
                 container.innerHTML += `
                 <div class="mod-card" id="${mod.id}">
-                    <img src="${mod.img}" class="mod-img">
+                    <div class="mod-img-wrapper">
+                        <img src="${mod.img}" class="mod-img" alt="${mod.name}" loading="lazy">
+                    </div>
                     <div class="mod-info">
                         <span class="mod-name">${mod.name}</span>
-                        <a href="${mod.link}" target="_blank" class="btn download-btn">تحميل</a>
-                        <button class="btn copy-btn" onclick="copyModLink('${mod.id}')">نسخ الرابط</button>
+                        <div class="mod-actions-group">
+                            <a href="${mod.link}" target="_blank" rel="noopener" class="btn download-btn">
+                                <i class="fas fa-download"></i> تحميل
+                            </a>
+                            <button class="btn copy-btn" onclick="copyModLink('${mod.id}')">
+                                <i class="fas fa-copy"></i> نسخ الرابط
+                            </button>
+                        </div>
                     </div>
                 </div>`;
             });
@@ -87,33 +520,59 @@
                 const element = document.getElementById(modId);
                 if (element) {
                     setTimeout(() => {
-                        element.scrollIntoView({ behavior: 'smooth' });
+                        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         element.classList.add('highlight');
-                        setTimeout(() => element.classList.remove('highlight'), 2000);
-                    }, 500);
+                        setTimeout(() => element.classList.remove('highlight'), 2500);
+                    }, 400);
                 }
             }
         };
 
         function showSection(section, btn) {
-            document.getElementById('bedrockSection').style.display = (section === 'bedrock') ? 'block' : 'none';
-            document.getElementById('javaSection').style.display = (section === 'java') ? 'block' : 'none';
+            document.getElementById('bedrockSection').style.display = (section === 'bedrock') ? 'grid' : 'none';
+            document.getElementById('javaSection').style.display = (section === 'java') ? 'grid' : 'none';
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             if(btn) btn.classList.add('active');
         }
 
         function copyModLink(modId) {
             let fullLink = window.location.href.split('?')[0] + "?mod=" + modId;
-            navigator.clipboard.writeText(fullLink).then(() => { alert("تم نسخ رابط المود بنجاح!"); });
+            navigator.clipboard.writeText(fullLink).then(() => {
+                const toast = document.getElementById("copyToast");
+                toast.classList.add("active");
+                setTimeout(() => {
+                    toast.classList.remove("active");
+                }, 3000);
+            });
         }
 
         function searchMods() {
             let input = document.getElementById('search').value.toLowerCase();
             let cards = document.getElementsByClassName('mod-card');
             for (let i = 0; i < cards.length; i++) {
-                cards[i].style.display = cards[i].innerText.toLowerCase().includes(input) ? "" : "none";
+                cards[i].style.display = cards[i].innerText.toLowerCase().includes(input) ? "flex" : "none";
             }
         }
+
+        // تأثير التموج عند الضغط على الأزرار
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('.btn, .tab-btn');
+            if (target) {
+                const rect = target.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple-effect');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                target.style.position = 'relative';
+                target.style.overflow = 'hidden';
+                target.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 500);
+            }
+        });
     </script>
 </body>
 </html>
