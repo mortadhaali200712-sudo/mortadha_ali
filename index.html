@@ -542,7 +542,7 @@
             color: rgba(5, 8, 17, 0.85);
         }
 
-        /* 🎮 قسم مودات GTA 5 (بتصميم وهوية بصرية مستقلة وخاصة باللعبة) */
+        /* 🎮 قسم مودات GTA 5 (يحتوي على خيار المودات فقط) */
         .gta-section-box {
             position: relative;
             background: linear-gradient(135deg, rgba(15, 15, 15, 0.9), rgba(26, 26, 26, 0.8));
@@ -588,10 +588,11 @@
         }
         .gta-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr;
             gap: 20px;
             position: relative;
             z-index: 2;
+            max-width: 600px;
         }
         .gta-card {
             position: relative;
@@ -876,13 +877,12 @@
             font-size: 1.4rem;
         }
         .toast-notification.show {
-            visibility: hidden; /* تم التصحيح لتجنب أي تعارض */
             visibility: visible;
             transform: translateY(0);
             opacity: 1;
         }
 
-        /* تحسينات متجاوبة تامة ودقيقة لقسم GTA 5 وباقي الأقسام على الهاتف */
+        /* تحسينات الاستجابة على الهاتف */
         @media (max-width: 1024px) {
             .site-nav { padding: 0 5%; height: 75px; }
             .nav-links { display: none; }
@@ -904,17 +904,12 @@
             .card-share { grid-column: span 1; }
             .minecraft-grid { grid-template-columns: 1fr; }
             
-            /* ضبط شامل وبسيط لعرض بطاقات GTA 5 على الهواتف بشكل عمودي أنيق وواضح */
             .gta-section-box {
                 padding: 30px 20px;
                 border-radius: 28px;
             }
             .gta-grid {
                 grid-template-columns: 1fr;
-                gap: 14px;
-            }
-            .gta-card[style*="grid-column"] {
-                grid-column: span 1 !important;
             }
             .gta-card {
                 padding: 22px 18px;
@@ -1083,7 +1078,7 @@
                 </div>
             </section>
 
-            <!-- 🎮 قسم مودات GTA 5 الجديد (متجاوب ومرتب بالكامل لهواتف المحمول) -->
+            <!-- 🎮 قسم مودات GTA 5 (يحتوي على خيار المودات فقط) -->
             <section class="gta-section-box" id="gta5">
                 <div class="gta-header-title">
                     <i class="fas fa-gamepad"></i> قسم مودات GTA 5 🎮
@@ -1093,26 +1088,6 @@
                         <div class="gta-icon-box"><i class="fas fa-cogs"></i></div>
                         <h3>مودات</h3>
                         <p>أقوى مودات وأدوات التحسين المخصصة لرفع أداء ومتعة لعبة GTA 5.</p>
-                    </a>
-                    <a href="gta-skins.html" class="gta-card search-target" data-searchname="سكنات جي تي اي 5">
-                        <div class="gta-icon-box"><i class="fas fa-tshirt"></i></div>
-                        <h3>سكنات</h3>
-                        <p>أحدث الأزياء والسكنات الحصرية للشخصيات بجودة فائقة ومظهر عصري.</p>
-                    </a>
-                    <a href="gta-maps.html" class="gta-card search-target" data-searchname="مابات جي تي اي 5">
-                        <div class="gta-icon-box"><i class="fas fa-map-marked-alt"></i></div>
-                        <h3>مابات</h3>
-                        <p>خرائط ومقرات إضافية فريدة لخوض تجارب وتحديات استثنائية.</p>
-                    </a>
-                    <a href="gta-weapons.html" class="gta-card search-target" data-searchname="أسلحة جي تي اي 5">
-                        <div class="gta-icon-box"><i class="fas fa-crosshairs"></i></div>
-                        <h3>أسلحة</h3>
-                        <p>ترسانة متكاملة من أروع الأسلحة بتصميمات واحترافية عالية.</p>
-                    </a>
-                    <a href="gta-vehicles.html" class="gta-card search-target" data-searchname="مركبات جي تي اي 5" style="grid-column: span 2;">
-                        <div class="gta-icon-box"><i class="fas fa-car-side"></i></div>
-                        <h3>مركبات</h3>
-                        <p>أسرع وأفخم السيارات والمركبات الرياضية والمدنية المعدلة كلياً لتناسب ذوقك.</p>
                     </a>
                 </div>
             </section>
