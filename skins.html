@@ -4,126 +4,252 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سكنات مرتضى علي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --brand-primary: #ff9800;
+            --brand-accent: #ffb74d;
+            --bg-base: #07070a;
+            --bg-surface: #13131a;
+            --border-glass: rgba(255, 152, 0, 0.18);
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-font-smoothing: antialiased;
+        }
+
         body { 
-            background: #050505; 
-            color: white; 
+            background: var(--bg-base); 
+            color: var(--text-primary); 
             text-align: center; 
-            font-family: 'Segoe UI', sans-serif; 
-            padding: 20px; 
+            font-family: 'Cairo', sans-serif; 
+            padding: 30px 4% 60px; 
             margin: 0; 
-        }
-        
-        h1 { color: #ff9800; margin-bottom: 20px; }
-
-        .skins-container { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-            gap: 20px; 
-            max-width: 800px; 
-            margin: 0 auto; 
-        }
-
-        .skin-box { 
-            background: #1a1a1a; 
-            padding: 15px; 
-            border-radius: 15px; 
-            border: 1px solid #333; 
-            transition: 0.3s;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .skin-box:hover {
-            border-color: #ff9800;
-            transform: translateY(-4px);
-        }
-
-        .img-wrapper {
-            width: 100%;
-            height: 240px;
-            background: #111;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            display: flex;
             align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            padding: 5px;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; 
-            border-radius: 6px; 
-        }
-
-        .btn { 
-            display: block; 
-            background: #ff9800; 
-            color: black; 
-            padding: 12px; 
-            text-decoration: none; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            font-size: 14px;
-            cursor: pointer;
-            margin-top: 5px;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background: #ffa726;
+        /* خلفية ضوئية تفاعلية هادئة (Aurora Lights) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70vw;
+            height: 50vh;
+            background: radial-gradient(circle, rgba(255, 152, 0, 0.08) 0%, transparent 70%);
+            filter: blur(100px);
+            z-index: -1;
+            pointer-events: none;
         }
         
+        h1 { 
+            color: var(--text-primary); 
+            margin-bottom: 10px; 
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--brand-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
         .back-btn { 
-            display: inline-block; 
-            margin-bottom: 30px; 
-            color: #ff9800; 
+            display: inline-flex; 
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 35px; 
+            color: var(--brand-primary); 
             text-decoration: none; 
-            border: 1px solid #ff9800; 
-            padding: 10px 25px; 
-            border-radius: 10px; 
-            font-weight: bold;
-            transition: 0.3s;
+            border: 1px solid var(--border-glass); 
+            background: rgba(19, 19, 26, 0.7);
+            backdrop-filter: blur(15px);
+            padding: 12px 28px; 
+            border-radius: 14px; 
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .back-btn:hover {
             background: rgba(255, 152, 0, 0.1);
+            border-color: var(--brand-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(255, 152, 0, 0.2);
+        }
+
+        /* شبكة الألعاب الذكية (Grid) */
+        .skins-container { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 24px; 
+            max-width: 1300px; 
+            width: 100%;
+            margin: 0 auto; 
+            align-items: start;
+        }
+
+        @media (max-width: 1200px) {
+            .skins-container { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 900px) {
+            .skins-container { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .skins-container { grid-template-columns: 1fr; }
+        }
+
+        /* بطاقة السكن الاحترافية (Glassmorphism & Glow) */
+        .skin-box { 
+            background: var(--bg-surface); 
+            padding: 18px; 
+            border-radius: 20px; 
+            border: 1px solid var(--border-glass); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+
+        /* تأثير Gradient Border خفيف للبطاقة عند المرور */
+        .skin-box::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255,152,0,0.5), transparent 70%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .skin-box:hover { 
+            transform: translateY(-8px); 
+            border-color: var(--brand-primary);
+            box-shadow: 0 25px 50px rgba(255, 152, 0, 0.25);
+        }
+
+        .skin-box:hover::after {
+            opacity: 1;
+        }
+
+        /* إطار الصورة المباشر بدون قص أو تمدد مع الحفاظ على الأبعاد الأصلية (Aspect Ratio) */
+        img { 
+            width: 100%; 
+            height: auto; 
+            max-height: 280px;
+            object-fit: contain; 
+            border-radius: 12px; 
+            margin-bottom: 12px; 
+            background: #0b0b0e;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .skin-box:hover img {
+            transform: scale(1.05);
+        }
+
+        /* اسم السكن */
+        .skin-box p {
+            margin: 6px 0 14px 0; 
+            font-size: 1.1rem; 
+            font-weight: 800;
+            color: var(--text-primary);
+            text-align: right;
+        }
+
+        /* زر التحميل الاحترافي بنمط متاجر الألعاب (Epic/Steam) */
+        .btn { 
+            display: inline-flex; 
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--brand-primary); 
+            color: #050505; 
+            padding: 13px; 
+            text-decoration: none; 
+            border-radius: 12px; 
+            font-weight: 800; 
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            font-family: inherit;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover { 
+            background: var(--brand-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.45);
+        }
+
+        .btn:active {
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
     <h1>مكتبة السكنات 👕</h1>
-    <a href="index.html" class="back-btn">← الرجوع للرئيسية</a>
+    <p class="subtitle">تصفح وحمل أحدث السكنات الحصرية المخصصة لك</p>
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> الرجوع للرئيسية</a>
 
     <div class="skins-container">
+        
+        <!-- السكن الأول -->
         <div class="skin-box">
-            <div class="img-wrapper">
-                <img src="https://cdn.phototourl.com/free/2026-07-12-3230b6e3-e85b-4419-b90c-66edbed4dbe7.png" alt="قودي الجميل">
-            </div>
-            <p style="margin: 5px 0; font-size: 14px;">قودي الجميل</p>
-            <a href="https://download1350.mediafire.com/36s58p5x69qgF0nzQ4n7LkIvIOUL10nZXtcJhjXUoGBQzw9IULUfvbaiIm6OoyJ0Vee4WvY_Zl7fEbmUSFMIEtb5DoPWH7OjxnkTG6aIJtF8yCMr0iVNVQxEG_paLcd9EGlMiS5dBE-Viu9snB5PSJKNui2Zr7PtGSrOfzasG6ppWvM/g5h3cykxzi3s52m/%D9%81%D9%88%D8%AF%D9%8A+%D8%A7%D9%84%D8%AC%D9%85%D9%8A%D9%84+.png" class="btn" download>تحميل</a>
+            <img src="https://cdn.phototourl.com/free/2026-07-12-3230b6e3-e85b-4419-b90c-66edbed4dbe7.png" alt="قودي الجميل">
+            <p>قودي الجميل</p>
+            <a href="https://download1350.mediafire.com/36s58p5x69qgF0nzQ4n7LkIvIOUL10nZXtcJhjXUoGBQzw9IULUfvbaiIm6OoyJ0Vee4WvY_Zl7fEbmUSFMIEtb5DoPWH7OjxnkTG6aIJtF8yCMr0iVNVQxEG_paLcd9EGlMiS5dBE-Viu9snB5PSJKNui2Zr7PtGSrOfzasG6ppWvM/g5h3cykxzi3s52m/%D9%81%D9%88%D8%AF%D9%8A+%D8%A7%D9%84%D8%AC%D9%85%D9%8A%D9%84+.png" class="btn" download><i class="fas fa-download"></i> تحميل</a>
         </div>
 
+        <!-- السكن الثاني -->
         <div class="skin-box">
-            <div class="img-wrapper">
-                <img src="https://cdn.phototourl.com/free/2026-07-14-a6c482a8-8953-44ce-a014-d3da8256533e.png" alt="مستر وذر">
-            </div>
-            <p style="margin: 5px 0; font-size: 14px;">مستر وذر</p>
-            <a href="https://download947.mediafire.com/vwmkhhylfcwgx7o-4j73bRKCyVjJaIPL2piY-OW-NMZOBItFHV1hBbbPiKhfuydw5Ad9faEQqXfIydOQPBM5__nbzo6ekxDOwq4cYbT5u9-M2LGG8P0gEt6rBE4-oJu1Q5hJZsfRbsrdKLckBL1Rlac_x0FMDyJXuq_sHspikDSY-WM/ox4kerd6xxr2s1u/%D9%85%D8%B3%D8%AA%D8%B1+%D9%88%D8%B0%D8%B1.png" class="btn" download>تحميل</a>
+            <img src="https://cdn.phototourl.com/free/2026-07-14-a6c482a8-8953-44ce-a014-d3da8256533e.png" alt="مستر وذر">
+            <p>مستر وذر</p>
+            <a href="https://download947.mediafire.com/vwmkhhylfcwgx7o-4j73bRKCyVjJaIPL2piY-OW-NMZOBItFHV1hBbbPiKhfuydw5Ad9faEQqXfIydOQPBM5__nbzo6ekxDOwq4cYbT5u9-M2LGG8P0gEt6rBE4-oJu1Q5hJZsfRbsrdKLckBL1Rlac_x0FMDyJXuq_sHspikDSY-WM/ox4kerd6xxr2s1u/%D9%85%D8%B3%D8%AA%D8%B1+%D9%88%D8%B0%D8%B1.png" class="btn" download><i class="fas fa-download"></i> تحميل</a>
         </div>
 
+        <!-- السكن الثالث -->
         <div class="skin-box">
-            <div class="img-wrapper">
-                <img src="https://cdn.phototourl.com/free/2026-07-14-fb7e23b4-2c44-4208-8ccf-2e91a76af36e.png" alt="ميكي">
-            </div>
-            <p style="margin: 5px 0; font-size: 14px;">ميكي</p>
-            <a href="https://download1476.mediafire.com/jylsfl0g0qlgqd3laeMSPyBEyn6exE1b5w8cETkCoS-j-sqQKoMgmKnJ_tRgK4xmN-jqCRqL3_FiKRwHmtXzAT47T2PBCCRt3MYaQjrY5OHduYihQ8z7Ep9xM3w1SISdKA5AIt5HRluUgjWA_u8I6YY5mYidNh2Oovkk8kVfWXpMCOI/u45yoj6sc3a1dll/%D9%85%D9%8A%D9%83%D9%8A+%282%29.png" class="btn" download>تحميل</a>
+            <img src="https://cdn.phototourl.com/free/2026-07-14-fb7e23b4-2c44-4208-8ccf-2e91a76af36e.png" alt="ميكي">
+            <p>ميكي</p>
+            <a href="https://download1476.mediafire.com/jylsfl0g0qlgqd3laeMSPyBEyn6exE1b5w8cETkCoS-j-sqQKoMgmKnJ_tRgK4xmN-jqCRqL3_FiKRwHmtXzAT47T2PBCCRt3MYaQjrY5OHduYihQ8z7Ep9xM3w1SISdKA5AIt5HRluUgjWA_u8I6YY5mYidNh2Oovkk8kVfWXpMCOI/u45yoj6sc3a1dll/%D9%85%D9%8A%D9%83%D9%8A+%282%29.png" class="btn" download><i class="fas fa-download"></i> تحميل</a>
         </div>
+
     </div>
 
 </body>
