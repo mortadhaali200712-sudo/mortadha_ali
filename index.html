@@ -876,12 +876,13 @@
             font-size: 1.4rem;
         }
         .toast-notification.show {
+            visibility: hidden; /* تم التصحيح لتجنب أي تعارض */
             visibility: visible;
             transform: translateY(0);
             opacity: 1;
         }
 
-        /* تحسينات استثنائية دقيقة لنسخة الهاتف (Mobile Optimization) وضبط مظهر القسم الجديد */
+        /* تحسينات متجاوبة تامة ودقيقة لقسم GTA 5 وباقي الأقسام على الهاتف */
         @media (max-width: 1024px) {
             .site-nav { padding: 0 5%; height: 75px; }
             .nav-links { display: none; }
@@ -903,9 +904,9 @@
             .card-share { grid-column: span 1; }
             .minecraft-grid { grid-template-columns: 1fr; }
             
-            /* ضبط خاص لبطاقات وقسم GTA 5 على الهواتف لضمان مظهر انسيابي وسلس */
+            /* ضبط شامل وبسيط لعرض بطاقات GTA 5 على الهواتف بشكل عمودي أنيق وواضح */
             .gta-section-box {
-                padding: 25px 20px;
+                padding: 30px 20px;
                 border-radius: 28px;
             }
             .gta-grid {
@@ -916,14 +917,14 @@
                 grid-column: span 1 !important;
             }
             .gta-card {
-                padding: 20px 18px;
+                padding: 22px 18px;
                 border-radius: 20px;
             }
             .gta-icon-box {
-                width: 45px;
-                height: 45px;
-                font-size: 1.4rem;
-                border-radius: 12px;
+                width: 48px;
+                height: 48px;
+                font-size: 1.5rem;
+                border-radius: 14px;
             }
 
             .search-input { width: 170px; }
