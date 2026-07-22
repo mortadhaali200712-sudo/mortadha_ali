@@ -557,7 +557,6 @@
             gap: 30px;
             overflow: hidden;
         }
-        /* خلفية متموجة وإضاءة نيون خفيفة خاصة بقسم GTA 5 */
         .gta-section-box::before {
             content: '';
             position: absolute;
@@ -609,7 +608,6 @@
             transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        /* إطار مضيء وتأثيرات Shine عند الـ Hover */
         .gta-card::after {
             content: '';
             position: absolute;
@@ -883,7 +881,7 @@
             opacity: 1;
         }
 
-        /* تحسينات استثنائية لنسخة الهاتف (Mobile Optimization) */
+        /* تحسينات استثنائية دقيقة لنسخة الهاتف (Mobile Optimization) وضبط مظهر القسم الجديد */
         @media (max-width: 1024px) {
             .site-nav { padding: 0 5%; height: 75px; }
             .nav-links { display: none; }
@@ -904,7 +902,30 @@
             .social-bento-grid { grid-template-columns: 1fr; }
             .card-share { grid-column: span 1; }
             .minecraft-grid { grid-template-columns: 1fr; }
-            .gta-grid { grid-template-columns: 1fr; }
+            
+            /* ضبط خاص لبطاقات وقسم GTA 5 على الهواتف لضمان مظهر انسيابي وسلس */
+            .gta-section-box {
+                padding: 25px 20px;
+                border-radius: 28px;
+            }
+            .gta-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .gta-card[style*="grid-column"] {
+                grid-column: span 1 !important;
+            }
+            .gta-card {
+                padding: 20px 18px;
+                border-radius: 20px;
+            }
+            .gta-icon-box {
+                width: 45px;
+                height: 45px;
+                font-size: 1.4rem;
+                border-radius: 12px;
+            }
+
             .search-input { width: 170px; }
             .search-input:focus { width: 210px; }
             .search-results-dropdown { width: 270px; right: auto; left: 0; }
@@ -1032,7 +1053,7 @@
                 </div>
             </section>
 
-            <!-- قسم ماين كرافت الفاخر (بدون أي تغيير) -->
+            <!-- قسم ماين كرافت الفاخر -->
             <section class="section-box" id="minecraft">
                 <div class="section-header-title">
                     <i class="fas fa-cube" style="color: var(--success);"></i> قسم ماين كرافت ⛏️
@@ -1061,7 +1082,7 @@
                 </div>
             </section>
 
-            <!-- 🎮 قسم مودات GTA 5 الجديد (بهوية بصرية فريدة وأنيقة) -->
+            <!-- 🎮 قسم مودات GTA 5 الجديد (متجاوب ومرتب بالكامل لهواتف المحمول) -->
             <section class="gta-section-box" id="gta5">
                 <div class="gta-header-title">
                     <i class="fas fa-gamepad"></i> قسم مودات GTA 5 🎮
@@ -1070,7 +1091,7 @@
                     <a href="gta-mods.html" class="gta-card search-target" data-searchname="مودات جي تي اي 5">
                         <div class="gta-icon-box"><i class="fas fa-cogs"></i></div>
                         <h3>مودات</h3>
-                        <p>أضوى مودات وأدوات التحسين المخصصة لرفع أداء ومتعة لعبة GTA 5.</p>
+                        <p>أقوى مودات وأدوات التحسين المخصصة لرفع أداء ومتعة لعبة GTA 5.</p>
                     </a>
                     <a href="gta-skins.html" class="gta-card search-target" data-searchname="سكنات جي تي اي 5">
                         <div class="gta-icon-box"><i class="fas fa-tshirt"></i></div>
