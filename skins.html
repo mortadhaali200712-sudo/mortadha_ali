@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="مكتبة السكنات الرسمية - منصة مرتضى عُلي للألعاب والترفيه الرقمي">
     <title>سكنات مرتضى علي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -46,22 +45,11 @@
             justify-content: space-between;
         }
 
-        /* تخصيص Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-base);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 152, 0, 0.3);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--brand-primary);
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 152, 0, 0.3); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--brand-primary); }
 
-        /* خلفية Aurora الديناميكية المتطورة */
         .aurora-background {
             position: fixed;
             inset: 0;
@@ -94,7 +82,6 @@
             margin: 0 auto;
         }
 
-        /* شريط التنقل العلوي وزر الرجوع */
         .top-nav-bar {
             display: flex;
             justify-content: space-between;
@@ -127,7 +114,6 @@
             box-shadow: 0 15px 35px rgba(255, 152, 0, 0.2);
         }
 
-        /* عداد السكنات التفاعلي */
         .skins-counter-badge {
             background: var(--bg-glass);
             backdrop-filter: blur(20px);
@@ -143,7 +129,6 @@
             font-weight: 900;
         }
 
-        /* الهيدر والعنوان الرئيسي */
         .page-header-container {
             text-align: center;
             max-width: 800px;
@@ -159,7 +144,6 @@
             background: linear-gradient(135deg, var(--text-primary) 20%, var(--brand-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
         }
         .page-header-container p {
             color: var(--text-secondary);
@@ -167,7 +151,6 @@
             font-weight: 600;
         }
 
-        /* أدوات البحث والتحكم */
         .controls-toolbar {
             display: flex;
             justify-content: center;
@@ -176,7 +159,6 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            flex-wrap: wrap;
         }
 
         .search-wrapper {
@@ -211,13 +193,9 @@
             color: var(--text-secondary);
             font-size: 1.1rem;
             pointer-events: none;
-            transition: color 0.3s ease;
-        }
-        #skinSearch:focus ~ .search-icon-pos {
-            color: var(--brand-primary);
         }
 
-        /* شبكة عرض السكنات (تعتمد على ارتفاع الصورة تلقائيًا دون فراغات) */
+        /* شبكة عرض البطاقات بشكل متناسق ومضبوط */
         .skins-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -226,31 +204,19 @@
             align-items: start;
         }
 
-        @media (max-width: 1280px) {
-            .skins-container {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        @media (max-width: 900px) {
-            .skins-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 600px) {
-            .skins-container {
-                grid-template-columns: 1fr;
-            }
-        }
+        @media (max-width: 1280px) { .skins-container { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 900px) { .skins-container { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .skins-container { grid-template-columns: 1fr; } }
 
-        /* بطاقة السكن الفاخرة المعتمدة على حجم الصورة بدقة Auto Height */
+        /* البطاقة الاحترافية المتماسكة */
         .skin-box {
             background: var(--bg-surface);
             border: 1px solid var(--border-glass);
             border-radius: 20px;
-            padding: 14px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-            height: auto;
+            gap: 14px;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(20px);
@@ -278,50 +244,47 @@
             box-shadow: 0 25px 50px rgba(255, 152, 0, 0.25);
         }
 
-        /* إطار الصورة المباشر بدون قص أو تمدد */
+        /* إطار الصورة المعالج بدقة فاخرة (منع التمدد أو التشويه مع إظهار السكن بوضوح تם) */
         .skin-img-wrapper {
             position: relative;
             width: 100%;
-            height: auto;
+            height: 260px;
+            background: radial-gradient(circle, rgba(255,152,0,0.08) 0%, rgba(10,10,10,0.95) 100%);
             border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             overflow: hidden;
-            background: #181818;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px;
+            padding: 12px;
         }
 
         .skin-img-wrapper img {
             width: 100%;
-            height: auto;
-            max-height: 280px;
+            height: 100%;
             object-fit: contain;
-            border-radius: 10px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .skin-box:hover .skin-img-wrapper img {
-            transform: scale(1.05);
+            transform: scale(1.08) translateY(-4px);
         }
 
         .skin-info {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-top: 12px;
+            gap: 12px;
         }
 
         .skin-title {
             margin: 0;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 800;
             color: var(--text-primary);
             text-align: right;
-            line-height: 1.3;
         }
 
-        /* زر التحميل الاحترافي مع الأيقونة وتأثيرات الحركة */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -348,7 +311,6 @@
             box-shadow: 0 8px 25px rgba(255, 152, 0, 0.45);
         }
 
-        /* تأثير التموج (Ripple Effect) للأزرار */
         .ripple-effect {
             position: absolute;
             background: rgba(255, 255, 255, 0.35);
@@ -358,13 +320,9 @@
             pointer-events: none;
         }
         @keyframes rippleAnim {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
+            to { transform: scale(4); opacity: 0; }
         }
 
-        /* Footer العصري وحقوق النشر */
         .footer-container {
             text-align: center;
             padding-top: 30px;
@@ -374,11 +332,8 @@
             font-weight: 600;
             margin-top: auto;
         }
-        .footer-container span {
-            color: var(--brand-primary);
-        }
+        .footer-container span { color: var(--brand-primary); }
 
-        /* إشعار Toast العصري بدلاً من Alert التقليدي */
         .toast-notification {
             visibility: hidden;
             background: var(--bg-glass);
@@ -401,27 +356,18 @@
             align-items: center;
             gap: 12px;
         }
-        .toast-notification i {
-            color: var(--brand-primary);
-            font-size: 1.3rem;
-        }
-        .toast-notification.active {
-            visibility: visible;
-            transform: translateY(0);
-            opacity: 1;
-        }
+        .toast-notification i { color: var(--brand-primary); font-size: 1.3rem; }
+        .toast-notification.active { visibility: visible; transform: translateY(0); opacity: 1; }
     </style>
 </head>
 <body>
 
-    <!-- خلفية تفاعلية ضوئية -->
     <div class="aurora-background">
         <div class="aurora-orb orb-one"></div>
         <div class="aurora-orb orb-two"></div>
     </div>
 
     <div class="main-wrapper">
-        <!-- شريط التنقل العلوي -->
         <nav class="top-nav-bar">
             <a href="index.html" class="back-btn">
                 <i class="fas fa-arrow-right"></i> الرجوع للرئيسية
@@ -431,13 +377,11 @@
             </div>
         </nav>
 
-        <!-- الهيدر الرئيسي -->
         <header class="page-header-container">
             <h1>مكتبة السكنات 👕</h1>
             <p>اختر السكن المفضل لديك وحمله بضغطة زر واحدة لتجربة لعب استثنائية</p>
         </header>
 
-        <!-- أدوات البحث -->
         <div class="controls-toolbar">
             <div class="search-wrapper">
                 <input type="text" id="skinSearch" onkeyup="searchSkins()" placeholder="🔍 ابحث عن اسم السكن...">
@@ -445,7 +389,6 @@
             </div>
         </div>
 
-        <!-- شبكة السكنات الاحترافية -->
         <div class="skins-container" id="skinsGrid">
             
             <!-- السكن الأول: قودي الجميل -->
@@ -490,19 +433,16 @@
         </div>
     </div>
 
-    <!-- Footer الاحترافي -->
     <footer class="footer-container">
         <p>جميع الحقوق محفوظة © 2026 | منصة <span>مرتضى عُلي</span> للألعاب والترفيه الرقمي</p>
     </footer>
 
-    <!-- إشعار Toast التفاعلي -->
     <div id="downloadToast" class="toast-notification">
         <i class="fas fa-check-circle"></i>
         <span id="toastMessage">جاري بدء تحميل السكن...</span>
     </div>
 
     <script>
-        // وظيفة البحث الفوري
         function searchSkins() {
             let input = document.getElementById('skinSearch').value.toLowerCase();
             let boxes = document.getElementsByClassName('skin-box');
@@ -520,18 +460,14 @@
             document.getElementById('skinCounter').innerText = visibleCount;
         }
 
-        // إشعار التحميل العصري
         function showDownloadToast(skinName) {
             const toast = document.getElementById("downloadToast");
             const toastMsg = document.getElementById("toastMessage");
             toastMsg.innerText = `جاري تحميل سكن "${skinName}" بنجاح!`;
             toast.classList.add("active");
-            setTimeout(() => {
-                toast.classList.remove("active");
-            }, 3500);
+            setTimeout(() => { toast.classList.remove("active"); }, 3500);
         }
 
-        // تأثير التموج عند الضغط على الأزرار
         document.addEventListener('click', function(e) {
             const target = e.target.closest('.btn, .back-btn');
             if (target) {
