@@ -5,111 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سكنات مرتضى علي</title>
     <style>
-        body {
-            background-color: #0f0f0f;
-            color: #ffffff;
-            font-family: 'Cairo', Tahoma, sans-serif;
-            margin: 0;
-            padding: 20px;
+        body { 
+            background: #050505; 
+            color: white; 
+            text-align: center; 
+            font-family: 'Segoe UI', sans-serif; 
+            padding: 20px; 
+            margin: 0; 
+        }
+        
+        h1 { color: #ff9800; margin-bottom: 20px; }
+
+        .skins-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+            gap: 20px; 
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+
+        .skin-box { 
+            background: #1a1a1a; 
+            padding: 15px; 
+            border-radius: 15px; 
+            border: 1px solid #333; 
+            transition: 0.3s;
             display: flex;
             flex-direction: column;
-            align-items: center;
-        }
-
-        h1 {
-            margin-bottom: 25px;
-            color: #ff9800;
-        }
-
-        .skins-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            width: 100%;
-            max-width: 1000px;
-        }
-
-        .skin-box {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            justify-content: space-between;
         }
 
         .skin-box:hover {
-            transform: translateY(-500px) scale(1.02);
             border-color: #ff9800;
+            transform: translateY(-4px);
         }
 
-        /* إطار الصورة المعالج بشكل ممتاز ونظيف بدون أي تمدد أو تشويه */
-        .skin-box img {
+        .img-wrapper {
             width: 100%;
-            height: 220px;
-            object-fit: contain;
+            height: 240px;
             background: #111;
-            border-radius: 8px;
-            margin-bottom: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
             padding: 5px;
         }
 
-        .skin-box p {
-            margin: 8px 0 12px 0;
-            font-size: 16px;
-            font-weight: bold;
-            color: #fff;
+        img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+            border-radius: 6px; 
         }
 
-        .btn {
-            display: inline-block;
-            background: #ff9800;
-            color: #0f0f0f;
-            padding: 10px 0;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
+        .btn { 
+            display: block; 
+            background: #ff9800; 
+            color: black; 
+            padding: 12px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: bold; 
             font-size: 14px;
-            width: 100%;
-            transition: background 0.3s ease;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: background 0.3s;
         }
 
         .btn:hover {
             background: #ffa726;
         }
+        
+        .back-btn { 
+            display: inline-block; 
+            margin-bottom: 30px; 
+            color: #ff9800; 
+            text-decoration: none; 
+            border: 1px solid #ff9800; 
+            padding: 10px 25px; 
+            border-radius: 10px; 
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 152, 0, 0.1);
+        }
     </style>
 </head>
 <body>
 
-    <h1>قائمة السكنات</h1>
+    <h1>مكتبة السكنات 👕</h1>
+    <a href="index.html" class="back-btn">← الرجوع للرئيسية</a>
 
     <div class="skins-container">
-        
-        <!-- السكن الأول -->
-        <div class="skin-box" data-name="قودي الجميل">
-            <img src="https://cdn.phototourl.com/free/2026-07-12-3230b6e3-e85b-4419-b90c-66edbed4dbe7.png" alt="قودي الجميل">
+        <div class="skin-box">
+            <div class="img-wrapper">
+                <img src="https://cdn.phototourl.com/free/2026-07-12-3230b6e3-e85b-4419-b90c-66edbed4dbe7.png" alt="قودي الجميل">
+            </div>
             <p style="margin: 5px 0; font-size: 14px;">قودي الجميل</p>
             <a href="https://download1350.mediafire.com/36s58p5x69qgF0nzQ4n7LkIvIOUL10nZXtcJhjXUoGBQzw9IULUfvbaiIm6OoyJ0Vee4WvY_Zl7fEbmUSFMIEtb5DoPWH7OjxnkTG6aIJtF8yCMr0iVNVQxEG_paLcd9EGlMiS5dBE-Viu9snB5PSJKNui2Zr7PtGSrOfzasG6ppWvM/g5h3cykxzi3s52m/%D9%81%D9%88%D8%AF%D9%8A+%D8%A7%D9%84%D8%AC%D9%85%D9%8A%D9%84+.png" class="btn" download>تحميل</a>
         </div>
 
-        <!-- السكن الثاني -->
-        <div class="skin-box" data-name="مستر وذر">
-            <img src="https://cdn.phototourl.com/free/2026-07-14-a6c482a8-8953-44ce-a014-d3da8256533e.png" alt="مستر وذر">
+        <div class="skin-box">
+            <div class="img-wrapper">
+                <img src="https://cdn.phototourl.com/free/2026-07-14-a6c482a8-8953-44ce-a014-d3da8256533e.png" alt="مستر وذر">
+            </div>
             <p style="margin: 5px 0; font-size: 14px;">مستر وذر</p>
             <a href="https://download947.mediafire.com/vwmkhhylfcwgx7o-4j73bRKCyVjJaIPL2piY-OW-NMZOBItFHV1hBbbPiKhfuydw5Ad9faEQqXfIydOQPBM5__nbzo6ekxDOwq4cYbT5u9-M2LGG8P0gEt6rBE4-oJu1Q5hJZsfRbsrdKLckBL1Rlac_x0FMDyJXuq_sHspikDSY-WM/ox4kerd6xxr2s1u/%D9%85%D8%B3%D8%AA%D8%B1+%D9%88%D8%B0%D8%B1.png" class="btn" download>تحميل</a>
         </div>
 
-        <!-- السكن الثالث -->
-        <div class="skin-box" data-name="ميكي">
-            <img src="https://cdn.phototourl.com/free/2026-07-14-fb7e23b4-2c44-4208-8ccf-2e91a76af36e.png" alt="ميكي">
+        <div class="skin-box">
+            <div class="img-wrapper">
+                <img src="https://cdn.phototourl.com/free/2026-07-14-fb7e23b4-2c44-4208-8ccf-2e91a76af36e.png" alt="ميكي">
+            </div>
             <p style="margin: 5px 0; font-size: 14px;">ميكي</p>
             <a href="https://download1476.mediafire.com/jylsfl0g0qlgqd3laeMSPyBEyn6exE1b5w8cETkCoS-j-sqQKoMgmKnJ_tRgK4xmN-jqCRqL3_FiKRwHmtXzAT47T2PBCCRt3MYaQjrY5OHduYihQ8z7Ep9xM3w1SISdKA5AIt5HRluUgjWA_u8I6YY5mYidNh2Oovkk8kVfWXpMCOI/u45yoj6sc3a1dll/%D9%85%D9%8A%D9%83%D9%8A+%282%29.png" class="btn" download>تحميل</a>
         </div>
-
     </div>
 
 </body>
