@@ -1,494 +1,116 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="dark">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سكنات مرتضى علي</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --brand-primary: #ff9800;
-            --brand-secondary: #f57c00;
-            --brand-accent: #ffb74d;
-            --bg-base: #050505;
-            --bg-surface: #121212;
-            --bg-glass: rgba(18, 18, 18, 0.85);
-            --border-glass: rgba(255, 152, 0, 0.15);
-            --text-primary: #ffffff;
-            --text-secondary: #a3a3a3;
-            --transition-swift: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            user-select: none;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
-            background-color: var(--bg-base);
-            color: var(--text-primary);
-            font-family: 'Cairo', sans-serif;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-            padding: 30px 4% 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-base); }
-        ::-webkit-scrollbar-thumb { background: rgba(255, 152, 0, 0.3); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--brand-primary); }
-
-        .aurora-background {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            pointer-events: none;
-            overflow: hidden;
-            background: var(--bg-base);
-        }
-        .aurora-orb {
-            position: absolute;
-            width: 50vw;
-            height: 50vw;
-            border-radius: 50%;
-            filter: blur(150px);
-            opacity: 0.12;
-            animation: auroraFloat 20s ease-in-out infinite alternate;
-        }
-        .orb-one { background: var(--brand-primary); top: -25%; right: -10%; }
-        .orb-two { background: #ff3d00; bottom: -25%; left: -10%; animation-delay: -7s; }
-
-        @keyframes auroraFloat {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(40px, -30px) scale(1.08); }
-            100% { transform: translate(-30px, 40px) scale(0.92); }
-        }
-
-        .main-wrapper {
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .top-nav-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--bg-glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-glass);
-            padding: 12px 24px;
-            border-radius: 14px;
-            text-decoration: none;
-            color: var(--brand-primary);
-            font-weight: 700;
-            font-size: 0.95rem;
-            transition: var(--transition-swift);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .back-btn:hover {
-            background: rgba(255, 152, 0, 0.1);
-            border-color: var(--brand-primary);
-            transform: translateX(-4px);
-            box-shadow: 0 15px 35px rgba(255, 152, 0, 0.2);
-        }
-
-        .skins-counter-badge {
-            background: var(--bg-glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--border-glass);
-            padding: 10px 20px;
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-        }
-        .skins-counter-badge span {
-            color: var(--brand-primary);
-            font-weight: 900;
-        }
-
-        .page-header-container {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 35px;
+            background-color: #0f0f0f;
+            color: #ffffff;
+            font-family: 'Cairo', Tahoma, sans-serif;
+            margin: 0;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-        }
-        .page-header-container h1 {
-            font-size: 2.8rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--text-primary) 20%, var(--brand-primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .page-header-container p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            font-weight: 600;
         }
 
-        .controls-toolbar {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        h1 {
+            margin-bottom: 25px;
+            color: #ff9800;
         }
 
-        .search-wrapper {
-            position: relative;
-            flex-grow: 1;
-        }
-        #skinSearch {
-            width: 100%;
-            padding: 16px 20px 16px 50px;
-            border-radius: 18px;
-            border: 1px solid var(--border-glass);
-            background: var(--bg-glass);
-            backdrop-filter: blur(20px);
-            color: var(--text-primary);
-            text-align: right;
-            font-size: 1rem;
-            font-family: inherit;
-            font-weight: 600;
-            transition: var(--transition-swift);
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 10px 30px rgba(0,0,0,0.1);
-        }
-        #skinSearch:focus {
-            outline: none;
-            border-color: var(--brand-primary);
-            box-shadow: 0 0 25px rgba(255, 152, 0, 0.25);
-        }
-        .search-icon-pos {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            pointer-events: none;
-        }
-
-        /* شبكة عرض البطاقات متناسقة ومرتبة بالكامل */
         .skins-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            margin-bottom: 50px;
-            align-items: start;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
         }
 
-        @media (max-width: 1280px) { .skins-container { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 900px) { .skins-container { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .skins-container { grid-template-columns: 1fr; } }
-
-        /* البطاقة الاحترافية مطابقة تماماً لأبعاد وحجم الصورة بدون أي فراغات مبالغ فيها */
         .skin-box {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-glass);
-            border-radius: 16px;
-            padding: 12px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
-            width: 100%;
-            height: auto;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            transition: var(--transition-swift);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        .skin-box::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 16px;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(255,152,0,0.4), transparent 60%);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .skin-box:hover {
-            transform: translateY(-6px);
-            border-color: var(--brand-primary);
-            box-shadow: 0 25px 50px rgba(255, 152, 0, 0.25);
+            transform: translateY(-500px) scale(1.02);
+            border-color: #ff9800;
         }
 
-        /* إطار الصورة يحيط بالصورة بدقة ويعرضها بحجمها الطبيعي تماماً دون قص أو تمدد */
-        .skin-img-wrapper {
-            position: relative;
+        /* إطار الصورة المعالج بشكل ممتاز ونظيف بدون أي تمدد أو تشويه */
+        .skin-box img {
             width: 100%;
-            height: auto;
-            background: #0f0f0f;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4px;
-        }
-
-        .skin-img-wrapper img {
-            width: 100%;
-            height: auto;
-            max-height: 250px;
+            height: 220px;
             object-fit: contain;
+            background: #111;
             border-radius: 8px;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            margin-bottom: 12px;
+            padding: 5px;
         }
 
-        .skin-box:hover .skin-img-wrapper img {
-            transform: scale(1.05);
-        }
-
-        .skin-info {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .skin-title {
-            margin: 5px 0;
-            font-size: 14px;
-            font-weight: 800;
-            color: var(--text-primary);
-            text-align: right;
+        .skin-box p {
+            margin: 8px 0 12px 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
         }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: var(--brand-primary);
-            color: #050505;
-            padding: 10px;
+            display: inline-block;
+            background: #ff9800;
+            color: #0f0f0f;
+            padding: 10px 0;
             text-decoration: none;
-            border-radius: 10px;
-            font-weight: 800;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
             width: 100%;
-            font-family: inherit;
-            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
-            transition: var(--transition-swift);
+            transition: background 0.3s ease;
         }
 
         .btn:hover {
-            background: var(--brand-accent);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.45);
+            background: #ffa726;
         }
-
-        .ripple-effect {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.35);
-            border-radius: 50%;
-            transform: scale(0);
-            animation: rippleAnim 0.5s linear;
-            pointer-events: none;
-        }
-        @keyframes rippleAnim {
-            to { transform: scale(4); opacity: 0; }
-        }
-
-        .footer-container {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid var(--border-glass);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-top: auto;
-        }
-        .footer-container span { color: var(--brand-primary); }
-
-        .toast-notification {
-            visibility: hidden;
-            background: var(--bg-glass);
-            backdrop-filter: blur(25px);
-            border: 1px solid var(--brand-primary);
-            color: var(--text-primary);
-            border-radius: 16px;
-            padding: 16px 28px;
-            position: fixed;
-            bottom: 35px;
-            right: 35px;
-            z-index: 99999;
-            font-weight: 800;
-            font-size: 0.95rem;
-            box-shadow: 0 20px 40px rgba(255, 152, 0, 0.25);
-            transform: translateY(20px);
-            opacity: 0;
-            transition: var(--transition-swift);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .toast-notification i { color: var(--brand-primary); font-size: 1.3rem; }
-        .toast-notification.active { visibility: visible; transform: translateY(0); opacity: 1; }
     </style>
 </head>
 <body>
 
-    <div class="aurora-background">
-        <div class="aurora-orb orb-one"></div>
-        <div class="aurora-orb orb-two"></div>
-    </div>
+    <h1>قائمة السكنات</h1>
 
-    <div class="main-wrapper">
-        <nav class="top-nav-bar">
-            <a href="index.html" class="back-btn">
-                <i class="fas fa-arrow-right"></i> الرجوع للرئيسية
-            </a>
-            <div class="skins-counter-badge">
-                إجمالي السكنات: <span id="skinCounter">3</span>
-            </div>
-        </nav>
-
-        <header class="page-header-container">
-            <h1>مكتبة السكنات 👕</h1>
-            <p>اختر السكن المفضل لديك وحمله بضغطة زر واحدة لتجربة لعب استثنائية</p>
-        </header>
-
-        <div class="controls-toolbar">
-            <div class="search-wrapper">
-                <input type="text" id="skinSearch" onkeyup="searchSkins()" placeholder="🔍 ابحث عن اسم السكن...">
-                <i class="fas fa-search search-icon-pos"></i>
-            </div>
+    <div class="skins-container">
+        
+        <!-- السكن الأول -->
+        <div class="skin-box" data-name="قودي الجميل">
+            <img src="https://cdn.phototourl.com/free/2026-07-12-3230b6e3-e85b-4419-b90c-66edbed4dbe7.png" alt="قودي الجميل">
+            <p style="margin: 5px 0; font-size: 14px;">قودي الجميل</p>
+            <a href="https://download1350.mediafire.com/36s58p5x69qgF0nzQ4n7LkIvIOUL10nZXtcJhjXUoGBQzw9IULUfvbaiIm6OoyJ0Vee4WvY_Zl7fEbmUSFMIEtb5DoPWH7OjxnkTG6aIJtF8yCMr0iVNVQxEG_paLcd9EGlMiS5dBE-Viu9snB5PSJKNui2Zr7PtGSrOfzasG6ppWvM/g5h3cykxzi3s52m/%D9%81%D9%88%D8%AF%D9%8A+%D8%A7%D9%84%D8%AC%D9%85%D9%8A%D9%84+.png" class="btn" download>تحميل</a>
         </div>
 
-        <div class="skins-container" id="skinsGrid">
-            
-            <!-- السكن الأول: قودي الجميل -->
-            <div class="skin-box" data-name="قودي الجميل">
-                <div class="skin-img-wrapper">
-                    <img src="https://cdn.phototourl.com/free/2026-07-12-3230b6e3-e85b-4419-b90c-66edbed4dbe7.png" alt="قودي الجميل" loading="lazy">
-                </div>
-                <div class="skin-info">
-                    <p class="skin-title">قودي الجميل</p>
-                    <a href="https://download1350.mediafire.com/36s58p5x69qgF0nzQ4n7LkIvIOUL10nZXtcJhjXUoGBQzw9IULUfvbaiIm6OoyJ0Vee4WvY_Zl7fEbmUSFMIEtb5DoPWH7OjxnkTG6aIJtF8yCMr0iVNVQxEG_paLcd9EGlMiS5dBE-Viu9snB5PSJKNui2Zr7PtGSrOfzasG6ppWvM/g5h3cykxzi3s52m/%D9%81%D9%88%D8%AF%D9%8A+%D8%A7%D9%84%D8%AC%D9%85%D9%8A%D9%84+.png" class="btn" download onclick="showDownloadToast('قودي الجميل')">
-                        <i class="fas fa-download"></i> تحميل
-                    </a>
-                </div>
-            </div>
-
-            <!-- السكن الثاني: مستر وذر -->
-            <div class="skin-box" data-name="مستر وذر">
-                <div class="skin-img-wrapper">
-                    <img src="https://cdn.phototourl.com/free/2026-07-14-a6c482a8-8953-44ce-a014-d3da8256533e.png" alt="مستر وذر" loading="lazy">
-                </div>
-                <div class="skin-info">
-                    <p class="skin-title">مستر وذر</p>
-                    <a href="https://download947.mediafire.com/vwmkhhylfcwgx7o-4j73bRKCyVjJaIPL2piY-OW-NMZOBItFHV1hBbbPiKhfuydw5Ad9faEQqXfIydOQPBM5__nbzo6ekxDOwq4cYbT5u9-M2LGG8P0gEt6rBE4-oJu1Q5hJZsfRbsrdKLckBL1Rlac_x0FMDyJXuq_sHspikDSY-WM/ox4kerd6xxr2s1u/%D9%85%D8%B3%D8%AA%D8%B1+%D9%88%D8%B0%D8%B1.png" class="btn" download onclick="showDownloadToast('مستر وذر')">
-                        <i class="fas fa-download"></i> تحميل
-                    </a>
-                </div>
-            </div>
-
-            <!-- السكن الثالث: ميكي -->
-            <div class="skin-box" data-name="ميكي">
-                <div class="skin-img-wrapper">
-                    <img src="https://cdn.phototourl.com/free/2026-07-14-fb7e23b4-2c44-4208-8ccf-2e91a76af36e.png" alt="ميكي" loading="lazy">
-                </div>
-                <div class="skin-info">
-                    <p class="skin-title">ميكي</p>
-                    <a href="https://download1476.mediafire.com/jylsfl0g0qlgqd3laeMSPyBEyn6exE1b5w8cETkCoS-j-sqQKoMgmKnJ_tRgK4xmN-jqCRqL3_FiKRwHmtXzAT47T2PBCCRt3MYaQjrY5OHduYihQ8z7Ep9xM3w1SISdKA5AIt5HRluUgjWA_u8I6YY5mYidNh2Oovkk8kVfWXpMCOI/u45yoj6sc3a1dll/%D9%85%D9%8A%D9%83%D9%8A+%282%29.png" class="btn" download onclick="showDownloadToast('ميكي')">
-                        <i class="fas fa-download"></i> تحميل
-                    </a>
-                </div>
-            </div>
-
+        <!-- السكن الثاني -->
+        <div class="skin-box" data-name="مستر وذر">
+            <img src="https://cdn.phototourl.com/free/2026-07-14-a6c482a8-8953-44ce-a014-d3da8256533e.png" alt="مستر وذر">
+            <p style="margin: 5px 0; font-size: 14px;">مستر وذر</p>
+            <a href="https://download947.mediafire.com/vwmkhhylfcwgx7o-4j73bRKCyVjJaIPL2piY-OW-NMZOBItFHV1hBbbPiKhfuydw5Ad9faEQqXfIydOQPBM5__nbzo6ekxDOwq4cYbT5u9-M2LGG8P0gEt6rBE4-oJu1Q5hJZsfRbsrdKLckBL1Rlac_x0FMDyJXuq_sHspikDSY-WM/ox4kerd6xxr2s1u/%D9%85%D8%B3%D8%AA%D8%B1+%D9%88%D8%B0%D8%B1.png" class="btn" download>تحميل</a>
         </div>
+
+        <!-- السكن الثالث -->
+        <div class="skin-box" data-name="ميكي">
+            <img src="https://cdn.phototourl.com/free/2026-07-14-fb7e23b4-2c44-4208-8ccf-2e91a76af36e.png" alt="ميكي">
+            <p style="margin: 5px 0; font-size: 14px;">ميكي</p>
+            <a href="https://download1476.mediafire.com/jylsfl0g0qlgqd3laeMSPyBEyn6exE1b5w8cETkCoS-j-sqQKoMgmKnJ_tRgK4xmN-jqCRqL3_FiKRwHmtXzAT47T2PBCCRt3MYaQjrY5OHduYihQ8z7Ep9xM3w1SISdKA5AIt5HRluUgjWA_u8I6YY5mYidNh2Oovkk8kVfWXpMCOI/u45yoj6sc3a1dll/%D9%85%D9%8A%D9%83%D9%8A+%282%29.png" class="btn" download>تحميل</a>
+        </div>
+
     </div>
 
-    <footer class="footer-container">
-        <p>جميع الحقوق محفوظة © 2026 | منصة <span>مرتضى عُلي</span> للألعاب والترفيه الرقمي</p>
-    </footer>
-
-    <div id="downloadToast" class="toast-notification">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">جاري بدء تحميل السكن...</span>
-    </div>
-
-    <script>
-        function searchSkins() {
-            let input = document.getElementById('skinSearch').value.toLowerCase();
-            let boxes = document.getElementsByClassName('skin-box');
-            let visibleCount = 0;
-
-            for (let i = 0; i < boxes.length; i++) {
-                let name = boxes[i].getAttribute('data-name').toLowerCase();
-                if (name.includes(input)) {
-                    boxes[i].style.display = "flex";
-                    visibleCount++;
-                } else {
-                    boxes[i].style.display = "none";
-                }
-            }
-            document.getElementById('skinCounter').innerText = visibleCount;
-        }
-
-        function showDownloadToast(skinName) {
-            const toast = document.getElementById("downloadToast");
-            const toastMsg = document.getElementById("toastMessage");
-            toastMsg.innerText = `جاري تحميل سكن "${skinName}" بنجاح!`;
-            toast.classList.add("active");
-            setTimeout(() => { toast.classList.remove("active"); }, 3500);
-        }
-
-        document.addEventListener('click', function(e) {
-            const target = e.target.closest('.btn, .back-btn');
-            if (target) {
-                const rect = target.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const ripple = document.createElement('span');
-                ripple.classList.add('ripple-effect');
-                ripple.style.left = `${x}px`;
-                ripple.style.top = `${y}px`;
-                
-                target.style.position = 'relative';
-                target.style.overflow = 'hidden';
-                target.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 500);
-            }
-        });
-    </script>
 </body>
 </html>
