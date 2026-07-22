@@ -24,7 +24,7 @@
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --glass-blur: blur(28px);
-            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         html.light {
@@ -62,7 +62,7 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            transition: background-color 0.5s ease, color 0.5s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         @media (max-width: 1024px) {
@@ -86,7 +86,7 @@
             background: var(--secondary);
         }
 
-        /* شاشة التحميل الاحترافية */
+        /* شاشة التحميل الافتتاحية */
         #page-loader {
             position: fixed;
             inset: 0;
@@ -96,7 +96,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         #page-loader.loaded {
             opacity: 0;
@@ -132,7 +132,7 @@
             overflow: hidden;
             pointer-events: none;
             background: #0B1220;
-            transition: background 0.5s ease;
+            transition: background 0.3s ease;
         }
         html.light .liquid-bg-container {
             background: #e0f2fe;
@@ -356,7 +356,7 @@
         .scroll-reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .scroll-reveal.revealed {
             opacity: 1;
@@ -471,7 +471,7 @@
         }
         .social-card-item i {
             font-size: 1.25em;
-            transition: transform 0.4s ease;
+            transition: transform 0.3s ease;
         }
         .social-card-item .arrow {
             font-size: 0.8em;
@@ -701,7 +701,7 @@
             border: 1px solid var(--border-color);
             border-radius: 16px;
             overflow: hidden;
-            transition: border-color 0.4s ease;
+            transition: border-color 0.3s ease;
         }
         .faq-card-item:hover {
             border-color: var(--secondary);
@@ -719,7 +719,7 @@
             padding: 0 20px;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
+            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
             color: var(--text-muted);
             font-size: 0.92em;
             line-height: 1.6;
@@ -733,7 +733,7 @@
             color: var(--secondary);
         }
         .faq-q-row i {
-            transition: transform 0.4s ease;
+            transition: transform 0.3s ease;
             color: var(--text-muted);
         }
 
@@ -788,7 +788,7 @@
             background: rgba(255, 255, 255, 0.35);
             border-radius: 50%;
             transform: scale(0);
-            animation: rippleAnim 0.6s linear;
+            animation: rippleAnim 0.5s linear;
             pointer-events: none;
         }
         @keyframes rippleAnim {
@@ -1137,7 +1137,7 @@
                 ripple.style.top = `${y}px`;
                 
                 this.appendChild(ripple);
-                setTimeout(() => ripple.remove(), 600);
+                setTimeout(() => ripple.remove(), 500);
             });
         });
 
