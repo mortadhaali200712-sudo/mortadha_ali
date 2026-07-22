@@ -220,10 +220,10 @@
             gap: 12px;
             overflow-x: auto;
             padding-bottom: 5px;
-            scrollbar-width: none; /* إخفاء شريط التمرير لمتصفحات فايرفوكس */
+            scrollbar-width: none;
         }
         .tabs-bar::-webkit-scrollbar {
-            display: none; /* إخفاء شريط التمرير لمتصفحات كروم وسفاري */
+            display: none;
         }
         .tab-btn {
             background: var(--gta-card-bg);
@@ -398,7 +398,7 @@
             color: var(--gta-gold);
         }
 
-        /* حالة عدم وجود نتائج */
+        /* حالة عدم وجود نتائج أو مودات فارغة */
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
@@ -557,9 +557,9 @@
             </button>
         </div>
 
-        <!-- شبكة عرض المودات الديناميكية -->
+        <!-- شبكة عرض المودات الديناميكية (فارغة بانتظار موداتك) -->
         <section class="mods-grid" id="modsGrid">
-            <!-- سيتم تعبئة البطاقات برمجياً عبر الجافاسكريبت بناءً على النظام التلقائي -->
+            <!-- تمت إزالة المودات السابقة بالكامل -->
         </section>
 
     </div>
@@ -571,76 +571,9 @@
     </div>
 
     <script>
-        /* 📦 قاعدة بيانات المودات (قابلة للتطوير المستقبلي بسهولة تامة) */
-        /* النظام يصنف المود تلقائياً بناءً على حقل category */
-        const modsDatabase = [
-            {
-                id: 1,
-                title: "Bugatti Divo HyperSport",
-                description: "مود سيارة بوغاتي ديفو الرياضية بتصميم خيالي دقيق وجودة فائقة 4K تناسب شوارع لوس سانتوس.",
-                platform: "PC",
-                category: "vehicles",
-                version: "v2.1",
-                date: "2026/06/15",
-                image: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=600&q=80",
-                downloadLink: "#"
-            },
-            {
-                id: 2,
-                title: "Tactical M4A1 Custom",
-                description: "سلاح تكتيكي متطور بتصميم عسكري فريد مع أصوات إطلاق نار واقعية وإضافات مخصصة.",
-                platform: "PS5",
-                category: "weapons",
-                version: "v1.0",
-                date: "2026/06/18",
-                image: "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=600&q=80",
-                downloadLink: "#"
-            },
-            {
-                id: 3,
-                title: "Streetwear Cyber Outfit",
-                description: "زي عصري فاخر لشخصيات القصة مستوحى من أزياء الشارع المستقبلية بجودة نسيج مذهلة.",
-                platform: "Xbox",
-                category: "skins",
-                version: "v1.5",
-                date: "2026/06/20",
-                image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80",
-                downloadLink: "#"
-            },
-            {
-                id: 4,
-                title: "Secret Underground Bunker",
-                description: "مخبأ سري ضخم تحت الأرض مخصص لتنفيذ العمليات السرية وتخزين المركبات الفاخرة.",
-                platform: "PC",
-                category: "maps",
-                version: "v3.0",
-                date: "2026/06/21",
-                image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
-                downloadLink: "#"
-            },
-            {
-                id: 5,
-                title: "Extreme Physics & Graphics Overhaul",
-                description: "مود عشوائي شامل لتعديل فيزيائيات اللعبة والإضاءة الطبيعية لتقديم تجربة بصرية سينمائية.",
-                platform: "PS4",
-                category: "random",
-                version: "v4.2",
-                date: "2026/06/22",
-                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80",
-                downloadLink: "#"
-            },
-            {
-                id: 6,
-                title: "Lamborghini Aventador SVJ",
-                description: "مركبة لامبورغيني أفينتادور المعدلة خصيصاً للسرعات الفائقة في سباقات الشوارع الليلية.",
-                platform: "PC",
-                category: "vehicles",
-                version: "v2.0",
-                date: "2026/06/23",
-                image: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=600&q=80",
-                downloadLink: "#"
-            }
-        ];
+        /* 📦 قاعدة بيانات المودات (فارغة وجاهزة لإضافة موداتك المستقبليّة بكل سهولة) */
+        /* عند رغبتك بإضافة مود جديد، ضع بياناته هنا وسيظهر تلقائياً في مكانه المخصص */
+        const modsDatabase = [];
 
         let currentPlatform = 'all';
         let currentCategory = 'all';
@@ -670,7 +603,7 @@
                 modsGrid.innerHTML = `
                     <div class="no-results">
                         <i class="fas fa-folder-open" style="font-size: 2.5rem; color: var(--gta-gold); margin-bottom: 15px;"></i>
-                        <p>لا توجد مودات مطابقة لبحثك أو لا تتوفر عناصر في هذا القسم حالياً.</p>
+                        <p>لا توجد مودات متاحة حالياً في هذا القسم. ترقبوا إضافة أقوى المودات قريباً!</p>
                     </div>
                 `;
                 return;
