@@ -195,7 +195,7 @@
             pointer-events: none;
         }
 
-        /* شبكة عرض البطاقات متناسقة ومرتبة */
+        /* شبكة عرض البطاقات متناسقة ومرتبة بالكامل */
         .skins-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -208,15 +208,15 @@
         @media (max-width: 900px) { .skins-container { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 600px) { .skins-container { grid-template-columns: 1fr; } }
 
-        /* البطاقة الاحترافية بمعمارية الألعاب الفاخرة وحجم تلقائي يعتمد على محتواها */
+        /* البطاقة الاحترافية مطابقة تماماً لأبعاد وحجم الصورة بدون أي فراغات مبالغ فيها */
         .skin-box {
             background: var(--bg-surface);
             border: 1px solid var(--border-glass);
-            border-radius: 18px;
+            border-radius: 16px;
             padding: 12px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            width: 100%;
             height: auto;
             position: relative;
             overflow: hidden;
@@ -230,7 +230,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            border-radius: 18px;
+            border-radius: 16px;
             padding: 1px;
             background: linear-gradient(135deg, rgba(255,152,0,0.4), transparent 60%);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -245,25 +245,25 @@
             box-shadow: 0 25px 50px rgba(255, 152, 0, 0.25);
         }
 
-        /* إطار الصورة المعالج بدقة متناهية ليطابق أبعاد وطبيعة كل صورة سكن بالضبط دون أي فراغات زائدة */
+        /* إطار الصورة يحيط بالصورة بدقة ويعرضها بحجمها الطبيعي تماماً دون قص أو تمدد */
         .skin-img-wrapper {
             position: relative;
             width: 100%;
             height: auto;
-            background: #111111;
-            border-radius: 12px;
+            background: #0f0f0f;
+            border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.04);
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 6px;
+            padding: 4px;
         }
 
         .skin-img-wrapper img {
             width: 100%;
             height: auto;
-            max-height: 260px;
+            max-height: 250px;
             object-fit: contain;
             border-radius: 8px;
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -277,11 +277,12 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
+            margin-top: 10px;
         }
 
         .skin-title {
-            margin: 0;
-            font-size: 1.05rem;
+            margin: 5px 0;
+            font-size: 14px;
             font-weight: 800;
             color: var(--text-primary);
             text-align: right;
@@ -291,7 +292,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             background: var(--brand-primary);
             color: #050505;
             padding: 10px;
