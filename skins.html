@@ -195,20 +195,20 @@
             pointer-events: none;
         }
 
-        /* شبكة عرض البطاقات بشكل متناسق ومضبوط */
+        /* شبكة عرض البطاقات متناسقة ومرتبة */
         .skins-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 25px;
             margin-bottom: 50px;
-            align-items: start;
+            align-items: stretch;
         }
 
         @media (max-width: 1280px) { .skins-container { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 900px) { .skins-container { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 600px) { .skins-container { grid-template-columns: 1fr; } }
 
-        /* البطاقة الاحترافية المتماسكة */
+        /* البطاقة الاحترافية بمعمارية الألعاب الفاخرة */
         .skin-box {
             background: var(--bg-surface);
             border: 1px solid var(--border-glass);
@@ -216,7 +216,7 @@
             padding: 16px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            justify-content: space-between;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(20px);
@@ -244,31 +244,33 @@
             box-shadow: 0 25px 50px rgba(255, 152, 0, 0.25);
         }
 
-        /* إطار الصورة المعالج بدقة فاخرة (منع التمدد أو التشويه مع إظهار السكن بوضوح تם) */
+        /* إطار الصورة المعالج بنقاء كامل مع عرض كامل السكن دون تمدد أو قص */
         .skin-img-wrapper {
             position: relative;
             width: 100%;
-            height: 260px;
-            background: radial-gradient(circle, rgba(255,152,0,0.08) 0%, rgba(10,10,10,0.95) 100%);
+            height: 240px;
+            background: #181818;
             border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 12px;
+            padding: 8px;
+            margin-bottom: 14px;
         }
 
         .skin-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
+            border-radius: 8px;
+            background: #222;
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .skin-box:hover .skin-img-wrapper img {
-            transform: scale(1.08) translateY(-4px);
+            transform: scale(1.06);
         }
 
         .skin-info {
