@@ -1,1 +1,788 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="متجر مودات GTA 5 العالمي - استكشف أقوى المودات والتحسينات لأجهزة الكمبيوتر والكونسول">
+    <title>GTA 5 Mods | متجر المودات العالمي</title>
+    <link rel="icon" href="logo2.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gta-gold: #f59e0b;
+            --gta-orange: #ea580c;
+            --gta-dark: #0a0a0c;
+            --gta-card-bg: rgba(18, 18, 22, 0.85);
+            --border-glass: rgba(245, 158, 11, 0.15);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --transition-swift: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--gta-dark);
+            color: var(--text-primary);
+            font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* خلفية ضوئية متحركة (Floating Lights & Gradients) */
+        .ambient-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 0%, #1a1005 0%, #0a0a0c 70%);
+        }
+        .glow-orb {
+            position: absolute;
+            width: 45vw;
+            height: 45vw;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.18;
+            animation: orbFloat 12s ease-in-out infinite alternate;
+        }
+        .orb-1 { background: var(--gta-gold); top: -15%; right: -10%; }
+        .orb-2 { background: var(--gta-orange); bottom: -15%; left: -10%; animation-delay: -6s; }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -30px) scale(1.15); }
+        }
+
+        /* حاوية الصفحة الرئيسية */
+        .page-container {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 30px 4% 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        /* شريط التنقل العلوي وزر الرجوع */
+        .top-nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--gta-gold);
+            padding: 12px 24px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.95rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition-swift);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .back-btn:hover {
+            background: var(--gta-gold);
+            color: #000;
+            transform: translateX(-5px);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.4);
+        }
+
+        /* شريط البحث الفوري */
+        .search-wrapper {
+            position: relative;
+            flex: 1;
+            max-width: 450px;
+        }
+        .search-input-field {
+            width: 100%;
+            background: rgba(18, 18, 22, 0.9);
+            border: 1px solid var(--border-glass);
+            color: var(--text-primary);
+            padding: 12px 20px 12px 48px;
+            border-radius: 16px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transition-swift);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .search-input-field:focus {
+            outline: none;
+            border-color: var(--gta-gold);
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.25);
+        }
+        .search-wrapper i {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gta-gold);
+            pointer-events: none;
+        }
+
+        /* الهيدر والعنوان الرئيسي */
+        .store-hero {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, rgba(20,20,25,0.8), rgba(10,10,12,0.9));
+            border: 1px solid var(--border-glass);
+            border-radius: 32px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .store-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 30%, var(--gta-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .store-hero p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        /* اختيار الجهاز (Platform Selector) */
+        .platforms-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .section-label {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--gta-gold);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+        }
+        .platform-btn {
+            background: var(--gta-card-bg);
+            border: 1px solid var(--border-glass);
+            color: var(--text-secondary);
+            padding: 16px;
+            border-radius: 18px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition-swift);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .platform-btn i {
+            font-size: 1.2rem;
+            color: var(--gta-gold);
+        }
+        .platform-btn:hover, .platform-btn.active {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(234, 88, 12, 0.15));
+            border-color: var(--gta-gold);
+            color: var(--text-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.25);
+        }
+
+        /* شريط الأقسام (Tabs Bar) */
+        .tabs-bar {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: none; /* إخفاء شريط التمرير لمتصفحات فايرفوكس */
+        }
+        .tabs-bar::-webkit-scrollbar {
+            display: none; /* إخفاء شريط التمرير لمتصفحات كروم وسفاري */
+        }
+        .tab-btn {
+            background: var(--gta-card-bg);
+            border: 1px solid var(--border-glass);
+            color: var(--text-secondary);
+            padding: 14px 24px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 0.92rem;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition-swift);
+        }
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--gta-gold);
+            border-color: var(--gta-gold);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        }
+
+        /* شبكة عرض المودات (Mod Cards Grid) */
+        .mods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        /* بطاقة المود الاحترافية */
+        .mod-card {
+            background: var(--gta-card-bg);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-swift);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            position: relative;
+            animation: fadeInCard 0.4s ease forwards;
+        }
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .mod-card:hover {
+            border-color: var(--gta-gold);
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px rgba(245, 158, 11, 0.2);
+        }
+
+        .mod-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #111;
+        }
+        .mod-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .mod-card:hover .mod-img-wrapper img {
+            transform: scale(1.08);
+        }
+        .mod-badge-platform {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(10, 10, 12, 0.85);
+            border: 1px solid var(--gta-gold);
+            color: var(--gta-gold);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            backdrop-filter: blur(8px);
+        }
+
+        .mod-body {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            flex: 1;
+        }
+        .mod-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+        .mod-category-tag {
+            color: var(--gta-orange);
+            background: rgba(234, 88, 12, 0.12);
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+        .mod-title {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--text-primary);
+        }
+        .mod-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+        }
+        .mod-footer-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 12px;
+        }
+
+        /* أزرار الإجراءات داخل البطاقة */
+        .mod-actions {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        .btn-download {
+            background: linear-gradient(135deg, var(--gta-gold), var(--gta-orange));
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 14px;
+            font-family: inherit;
+            font-weight: 900;
+            font-size: 0.92rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition-swift);
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+        }
+        .btn-download:hover {
+            filter: brightness(1.15);
+            transform: scale(1.02);
+        }
+        .btn-copy {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-glass);
+            color: var(--text-primary);
+            width: 46px;
+            border-radius: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-swift);
+        }
+        .btn-copy:hover {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: var(--gta-gold);
+            color: var(--gta-gold);
+        }
+
+        /* حالة عدم وجود نتائج */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: var(--gta-card-bg);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+        }
+
+        /* تأثير التموج للأزرار (Ripple Effect) */
+        .ripple {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleAnim 0.5s linear;
+            pointer-events: none;
+        }
+        @keyframes rippleAnim {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        /* إشعار Toast منبثق */
+        .toast-alert {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(18, 18, 22, 0.95);
+            border: 1px solid var(--gta-gold);
+            color: var(--text-primary);
+            padding: 16px 26px;
+            border-radius: 16px;
+            font-weight: 800;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition-swift);
+        }
+        .toast-alert.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .toast-alert i {
+            color: var(--gta-gold);
+            font-size: 1.3rem;
+        }
+
+        /* تصميم متجاوب تام للهاتف (Responsive 100%) */
+        @media (max-width: 1024px) {
+            .platforms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .store-hero h1 {
+                font-size: 2.2rem;
+            }
+            .page-container {
+                padding: 20px 3% 40px;
+            }
+        }
+        @media (max-width: 600px) {
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+            .top-nav-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-wrapper {
+                max-width: 100%;
+            }
+            .mods-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الخلفية الضوئية -->
+    <div class="ambient-backdrop">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <!-- محتوى الصفحة -->
+    <div class="page-container">
+
+        <!-- شريط التنقل العلوي -->
+        <div class="top-nav-bar">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-right"></i>
+                <span>العودة للرئيسية</span>
+            </a>
+            <div class="search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" class="search-input-field" placeholder="ابحث عن مود، مركبة، سلاح..." autocomplete="off">
+            </div>
+        </div>
+
+        <!-- واجهة الترحيب -->
+        <header class="store-hero">
+            <h1>GTA 5 Mods Hub</h1>
+            <p>متجر المودات العالمي الحصري - اختر جهازك وتصفح أقوى التعديلات الاحترافية</p>
+        </header>
+
+        <!-- اختيار الجهاز (Platform Selector) -->
+        <div class="platforms-section">
+            <div class="section-label">
+                <i class="fas fa-gamepad"></i> اختيار الجهاز (Choose Platform)
+            </div>
+            <div class="platforms-grid" id="platformsContainer">
+                <button class="platform-btn active" data-platform="all">
+                    <i class="fas fa-globe"></i> جميع الأجهزة (All)
+                </button>
+                <button class="platform-btn" data-platform="PC">
+                    <i class="fas fa-desktop"></i> PC
+                </button>
+                <button class="platform-btn" data-platform="PS4">
+                    <i class="fab fa-playstation"></i> PlayStation 4
+                </button>
+                <button class="platform-btn" data-platform="PS5">
+                    <i class="fab fa-playstation"></i> PlayStation 5
+                </button>
+                <button class="platform-btn" data-platform="Xbox">
+                    <i class="fab fa-xbox"></i> Xbox
+                </button>
+            </div>
+        </div>
+
+        <!-- شريط الأقسام (Tabs Bar) -->
+        <div class="tabs-bar" id="tabsContainer">
+            <button class="tab-btn active" data-category="all">
+                <i class="fas fa-star"></i> الكل / All
+            </button>
+            <button class="tab-btn" data-category="random">
+                <i class="fas fa-random"></i> مودات عشوائية / Random Mods
+            </button>
+            <button class="tab-btn" data-category="vehicles">
+                <i class="fas fa-car"></i> المركبات / Vehicles
+            </button>
+            <button class="tab-btn" data-category="weapons">
+                <i class="fas fa-crosshairs"></i> الأسلحة / Weapons
+            </button>
+            <button class="tab-btn" data-category="skins">
+                <i class="fas fa-tshirt"></i> السكنات / Skins
+            </button>
+            <button class="tab-btn" data-category="maps">
+                <i class="fas fa-map-marked-alt"></i> الخرائط / Maps
+            </button>
+        </div>
+
+        <!-- شبكة عرض المودات الديناميكية -->
+        <section class="mods-grid" id="modsGrid">
+            <!-- سيتم تعبئة البطاقات برمجياً عبر الجافاسكريبت بناءً على النظام التلقائي -->
+        </section>
+
+    </div>
+
+    <!-- إشعار Toast المنبثق -->
+    <div id="toastAlert" class="toast-alert">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">تم نسخ الرابط بنجاح!</span>
+    </div>
+
+    <script>
+        /* 📦 قاعدة بيانات المودات (قابلة للتطوير المستقبلي بسهولة تامة) */
+        /* النظام يصنف المود تلقائياً بناءً على حقل category */
+        const modsDatabase = [
+            {
+                id: 1,
+                title: "Bugatti Divo HyperSport",
+                description: "مود سيارة بوغاتي ديفو الرياضية بتصميم خيالي دقيق وجودة فائقة 4K تناسب شوارع لوس سانتوس.",
+                platform: "PC",
+                category: "vehicles",
+                version: "v2.1",
+                date: "2026/06/15",
+                image: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=600&q=80",
+                downloadLink: "#"
+            },
+            {
+                id: 2,
+                title: "Tactical M4A1 Custom",
+                description: "سلاح تكتيكي متطور بتصميم عسكري فريد مع أصوات إطلاق نار واقعية وإضافات مخصصة.",
+                platform: "PS5",
+                category: "weapons",
+                version: "v1.0",
+                date: "2026/06/18",
+                image: "https://images.unsplash.com/photo-1595590424283-b8f17842773f?auto=format&fit=crop&w=600&q=80",
+                downloadLink: "#"
+            },
+            {
+                id: 3,
+                title: "Streetwear Cyber Outfit",
+                description: "زي عصري فاخر لشخصيات القصة مستوحى من أزياء الشارع المستقبلية بجودة نسيج مذهلة.",
+                platform: "Xbox",
+                category: "skins",
+                version: "v1.5",
+                date: "2026/06/20",
+                image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=600&q=80",
+                downloadLink: "#"
+            },
+            {
+                id: 4,
+                title: "Secret Underground Bunker",
+                description: "مخبأ سري ضخم تحت الأرض مخصص لتنفيذ العمليات السرية وتخزين المركبات الفاخرة.",
+                platform: "PC",
+                category: "maps",
+                version: "v3.0",
+                date: "2026/06/21",
+                image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
+                downloadLink: "#"
+            },
+            {
+                id: 5,
+                title: "Extreme Physics & Graphics Overhaul",
+                description: "مود عشوائي شامل لتعديل فيزيائيات اللعبة والإضاءة الطبيعية لتقديم تجربة بصرية سينمائية.",
+                platform: "PS4",
+                category: "random",
+                version: "v4.2",
+                date: "2026/06/22",
+                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=600&q=80",
+                downloadLink: "#"
+            },
+            {
+                id: 6,
+                title: "Lamborghini Aventador SVJ",
+                description: "مركبة لامبورغيني أفينتادور المعدلة خصيصاً للسرعات الفائقة في سباقات الشوارع الليلية.",
+                platform: "PC",
+                category: "vehicles",
+                version: "v2.0",
+                date: "2026/06/23",
+                image: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=600&q=80",
+                downloadLink: "#"
+            }
+        ];
+
+        let currentPlatform = 'all';
+        let currentCategory = 'all';
+        let searchQuery = '';
+
+        const modsGrid = document.getElementById('modsGrid');
+        const searchInput = document.getElementById('searchInput');
+
+        /* دالة عرض وترشيح المودات تلقائياً */
+        function renderMods() {
+            modsGrid.innerHTML = '';
+
+            const filteredMods = modsDatabase.filter(mod => {
+                const matchesPlatform = currentPlatform === 'all' || mod.platform === currentPlatform;
+                const matchesCategory = currentCategory === 'all' || mod.category === currentCategory;
+                
+                const query = searchQuery.toLowerCase();
+                const matchesSearch = mod.title.toLowerCase().includes(query) ||
+                                      mod.description.toLowerCase().includes(query) ||
+                                      mod.category.toLowerCase().includes(query) ||
+                                      mod.platform.toLowerCase().includes(query);
+
+                return matchesPlatform && matchesCategory && matchesSearch;
+            });
+
+            if (filteredMods.length === 0) {
+                modsGrid.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-folder-open" style="font-size: 2.5rem; color: var(--gta-gold); margin-bottom: 15px;"></i>
+                        <p>لا توجد مودات مطابقة لبحثك أو لا تتوفر عناصر في هذا القسم حالياً.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredMods.forEach((mod, index) => {
+                const categoryNames = {
+                    vehicles: "🚗 المركبات",
+                    weapons: "🔫 الأسلحة",
+                    skins: "👕 السكنات",
+                    maps: "🗺 الخرائط",
+                    random: "⭐ مودات عشوائية"
+                };
+
+                const card = document.createElement('div');
+                card.classList.add('mod-card');
+                card.style.animationDelay = `${index * 0.05}s`;
+
+                card.innerHTML = `
+                    <div class="mod-img-wrapper">
+                        <img src="${mod.image}" alt="${mod.title}" loading="lazy">
+                        <span class="mod-badge-platform">${mod.platform}</span>
+                    </div>
+                    <div class="mod-body">
+                        <div class="mod-meta-row">
+                            <span class="mod-category-tag">${categoryNames[mod.category] || '⭐ عشوائي'}</span>
+                            <span>الإصدار: ${mod.version}</span>
+                        </div>
+                        <h3 class="mod-title">${mod.title}</h3>
+                        <p class="mod-desc">${mod.description}</p>
+                        <div class="mod-footer-info">
+                            <span><i class="far fa-calendar-alt"></i> ${mod.date}</span>
+                        </div>
+                        <div class="mod-actions">
+                            <a href="${mod.downloadLink}" class="btn-download" onclick="triggerRipple(event)">
+                                <i class="fas fa-download"></i> تحميل المود
+                            </a>
+                            <button class="btn-copy" onclick="copyModLink('${mod.title}', event)" aria-label="نسخ الرابط">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                modsGrid.appendChild(card);
+            });
+        }
+
+        /* تفاعلات أزرار اختيار الجهاز */
+        document.querySelectorAll('.platform-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentPlatform = btn.getAttribute('data-platform');
+                renderMods();
+                triggerRipple(e);
+            });
+        });
+
+        /* تفاعلات شريط الأقسام (Tabs) */
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.getAttribute('data-category');
+                renderMods();
+                triggerRipple(e);
+            });
+        });
+
+        /* البحث الفوري أثناء الكتابة */
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value.trim();
+            renderMods();
+        });
+
+        /* تأثير التموج للأزرار (Ripple Effect) */
+        function triggerRipple(e) {
+            const target = e.currentTarget;
+            const rect = target.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+
+            target.style.position = 'relative';
+            target.style.overflow = 'hidden';
+            target.appendChild(ripple);
+
+            setTimeout(() => ripple.remove(), 500);
+        }
+
+        /* وظيفة نسخ رابط المود مع إشعار Toast احترافي */
+        function copyModLink(modTitle, e) {
+            triggerRipple(e);
+            navigator.clipboard.writeText(window.location.href);
+            const toast = document.getElementById('toastAlert');
+            const toastMsg = document.getElementById('toastMessage');
+            toastMsg.textContent = `تم نسخ رابط مود "${modTitle}" بنجاح!`;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        /* التهيئة الأولية عند تحميل الصفحة */
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMods();
+        });
+    </script>
+</body>
+</html>
