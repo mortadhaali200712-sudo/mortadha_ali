@@ -41,7 +41,7 @@
             position: relative;
         }
 
-        /* خلفية ضوئية متحركة */
+        /* خلفية ضوئية متحركة (Floating Lights & Gradients) */
         .ambient-backdrop {
             position: fixed;
             inset: 0;
@@ -100,7 +100,6 @@
             backdrop-filter: blur(10px);
             transition: var(--transition-swift);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            cursor: pointer;
         }
         .back-btn:hover {
             background: var(--gta-gold);
@@ -150,6 +149,8 @@
             border-radius: 32px;
             backdrop-filter: blur(20px);
             box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
         }
         .store-hero h1 {
             font-size: 2.8rem;
@@ -165,7 +166,7 @@
             font-weight: 600;
         }
 
-        /* اختيار الجهاز */
+        /* اختيار الجهاز (Platform Selector) */
         .platforms-section {
             display: flex;
             flex-direction: column;
@@ -213,7 +214,7 @@
             box-shadow: 0 12px 30px rgba(245, 158, 11, 0.25);
         }
 
-        /* شريط الأقسام */
+        /* شريط الأقسام (Tabs Bar) */
         .tabs-bar {
             display: flex;
             gap: 12px;
@@ -248,7 +249,7 @@
             box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
         }
 
-        /* شبكة عرض المودات */
+        /* شبكة عرض المودات (Mod Cards Grid) */
         .mods-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -266,7 +267,6 @@
             transition: var(--transition-swift);
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             position: relative;
-            cursor: pointer;
             animation: fadeInCard 0.4s ease forwards;
         }
         @keyframes fadeInCard {
@@ -340,10 +340,6 @@
             color: var(--text-secondary);
             line-height: 1.6;
             flex: 1;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
         .mod-footer-info {
             display: flex;
@@ -355,257 +351,54 @@
             padding-top: 12px;
         }
 
-        /* صفحة تفاصيل المود (Details View) */
-        .details-view {
-            display: none;
-            flex-direction: column;
-            gap: 30px;
-            animation: fadeInCard 0.4s ease forwards;
-        }
-        .details-grid {
+        /* أزرار الإجراءات داخل البطاقة */
+        .mod-actions {
             display: grid;
-            grid-template-columns: 1fr 360px;
-            gap: 30px;
-            align-items: start;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            margin-top: 5px;
         }
-        @media (max-width: 1024px) {
-            .details-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .details-main-content {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        /* معرض الصور المتطور */
-        .media-gallery-box {
-            background: var(--gta-card-bg);
-            border: 1px solid var(--border-glass);
-            border-radius: 24px;
-            padding: 20px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        .main-preview-container {
-            width: 100%;
-            height: 420px;
-            border-radius: 16px;
-            overflow: hidden;
-            background: #000;
-            position: relative;
+        .btn-download {
+            background: linear-gradient(135deg, var(--gta-gold), var(--gta-orange));
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 14px;
+            font-family: inherit;
+            font-weight: 900;
+            font-size: 0.92rem;
             cursor: pointer;
-        }
-        .main-preview-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             transition: var(--transition-swift);
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
         }
-        .main-preview-container:hover img {
+        .btn-download:hover {
+            filter: brightness(1.15);
             transform: scale(1.02);
         }
-        .thumbnails-row {
-            display: flex;
-            gap: 12px;
-            margin-top: 15px;
-            overflow-x: auto;
-            padding-bottom: 5px;
-        }
-        .thumb-item {
-            width: 90px;
-            height: 70px;
-            border-radius: 12px;
-            object-fit: cover;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: var(--transition-swift);
-            opacity: 0.6;
-            flex-shrink: 0;
-        }
-        .thumb-item.active, .thumb-item:hover {
-            border-color: var(--gta-gold);
-            opacity: 1;
-            transform: translateY(-2px);
-        }
-
-        /* صندوق الوصف والتفاصيل */
-        .content-section-box {
-            background: var(--gta-card-bg);
+        .btn-copy {
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-glass);
-            border-radius: 24px;
-            padding: 30px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        .content-section-box h2 {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: var(--gta-gold);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            padding-bottom: 12px;
-        }
-        .formatted-description {
-            font-size: 0.98rem;
-            line-height: 1.9;
-            color: var(--text-secondary);
-            white-space: pre-wrap;
-            font-family: inherit;
-        }
-
-        /* الشريط الجانبي لتفاصيل المود */
-        .details-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .sidebar-card {
-            background: var(--gta-card-bg);
-            border: 1px solid var(--border-glass);
-            border-radius: 24px;
-            padding: 24px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        .sidebar-card h3 {
-            font-size: 1.15rem;
-            font-weight: 900;
-            color: var(--gta-gold);
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* قائمة الإصدارات المتقدمة */
-        .versions-list-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-height: 250px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-        }
-        .version-row-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-glass);
-            padding: 12px 16px;
+            color: var(--text-primary);
+            width: 46px;
             border-radius: 14px;
             cursor: pointer;
-            transition: var(--transition-swift);
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 800;
-            font-size: 0.9rem;
-        }
-        .version-row-item:hover {
-            background: var(--gta-gold);
-            color: #000;
-            border-color: var(--gta-gold);
-            transform: translateX(-3px);
-        }
-        .version-row-item i {
-            color: var(--gta-gold);
-            transition: var(--transition-swift);
-        }
-        .version-row-item:hover i {
-            color: #000;
-        }
-
-        /* بطاقة معلومات المود (Meta Data) */
-        .meta-info-list {
             display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .meta-info-row {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 0.9rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 10px;
-        }
-        .meta-info-label {
-            color: var(--text-secondary);
-            font-weight: 700;
-        }
-        .meta-info-value {
-            font-weight: 900;
-            color: var(--text-primary);
-        }
-        .author-link-tag {
-            color: var(--gta-gold);
-            text-decoration: none;
-            font-weight: 900;
-            transition: var(--transition-swift);
-        }
-        .author-link-tag:hover {
-            text-decoration: underline;
-            filter: brightness(1.2);
-        }
-
-        /* نافذة تكبير الصورة (Lightbox Modal) */
-        .lightbox-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.92);
-            z-index: 9999;
-            display: none;
             justify-content: center;
-            align-items: center;
-            padding: 20px;
-            backdrop-filter: blur(10px);
+            transition: var(--transition-swift);
         }
-        .lightbox-overlay.active {
-            display: flex;
-        }
-        .lightbox-image-box {
-            max-width: 90vw;
-            max-height: 90vh;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--gta-gold);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
-        }
-        .lightbox-image-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-        }
-        .lightbox-close-btn {
-            position: absolute;
-            top: 30px;
-            left: 30px;
+        .btn-copy:hover {
             background: rgba(245, 158, 11, 0.2);
-            border: 1px solid var(--gta-gold);
+            border-color: var(--gta-gold);
             color: var(--gta-gold);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition-swift);
-        }
-        .lightbox-close-btn:hover {
-            background: var(--gta-gold);
-            color: #000;
         }
 
-        /* حالة عدم وجود نتائج */
+        /* حالة عدم وجود نتائج أو مودات فارغة */
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
@@ -618,7 +411,7 @@
             border-radius: 24px;
         }
 
-        /* تأثير التموج */
+        /* تأثير التموج للأزرار (Ripple Effect) */
         .ripple {
             position: absolute;
             background: rgba(255, 255, 255, 0.4);
@@ -631,7 +424,7 @@
             to { transform: scale(4); opacity: 0; }
         }
 
-        /* إشعار Toast */
+        /* إشعار Toast منبثق */
         .toast-alert {
             position: fixed;
             bottom: 30px;
@@ -660,7 +453,7 @@
             font-size: 1.3rem;
         }
 
-        /* تصميم متجاوب تام للهاتف */
+        /* تصميم متجاوب تام للهاتف (Responsive 100%) */
         @media (max-width: 1024px) {
             .platforms-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -700,280 +493,95 @@
     <!-- محتوى الصفحة -->
     <div class="page-container">
 
-        <!-- 🏠 واجهة القائمة الرئيسية -->
-        <div id="homeView">
-            <!-- شريط التنقل العلوي -->
-            <div class="top-nav-bar">
-                <a href="index.html" class="back-btn">
-                    <i class="fas fa-arrow-right"></i>
-                    <span>العودة للرئيسية</span>
-                </a>
-                <div class="search-wrapper">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" class="search-input-field" placeholder="ابحث عن مود، مركبة، سلاح..." autocomplete="off">
-                </div>
-            </div>
-
-            <!-- واجهة الترحيب -->
-            <header class="store-hero" style="margin-top: 25px;">
-                <h1>GTA 5 Mods Hub</h1>
-                <p>متجر المودات العالمي الحصري - اختر جهازك وتصفح أقوى التعديلات الاحترافية</p>
-            </header>
-
-            <!-- اختيار الجهاز (Platform Selector) -->
-            <div class="platforms-section" style="margin-top: 30px;">
-                <div class="section-label">
-                    <i class="fas fa-gamepad"></i> اختيار الجهاز (Choose Platform)
-                </div>
-                <div class="platforms-grid" id="platformsContainer">
-                    <button class="platform-btn active" data-platform="all">
-                        <i class="fas fa-globe"></i> جميع الأجهزة (All)
-                    </button>
-                    <button class="platform-btn" data-platform="PC">
-                        <i class="fas fa-desktop"></i> PC
-                    </button>
-                    <button class="platform-btn" data-platform="PS4">
-                        <i class="fab fa-playstation"></i> PlayStation 4
-                    </button>
-                    <button class="platform-btn" data-platform="PS5">
-                        <i class="fab fa-playstation"></i> PlayStation 5
-                    </button>
-                    <button class="platform-btn" data-platform="Xbox">
-                        <i class="fab fa-xbox"></i> Xbox
-                    </button>
-                </div>
-            </div>
-
-            <!-- شريط الأقسام (Tabs Bar) -->
-            <div class="tabs-bar" id="tabsContainer" style="margin-top: 30px;">
-                <button class="tab-btn active" data-category="all">
-                    <i class="fas fa-star"></i> الكل / All
-                </button>
-                <button class="tab-btn" data-category="random">
-                    <i class="fas fa-random"></i> مودات عشوائية / Random Mods
-                </button>
-                <button class="tab-btn" data-category="vehicles">
-                    <i class="fas fa-car"></i> المركبات / Vehicles
-                </button>
-                <button class="tab-btn" data-category="weapons">
-                    <i class="fas fa-crosshairs"></i> الأسلحة / Weapons
-                </button>
-                <button class="tab-btn" data-category="skins">
-                    <i class="fas fa-tshirt"></i> السكنات / Skins
-                </button>
-                <button class="tab-btn" data-category="maps">
-                    <i class="fas fa-map-marked-alt"></i> الخرائط / Maps
-                </button>
-            </div>
-
-            <!-- شبكة عرض المودات الديناميكية -->
-            <section class="mods-grid" id="modsGrid" style="margin-top: 30px;">
-                <!-- يتم تعبئة المودات ديناميكياً عبر JavaScript -->
-            </section>
-        </div>
-
-        <!-- 📄 صفحة تفاصيل المود المتقدمة -->
-        <div id="detailsView" class="details-view">
-            <!-- شريط التنقل الخاص بالتفاصيل -->
-            <div class="top-nav-bar">
-                <button class="back-btn" onclick="returnToHomeView()">
-                    <i class="fas fa-arrow-right"></i>
-                    <span>العودة لقائمة المودات</span>
-                </button>
-            </div>
-
-            <div class="details-grid">
-                <!-- القسم الأوسط الأساسي (الصور، الوصف، الفيديو) -->
-                <div class="details-main-content">
-                    <!-- معرض الصور -->
-                    <div class="media-gallery-box">
-                        <div class="main-preview-container" id="mainPreviewContainer" onclick="openLightbox(document.getElementById('mainPreviewImg').src)">
-                            <img id="mainPreviewImg" src="" alt="Mod Preview">
-                        </div>
-                        <div class="thumbnails-row" id="thumbnailsRow">
-                            <!-- الصور المصغرة -->
-                        </div>
-                    </div>
-
-                    <!-- صندوق تفاصيل المود (الوصف) -->
-                    <div class="content-section-box">
-                        <h2><i class="fas fa-file-alt"></i> تفاصيل المود (Description)</h2>
-                        <div class="formatted-description" id="modDescriptionContent"></div>
-                    </div>
-                </div>
-
-                <!-- الشريط الجانبي (الإصدارات ومعلومات المود) -->
-                <div class="details-sidebar">
-                    <!-- صندوق الإصدارات والتحميل -->
-                    <div class="sidebar-card">
-                        <h3><i class="fas fa-download"></i> الإصدارات (Versions)</h3>
-                        <div class="versions-list-container" id="versionsListContainer">
-                            <!-- روابط الإصدارات -->
-                        </div>
-                    </div>
-
-                    <!-- صندوق معلومات المود الاحترافي -->
-                    <div class="sidebar-card">
-                        <h3><i class="fas fa-info-circle"></i> معلومات المود</h3>
-                        <div class="meta-info-list">
-                            <div class="meta-info-row">
-                                <span class="meta-info-label">اسم المود</span>
-                                <span class="meta-info-value" id="metaTitle">-</span>
-                            </div>
-                            <div class="meta-info-row">
-                                <span class="meta-info-label">التصنيف</span>
-                                <span class="meta-info-value" id="metaCategory">-</span>
-                            </div>
-                            <div class="meta-info-row">
-                                <span class="meta-info-label">الجهاز</span>
-                                <span class="meta-info-value" id="metaPlatform">-</span>
-                            </div>
-                            <div class="meta-info-row">
-                                <span class="meta-info-label">الإصدار الحالي</span>
-                                <span class="meta-info-value" id="metaVersion">-</span>
-                            </div>
-                            <div class="meta-info-row">
-                                <span class="meta-info-label">حجم الملف</span>
-                                <span class="meta-info-value" id="metaSize">24.5 MB</span>
-                            </div>
-                            <div class="meta-info-row">
-                                <span class="meta-info-label">التحميلات</span>
-                                <span class="meta-info-value" id="metaDownloads">1,420</span>
-                            </div>
-                            <div class="meta-info-row">
-                                <span class="meta-info-label">تاريخ الإضافة</span>
-                                <span class="meta-info-value" id="metaDate">-</span>
-                            </div>
-                            <div class="meta-info-row">
-                                <span class="meta-info-label">صاحب المود</span>
-                                <a id="metaAuthorLink" href="#" target="_blank" class="author-link-tag">-</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- شريط التنقل العلوي -->
+        <div class="top-nav-bar">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-right"></i>
+                <span>العودة للرئيسية</span>
+            </a>
+            <div class="search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" class="search-input-field" placeholder="ابحث عن مود، مركبة، سلاح..." autocomplete="off">
             </div>
         </div>
+
+        <!-- واجهة الترحيب -->
+        <header class="store-hero">
+            <h1>GTA 5 Mods Hub</h1>
+            <p>متجر المودات العالمي الحصري - اختر جهازك وتصفح أقوى التعديلات الاحترافية</p>
+        </header>
+
+        <!-- اختيار الجهاز (Platform Selector) -->
+        <div class="platforms-section">
+            <div class="section-label">
+                <i class="fas fa-gamepad"></i> اختيار الجهاز (Choose Platform)
+            </div>
+            <div class="platforms-grid" id="platformsContainer">
+                <button class="platform-btn active" data-platform="all">
+                    <i class="fas fa-globe"></i> جميع الأجهزة (All)
+                </button>
+                <button class="platform-btn" data-platform="PC">
+                    <i class="fas fa-desktop"></i> PC
+                </button>
+                <button class="platform-btn" data-platform="PS4">
+                    <i class="fab fa-playstation"></i> PlayStation 4
+                </button>
+                <button class="platform-btn" data-platform="PS5">
+                    <i class="fab fa-playstation"></i> PlayStation 5
+                </button>
+                <button class="platform-btn" data-platform="Xbox">
+                    <i class="fab fa-xbox"></i> Xbox
+                </button>
+            </div>
+        </div>
+
+        <!-- شريط الأقسام (Tabs Bar) -->
+        <div class="tabs-bar" id="tabsContainer">
+            <button class="tab-btn active" data-category="all">
+                <i class="fas fa-star"></i> الكل / All
+            </button>
+            <button class="tab-btn" data-category="random">
+                <i class="fas fa-random"></i> مودات عشوائية / Random Mods
+            </button>
+            <button class="tab-btn" data-category="vehicles">
+                <i class="fas fa-car"></i> المركبات / Vehicles
+            </button>
+            <button class="tab-btn" data-category="weapons">
+                <i class="fas fa-crosshairs"></i> الأسلحة / Weapons
+            </button>
+            <button class="tab-btn" data-category="skins">
+                <i class="fas fa-tshirt"></i> السكنات / Skins
+            </button>
+            <button class="tab-btn" data-category="maps">
+                <i class="fas fa-map-marked-alt"></i> الخرائط / Maps
+            </button>
+        </div>
+
+        <!-- شبكة عرض المودات الديناميكية -->
+        <section class="mods-grid" id="modsGrid">
+            <!-- سيتم تعبئة المودات تلقائياً من قاعدة البيانات -->
+        </section>
 
     </div>
 
-    <!-- نافذة تكبير الصور (Lightbox Modal) -->
-    <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
-        <button class="lightbox-close-btn">&times;</button>
-        <div class="lightbox-image-box">
-            <img id="lightboxImg" src="" alt="Zoomed Image">
-        </div>
-    </div>
-
-    <!-- إشعار Toast منبثق -->
+    <!-- إشعار Toast المنبثق -->
     <div id="toastAlert" class="toast-alert">
         <i class="fas fa-check-circle"></i>
         <span id="toastMessage">تم نسخ الرابط بنجاح!</span>
     </div>
 
     <script>
-        /* 📦 قاعدة بيانات المودات القابلة للتطوير بكل سهولة تامة */
+        /* 📦 قاعدة بيانات المودات (تمت إضافة مود منصة النفط وإمكانية إضافة مودات جديدة بكل سهولة) */
         const modsDatabase = [
             {
-                id: "oil-rig-mod",
-                title: "منصة النفط [إضافة خاصة / FiveM] Oil Rig [Add-On SP / FiveM]",
+                title: "منصة النفط [إضافة خاصة / FiveM]",
+                description: "إضافة منصة نفط صغيرة بتكلفة أقل من LS مع دعم وضع اللاعب الفردي و FiveM.",
                 category: "maps",
                 platform: "PC",
-                version: "1.2.1",
-                size: "18.2 MB",
-                downloads: "2,850",
-                date: "2026-07-24",
-                author: "LouieDevs",
-                authorUrl: "https://www.gta5-mods.com/maps/oil-rig-add-on-sp-fivem",
                 image: "https://pdftolink.io/file/r2_dXNlcnMvZ3Vlc3QvYTk4ZjFiZjMtZmRlOC00NWMzLTkzY2MtYjI4MTNkMjM3OTg0LmpwZw",
-                images: [
-                    "https://pdftolink.io/file/r2_dXNlcnMvZ3Vlc3QvYTk4ZjFiZjMtZmRlOC00NWMzLTkzY2MtYjI4MTNkMjM3OTg0LmpwZw"
-                ],
-                description: `الوصف: إضافة منصة نفط صغيرة بتكلفة أقل من LS
------------------------------------------
-حقوق الملكية:
-"Louies Development" (أنا) لمنصة النفط ومبنى العرض المؤقت!
------------------------------------------
---سجل التغييرات--
-1.0 - الإصدار
-1.1 - تم إصلاح الحواجز الواقية
-1.1.1 - تم إصلاح التنزيل لـ FiveM
-1.2 - تم إصلاح مشكلة عدم ظهور منصة منصة النفط في وضع اللاعب الفردي
-1.2.1 - تم إصلاح مشكلة عدم ظهور منصة منصة النفط في وضع اللاعب الفردي مرة أخرى
------------------------------------------
-الميزات: 3x إضاءة LOD داخلية ، 1500 LOD Dist لمنصة النفط، إضاءة جيدة
------------------------------------------
-التثبيت في FiveM:
-أ - افتح الملف باستخدام 7zip أو Winrar أو أي برنامج آخر يسمح لك بفك ضغط هذا النوع من الملفات.
-ب - فك ضغط الملف في مجلد الخريطة وابدأ من ملف server.cfg.
-
-التثبيت في وضع اللاعب الفردي:
-أ - افتح OpenIV وقم بتمكين وضع التحرير.
-ب - انتقل إلى المسار mods\update\x64\dlcpacks.
-ج - اسحب مجلد DLC الخاص بالخريطة إلى مجلد dlcpacks ثم انسخ اسم مجلد DLC هذا.
-د - ارجع إلى افتح مجلد التحديث وانقر نقرًا مزدوجًا لفتح ملف update.rpf.
-هـ - افتح مجلد common\data، وابحث عن ملف dlclist.xml، وانقر عليه بزر الماوس الأيمن، ثم اختر "تحرير".
-و - انتقل إلى أسفل الملف، وانسخ السطر الأخير من التعليمات البرمجية، واضغط على مفتاح الإدخال، ثم الصقه في سطر جديد.
-ز - استبدل اسم DLC في السطر الجديد باسم مجلد DLC الخاص بخريطتك.
-ح - احفظ الملف. اكتمل التثبيت، شغّل اللعبة لاستخدام التعديل.
-
------------------------------------------
-
-Description: Adds a small Oil Rig off the cost of LS
------------------------------------------
-Credits:
-"Louies Development" (Me) for the Oil Rig & Temp Building Prop!
------------------------------------------
---Changelog--
-1.0 - Release
-1.1 - Fixed guardrails
-1.1.1 - Fixed Download for FiveM
-1.2 - Fixed Oil Rig Platform not showing up on Singleplayer
-1.2.1 - Fixed Oil Rig Platform not showing up on Singleplayer AGAIN
------------------------------------------
-Features:
-3x Interior
-LOD Lights
-1500 LOD Dist for Oil Rig Prop
-Well lit
-
------------------------------------------
-Installation FIVEM:
-A - Open the file with 7zip, Winrar, or any other program that allows you to unzip these types of files
-B - Unzip the file into your MAP FOLDER and start on your server.cfg
-
-Installation Single Player
-A - Open OpenIV and enable Edit Mode
-B - Navigate to the path mods\update\x64\dlcpacks
-C - Drag the map DLC folder into the dlcpacks folder then copy the name of this DLC folder
-D - Return to the update folder and double click to open update.rpf
-E - Open common\data find dlclist.xml right click it and select Edit
-F - Scroll to the bottom of the file copy the last line of code press Enter and paste it on a new line
-G - Replace the DLC name in the new line with the name of your map DLC folder
-H - Save the file Installation is complete launch the game to use the mod`,
-                versions: [
-                    { version: "1.2.1", link: "https://download1500.mediafire.com/ef6yt9gn1j3gXHybMH1oBheS1zf93TIH2bR54oI1LUbNLTZlFHzS-cESywPrJ4ZjqHZiDihVNbNyl28pHrKyJS7NUK9Eizit9A-PVvVrtmI8w5tiXuTJia40l4hhd1BlzbUIMOsxPG-yr2_QME4ap8rWA6EBA4e7CWvzkxG7xYw8JlQf/nt3eivb3rmvguu5/5b3aaf-LD_SmoilRig+SP+FIX+AGAIN.rar" },
-                    { version: "1.2", link: "https://www.mediafire.com/file/nt3eivb3rmvguu5/5b3aaf-LD_SmoilRig_SP_FIX_AGAIN.rar/file" }
-                ]
-            },
-            {
-                id: "z-menu-mod",
-                title: "Z Menu [قائمة مودات احترافية]",
-                category: "random",
-                platform: "PC",
-                version: "2.0.0",
-                size: "4.1 MB",
-                downloads: "5,120",
-                date: "2026-07-24",
-                author: "Z Development",
-                authorUrl: "https://www.gta5-mods.com",
-                image: "https://pdftolink.io/file/r2_dXNlcnMvZ3Vlc3QvYTk4ZjFiZjMtZmRlOC00NWMzLTkzY2MtYjI4MTNkMjM3OTg0LmpwZw",
-                images: [
-                    "https://pdftolink.io/file/r2_dXNlcnMvZ3Vlc3QvYTk4ZjFiZjMtZmRlOC00NWMzLTkzY2MtYjI4MTNkMjM3OTg0LmpwZw"
-                ],
-                description: `قائمة Z Menu الاحترافية لتحكم كامل بداخل لعبة GTA 5 مع ميزات وواجهة سهلة الاستخدام.`,
-                versions: [
-                    { version: "2.0.0", link: "https://www.mediafire.com" }
-                ]
+                version: "1.0",
+                date: "2026",
+                downloadLink: "https://download1500.mediafire.com/ef6yt9gn1j3gXHybMH1oBheS1zf93TIH2bR54oI1LUbNLTZlFHzS-cESywPrJ4ZjqHZiDihVNbNyl28pHrKyJS7NUK9Eizit9A-PVvVrtmI8w5tiXuTJia40l4hhd1BlzbUIMOsxPG-yr2_QME4ap8rWA6EBA4e7CWvzkxG7xYw8JlQf/nt3eivb3rmvguu5/5b3aaf-LD_SmoilRig+SP+FIX+AGAIN.rar"
             }
         ];
 
@@ -983,10 +591,8 @@ H - Save the file Installation is complete launch the game to use the mod`,
 
         const modsGrid = document.getElementById('modsGrid');
         const searchInput = document.getElementById('searchInput');
-        const homeView = document.getElementById('homeView');
-        const detailsView = document.getElementById('detailsView');
 
-        /* دالة عرض وترشيح المودات في القائمة الرئيسية */
+        /* دالة عرض وترشيح المودات تلقائياً */
         function renderMods() {
             modsGrid.innerHTML = '';
 
@@ -996,9 +602,9 @@ H - Save the file Installation is complete launch the game to use the mod`,
                 
                 const query = searchQuery.toLowerCase();
                 const matchesSearch = mod.title.toLowerCase().includes(query) ||
-                                      mod.description.toLowerCase().includes(query) ||
-                                      mod.category.toLowerCase().includes(query) ||
-                                      mod.platform.toLowerCase().includes(query);
+                                    mod.description.toLowerCase().includes(query) ||
+                                    mod.category.toLowerCase().includes(query) ||
+                                    mod.platform.toLowerCase().includes(query);
 
                 return matchesPlatform && matchesCategory && matchesSearch;
             });
@@ -1025,7 +631,6 @@ H - Save the file Installation is complete launch the game to use the mod`,
                 const card = document.createElement('div');
                 card.classList.add('mod-card');
                 card.style.animationDelay = `${index * 0.05}s`;
-                card.onclick = () => openModDetails(mod.id);
 
                 card.innerHTML = `
                     <div class="mod-img-wrapper">
@@ -1041,76 +646,19 @@ H - Save the file Installation is complete launch the game to use the mod`,
                         <p class="mod-desc">${mod.description}</p>
                         <div class="mod-footer-info">
                             <span><i class="far fa-calendar-alt"></i> ${mod.date}</span>
-                            <span style="color: var(--gta-gold); font-weight: 800;">عرض التفاصيل <i class="fas fa-arrow-left"></i></span>
+                        </div>
+                        <div class="mod-actions">
+                            <a href="${mod.downloadLink}" class="btn-download" target="_blank" onclick="triggerRipple(event)">
+                                <i class="fas fa-download"></i> تحميل المود
+                            </a>
+                            <button class="btn-copy" onclick="copyModLink('${mod.title}', event)" aria-label="نسخ الرابط">
+                                <i class="fas fa-copy"></i>
+                            </button>
                         </div>
                     </div>
                 `;
                 modsGrid.appendChild(card);
             });
-        }
-
-        /* فتح صفحة تفاصيل المود */
-        function openModDetails(modId) {
-            const mod = modsDatabase.find(m => m.id === modId);
-            if (!mod) return;
-
-            homeView.style.display = 'none';
-            detailsView.style.display = 'flex';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // تعبئة البيانات
-            document.getElementById('mainPreviewImg').src = mod.images[0] || mod.image;
-            document.getElementById('modDescriptionContent').textContent = mod.description;
-
-            document.getElementById('metaTitle').textContent = mod.title;
-            const categoryNames = { vehicles: "المركبات", weapons: "الأسلحة", skins: "السكنات", maps: "الخرائط", random: "مودات عشوائية" };
-            document.getElementById('metaCategory').textContent = categoryNames[mod.category] || mod.category;
-            document.getElementById('metaPlatform').textContent = mod.platform;
-            document.getElementById('metaVersion').textContent = mod.version;
-            document.getElementById('metaSize').textContent = mod.size || "15.0 MB";
-            document.getElementById('metaDownloads').textContent = mod.downloads || "1,000";
-            document.getElementById('metaDate').textContent = mod.date;
-
-            const authorLink = document.getElementById('metaAuthorLink');
-            authorLink.textContent = mod.author;
-            authorLink.href = mod.authorUrl;
-
-            // معرض الصور المصغرة
-            const thumbRow = document.getElementById('thumbnailsRow');
-            thumbRow.innerHTML = '';
-            const allImages = mod.images && mod.images.length > 0 ? mod.images : [mod.image];
-            allImages.forEach((imgSrc, idx) => {
-                const thumb = document.createElement('img');
-                thumb.src = imgSrc;
-                thumb.className = `thumb-item ${idx === 0 ? 'active' : ''}`;
-                thumb.onclick = () => {
-                    document.getElementById('mainPreviewImg').src = imgSrc;
-                    document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
-                    thumb.classList.add('active');
-                };
-                thumbRow.appendChild(thumb);
-            });
-
-            // قائمة الإصدارات المتقدمة
-            const versionsList = document.getElementById('versionsListContainer');
-            versionsList.innerHTML = '';
-            if (mod.versions && mod.versions.length > 0) {
-                mod.versions.forEach(ver => {
-                    const vItem = document.createElement('a');
-                    vItem.href = ver.link;
-                    vItem.target = "_blank";
-                    vItem.className = 'version-row-item';
-                    vItem.innerHTML = `<span>إصدار ${ver.version}</span> <i class="fas fa-cloud-download-alt"></i>`;
-                    versionsList.appendChild(vItem);
-                });
-            }
-        }
-
-        /* العودة للقائمة الرئيسية */
-        function returnToHomeView() {
-            detailsView.style.display = 'none';
-            homeView.style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         /* تفاعلات أزرار اختيار الجهاز */
@@ -1124,7 +672,7 @@ H - Save the file Installation is complete launch the game to use the mod`,
             });
         });
 
-        /* تفاعلات شريط الأقسام */
+        /* تفاعلات شريط الأقسام (Tabs) */
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1135,13 +683,13 @@ H - Save the file Installation is complete launch the game to use the mod`,
             });
         });
 
-        /* البحث الفوري */
+        /* البحث الفوري أثناء الكتابة */
         searchInput.addEventListener('input', (e) => {
             searchQuery = e.target.value.trim();
             renderMods();
         });
 
-        /* تأثير التموج للأزرار */
+        /* تأثير التموج للأزرار (Ripple Effect) */
         function triggerRipple(e) {
             const target = e.currentTarget;
             const rect = target.getBoundingClientRect();
@@ -1160,14 +708,18 @@ H - Save the file Installation is complete launch the game to use the mod`,
             setTimeout(() => ripple.remove(), 500);
         }
 
-        /* وظائف Lightbox تكبير الصورة */
-        function openLightbox(src) {
-            if(!src) return;
-            document.getElementById('lightboxImg').src = src;
-            document.getElementById('lightboxOverlay').classList.add('active');
-        }
-        function closeLightbox() {
-            document.getElementById('lightboxOverlay').classList.remove('active');
+        /* وظيفة نسخ رابط المود مع إشعار Toast احترافي */
+        function copyModLink(modTitle, e) {
+            triggerRipple(e);
+            navigator.clipboard.writeText(window.location.href);
+            const toast = document.getElementById('toastAlert');
+            const toastMsg = document.getElementById('toastMessage');
+            toastMsg.textContent = `تم نسخ رابط مود "${modTitle}" بنجاح!`;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
         }
 
         /* التهيئة الأولية عند تحميل الصفحة */
