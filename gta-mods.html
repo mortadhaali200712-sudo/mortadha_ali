@@ -255,6 +255,7 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             position: relative;
             animation: fadeInCard 0.4s ease forwards;
+            cursor: pointer;
         }
         @keyframes fadeInCard {
             from { opacity: 0; transform: translateY(15px); }
@@ -357,6 +358,104 @@
             transform: translateY(-2px);
         }
 
+        /* نافذة تفاصيل المود المنبثقة (Modal) */
+        .mod-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 5, 7, 0.85);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .mod-modal.active {
+            display: flex;
+            animation: fadeInModal 0.3s ease;
+        }
+        @keyframes fadeInModal {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .modal-content-box {
+            background: #121216;
+            border: 1px solid var(--border-glass);
+            border-radius: 28px;
+            width: 100%;
+            max-width: 850px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: var(--transition-swift);
+        }
+        .modal-close-btn:hover {
+            background: var(--gta-orange);
+            border-color: var(--gta-orange);
+        }
+        .modal-main-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 1px solid var(--border-glass);
+        }
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .modal-gallery img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 1px solid var(--border-glass);
+            cursor: pointer;
+            transition: var(--transition-swift);
+        }
+        .modal-gallery img:hover {
+            transform: scale(1.03);
+            border-color: var(--gta-gold);
+        }
+        .modal-details-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            white-space: pre-line;
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .modal-author-link {
+            color: var(--gta-gold);
+            text-decoration: underline;
+            font-weight: 800;
+        }
+
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
@@ -379,6 +478,9 @@
                 grid-template-columns: 1fr;
             }
             .mods-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-gallery {
                 grid-template-columns: 1fr;
             }
         }
@@ -456,6 +558,29 @@
 
     </div>
 
+    <!-- نافذة تفاصيل المود -->
+    <div class="mod-modal" id="modModal">
+        <div class="modal-content-box">
+            <button class="modal-close-btn" id="closeModalBtn">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="modalMainImg" src="" alt="" class="modal-main-img">
+            <div class="modal-gallery" id="modalGallery"></div>
+            <h2 id="modalTitle" style="color: var(--text-primary); font-size: 1.5rem; font-weight: 900;"></h2>
+            <div style="display: flex; gap: 15px; font-size: 0.9rem; color: var(--text-secondary); font-weight: 700;">
+                <span>الإصدار: <strong id="modalVersion" style="color: var(--gta-gold);"></strong></span>
+                <span>الحجم: <strong id="modalSize" style="color: var(--gta-gold);"></strong></span>
+                <span>تاريخ الإضافة: <strong id="modalDate" style="color: var(--gta-gold);"></strong></span>
+            </div>
+            <div class="modal-details-text" id="modalDescText"></div>
+            <div style="display: flex; justify-content: flex-end; gap: 15px; margin-top: 10px;">
+                <a id="modalDownloadBtn" href="" class="download-btn-direct" target="_blank">
+                    <i class="fas fa-download"></i> تحميل المود
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script>
         const modsDatabase = [
             {
@@ -464,10 +589,49 @@
                 category: "maps",
                 platform: "PC",
                 thumbnail: "https://res.cloudinary.com/dbahe7lxz/image/upload/v1784921012/idraaak/wblytxqj22cwoqqa2nsr.jpg",
-                currentVersion: "v1.2.1",
+                gallery: [
+                    "https://res.cloudinary.com/dbahe7lxz/image/upload/v1784921012/idraaak/wblytxqj22cwoqqa2nsr.jpg",
+                    "https://res.cloudinary.com/dbahe7lxz/image/upload/v1784921064/idraaak/a7p1bkluf56beb1uhyj1.jpg",
+                    "https://res.cloudinary.com/dbahe7lxz/image/upload/v1784921104/idraaak/wyr9ks6v7djspbgevz6m.jpg"
+                ],
+                currentVersion: "1.2.1",
                 fileSize: "70.4 MB",
                 addedDate: "2026/24/7",
-                description: "إضافة منصة نفط صغيرة بتكلفة أقل من LS، متوافقة مع وضع اللعب الفردي و FiveM.",
+                author: "LouieDevs",
+                authorLink: "https://www.gta5-mods.com/maps/oil-rig-add-on-sp-fivem",
+                description: `الوصف: إضافة منصة نفط صغيرة بتكلفة أقل من LS.
+صاحب المود: LouieDevs (رابط صفحته/المود الأصلي: https://www.gta5-mods.com/maps/oil-rig-add-on-sp-fivem)
+
+-----------------------------------------
+حقوق الملكية:
+"Louies Development" (أنا) لمنصة النفط ومبنى العرض المؤقت!
+-----------------------------------------
+--سجل التغييرات--
+1.0 - الإصدار
+1.1 - تم إصلاح الحواجز الواقية
+1.1.1 - تم إصلاح التنزيل لـ FiveM
+1.2 - تم إصلاح مشكلة عدم ظهور منصة منصة النفط في وضع اللاعب الفردي
+1.2.1 - تم إصلاح مشكلة عدم ظهور منصة منصة النفط في وضع اللاعب الفردي مرة أخرى
+-----------------------------------------
+الميزات: 
+- 3x إضاءة LOD
+- داخلية
+- 1500 LOD Dist لمنصة النفط
+- إضاءة جيدة 
+-----------------------------------------
+التثبيت في FiveM:
+أ - افتح الملف باستخدام 7zip أو Winrar أو أي برنامج آخر يسمح لك بفك ضغط هذا النوع من الملفات.
+ب - فك ضغط الملف في مجلد الخريطة وابدأ من ملف server.cfg.
+
+التثبيت في وضع اللاعب الفردي:
+أ - افتح OpenIV وقم بتمكين وضع التحرير.
+ب - انتقل إلى المسار mods\update\x64\dlcpacks.
+ج - اسحب مجلد DLC الخاص بالخريطة إلى مجلد dlcpacks ثم انسخ اسم مجلد DLC هذا.
+د - ارجع إلى مجلد التحديث وانقر نقرًا مزدوجًا لفتح ملف update.rpf.
+هـ - افتح مجلد common\data، وابحث عن ملف dlclist.xml، وانقر عليه بزر الماوس الأيمن، ثم اختر "تحرير".
+و - انتقل إلى أسفل الملف، وانسخ السطر الأخير من التعليمات البرمجية، واضغط على مفتاح الإدخال، ثم الصقه في سطر جديد.
+ز - استبدل اسم DLC في السطر الجديد باسم مجلد DLC الخاص بخريطتك.
+ح - احفظ الملف. اكتمل التثبيت، شغّل اللعبة لاستخدام التعديل.`,
                 downloadLink: "https://download1500.mediafire.com/ef6yt9gn1j3gXHybMH1oBheS1zf93TIH2bR54oI1LUbNLTZlFHzS-cESywPrJ4ZjqHZiDihVNbNyl28pHrKyJS7NUK9Eizit9A-PVvVrtmI8w5tiXuTJia40l4hhd1BlzbUIMOsxPG-yr2_QME4ap8rWA6EBA4e7CWvzkxG7xYw8JlQf/nt3eivb3rmvguu5/5b3aaf-LD_SmoilRig+SP+FIX+AGAIN.rar"
             }
         ];
@@ -478,6 +642,8 @@
 
         const modsGrid = document.getElementById('modsGrid');
         const searchInput = document.getElementById('searchInput');
+        const modModal = document.getElementById('modModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
 
         function renderMods() {
             modsGrid.innerHTML = '';
@@ -528,18 +694,64 @@
                             <span>الإصدار: ${mod.currentVersion}</span>
                         </div>
                         <h3 class="mod-title">${mod.title}</h3>
-                        <p class="mod-desc">${mod.description}</p>
+                        <p class="mod-desc">${mod.description.split('\n')[0]}</p>
                         <div class="mod-footer-card">
                             <span style="font-size: 0.8rem; color: var(--text-secondary);"><i class="far fa-calendar-alt"></i> ${mod.addedDate}</span>
-                            <a href="${mod.downloadLink}" class="download-btn-direct" target="_blank">
+                            <a href="${mod.downloadLink}" class="download-btn-direct" target="_blank" onclick="event.stopPropagation();">
                                 <i class="fas fa-download"></i> تحميل المود
                             </a>
                         </div>
                     </div>
                 `;
+
+                card.addEventListener('click', () => {
+                    openModal(mod);
+                });
+
                 modsGrid.appendChild(card);
             });
         }
+
+        function openModal(mod) {
+            document.getElementById('modalMainImg').src = mod.thumbnail;
+            document.getElementById('modalTitle').textContent = mod.title;
+            document.getElementById('modalVersion').textContent = mod.currentVersion;
+            document.getElementById('modalSize').textContent = mod.fileSize;
+            document.getElementById('modalDate').textContent = mod.addedDate;
+            document.getElementById('modalDownloadBtn').href = mod.downloadLink;
+
+            const galleryContainer = document.getElementById('modalGallery');
+            galleryContainer.innerHTML = '';
+            if (mod.gallery && mod.gallery.length > 0) {
+                mod.gallery.forEach(imgUrl => {
+                    const img = document.createElement('img');
+                    img.src = imgUrl;
+                    img.alt = "صورة توضيحية";
+                    img.addEventListener('click', () => {
+                        document.getElementById('modalMainImg').src = imgUrl;
+                    });
+                    galleryContainer.appendChild(img);
+                });
+            }
+
+            let formattedDesc = mod.description.replace(
+                "https://www.gta5-mods.com/maps/oil-rig-add-on-sp-fivem", 
+                `<a href="${mod.authorLink}" class="modal-author-link" target="_blank">${mod.authorLink}</a>`
+            );
+            document.getElementById('modalDescText').innerHTML = formattedDesc;
+
+            modModal.classList.add('active');
+        }
+
+        closeModalBtn.addEventListener('click', () => {
+            modModal.classList.remove('active');
+        });
+
+        modModal.addEventListener('click', (e) => {
+            if (e.target === modModal) {
+                modModal.classList.remove('active');
+            }
+        });
 
         document.querySelectorAll('.platform-btn').forEach(btn => {
             btn.addEventListener('click', () => {
