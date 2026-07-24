@@ -41,7 +41,6 @@
             position: relative;
         }
 
-        /* خلفية ضوئية متحركة (Floating Lights & Gradients) */
         .ambient-backdrop {
             position: fixed;
             inset: 0;
@@ -67,7 +66,6 @@
             100% { transform: translate(30px, -30px) scale(1.15); }
         }
 
-        /* حاوية الصفحة */
         .page-container {
             max-width: 1500px;
             margin: 0 auto;
@@ -77,7 +75,6 @@
             gap: 35px;
         }
 
-        /* شريط التنقل العلوي */
         .top-nav-bar {
             display: flex;
             align-items: center;
@@ -109,7 +106,6 @@
             box-shadow: 0 15px 35px rgba(245, 158, 11, 0.4);
         }
 
-        /* شريط البحث الفوري */
         .search-wrapper {
             position: relative;
             flex: 1;
@@ -141,7 +137,6 @@
             pointer-events: none;
         }
 
-        /* الهيدر والعنوان الرئيسي */
         .store-hero {
             text-align: center;
             padding: 30px 20px;
@@ -165,7 +160,6 @@
             font-weight: 600;
         }
 
-        /* اختيار الجهاز (Platform Selector) */
         .platforms-section {
             display: flex;
             flex-direction: column;
@@ -213,7 +207,6 @@
             box-shadow: 0 12px 30px rgba(245, 158, 11, 0.25);
         }
 
-        /* شريط الأقسام (Tabs Bar) */
         .tabs-bar {
             display: flex;
             gap: 12px;
@@ -248,14 +241,12 @@
             box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
         }
 
-        /* شبكة عرض المودات */
         .mods-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 25px;
         }
 
-        /* بطاقة المود */
         .mod-card {
             background: var(--gta-card-bg);
             border: 1px solid var(--border-glass);
@@ -346,7 +337,6 @@
             color: var(--text-secondary);
         }
 
-        /* صفحة تفاصيل المود الاحترافية */
         .mod-detail-view {
             display: none;
             flex-direction: column;
@@ -677,24 +667,6 @@
             color: #000;
         }
 
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid var(--border-glass);
-            background: #111;
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
@@ -705,46 +677,6 @@
             background: var(--gta-card-bg);
             border: 1px solid var(--border-glass);
             border-radius: 24px;
-        }
-
-        .ripple {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            transform: scale(0);
-            animation: rippleAnim 0.5s linear;
-            pointer-events: none;
-        }
-        @keyframes rippleAnim {
-            to { transform: scale(4); opacity: 0; }
-        }
-
-        .toast-alert {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            background: rgba(18, 18, 22, 0.95);
-            border: 1px solid var(--gta-gold);
-            color: var(--text-primary);
-            padding: 16px 26px;
-            border-radius: 16px;
-            font-weight: 800;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: var(--transition-swift);
-        }
-        .toast-alert.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        .toast-alert i {
-            color: var(--gta-gold);
-            font-size: 1.3rem;
         }
 
         @media (max-width: 1200px) {
@@ -904,11 +836,6 @@
                         <div class="widget-title"><i class="fas fa-images"></i> معرض الصور (Gallery)</div>
                         <div class="gallery-grid" id="detailGalleryGrid"></div>
                     </div>
-
-                    <div class="widget-box" id="detailVideoBox" style="display: none;">
-                        <div class="widget-title"><i class="fab fa-youtube"></i> فيديو استعراضي</div>
-                        <div class="video-container" id="detailVideoContainer"></div>
-                    </div>
                 </div>
 
                 <div class="sidebar-right">
@@ -942,11 +869,6 @@
         </div>
     </div>
 
-    <div id="toastAlert" class="toast-alert">
-        <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">تم بنجاح!</span>
-    </div>
-
     <script>
         const modsDatabase = [
             {
@@ -965,7 +887,6 @@
                 addedDate: "2026/24/7",
                 authorName: "LouieDevs",
                 authorLink: "https://www.gta5-mods.com/maps/oil-rig-add-on-sp-fivem",
-                youtubeUrl: "",
                 versions: [
                     { version: "v1.2.1", link: "https://download1500.mediafire.com/ef6yt9gn1j3gXHybMH1oBheS1zf93TIH2bR54oI1LUbNLTZlFHzS-cESywPrJ4ZjqHZiDihVNbNyl28pHrKyJS7NUK9Eizit9A-PVvVrtmI8w5tiXuTJia40l4hhd1BlzbUIMOsxPG-yr2_QME4ap8rWA6EBA4e7CWvzkxG7xYw8JlQf/nt3eivb3rmvguu5/5b3aaf-LD_SmoilRig+SP+FIX+AGAIN.rar" },
                     { version: "v1.2", link: "#" },
