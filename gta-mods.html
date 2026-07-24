@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="متجر مودات GTA 5 العالمي - استكشف أقوى المودات والتحسينات لأجهزة الكمبيوتر والكونسول">
-    <title>GTA 5 Mods | متجر المودات العالمي</title>
+    <meta name="description" content="منصة مودات GTA 5 العالمية - استكشف أقوى المودات والتحسينات مع صفحة تفاصيل احترافية شبيهة بـ Nexus Mods">
+    <title>GTA 5 Mods Hub | منصة المودات العالمية</title>
     <link rel="icon" href="logo2.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
             100% { transform: translate(30px, -30px) scale(1.15); }
         }
 
-        /* حاوية الصفحة الرئيسية */
+        /* حاوية الصفحة */
         .page-container {
             max-width: 1500px;
             margin: 0 auto;
@@ -77,7 +77,7 @@
             gap: 35px;
         }
 
-        /* شريط التنقل العلوي وزر الرجوع */
+        /* شريط التنقل العلوي */
         .top-nav-bar {
             display: flex;
             align-items: center;
@@ -85,7 +85,7 @@
             gap: 20px;
             flex-wrap: wrap;
         }
-        .back-btn {
+        .back-btn, .nav-action-btn {
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -100,11 +100,12 @@
             backdrop-filter: blur(10px);
             transition: var(--transition-swift);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            cursor: pointer;
         }
-        .back-btn:hover {
+        .back-btn:hover, .nav-action-btn:hover {
             background: var(--gta-gold);
             color: #000;
-            transform: translateX(-5px);
+            transform: translateX(-3px);
             box-shadow: 0 15px 35px rgba(245, 158, 11, 0.4);
         }
 
@@ -149,8 +150,6 @@
             border-radius: 32px;
             backdrop-filter: blur(20px);
             box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-            position: relative;
-            overflow: hidden;
         }
         .store-hero h1 {
             font-size: 2.8rem;
@@ -249,14 +248,14 @@
             box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
         }
 
-        /* شبكة عرض المودات (Mod Cards Grid) */
+        /* شبكة عرض المودات */
         .mods-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 25px;
         }
 
-        /* بطاقة المود الاحترافية */
+        /* بطاقة المود (عند النقر عليها بالكامل تنتقل للتفاصيل) */
         .mod-card {
             background: var(--gta-card-bg);
             border: 1px solid var(--border-glass);
@@ -266,6 +265,7 @@
             flex-direction: column;
             transition: var(--transition-swift);
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            cursor: pointer;
             position: relative;
             animation: fadeInCard 0.4s ease forwards;
         }
@@ -276,7 +276,7 @@
         .mod-card:hover {
             border-color: var(--gta-gold);
             transform: translateY(-6px);
-            box-shadow: 0 25px 50px rgba(245, 158, 11, 0.2);
+            box-shadow: 0 25px 50px rgba(245, 158, 11, 0.25);
         }
 
         .mod-img-wrapper {
@@ -313,7 +313,7 @@
             padding: 22px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
             flex: 1;
         }
         .mod-meta-row {
@@ -335,70 +335,372 @@
             font-weight: 900;
             color: var(--text-primary);
         }
-        .mod-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            flex: 1;
-        }
-        .mod-footer-info {
+        .mod-footer-card {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: auto;
             padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.82rem;
+            color: var(--text-secondary);
         }
 
-        /* أزرار الإجراءات داخل البطاقة */
-        .mod-actions {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 10px;
-            margin-top: 5px;
+        /* ==========================================
+           صفحة تفاصيل المود الاحترافية (Mod Detail View)
+           ========================================== */
+        .mod-detail-view {
+            display: none;
+            flex-direction: column;
+            gap: 30px;
+            animation: fadeInCard 0.4s ease forwards;
         }
-        .btn-download {
+        .mod-detail-view.active {
+            display: flex;
+        }
+
+        /* رأس صفحة التفاصيل */
+        .detail-hero {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            background: #111;
+        }
+        .detail-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+        .detail-hero img:hover {
+            transform: scale(1.03);
+        }
+        .detail-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,12,0.95) 10%, rgba(10,10,12,0.3) 60%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 35px;
+            gap: 12px;
+        }
+        .detail-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fff;
+        }
+        .detail-tags-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .tag-pill {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            color: var(--gta-gold);
+            padding: 6px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            backdrop-filter: blur(8px);
+        }
+
+        /* تخطيط محتوى التفاصيل (PC: 3 أعمدة أو أعمدة مرنة) */
+        .detail-content-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr 340px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        /* صندوق الإصدارات (في اليسار حسب الطلب) */
+        .sidebar-left, .sidebar-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .widget-box {
+            background: var(--gta-card-bg);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 24px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--gta-gold);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding-bottom: 12px;
+        }
+
+        /* قائمة الإصدارات التلقائية */
+        .versions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .version-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 12px 16px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-swift);
+        }
+        .version-item:hover {
+            border-color: var(--gta-gold);
+            background: rgba(245, 158, 11, 0.08);
+        }
+        .version-name {
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+        .version-download-btn {
             background: linear-gradient(135deg, var(--gta-gold), var(--gta-orange));
             color: #000;
             border: none;
-            padding: 12px 20px;
-            border-radius: 14px;
+            padding: 8px 14px;
+            border-radius: 10px;
             font-family: inherit;
             font-weight: 900;
-            font-size: 0.92rem;
+            font-size: 0.82rem;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: var(--transition-swift);
             text-decoration: none;
-            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
-        }
-        .btn-download:hover {
-            filter: brightness(1.15);
-            transform: scale(1.02);
-        }
-        .btn-copy {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-glass);
-            color: var(--text-primary);
-            width: 46px;
-            border-radius: 14px;
-            cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
+            gap: 6px;
             transition: var(--transition-swift);
         }
-        .btn-copy:hover {
-            background: rgba(245, 158, 11, 0.2);
-            border-color: var(--gta-gold);
-            color: var(--gta-gold);
+        .version-download-btn:hover {
+            filter: brightness(1.15);
+            transform: scale(1.03);
         }
 
-        /* حالة عدم وجود نتائج أو مودات فارغة */
+        /* صندوق معلومات المود (في اليمين) */
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            padding-bottom: 10px;
+        }
+        .info-label {
+            color: var(--text-secondary);
+            font-weight: 700;
+        }
+        .info-val {
+            color: var(--text-primary);
+            font-weight: 800;
+        }
+        .author-link {
+            color: var(--gta-gold);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-swift);
+        }
+        .author-link:hover {
+            text-decoration: underline;
+        }
+
+        /* منطقة المحتوى الأوسط (الوصف، المعرض، الفيديو، زر التحميل) */
+        .center-main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* زر التحميل الرئيسي في الوسط */
+        .main-download-card {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(234, 88, 12, 0.12));
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            border-radius: 24px;
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 15px 35px rgba(245, 158, 11, 0.15);
+        }
+        .download-action-btn {
+            background: linear-gradient(135deg, var(--gta-gold), var(--gta-orange));
+            color: #000;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 16px;
+            font-family: inherit;
+            font-weight: 900;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: var(--transition-swift);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        }
+        .download-action-btn:hover {
+            filter: brightness(1.15);
+            transform: translateY(-2px);
+        }
+
+        /* قسم الوصف (Description) */
+        .description-box {
+            background: var(--gta-card-bg);
+            border: 1px standard var(--border-glass);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        .description-box h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--gta-gold);
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding-bottom: 10px;
+        }
+        .description-content {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .description-content h3 { color: var(--text-primary); font-size: 1.2rem; margin-top: 10px; }
+        .description-content ul { padding-right: 20px; display: flex; flex-direction: column; gap: 8px; }
+        .description-content a { color: var(--gta-gold); text-decoration: underline; }
+
+        /* معرض الصور المصغرة (Gallery) */
+        .gallery-box {
+            background: var(--gta-card-bg);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 24px;
+            backdrop-filter: blur(20px);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .gallery-thumb {
+            height: 80px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: var(--transition-swift);
+        }
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-thumb:hover, .gallery-thumb.active {
+            border-color: var(--gta-gold);
+            transform: scale(1.05);
+        }
+
+        /* نافذة تكبير الصورة (Lightbox Modal) */
+        .lightbox-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        .lightbox-modal.active {
+            display: flex;
+        }
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--gta-gold);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+        }
+        .lightbox-content img {
+            width: 100%;
+            height: auto;
+            max-height: 85vh;
+            display: block;
+            object-fit: contain;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid var(--gta-gold);
+            color: var(--gta-gold);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-swift);
+        }
+        .lightbox-close:hover {
+            background: var(--gta-gold);
+            color: #000;
+        }
+
+        /* فيديو اليوتيوب */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            background: #111;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* حالة عدم وجود نتائج */
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
@@ -453,7 +755,12 @@
             font-size: 1.3rem;
         }
 
-        /* تصميم متجاوب تام للهاتف (Responsive 100%) */
+        /* التصميم المتجاوب للكمبيوتر والهاتف (Responsive) */
+        @media (max-width: 1200px) {
+            .detail-content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
         @media (max-width: 1024px) {
             .platforms-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -479,40 +786,51 @@
             .mods-grid {
                 grid-template-columns: 1fr;
             }
+            .detail-hero {
+                height: 260px;
+            }
+            .detail-title {
+                font-size: 1.8rem;
+            }
+            .main-download-card {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- الخلفية الضوئية -->
+    <!-- الخلفية الضوئية المتحركة -->
     <div class="ambient-backdrop">
         <div class="glow-orb orb-1"></div>
         <div class="glow-orb orb-2"></div>
     </div>
 
-    <!-- محتوى الصفحة -->
-    <div class="page-container">
+    <!-- حاوية الصفحة الرئيسية -->
+    <div class="page-container" id="mainContainer">
 
         <!-- شريط التنقل العلوي -->
-        <div class="top-nav-bar">
+        <div class="top-nav-bar" id="topNavBar">
             <a href="index.html" class="back-btn">
                 <i class="fas fa-arrow-right"></i>
                 <span>العودة للرئيسية</span>
             </a>
-            <div class="search-wrapper">
+            <div class="search-wrapper" id="searchWrapper">
                 <i class="fas fa-search"></i>
                 <input type="text" id="searchInput" class="search-input-field" placeholder="ابحث عن مود، مركبة، سلاح..." autocomplete="off">
             </div>
         </div>
 
-        <!-- واجهة الترحيب -->
-        <header class="store-hero">
+        <!-- واجهة الترحيب (تختفي تلقائياً عند الدخول للتفاصيل لترك مساحة كبرى) -->
+        <header class="store-hero" id="storeHero">
             <h1>GTA 5 Mods Hub</h1>
-            <p>متجر المودات العالمي الحصري - اختر جهازك وتصفح أقوى التعديلات الاحترافية</p>
+            <p>متجر المودات العالمي الاحترافي - استكشف أقوى التحسينات والإضافات لأجهزة الكمبيوتر والكونسول</p>
         </header>
 
         <!-- اختيار الجهاز (Platform Selector) -->
-        <div class="platforms-section">
+        <div class="platforms-section" id="platformsSection">
             <div class="section-label">
                 <i class="fas fa-gamepad"></i> اختيار الجهاز (Choose Platform)
             </div>
@@ -540,9 +858,6 @@
             <button class="tab-btn active" data-category="all">
                 <i class="fas fa-star"></i> الكل / All
             </button>
-            <button class="tab-btn" data-category="random">
-                <i class="fas fa-random"></i> مودات عشوائية / Random Mods
-            </button>
             <button class="tab-btn" data-category="vehicles">
                 <i class="fas fa-car"></i> المركبات / Vehicles
             </button>
@@ -557,31 +872,164 @@
             </button>
         </div>
 
-        <!-- شبكة عرض المودات الديناميكية -->
+        <!-- شبكة عرض المودات (الصفحة الرئيسية) -->
         <section class="mods-grid" id="modsGrid">
-            <!-- سيتم تعبئة المودات تلقائياً من قاعدة البيانات -->
+            <!-- يتم التعبئة تلقائياً من قاعدة البيانات -->
         </section>
+
+        <!-- ==========================================
+           صفحة تفاصيل المود الديناميكية (Mod Detail View)
+           ========================================== -->
+        <div class="mod-detail-view" id="modDetailView">
+            
+            <!-- زر الرجوع لقائمة المودات -->
+            <div>
+                <button class="nav-action-btn" onclick="backToListing()">
+                    <i class="fas fa-arrow-right"></i> العودة لقائمة المودات
+                </button>
+            </div>
+
+            <!-- رأس صفحة التفاصيل (الصورة الكبيرة والعنوان) -->
+            <div class="detail-hero" id="detailHeroContainer">
+                <img id="detailMainImage" src="" alt="Mod Main Image" onclick="openLightbox(this.src)">
+                <div class="detail-hero-overlay">
+                    <div class="detail-tags-row" id="detailTagsRow">
+                        <!-- تصنيف وجهاز وإصدار -->
+                    </div>
+                    <h1 class="detail-title" id="detailTitleText">اسم المود</h1>
+                </div>
+            </div>
+
+            <!-- تخطيط الأعمدة الثلاثة للاستفادة الكاملة من الشاشة -->
+            <div class="detail-content-grid">
+                
+                <!-- العمود الأيسر: صندوق الإصدارات (Versions) -->
+                <div class="sidebar-left">
+                    <div class="widget-box">
+                        <div class="widget-title"><i class="fas fa-history"></i> الإصدارات (Versions)</div>
+                        <div class="versions-list" id="detailVersionsList">
+                            <!-- توليد تلقائي للإصدارات وروابطها -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- العمود الأوسط: زر التحميل، الوصف، المعرض، الفيديو -->
+                <div class="center-main-content">
+                    
+                    <!-- زر التحميل الرئيسي في الوسط -->
+                    <div class="main-download-card">
+                        <div>
+                            <h3 style="color: #fff; font-size: 1.1rem; font-weight: 900; margin-bottom: 45px;">جاهز لتثبيت هذا المود؟</h3>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">تحميل آمن وسريع بأحدث إصدار رسمي متاح.</p>
+                        </div>
+                        <a id="mainDownloadBtn" href="#" class="download-action-btn" target="_blank">
+                            <i class="fas fa-download"></i> تحميل المود الآن
+                        </a>
+                    </div>
+
+                    <!-- قسم تفاصيل المود (Description) -->
+                    <div class="description-box">
+                        <h2><i class="fas fa-info-circle"></i> تفاصيل المود (Description)</h2>
+                        <div class="description-content" id="detailDescriptionContent">
+                            <!-- عرض الوصف مع دعم العناوين والفقرات -->
+                        </div>
+                    </div>
+
+                    <!-- معرض الصور (إذا وجدت أكثر من صورة) -->
+                    <div class="widget-box" id="detailGalleryBox" style="display: none;">
+                        <div class="widget-title"><i class="fas fa-images"></i> معرض الصور (Gallery)</div>
+                        <div class="gallery-grid" id="detailGalleryGrid"></div>
+                    </div>
+
+                    <!-- فيديو يوتيوب (إذا وجد رابط) -->
+                    <div class="widget-box" id="detailVideoBox" style="display: none;">
+                        <div class="widget-title"><i class="fab fa-youtube"></i> فيديو استعراضي</div>
+                        <div class="video-container" id="detailVideoContainer"></div>
+                    </div>
+
+                </div>
+
+                <!-- العمود الأيمن: صندوق معلومات المود (Mod Info) -->
+                <div class="sidebar-right">
+                    <div class="widget-box">
+                        <div class="widget-title"><i class="fas fa-clipboard-list"></i> معلومات المود</div>
+                        <div class="info-list" id="detailInfoList">
+                            <!-- تعبئة تلقائية لبيانات المود -->
+                        </div>
+                    </div>
+
+                    <!-- صندوق معلومات صاحب المود (Mod Author) -->
+                    <div class="widget-box">
+                        <div class="widget-title"><i class="fas fa-user-shield"></i> صاحب المود (Author)</div>
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <div style="width: 50px; height: 50px; border-radius: 50%; background: rgba(245,158,11,0.2); border: 1px solid var(--gta-gold); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--gta-gold);">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 0.8rem; color: var(--text-secondary);">تم النشر بواسطة</div>
+                                <a id="detailAuthorLink" href="#" class="author-link" target="_blank" style="font-weight: 900; font-size: 1.05rem;">اسم الكاتب</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
     </div>
 
-    <!-- إشعار Toast المنبثق -->
+    <!-- نافذة تكبير الصورة (Lightbox) -->
+    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+        <button class="lightbox-close"><i class="fas fa-times"></i></button>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="lightboxImg" src="" alt="Zoomed Image">
+        </div>
+    </div>
+
+    <!-- إشعار Toast منبثق -->
     <div id="toastAlert" class="toast-alert">
         <i class="fas fa-check-circle"></i>
-        <span id="toastMessage">تم نسخ الرابط بنجاح!</span>
+        <span id="toastMessage">تم بنجاح!</span>
     </div>
 
     <script>
-        /* 📦 قاعدة بيانات المودات (تمت إضافة مود منصة النفط وإمكانية إضافة مودات جديدة بكل سهولة) */
+        /* ==========================================================
+           قاعدة بيانات المودات العالمية (قابلية توسعة سهلة للغاية)
+           كل ما عليك إضافة مود جديد هو وضع بياناته هنا بنفس الهيكل!
+           ========================================================== */
         const modsDatabase = [
             {
-                title: "منصة النفط [إضافة خاصة / FiveM]",
-                description: "إضافة منصة نفط صغيرة بتكلفة أقل من LS مع دعم وضع اللاعب الفردي و FiveM.",
+                id: "oil-rig-map",
+                title: "منصة النفط [إضافة خاصة / FiveM & SP]",
                 category: "maps",
                 platform: "PC",
-                image: "https://pdftolink.io/file/r2_dXNlcnMvZ3Vlc3QvYTk4ZjFiZjMtZmRlOC00NWMzLTkzY2MtYjI4MTNkMjM3OTg0LmpwZw",
-                version: "1.0",
-                date: "2026",
-                downloadLink: "https://download1500.mediafire.com/ef6yt9gn1j3gXHybMH1oBheS1zf93TIH2bR54oI1LUbNLTZlFHzS-cESywPrJ4ZjqHZiDihVNbNyl28pHrKyJS7NUK9Eizit9A-PVvVrtmI8w5tiXuTJia40l4hhd1BlzbUIMOsxPG-yr2_QME4ap8rWA6EBA4e7CWvzkxG7xYw8JlQf/nt3eivb3rmvguu5/5b3aaf-LD_SmoilRig+SP+FIX+AGAIN.rar"
+                thumbnail: "https://pdftolink.io/file/r2_dXNlcnMvZ3Vlc3QvODM5ZmY5M2ItMDRjMy00YmRjLWFmZjctYjE5ZThlNmNhYWM2LmpwZw",
+                images: [
+                    "https://pdftolink.io/file/r2_dXNlcnMvZ3Vlc3QvODM5ZmY5M2ItMDRjMy00YmRjLWFmZjctYjE5ZThlNmNhYWM2LmpwZw"
+                ],
+                currentVersion: "v1.0",
+                fileSize: "45.2 MB",
+                downloadsCount: "1,480",
+                addedDate: "2026-06-01",
+                lastUpdate: "2026-06-20",
+                authorName: "GTA Expert Team",
+                authorLink: "https://gta5-mods.com",
+                youtubeUrl: "", // ضع رابط يوتيوب هنا إن وجد مثل https://www.youtube.com/embed/xxxxxx
+                versions: [
+                    { version: "v1.0", link: "https://download1500.mediafire.com/ef6yt9gn1j3gXHybMH1oBheS1zf93TIH2bR54oI1LUbNLTZlFHzS-cESywPrJ4ZjqHZiDihVNbNyl28pHrKyJS7NUK9Eizit9A-PVvVrtmI8w5tiXuTJia40l4hhd1BlzbUIMOsxPG-yr2_QME4ap8rWA6EBA4e7CWvzkxG7xYw8JlQf/nt3eivb3rmvguu5/5b3aaf-LD_SmoilRig+SP+FIX+AGAIN.rar" }
+                ],
+                description: `
+                    <h3>نظرة عامة على المود</h3>
+                    <p>إضافة منصة نفط صغيرة واحترافية بتكلفة أقل من LS، مصممة خصيصاً لدعم وضع اللاعب الفردي (Single Player) وخرائط FiveM.</p>
+                    <h3>مميزات المود</h3>
+                    <ul>
+                        <li>دعم كامل لملفات ymap الخاصة بالتثبيت اليدوي أو عبر السيرفرات.</li>
+                        <li>تصميم خفيف الوزن لا يؤثر على معدل الإطارات (FPS).</li>
+                        <li>توزيع دقيق للإضاءة والمؤثرات البصرية داخل اللعبة.</li>
+                    </ul>
+                    <h3>طريقة التثبيت</h3>
+                    <p>قم بوضع الملف داخل مجلد <strong>dlclist.xml</strong> أو اتبع ملف التعليمات المرفق مع التحميل.</p>
+                `
             }
         ];
 
@@ -591,8 +1039,13 @@
 
         const modsGrid = document.getElementById('modsGrid');
         const searchInput = document.getElementById('searchInput');
+        const storeHero = document.getElementById('storeHero');
+        const platformsSection = document.getElementById('platformsSection');
+        const tabsContainer = document.getElementById('tabsContainer');
+        const topNavBar = document.getElementById('topNavBar');
+        const modDetailView = document.getElementById('modDetailView');
 
-        /* دالة عرض وترشيح المودات تلقائياً */
+        /* دالة عرض المودات في القائمة الرئيسية */
         function renderMods() {
             modsGrid.innerHTML = '';
 
@@ -631,29 +1084,23 @@
                 const card = document.createElement('div');
                 card.classList.add('mod-card');
                 card.style.animationDelay = `${index * 0.05}s`;
+                // عند الضغط على البطاقة بالكامل تنتقل لصفحة تفاصيل المود
+                card.onclick = () => openModDetail(mod.id);
 
                 card.innerHTML = `
                     <div class="mod-img-wrapper">
-                        <img src="${mod.image}" alt="${mod.title}" loading="lazy">
+                        <img src="${mod.thumbnail}" alt="${mod.title}" loading="lazy">
                         <span class="mod-badge-platform">${mod.platform}</span>
                     </div>
                     <div class="mod-body">
                         <div class="mod-meta-row">
-                            <span class="mod-category-tag">${categoryNames[mod.category] || '⭐ عشوائي'}</span>
-                            <span>الإصدار: ${mod.version}</span>
+                            <span class="mod-category-tag">${categoryNames[mod.category] || '⭐ مود'}</span>
+                            <span>الإصدار: ${mod.currentVersion}</span>
                         </div>
                         <h3 class="mod-title">${mod.title}</h3>
-                        <p class="mod-desc">${mod.description}</p>
-                        <div class="mod-footer-info">
-                            <span><i class="far fa-calendar-alt"></i> ${mod.date}</span>
-                        </div>
-                        <div class="mod-actions">
-                            <a href="${mod.downloadLink}" class="btn-download" target="_blank" onclick="triggerRipple(event)">
-                                <i class="fas fa-download"></i> تحميل المود
-                            </a>
-                            <button class="btn-copy" onclick="copyModLink('${mod.title}', event)" aria-label="نسخ الرابط">
-                                <i class="fas fa-copy"></i>
-                            </button>
+                        <div class="mod-footer-card">
+                            <span><i class="far fa-calendar-alt"></i> ${mod.addedDate}</span>
+                            <span style="color: var(--gta-gold); font-weight: 800;"><i class="fas fa-arrow-left"></i> عرض التفاصيل</span>
                         </div>
                     </div>
                 `;
@@ -661,7 +1108,117 @@
             });
         }
 
-        /* تفاعلات أزرار اختيار الجهاز */
+        /* الانتقال لصفحة تفاصيل المود واختفاء القائمة الرئيسية لتجربة تشبه المواقع العالمية */
+        function openModDetail(modId) {
+            const mod = modsDatabase.find(m => m.id === modId);
+            if (!mod) return;
+
+            // إخفاء عناصر القائمة الرئيسية
+            storeHero.style.display = 'none';
+            platformsSection.style.display = 'none';
+            tabsContainer.style.display = 'none';
+            modsGrid.style.display = 'none';
+            topNavBar.style.display = 'none';
+
+            // تفعيل وتعبئة صفحة التفاصيل
+            modDetailView.classList.add('active');
+
+            document.getElementById('detailMainImage').src = mod.thumbnail;
+            document.getElementById('detailTitleText').textContent = mod.title;
+
+            // التاغات العلوية
+            const categoryNames = { vehicles: "🚗 المركبات", weapons: "🔫 الأسلحة", skins: "👕 السكنات", maps: "🗺 الخرائط" };
+            const tagsRow = document.getElementById('detailTagsRow');
+            tagsRow.innerHTML = `
+                <span class="tag-pill">${categoryNames[mod.category] || '⭐ إبوة'}</span>
+                <span class="tag-pill"><i class="fas fa-gamepad"></i> ${mod.platform}</span>
+                <span class="tag-pill"><i class="fas fa-code-branch"></i> ${mod.currentVersion}</span>
+            `;
+
+            // زر التحميل الرئيسي في الوسط
+            const mainDownloadBtn = document.getElementById('mainDownloadBtn');
+            mainDownloadBtn.href = mod.versions[0] ? mod.versions[0].link : '#';
+
+            // قائمة الإصدارات في اليسار
+            const versionsList = document.getElementById('detailVersionsList');
+            versionsList.innerHTML = '';
+            mod.versions.forEach(ver => {
+                const item = document.createElement('div');
+                item.classList.add('version-item');
+                item.innerHTML = `
+                    <span class="version-name">${ver.version}</span>
+                    <a href="${ver.link}" class="version-download-btn" target="_blank" onclick="event.stopPropagation()">
+                        <i class="fas fa-download"></i> تحميل
+                    </a>
+                `;
+                versionsList.appendChild(item);
+            });
+
+            // صندوق معلومات المود في اليمين
+            const infoList = document.getElementById('detailInfoList');
+            infoList.innerHTML = `
+                <div class="info-row"><span class="info-label">الإصدار الحالي</span><span class="info-val">${mod.currentVersion}</span></div>
+                <div class="info-row"><span class="info-label">حجم الملف</span><span class="info-val">${mod.fileSize}</span></div>
+                <div class="info-row"><span class="info-label">عدد التحميلات</span><span class="info-val">${mod.downloadsCount}</span></div>
+                <div class="info-row"><span class="info-label">تاريخ الإضافة</span><span class="info-val">${mod.addedDate}</span></div>
+                <div class="info-row"><span class="info-label">آخر تحديث</span><span class="info-val">${mod.lastUpdate}</span></div>
+                <div class="info-row"><span class="info-label">الجهاز المدعوم</span><span class="info-val">${mod.platform}</span></div>
+            `;
+
+            // معلومات صاحب المود
+            const authorLink = document.getElementById('detailAuthorLink');
+            authorLink.textContent = mod.authorName;
+            authorLink.href = mod.authorLink;
+
+            // الوصف
+            document.getElementById('detailDescriptionContent').innerHTML = mod.description;
+
+            // معرض الصور
+            const galleryBox = document.getElementById('detailGalleryBox');
+            const galleryGrid = document.getElementById('detailGalleryGrid');
+            if (mod.images && mod.images.length > 0) {
+                galleryBox.style.display = 'block';
+                galleryGrid.innerHTML = '';
+                mod.images.forEach(imgUrl => {
+                    const thumb = document.createElement('div');
+                    thumb.classList.add('gallery-thumb');
+                    thumb.innerHTML = `<img src="${imgUrl}" alt="Gallery Thumbnail">`;
+                    thumb.onclick = () => {
+                        document.getElementById('detailMainImage').src = imgUrl;
+                        document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+                        thumb.classList.add('active');
+                    };
+                    galleryGrid.appendChild(thumb);
+                });
+            } else {
+                galleryBox.style.display = 'none';
+            }
+
+            // فيديو اليوتيوب
+            const videoBox = document.getElementById('detailVideoBox');
+            const videoContainer = document.getElementById('detailVideoContainer');
+            if (mod.youtubeUrl) {
+                videoBox.style.display = 'block';
+                videoContainer.innerHTML = `<iframe src="${mod.youtubeUrl}" allowfullscreen></iframe>`;
+            } else {
+                videoBox.style.display = 'none';
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* العودة لقائمة المودات الرئيسية */
+        function backToListing() {
+            modDetailView.classList.remove('active');
+            storeHero.style.display = 'block';
+            platformsSection.style.display = 'flex';
+            tabsContainer.style.display = 'flex';
+            modsGrid.style.display = 'grid';
+            topNavBar.style.display = 'flex';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* تفاعلات أزرار الأجهزة */
         document.querySelectorAll('.platform-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
@@ -672,7 +1229,7 @@
             });
         });
 
-        /* تفاعلات شريط الأقسام (Tabs) */
+        /* تفاعلات الأقسام (Tabs) */
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -683,13 +1240,13 @@
             });
         });
 
-        /* البحث الفوري أثناء الكتابة */
+        /* البحث الفوري */
         searchInput.addEventListener('input', (e) => {
             searchQuery = e.target.value.trim();
             renderMods();
         });
 
-        /* تأثير التموج للأزرار (Ripple Effect) */
+        /* تأثير التموج للأزرار */
         function triggerRipple(e) {
             const target = e.currentTarget;
             const rect = target.getBoundingClientRect();
@@ -708,21 +1265,16 @@
             setTimeout(() => ripple.remove(), 500);
         }
 
-        /* وظيفة نسخ رابط المود مع إشعار Toast احترافي */
-        function copyModLink(modTitle, e) {
-            triggerRipple(e);
-            navigator.clipboard.writeText(window.location.href);
-            const toast = document.getElementById('toastAlert');
-            const toastMsg = document.getElementById('toastMessage');
-            toastMsg.textContent = `تم نسخ رابط مود "${modTitle}" بنجاح!`;
-            toast.classList.add('show');
-
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+        /* وظائف معرض الصور المكبّرة (Lightbox) */
+        function openLightbox(imgSrc) {
+            document.getElementById('lightboxImg').src = imgSrc;
+            document.getElementById('lightboxModal').classList.add('active');
+        }
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.remove('active');
         }
 
-        /* التهيئة الأولية عند تحميل الصفحة */
+        /* التهيئة الأولية عند التحميل */
         document.addEventListener('DOMContentLoaded', () => {
             renderMods();
         });
