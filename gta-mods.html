@@ -255,7 +255,7 @@
             gap: 25px;
         }
 
-        /* بطاقة المود (عند النقر عليها بالكامل تنتقل للتفاصيل) */
+        /* بطاقة المود */
         .mod-card {
             background: var(--gta-card-bg);
             border: 1px solid var(--border-glass);
@@ -346,9 +346,7 @@
             color: var(--text-secondary);
         }
 
-        /* ==========================================
-           صفحة تفاصيل المود الاحترافية (Mod Detail View)
-           ========================================== */
+        /* صفحة تفاصيل المود الاحترافية */
         .mod-detail-view {
             display: none;
             flex-direction: column;
@@ -359,7 +357,6 @@
             display: flex;
         }
 
-        /* رأس صفحة التفاصيل */
         .detail-hero {
             position: relative;
             width: 100%;
@@ -412,7 +409,6 @@
             backdrop-filter: blur(8px);
         }
 
-        /* تخطيط محتوى التفاصيل (PC: 3 أعمدة أو أعمدة مرنة) */
         .detail-content-grid {
             display: grid;
             grid-template-columns: 320px 1fr 340px;
@@ -420,7 +416,6 @@
             align-items: start;
         }
 
-        /* صندوق الإصدارات (في اليسار حسب الطلب) */
         .sidebar-left, .sidebar-right {
             display: flex;
             flex-direction: column;
@@ -446,7 +441,6 @@
             padding-bottom: 12px;
         }
 
-        /* قائمة الإصدارات التلقائية */
         .versions-list {
             display: flex;
             flex-direction: column;
@@ -492,7 +486,6 @@
             transform: scale(1.03);
         }
 
-        /* صندوق معلومات المود (في اليمين) */
         .info-list {
             display: flex;
             flex-direction: column;
@@ -526,14 +519,12 @@
             text-decoration: underline;
         }
 
-        /* منطقة المحتوى الأوسط (الوصف، المعرض، الفيديو، زر التحميل) */
         .center-main-content {
             display: flex;
             flex-direction: column;
             gap: 25px;
         }
 
-        /* زر التحميل الرئيسي في الوسط */
         .main-download-card {
             background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(234, 88, 12, 0.12));
             border: 1px solid rgba(245, 158, 11, 0.4);
@@ -567,7 +558,6 @@
             transform: translateY(-2px);
         }
 
-        /* قسم الوصف (Description) */
         .description-box {
             background: var(--gta-card-bg);
             border: 1px solid var(--border-glass);
@@ -605,7 +595,6 @@
             margin: 10px 0;
         }
 
-        /* معرض الصور المصغرة (Gallery) */
         .gallery-box {
             background: var(--gta-card-bg);
             border: 1px solid var(--border-glass);
@@ -637,7 +626,6 @@
             transform: scale(1.05);
         }
 
-        /* نافذة تكبير الصورة (Lightbox Modal) */
         .lightbox-modal {
             position: fixed;
             inset: 0;
@@ -689,7 +677,6 @@
             color: #000;
         }
 
-        /* فيديو اليوتيوب */
         .video-container {
             position: relative;
             width: 100%;
@@ -708,7 +695,6 @@
             border: none;
         }
 
-        /* حالة عدم وجود نتائج */
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
@@ -721,7 +707,6 @@
             border-radius: 24px;
         }
 
-        /* تأثير التموج للأزرار (Ripple Effect) */
         .ripple {
             position: absolute;
             background: rgba(255, 255, 255, 0.4);
@@ -734,7 +719,6 @@
             to { transform: scale(4); opacity: 0; }
         }
 
-        /* إشعار Toast منبثق */
         .toast-alert {
             position: fixed;
             bottom: 30px;
@@ -763,7 +747,6 @@
             font-size: 1.3rem;
         }
 
-        /* التصميم المتجاوب للكمبيوتر والهاتف (Responsive) */
         @media (max-width: 1200px) {
             .detail-content-grid {
                 grid-template-columns: 1fr;
@@ -810,16 +793,13 @@
 </head>
 <body>
 
-    <!-- الخلفية الضوئية المتحركة -->
     <div class="ambient-backdrop">
         <div class="glow-orb orb-1"></div>
         <div class="glow-orb orb-2"></div>
     </div>
 
-    <!-- حاوية الصفحة الرئيسية -->
     <div class="page-container" id="mainContainer">
 
-        <!-- شريط التنقل العلوي -->
         <div class="top-nav-bar" id="topNavBar">
             <a href="index.html" class="back-btn">
                 <i class="fas fa-arrow-right"></i>
@@ -831,13 +811,11 @@
             </div>
         </div>
 
-        <!-- واجهة الترحيب -->
         <header class="store-hero" id="storeHero">
             <h1>GTA 5 Mods Hub</h1>
             <p>متجر المودات العالمي الاحترافي - استكشف أقوى التحسينات والإضافات لأجهزة الكمبيوتر والكونسول</p>
         </header>
 
-        <!-- اختيار الجهاز (Platform Selector) -->
         <div class="platforms-section" id="platformsSection">
             <div class="section-label">
                 <i class="fas fa-gamepad"></i> اختيار الجهاز (Choose Platform)
@@ -861,7 +839,6 @@
             </div>
         </div>
 
-        <!-- شريط الأقسام (Tabs Bar) -->
         <div class="tabs-bar" id="tabsContainer">
             <button class="tab-btn active" data-category="all">
                 <i class="fas fa-star"></i> الكل / All
@@ -880,54 +857,37 @@
             </button>
         </div>
 
-        <!-- شبكة عرض المودات (الصفحة الرئيسية) -->
         <section class="mods-grid" id="modsGrid">
-            <!-- يتم التعبئة تلقائياً من قاعدة البيانات -->
+            <!-- يتم التعبئة تلقائياً -->
         </section>
 
-        <!-- ==========================================
-           صفحة تفاصيل المود الديناميكية (Mod Detail View)
-           ========================================== -->
         <div class="mod-detail-view" id="modDetailView">
-            
-            <!-- زر الرجوع لقائمة المودات -->
             <div>
                 <button class="nav-action-btn" onclick="backToListing()">
                     <i class="fas fa-arrow-right"></i> العودة لقائمة المودات
                 </button>
             </div>
 
-            <!-- رأس صفحة التفاصيل (الصورة الكبيرة والعنوان) -->
             <div class="detail-hero" id="detailHeroContainer">
                 <img id="detailMainImage" src="" alt="Mod Main Image" onclick="openLightbox(this.src)">
                 <div class="detail-hero-overlay">
-                    <div class="detail-tags-row" id="detailTagsRow">
-                        <!-- تصنيف وجهاز وإصدار -->
-                    </div>
+                    <div class="detail-tags-row" id="detailTagsRow"></div>
                     <h1 class="detail-title" id="detailTitleText">اسم المود</h1>
                 </div>
             </div>
 
-            <!-- تخطيط الأعمدة الثلاثة للاستفادة الكاملة من الشاشة -->
             <div class="detail-content-grid">
-                
-                <!-- العمود الأيسر: صندوق الإصدارات (Versions) -->
                 <div class="sidebar-left">
                     <div class="widget-box">
                         <div class="widget-title"><i class="fas fa-history"></i> الإصدارات (Versions)</div>
-                        <div class="versions-list" id="detailVersionsList">
-                            <!-- توليد تلقائي للإصدارات وروابطها -->
-                        </div>
+                        <div class="versions-list" id="detailVersionsList"></div>
                     </div>
                 </div>
 
-                <!-- العمود الأوسط: زر التحميل، الوصف، المعرض، الفيديو -->
                 <div class="center-main-content">
-                    
-                    <!-- زر التحميل الرئيسي في الوسط -->
                     <div class="main-download-card">
                         <div>
-                            <h3 style="color: #fff; font-size: 1.1rem; font-weight: 900; margin-bottom: 45px;">جاهز لتثبيت هذا المود؟</h3>
+                            <h3 style="color: #fff; font-size: 1.1rem; font-weight: 900; margin-bottom: 5px;">جاهز لتثبيت هذا المود؟</h3>
                             <p style="color: var(--text-secondary); font-size: 0.9rem;">تحميل آمن وسريع بأحدث إصدار رسمي متاح.</p>
                         </div>
                         <a id="mainDownloadBtn" href="#" class="download-action-btn" target="_blank">
@@ -935,38 +895,28 @@
                         </a>
                     </div>
 
-                    <!-- قسم تفاصيل المود (Description) -->
                     <div class="description-box">
                         <h2><i class="fas fa-info-circle"></i> تفاصيل المود (Description)</h2>
-                        <div class="description-content" id="detailDescriptionContent">
-                            <!-- عرض الوصف المحدث -->
-                        </div>
+                        <div class="description-content" id="detailDescriptionContent"></div>
                     </div>
 
-                    <!-- معرض الصور (إذا وجدت أكثر من صورة) -->
                     <div class="widget-box" id="detailGalleryBox" style="display: none;">
                         <div class="widget-title"><i class="fas fa-images"></i> معرض الصور (Gallery)</div>
                         <div class="gallery-grid" id="detailGalleryGrid"></div>
                     </div>
 
-                    <!-- فيديو يوتيوب (إذا وجد رابط) -->
                     <div class="widget-box" id="detailVideoBox" style="display: none;">
                         <div class="widget-title"><i class="fab fa-youtube"></i> فيديو استعراضي</div>
                         <div class="video-container" id="detailVideoContainer"></div>
                     </div>
-
                 </div>
 
-                <!-- العمود الأيمن: صندوق معلومات المود (Mod Info) -->
                 <div class="sidebar-right">
                     <div class="widget-box">
                         <div class="widget-title"><i class="fas fa-clipboard-list"></i> معلومات المود</div>
-                        <div class="info-list" id="detailInfoList">
-                            <!-- تعبئة تلقائية بدون عدد التحميلات وتاريخ الإضافة 2026/24/7 -->
-                        </div>
+                        <div class="info-list" id="detailInfoList"></div>
                     </div>
 
-                    <!-- صندوق معلومات صاحب المود (Mod Author) -->
                     <div class="widget-box">
                         <div class="widget-title"><i class="fas fa-user-shield"></i> صاحب المود (Author)</div>
                         <div style="display: flex; align-items: center; gap: 14px;">
@@ -980,13 +930,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
     </div>
 
-    <!-- نافذة تكبير الصورة (Lightbox) -->
     <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
         <button class="lightbox-close"><i class="fas fa-times"></i></button>
         <div class="lightbox-content" onclick="event.stopPropagation()">
@@ -994,16 +942,12 @@
         </div>
     </div>
 
-    <!-- إشعار Toast منبثق -->
     <div id="toastAlert" class="toast-alert">
         <i class="fas fa-check-circle"></i>
         <span id="toastMessage">تم بنجاح!</span>
     </div>
 
     <script>
-        /* ==========================================================
-           قاعدة بيانات المودات المحدثة بالكامل حسب الطلب
-           ========================================================== */
         const modsDatabase = [
             {
                 id: "oil-rig-map",
@@ -1084,7 +1028,6 @@
         const topNavBar = document.getElementById('topNavBar');
         const modDetailView = document.getElementById('modDetailView');
 
-        /* دالة عرض المودات في القائمة الرئيسية */
         function renderMods() {
             modsGrid.innerHTML = '';
 
@@ -1132,7 +1075,7 @@
                     </div>
                     <div class="mod-body">
                         <div class="mod-meta-row">
-                            <span class="mod-category-tag">${categoryNames[mod.category] || '⭐ مود'}</span>
+                            <span class="mod-category-tag">${categoryNames[mod.category] || '🗺 الخرائط'}</span>
                             <span>الإصدار: ${mod.currentVersion}</span>
                         </div>
                         <h3 class="mod-title">${mod.title}</h3>
@@ -1146,7 +1089,6 @@
             });
         }
 
-        /* الانتقال لصفحة تفاصيل المود */
         function openModDetail(modId) {
             const mod = modsDatabase.find(m => m.id === modId);
             if (!mod) return;
@@ -1162,16 +1104,14 @@
             document.getElementById('detailMainImage').src = mod.thumbnail;
             document.getElementById('detailTitleText').textContent = mod.title;
 
-            const categoryNames = { vehicles: "🚗 المركبات", weapons: "🔫 الأسلحة", skins: "👕 السكنات", maps: "🗺 الخرائط" };
             const tagsRow = document.getElementById('detailTagsRow');
             tagsRow.innerHTML = `
-                <span class="tag-pill">${categoryNames[mod.category] || '⭐ مود'}</span>
+                <span class="tag-pill">🗺 الخرائط</span>
                 <span class="tag-pill"><i class="fas fa-gamepad"></i> ${mod.platform}</span>
                 <span class="tag-pill"><i class="fas fa-code-branch"></i> ${mod.currentVersion}</span>
             `;
 
-            const mainDownloadBtn = document.getElementById('mainDownloadBtn');
-            mainDownloadBtn.href = mod.versions[0] ? mod.versions[0].link : '#';
+            document.getElementById('mainDownloadBtn').href = mod.versions[0] ? mod.versions[0].link : '#';
 
             const versionsList = document.getElementById('detailVersionsList');
             versionsList.innerHTML = '';
@@ -1187,7 +1127,6 @@
                 versionsList.appendChild(item);
             });
 
-            /* صندوق معلومات المود في اليمين (بدون عدد التحميلات وبـ التاريخ المطلوب) */
             const infoList = document.getElementById('detailInfoList');
             infoList.innerHTML = `
                 <div class="info-row"><span class="info-label">الإصدار الحالي</span><span class="info-val">${mod.currentVersion}</span></div>
@@ -1222,19 +1161,9 @@
                 galleryBox.style.display = 'none';
             }
 
-            const videoBox = document.getElementById('detailVideoBox');
-            const videoContainer = document.getElementById('detailVideoContainer');
-            if (mod.youtubeUrl) {
-                videoBox.style.display = 'block';
-                videoContainer.innerHTML = `<iframe src="${mod.youtubeUrl}" allowfullscreen></iframe>`;
-            } else {
-                videoBox.style.display = 'none';
-            }
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        /* العودة لقائمة المودات الرئيسية */
         function backToListing() {
             modDetailView.classList.remove('active');
             storeHero.style.display = 'block';
@@ -1251,7 +1180,6 @@
                 btn.classList.add('active');
                 currentPlatform = btn.getAttribute('data-platform');
                 renderMods();
-                triggerRipple(e);
             });
         });
 
@@ -1261,7 +1189,6 @@
                 btn.classList.add('active');
                 currentCategory = btn.getAttribute('data-category');
                 renderMods();
-                triggerRipple(e);
             });
         });
 
@@ -1269,24 +1196,6 @@
             searchQuery = e.target.value.trim();
             renderMods();
         });
-
-        function triggerRipple(e) {
-            const target = e.currentTarget;
-            const rect = target.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const ripple = document.createElement('span');
-            ripple.classList.add('ripple');
-            ripple.style.left = `${x}px`;
-            ripple.style.top = `${y}px`;
-
-            target.style.position = 'relative';
-            target.style.overflow = 'hidden';
-            target.appendChild(ripple);
-
-            setTimeout(() => ripple.remove(), 500);
-        }
 
         function openLightbox(imgSrc) {
             document.getElementById('lightboxImg').src = imgSrc;
