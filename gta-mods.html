@@ -570,7 +570,6 @@
         /* قسم الوصف (Description) */
         .description-box {
             background: var(--gta-card-bg);
-            border: 1px standard var(--border-glass);
             border: 1px solid var(--border-glass);
             border-radius: 24px;
             padding: 30px;
@@ -594,8 +593,17 @@
             gap: 15px;
         }
         .description-content h3 { color: var(--text-primary); font-size: 1.2rem; margin-top: 10px; }
-        .description-content ul { padding-right: 20px; display: flex; flex-direction: column; gap: 8px; }
+        .description-content ul, .description-content ol { padding-right: 20px; display: flex; flex-direction: column; gap: 8px; }
         .description-content a { color: var(--gta-gold); text-decoration: underline; }
+        .description-content blockquote {
+            background: rgba(245, 158, 11, 0.08);
+            border-right: 4px solid var(--gta-gold);
+            padding: 12px 18px;
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-weight: 700;
+            margin: 10px 0;
+        }
 
         /* معرض الصور المصغرة (Gallery) */
         .gallery-box {
@@ -823,7 +831,7 @@
             </div>
         </div>
 
-        <!-- واجهة الترحيب (تختفي تلقائياً عند الدخول للتفاصيل لترك مساحة كبرى) -->
+        <!-- واجهة الترحيب -->
         <header class="store-hero" id="storeHero">
             <h1>GTA 5 Mods Hub</h1>
             <p>متجر المودات العالمي الاحترافي - استكشف أقوى التحسينات والإضافات لأجهزة الكمبيوتر والكونسول</p>
@@ -931,7 +939,7 @@
                     <div class="description-box">
                         <h2><i class="fas fa-info-circle"></i> تفاصيل المود (Description)</h2>
                         <div class="description-content" id="detailDescriptionContent">
-                            <!-- عرض الوصف مع دعم العناوين والفقرات -->
+                            <!-- عرض الوصف المحدث -->
                         </div>
                     </div>
 
@@ -954,7 +962,7 @@
                     <div class="widget-box">
                         <div class="widget-title"><i class="fas fa-clipboard-list"></i> معلومات المود</div>
                         <div class="info-list" id="detailInfoList">
-                            <!-- تعبئة تلقائية لبيانات المود -->
+                            <!-- تعبئة تلقائية بدون عدد التحميلات وتاريخ الإضافة 2026/24/7 -->
                         </div>
                     </div>
 
@@ -994,8 +1002,7 @@
 
     <script>
         /* ==========================================================
-           قاعدة بيانات المودات العالمية (قابلية توسعة سهلة للغاية)
-           كل ما عليك إضافة مود جديد هو وضع بياناته هنا بنفس الهيكل!
+           قاعدة بيانات المودات المحدثة بالكامل حسب الطلب
            ========================================================== */
         const modsDatabase = [
             {
@@ -1003,32 +1010,64 @@
                 title: "منصة النفط [إضافة خاصة / FiveM & SP]",
                 category: "maps",
                 platform: "PC",
-                thumbnail: "https://pdftolink.io/file/r2_dXNlcnMvZ3Vlc3QvODM5ZmY5M2ItMDRjMy00YmRjLWFmZjctYjE5ZThlNmNhYWM2LmpwZw",
+                thumbnail: "https://res.cloudinary.com/dbahe7lxz/image/upload/v1784921012/idraaak/wblytxqj22cwoqqa2nsr.jpg",
                 images: [
-                    "https://pdftolink.io/file/r2_dXNlcnMvZ3Vlc3QvODM5ZmY5M2ItMDRjMy00YmRjLWFmZjctYjE5ZThlNmNhYWM2LmpwZw"
+                    "https://res.cloudinary.com/dbahe7lxz/image/upload/v1784921012/idraaak/wblytxqj22cwoqqa2nsr.jpg",
+                    "https://res.cloudinary.com/dbahe7lxz/image/upload/v1784921064/idraaak/a7p1bkluf56beb1uhyj1.jpg",
+                    "https://res.cloudinary.com/dbahe7lxz/image/upload/v1784921104/idraaak/wyr9ks6v7djspbgevz6m.jpg"
                 ],
-                currentVersion: "v1.0",
-                fileSize: "45.2 MB",
-                downloadsCount: "1,480",
-                addedDate: "2026-06-01",
-                lastUpdate: "2026-06-20",
-                authorName: "GTA Expert Team",
-                authorLink: "https://gta5-mods.com",
-                youtubeUrl: "", // ضع رابط يوتيوب هنا إن وجد مثل https://www.youtube.com/embed/xxxxxx
+                currentVersion: "v1.2.1",
+                fileSize: "70.4 MB",
+                addedDate: "2026/24/7",
+                authorName: "LouieDevs",
+                authorLink: "https://www.gta5-mods.com/maps/oil-rig-add-on-sp-fivem",
+                youtubeUrl: "",
                 versions: [
-                    { version: "v1.0", link: "https://download1500.mediafire.com/ef6yt9gn1j3gXHybMH1oBheS1zf93TIH2bR54oI1LUbNLTZlFHzS-cESywPrJ4ZjqHZiDihVNbNyl28pHrKyJS7NUK9Eizit9A-PVvVrtmI8w5tiXuTJia40l4hhd1BlzbUIMOsxPG-yr2_QME4ap8rWA6EBA4e7CWvzkxG7xYw8JlQf/nt3eivb3rmvguu5/5b3aaf-LD_SmoilRig+SP+FIX+AGAIN.rar" }
+                    { version: "v1.2.1", link: "https://download1500.mediafire.com/ef6yt9gn1j3gXHybMH1oBheS1zf93TIH2bR54oI1LUbNLTZlFHzS-cESywPrJ4ZjqHZiDihVNbNyl28pHrKyJS7NUK9Eizit9A-PVvVrtmI8w5tiXuTJia40l4hhd1BlzbUIMOsxPG-yr2_QME4ap8rWA6EBA4e7CWvzkxG7xYw8JlQf/nt3eivb3rmvguu5/5b3aaf-LD_SmoilRig+SP+FIX+AGAIN.rar" },
+                    { version: "v1.2", link: "#" },
+                    { version: "v1.1.1", link: "#" },
+                    { version: "v1.1", link: "#" },
+                    { version: "v1.0", link: "#" }
                 ],
                 description: `
-                    <h3>نظرة عامة على المود</h3>
-                    <p>إضافة منصة نفط صغيرة واحترافية بتكلفة أقل من LS، مصممة خصيصاً لدعم وضع اللاعب الفردي (Single Player) وخرائط FiveM.</p>
-                    <h3>مميزات المود</h3>
+                    <h3>الوصف</h3>
+                    <p>إضافة منصة نفط صغيرة بتكلفة أقل من LS</p>
+                    <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+                    <h3>حقوق الملكية</h3>
+                    <blockquote>"Louies Development" (أنا) لمنصة النفط ومبنى العرض المؤقت!</blockquote>
+                    <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+                    <h3>سجل التغييرات</h3>
                     <ul>
-                        <li>دعم كامل لملفات ymap الخاصة بالتثبيت اليدوي أو عبر السيرفرات.</li>
-                        <li>تصميم خفيف الوزن لا يؤثر على معدل الإطارات (FPS).</li>
-                        <li>توزيع دقيق للإضاءة والمؤثرات البصرية داخل اللعبة.</li>
+                        <li><strong>1.0:</strong> الإصدار</li>
+                        <li><strong>1.1:</strong> تم إصلاح الحواجز الواقية</li>
+                        <li><strong>1.1.1:</strong> تم إصلاح التنزيل لـ FiveM</li>
+                        <li><strong>1.2:</strong> تم إصلاح مشكلة عدم ظهور منصة منصة النفط في وضع اللاعب الفردي</li>
+                        <li><strong>1.2.1:</strong> تم إصلاح مشكلة عدم ظهور منصة منصة النفط في وضع اللاعب الفردي مرة أخرى</li>
                     </ul>
-                    <h3>طريقة التثبيت</h3>
-                    <p>قم بوضع الملف داخل مجلد <strong>dlclist.xml</strong> أو اتبع ملف التعليمات المرفق مع التحميل.</p>
+                    <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+                    <h3>الميزات</h3>
+                    <ul>
+                        <li>3x إضاءة LOD داخلية</li>
+                        <li>1500 LOD Dist لمنصة النفط</li>
+                        <li>إضاءة جيدة</li>
+                    </ul>
+                    <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+                    <h3>التثبيت في FiveM</h3>
+                    <ol>
+                        <li>افتح الملف باستخدام 7zip أو Winrar أو أي برنامج آخر يسمح لك بفك ضغط هذا النوع من الملفات.</li>
+                        <li>فك ضغط الملف في مجلد الخريطة وابدأ من ملف <strong>server.cfg</strong>.</li>
+                    </ol>
+                    <h3>التثبيت في وضع اللاعب الفردي (Single Player)</h3>
+                    <ol>
+                        <li>افتح OpenIV وقم بتمكين وضع التحرير.</li>
+                        <li>انتقل إلى المسار <strong>mods\update\x64\dlcpacks</strong>.</li>
+                        <li>اسحب مجلد DLC الخاص بالخريطة إلى مجلد dlcpacks ثم انسخ اسم مجلد DLC هذا.</li>
+                        <li>ارجع إلى افتح مجلد التحديث وانقر نقرًا مزدوجًا لفتح ملف <strong>update.rpf</strong>.</li>
+                        <li>افتح مجلد <strong>common\data</strong>، وابحث عن ملف <strong>dlclist.xml</strong>، وانقر عليه بزر الماوس الأيمن، ثم اختر "تحرير".</li>
+                        <li>انتقل إلى أسفل الملف، وانسخ السطر الأخير من التعليمات البرمجية، واضغط على مفتاح الإدخال، ثم الصقه في سطر جديد.</li>
+                        <li>استبدل اسم DLC في السطر الجديد باسم مجلد DLC الخاص بخريطتك.</li>
+                        <li>احفظ الملف. اكتمل التثبيت، شغّل اللعبة لاستخدام التعديل.</li>
+                    </ol>
                 `
             }
         ];
@@ -1084,7 +1123,6 @@
                 const card = document.createElement('div');
                 card.classList.add('mod-card');
                 card.style.animationDelay = `${index * 0.05}s`;
-                // عند الضغط على البطاقة بالكامل تنتقل لصفحة تفاصيل المود
                 card.onclick = () => openModDetail(mod.id);
 
                 card.innerHTML = `
@@ -1108,38 +1146,33 @@
             });
         }
 
-        /* الانتقال لصفحة تفاصيل المود واختفاء القائمة الرئيسية لتجربة تشبه المواقع العالمية */
+        /* الانتقال لصفحة تفاصيل المود */
         function openModDetail(modId) {
             const mod = modsDatabase.find(m => m.id === modId);
             if (!mod) return;
 
-            // إخفاء عناصر القائمة الرئيسية
             storeHero.style.display = 'none';
             platformsSection.style.display = 'none';
             tabsContainer.style.display = 'none';
             modsGrid.style.display = 'none';
             topNavBar.style.display = 'none';
 
-            // تفعيل وتعبئة صفحة التفاصيل
             modDetailView.classList.add('active');
 
             document.getElementById('detailMainImage').src = mod.thumbnail;
             document.getElementById('detailTitleText').textContent = mod.title;
 
-            // التاغات العلوية
             const categoryNames = { vehicles: "🚗 المركبات", weapons: "🔫 الأسلحة", skins: "👕 السكنات", maps: "🗺 الخرائط" };
             const tagsRow = document.getElementById('detailTagsRow');
             tagsRow.innerHTML = `
-                <span class="tag-pill">${categoryNames[mod.category] || '⭐ إبوة'}</span>
+                <span class="tag-pill">${categoryNames[mod.category] || '⭐ مود'}</span>
                 <span class="tag-pill"><i class="fas fa-gamepad"></i> ${mod.platform}</span>
                 <span class="tag-pill"><i class="fas fa-code-branch"></i> ${mod.currentVersion}</span>
             `;
 
-            // زر التحميل الرئيسي في الوسط
             const mainDownloadBtn = document.getElementById('mainDownloadBtn');
             mainDownloadBtn.href = mod.versions[0] ? mod.versions[0].link : '#';
 
-            // قائمة الإصدارات في اليسار
             const versionsList = document.getElementById('detailVersionsList');
             versionsList.innerHTML = '';
             mod.versions.forEach(ver => {
@@ -1154,26 +1187,21 @@
                 versionsList.appendChild(item);
             });
 
-            // صندوق معلومات المود في اليمين
+            /* صندوق معلومات المود في اليمين (بدون عدد التحميلات وبـ التاريخ المطلوب) */
             const infoList = document.getElementById('detailInfoList');
             infoList.innerHTML = `
                 <div class="info-row"><span class="info-label">الإصدار الحالي</span><span class="info-val">${mod.currentVersion}</span></div>
                 <div class="info-row"><span class="info-label">حجم الملف</span><span class="info-val">${mod.fileSize}</span></div>
-                <div class="info-row"><span class="info-label">عدد التحميلات</span><span class="info-val">${mod.downloadsCount}</span></div>
                 <div class="info-row"><span class="info-label">تاريخ الإضافة</span><span class="info-val">${mod.addedDate}</span></div>
-                <div class="info-row"><span class="info-label">آخر تحديث</span><span class="info-val">${mod.lastUpdate}</span></div>
                 <div class="info-row"><span class="info-label">الجهاز المدعوم</span><span class="info-val">${mod.platform}</span></div>
             `;
 
-            // معلومات صاحب المود
             const authorLink = document.getElementById('detailAuthorLink');
             authorLink.textContent = mod.authorName;
             authorLink.href = mod.authorLink;
 
-            // الوصف
             document.getElementById('detailDescriptionContent').innerHTML = mod.description;
 
-            // معرض الصور
             const galleryBox = document.getElementById('detailGalleryBox');
             const galleryGrid = document.getElementById('detailGalleryGrid');
             if (mod.images && mod.images.length > 0) {
@@ -1194,7 +1222,6 @@
                 galleryBox.style.display = 'none';
             }
 
-            // فيديو اليوتيوب
             const videoBox = document.getElementById('detailVideoBox');
             const videoContainer = document.getElementById('detailVideoContainer');
             if (mod.youtubeUrl) {
@@ -1218,7 +1245,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        /* تفاعلات أزرار الأجهزة */
         document.querySelectorAll('.platform-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.platform-btn').forEach(b => b.classList.remove('active'));
@@ -1229,7 +1255,6 @@
             });
         });
 
-        /* تفاعلات الأقسام (Tabs) */
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1240,13 +1265,11 @@
             });
         });
 
-        /* البحث الفوري */
         searchInput.addEventListener('input', (e) => {
             searchQuery = e.target.value.trim();
             renderMods();
         });
 
-        /* تأثير التموج للأزرار */
         function triggerRipple(e) {
             const target = e.currentTarget;
             const rect = target.getBoundingClientRect();
@@ -1265,7 +1288,6 @@
             setTimeout(() => ripple.remove(), 500);
         }
 
-        /* وظائف معرض الصور المكبّرة (Lightbox) */
         function openLightbox(imgSrc) {
             document.getElementById('lightboxImg').src = imgSrc;
             document.getElementById('lightboxModal').classList.add('active');
@@ -1274,7 +1296,6 @@
             document.getElementById('lightboxModal').classList.remove('active');
         }
 
-        /* التهيئة الأولية عند التحميل */
         document.addEventListener('DOMContentLoaded', () => {
             renderMods();
         });
