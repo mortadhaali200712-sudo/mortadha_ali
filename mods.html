@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="منصة مودات GTA 5 الاحترافية - استكشف وحمل أفضل المودات العالمية">
-    <title>منصة مودات GTA 5 الاحترافية</title>
-    <link rel="icon" href="https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-17-3329e4cb-b611-4d7f-99cb-b008bd43eca3.png" type="image/png">
+    <meta name="description" content="قسم المودات الرسمي - منصة مرتضى عُلي للألعاب والترفيه الرقمي">
+    <title>قسم المودات 📦 | مرتضى عُلي</title>
+    <link rel="icon" href="logo2.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --brand-primary: #f59e0b;
-            --brand-secondary: #d97706;
+            --brand-primary: #10b981;
+            --brand-secondary: #059669;
             --brand-accent: #3b82f6;
-            --bg-base: #09090b;
-            --bg-surface: #121217;
-            --bg-glass: rgba(18, 18, 23, 0.8);
+            --bg-base: #030712;
+            --bg-surface: #0b1329;
+            --bg-glass: rgba(11, 19, 41, 0.78);
             --border-glass: rgba(255, 255, 255, 0.08);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
+            --warning-glow: #ffeb3b;
             --transition-swift: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -41,7 +42,7 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            padding: 20px 4% 60px;
+            padding: 30px 5% 60px;
         }
 
         /* تخصيص Scrollbar */
@@ -52,683 +53,529 @@
             background: var(--bg-base);
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(245, 158, 11, 0.3);
+            background: rgba(16, 185, 129, 0.3);
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
             background: var(--brand-primary);
         }
 
-        /* خلفية GTA V Animated Gradient & Floating Lights */
+        /* خلفية Aurora الديناميكية */
         .aurora-background {
             position: fixed;
             inset: 0;
             z-index: -1;
             pointer-events: none;
             overflow: hidden;
-            background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #09090b 70%);
+            background: var(--bg-base);
         }
         .aurora-orb {
             position: absolute;
-            width: 50vw;
-            height: 50vw;
+            width: 55vw;
+            height: 55vw;
             border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.12;
-            animation: auroraFloat 15s ease-in-out infinite alternate;
+            filter: blur(140px);
+            opacity: 0.15;
+            animation: auroraFloat 18s ease-in-out infinite alternate;
         }
-        .orb-one { background: #f59e0b; top: -10%; right: -10%; }
-        .orb-two { background: #3b82f6; bottom: -10%; left: -10%; animation-delay: -5s; }
+        .orb-one { background: var(--brand-primary); top: -20%; right: -10%; }
+        .orb-two { background: var(--brand-accent); bottom: -20%; left: -10%; animation-delay: -6s; }
 
         @keyframes auroraFloat {
             0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(30px, -20px) scale(1.05); }
-            100% { transform: translate(-20px, 30px) scale(0.95); }
+            50% { transform: translate(35px, -25px) scale(1.08); }
+            100% { transform: translate(-25px, 35px) scale(0.95); }
         }
 
-        /* الهيدر والشعار */
-        header {
+        /* زر الرجوع */
+        .back-btn-container {
+            display: flex;
+            justify-content: flex-start;
+            max-width: 1400px;
+            margin: 0 auto 25px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            padding: 12px 24px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition-swift);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .back-btn:hover {
+            border-color: var(--brand-primary);
+            color: var(--brand-primary);
+            transform: translateX(-4px);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
+        }
+
+        /* الهيدر والعنوان الرئيسي */
+        .page-header-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 20px;
-            margin-bottom: 30px;
-            text-align: center;
         }
-        header h1 {
-            font-size: 2.5rem;
+        .page-header-container h1 {
+            font-size: 2.8rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #fff 30%, var(--brand-primary) 100%);
+            background: linear-gradient(135deg, var(--text-primary) 20%, var(--brand-primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
 
-        /* أجهزة التشغيل (Platform Filter Tabs) */
-        .platforms-bar {
+        /* صندوق البحث الاحترافي */
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+        #search {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border-radius: 18px;
+            border: 1px solid var(--border-glass);
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            color: var(--text-primary);
+            text-align: right;
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: 600;
+            transition: var(--transition-swift);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1), 0 10px 30px rgba(0,0,0,0.1);
+        }
+        #search:focus {
+            outline: none;
+            border-color: var(--brand-primary);
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+        }
+        .search-icon-pos {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+        #search:focus ~ .search-icon-pos {
+            color: var(--brand-primary);
+        }
+
+        /* التبويبات الفاخرة (Tabs) */
+        .tabs {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
+            gap: 16px;
+            margin-bottom: 40px;
         }
-        .platform-btn {
+        .tab-btn {
             background: var(--bg-glass);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border-glass);
             color: var(--text-secondary);
-            padding: 10px 22px;
-            border-radius: 14px;
+            padding: 14px 36px;
+            border-radius: 16px;
             cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 700;
+            font-size: 1.05rem;
+            font-weight: 800;
             font-family: inherit;
+            min-width: 160px;
             transition: var(--transition-swift);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
-        .platform-btn:hover, .platform-btn.active {
-            background: var(--brand-primary);
+        .tab-btn:hover {
             border-color: var(--brand-primary);
-            color: #09090b;
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+            color: var(--text-primary);
             transform: translateY(-2px);
         }
-
-        /* شبكة عرض المودات الرئيسية */
-        .mods-grid {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 24px;
+        .tab-btn.active {
+            background: var(--brand-primary);
+            border-color: var(--brand-primary);
+            color: #030712;
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.35);
         }
 
-        /* بطاقة المود الفاخرة (Glassmorphism & Glow) */
+        /* شبكة عرض المودات (CSS Grid متطورة للاستفادة الكاملة من الشاشة) */
+        .mods-grid-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        @media (max-width: 1280px) {
+            .mods-grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 900px) {
+            .mods-grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .mods-grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* بطاقة المود الفاخرة (Mod Card) */
         .mod-card {
             background: var(--bg-surface);
             border: 1px solid var(--border-glass);
-            border-radius: 20px;
-            overflow: hidden;
+            border-radius: 24px;
+            padding: 18px;
             display: flex;
             flex-direction: column;
-            cursor: pointer;
-            transition: var(--transition-swift);
+            justify-content: space-between;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: var(--transition-swift);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
+
+        .mod-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(16,185,129,0.3), transparent 60%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
         .mod-card:hover {
             transform: translateY(-6px);
             border-color: var(--brand-primary);
-            box-shadow: 0 20px 40px rgba(245, 158, 11, 0.2);
+            box-shadow: 0 25px 50px rgba(16, 185, 129, 0.22);
         }
-        .card-img-wrapper {
+
+        .mod-card.highlight {
+            border-color: var(--warning-glow);
+            box-shadow: 0 0 35px rgba(255, 235, 59, 0.4);
+            animation: pulseHighlight 1.5s infinite alternate;
+        }
+
+        @keyframes pulseHighlight {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.02); }
+        }
+
+        .mod-img-wrapper {
             position: relative;
             width: 100%;
-            height: 180px;
+            height: 210px;
+            border-radius: 16px;
             overflow: hidden;
-            background: #000;
+            margin-bottom: 16px;
+            background: rgba(255,255,255,0.03);
         }
-        .card-img-wrapper img {
+
+        .mod-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .mod-card:hover .card-img-wrapper img {
+
+        .mod-card:hover .mod-img {
             transform: scale(1.08);
         }
-        .card-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-glass);
-            color: var(--brand-primary);
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-        .card-body {
-            padding: 16px;
+
+        .mod-info {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 16px;
             flex-grow: 1;
             justify-content: space-between;
         }
-        .card-title {
-            font-size: 1.05rem;
-            font-weight: 700;
+
+        .mod-name {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--text-primary);
             line-height: 1.4;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-        }
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border-glass);
-            padding-top: 10px;
+            text-align: right;
         }
 
-        /* صفحة تفاصيل المود (Hidden by default) */
-        .details-container {
-            display: none;
-            max-width: 1300px;
-            margin: 0 auto;
-            animation: fadeIn 0.4s ease forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        .mod-actions-group {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 10px;
         }
 
-        .back-btn {
+        .btn {
+            padding: 12px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: inherit;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            background: var(--bg-glass);
-            border: 1px solid var(--border-glass);
-            color: var(--text-primary);
-            padding: 10px 20px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 25px;
             transition: var(--transition-swift);
         }
-        .back-btn:hover {
-            border-color: var(--brand-primary);
-            color: var(--brand-primary);
+
+        .download-btn {
+            background: var(--brand-primary);
+            color: #030712;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
         }
 
-        /* تخطيط صفحة التفاصيل (الكمبيوتر والهاتف) */
-        .details-layout {
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 30px;
+        .download-btn:hover {
+            background: #34d399;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.45);
         }
-        @media (max-width: 992px) {
-            .details-layout {
-                grid-template-columns: 1fr;
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-glass);
+            color: var(--text-primary);
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--text-secondary);
+            transform: translateY(-2px);
+        }
+
+        /* تأثير التموج (Ripple Effect) */
+        .ripple-effect {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleAnim 0.5s linear;
+            pointer-events: none;
+        }
+        @keyframes rippleAnim {
+            to {
+                transform: scale(4);
+                opacity: 0;
             }
         }
 
-        .details-main {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        /* معرض الصور وفيديو اليوتيوب */
-        .media-gallery {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-glass);
-            border-radius: 20px;
-            overflow: hidden;
-            padding: 16px;
-        }
-        .main-preview-img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: var(--transition-swift);
-        }
-        .main-preview-img:hover {
-            opacity: 0.95;
-        }
-        .thumbnails-row {
-            display: flex;
-            gap: 10px;
-            margin-top: 12px;
-            overflow-x: auto;
-            padding-bottom: 5px;
-        }
-        .thumb-item {
-            width: 80px;
-            height: 60px;
-            border-radius: 8px;
-            object-fit: cover;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: var(--transition-swift);
-            flex-shrink: 0;
-        }
-        .thumb-item.active, .thumb-item:hover {
-            border-color: var(--brand-primary);
-        }
-
-        /* صندوق وصف المود */
-        .content-box {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-glass);
-            border-radius: 20px;
-            padding: 25px;
-            line-height: 1.8;
-            font-size: 0.98rem;
-        }
-        .content-box h2 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--brand-primary);
-            border-bottom: 1px solid var(--border-glass);
-            padding-bottom: 8px;
-        }
-        .content-box pre, .content-box div {
-            white-space: pre-wrap;
-            font-family: inherit;
-        }
-
-        /* الشريط الجانبي (الإصدارات ومعلومات المود) */
-        .details-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .sidebar-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-glass);
-            border-radius: 20px;
-            padding: 20px;
-        }
-        .sidebar-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--brand-primary);
-        }
-
-        /* قائمة الإصدارات */
-        .versions-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-height: 250px;
-            overflow-y: auto;
-        }
-        .version-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-glass);
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: var(--transition-swift);
-        }
-        .version-item:hover {
-            background: var(--brand-primary);
-            color: #09090b;
-            border-color: var(--brand-primary);
-        }
-
-        /* زر التحميل الفاخر */
-        .download-action-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: #09090b;
-            padding: 14px;
-            border-radius: 14px;
-            font-weight: 800;
-            text-decoration: none;
-            font-size: 1.05rem;
-            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
-            transition: var(--transition-swift);
-            margin-top: 15px;
-        }
-        .download-action-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.5);
-        }
-
-        /* معلومات المود الإضافية */
-        .meta-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            font-size: 0.9rem;
-        }
-        .meta-row {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--border-glass);
-            padding-bottom: 8px;
-        }
-        .meta-label {
-            color: var(--text-secondary);
-        }
-        .author-link {
-            color: var(--brand-primary);
-            text-decoration: none;
-            font-weight: 700;
-        }
-        .author-link:hover {
-            text-decoration: underline;
-        }
-
-        /* نافذة تكبير الصورة (Lightbox) */
-        .lightbox-modal {
-            display: none;
+        /* إشعار Toast العصري بدلاً من Alert التقليدي */
+        .toast-notification {
+            visibility: hidden;
+            background: var(--bg-glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--brand-primary);
+            color: var(--text-primary);
+            border-radius: 16px;
+            padding: 16px 28px;
             position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .lightbox-modal.active {
+            bottom: 35px;
+            right: 35px;
+            z-index: 99999;
+            font-weight: 800;
+            font-size: 0.95rem;
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.25);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition-swift);
             display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90vh;
-            border-radius: 12px;
+        .toast-notification i {
+            color: var(--brand-primary);
+            font-size: 1.3rem;
         }
-        .lightbox-close {
-            position: absolute;
-            top: 25px;
-            left: 25px;
-            color: #fff;
-            font-size: 2rem;
-            cursor: pointer;
-            background: none;
-            border: none;
+        .toast-notification.active {
+            visibility: visible;
+            transform: translateY(0);
+            opacity: 1;
         }
     </style>
 </head>
 <body>
 
-    <!-- خلفية تفاعلية -->
+    <!-- خلفية تفاعلية ضوئية -->
     <div class="aurora-background">
         <div class="aurora-orb orb-one"></div>
         <div class="aurora-orb orb-two"></div>
     </div>
 
-    <!-- الصفحة الرئيسية -->
-    <div id="homeView">
-        <header>
-            <h1>GTA 5 Mods Hub 🎮</h1>
-            <div class="platforms-bar" id="platformsBar">
-                <button class="platform-btn active" onclick="filterPlatform('All')">الكل</button>
-                <button class="platform-btn" onclick="filterPlatform('PC')">PC</button>
-                <button class="platform-btn" onclick="filterPlatform('PS4')">PS4</button>
-                <button class="platform-btn" onclick="filterPlatform('PS5')">PS5</button>
-                <button class="platform-btn" onclick="filterPlatform('Xbox')">Xbox</button>
-            </div>
-        </header>
-
-        <main class="mods-grid" id="modsGrid">
-            <!-- يتم تعبئة المودات ديناميكياً عبر الجافاسكريبت -->
-        </main>
+    <!-- زر الرجوع للرئيسية -->
+    <div class="back-btn-container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-right"></i> رجوع للرئيسية
+        </a>
     </div>
 
-    <!-- صفحة تفاصيل المود -->
-    <div id="detailsView" class="details-container">
-        <button class="back-btn" onclick="goBackToHome()">
-            <i class="fas fa-arrow-right"></i> العودة للقائمة الرئيسية
-        </button>
-
-        <div class="details-layout">
-            <!-- القسم الأوسط (الصور، الوصف) -->
-            <div class="details-main">
-                <div class="media-gallery">
-                    <img id="mainPreviewImg" src="" alt="Mod Preview" class="main-preview-img" onclick="openLightbox(this.src)">
-                    <div class="thumbnails-row" id="thumbnailsRow">
-                        <!-- صور مصغرة -->
-                    </div>
-                </div>
-
-                <div class="content-box">
-                    <h2>تفاصيل المود (Description)</h2>
-                    <div id="modDescriptionContent"></div>
-                </div>
-            </div>
-
-            <!-- الشريط الجانبي (الإصدارات ومعلومات المود) -->
-            <div class="details-sidebar">
-                <div class="sidebar-card">
-                    <h3><i class="fas fa-download"></i> التحميل والإصدارات</h3>
-                    <div class="versions-list" id="versionsList">
-                        <!-- روابط الإصدارات -->
-                    </div>
-                    <a id="primaryDownloadBtn" href="#" target="_blank" class="download-action-btn">
-                        <i class="fas fa-cloud-download-alt"></i> تحميل الإصدار الأخير
-                    </a>
-                </div>
-
-                <div class="sidebar-card">
-                    <h3><i class="fas fa-info-circle"></i> معلومات المود</h3>
-                    <div class="meta-list">
-                        <div class="meta-row">
-                            <span class="meta-label">التصنيف</span>
-                            <span id="metaCategory">-</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">الجهاز</span>
-                            <span id="metaPlatform">-</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">الإصدار الحالي</span>
-                            <span id="metaVersion">-</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">تاريخ الإضافة</span>
-                            <span id="metaDate">-</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">صاحب المود</span>
-                            <a id="metaAuthorLink" href="#" target="_blank" class="author-link">-</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- هيدر الصفحة والبحث -->
+    <header class="page-header-container">
+        <h1>قسم المودات 📦</h1>
+        <div class="search-wrapper">
+            <input type="text" id="search" onkeyup="searchMods()" placeholder="🔍 ابحث عن مود...">
+            <i class="fas fa-search search-icon-pos"></i>
         </div>
-    </div>
+    </header>
 
-    <!-- نافذة تكبير الصور -->
-    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
-        <button class="lightbox-close">&times;</button>
-        <img class="lightbox-content" id="lightboxImg">
+    <!-- تبويبات الأقسام -->
+    <nav class="tabs" aria-label="أقسام المودات">
+        <button class="tab-btn active" onclick="showSection('bedrock', this)">بيدروك</button>
+        <button class="tab-btn" onclick="showSection('java', this)">جافا</button>
+    </nav>
+
+    <!-- حاويات أقسام المودات بمعمارية Grid عالمية -->
+    <section id="bedrockSection" class="mods-grid-container"></section>
+    <section id="javaSection" class="mods-grid-container" style="display: none;"></section>
+
+    <!-- إشعار Toast التفاعلي -->
+    <div id="copyToast" class="toast-notification">
+        <i class="fas fa-check-circle"></i>
+        <span>تم نسخ رابط المود بنجاح!</span>
     </div>
 
     <script>
-        /* 
-          ⚡ قاعدة بيانات المودات القابلة للتطوير بسهولة تامة 
-          التصنيف هنا تم تعيينه إلى "خرائط / Maps" بناءً على طلبك.
-        */
-        const modsDatabase = [
-            {
-                id: "oil-rig",
-                title: "منصة النفط [إضافة خاصة / FiveM] Oil Rig [Add-On SP / FiveM]",
-                category: "خرائط / Maps",
-                platform: "PC",
-                currentVersion: "1.2.1",
-                releaseDate: "2026-07-24",
-                author: "LouieDevs",
-                authorUrl: "https://www.gta5-mods.com/maps/oil-rig-add-on-sp-fivem",
-                images: [
-                    "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-17-3329e4cb-b611-4d7f-99cb-b008bd43eca3.png",
-                    "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-16-f4f8c00d-fa54-4665-a6a2-a70341c2ea84.png"
-                ],
-                description: `الوصف: إضافة منصة نفط صغيرة بتكلفة أقل من LS
------------------------------------------
-حقوق الملكية:
-"Louies Development" (أنا) لمنصة النفط ومبنى العرض المؤقت!
------------------------------------------
---سجل التغييرات--
-1.0 - الإصدار
-1.1 - تم إصلاح الحواجز الواقية
-1.1.1 - تم إصلاح التنزيل لـ FiveM
-1.2 - تم إصلاح مشكلة عدم ظهور منصة منصة النفط في وضع اللاعب الفردي
-1.2.1 - تم إصلاح مشكلة عدم ظهور منصة منصة النفط في وضع اللاعب الفردي مرة أخرى
------------------------------------------
-الميزات: 3x إضاءة LOD
-داخلية ، 1500 LOD Dist لمنصة النفط، إضاءة جيدة 
------------------------------------------
-التثبيت في FiveM: 
-أ - افتح الملف باستخدام 7zip أو Winrar أو أي برنامج آخر يسمح لك بفك ضغط هذا النوع من الملفات. 
-ب - فك ضغط الملف في مجلد الخريطة وابدأ من ملف server.cfg. 
-
-التثبيت في وضع اللاعب الفردي: 
-أ - افتح OpenIV وقم بتمكين وضع التحرير. 
-ب - انتقل إلى المسار mods\update\x64\dlcpacks. 
-ج - اسحب مجلد DLC الخاص بالخريطة إلى مجلد dlcpacks ثم انسخ اسم مجلد DLC هذا. 
-د - ارجع إلى افتح مجلد التحديث وانقر نقرًا مزدوجًا لفتح ملف update.rpf. 
-هـ - افتح مجلد common\data، وابحث عن ملف dlclist.xml، وانقر عليه بزر الماوس الأيمن، ثم اختر "تحرير". 
-و - انتقل إلى أسفل الملف، وانسخ السطر الأخير من التعليمات البرمجية، واضغط على مفتاح الإدخال، ثم الصقه في سطر جديد. 
-ز - استبدل اسم DLC في السطر الجديد باسم مجلد DLC الخاص بخريطتك. 
-ح - احفظ الملف. اكتمل التثبيت، شغّل اللعبة لاستخدام التعديل.
-
---------------------------------------------------
-
-Description: Adds a small Oil Rig off the cost of LS
------------------------------------------
-Credits:
-"Louies Development" (Me) for the Oil Rig & Temp Building Prop!
------------------------------------------
---Changelog--
-1.0 - Release
-1.1 - Fixed guardrails
-1.1.1 - Fixed Download for FiveM
-1.2 - Fixed Oil Rig Platform not showing up on Singleplayer
-1.2.1 - Fixed Oil Rig Platform not showing up on Singleplayer AGAIN
------------------------------------------
-Features:
-3x Interior
-LOD Lights
-1500 LOD Dist for Oil Rig Prop
-Well lit`,
-                versions: [
-                    { version: "1.2.1", link: "https://www.mediafire.com/file/nt3eivb3rmvguu5/5b3aaf-LD_SmoilRig_SP_FIX_AGAIN.rar/file" }
-                ]
-            }
+        const bedrockList = [
+            { id: "space", name: "مود الفضاء", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-17-3329e4cb-b611-4d7f-99cb-b008bd43eca3.png", link: "https://download937.mediafire.com/bj6rn1umhpygOgROq2bvO-IUNUiUOfAn0Wx-FekYSvwooPmWGetqSgKIqvY7ndXkJD1QLIRk84-_KgiSK_1EinkkV26PXHV9n3NxX0DBKDp0gpMZJ2bKP_VxIAvIEDSYhfWdF50X_qc7sIKLeAoN1EcnczQKEt53HD7YGIMMwTWJ1ss/bvl0o7f1zv6rsjy/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D9%81%D8%B6%D8%A7%D8%A1+.mcaddon" },
+            { id: "skyblock", name: "Skyblock 26.20", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-16-f4f8c00d-fa54-4665-a6a2-a70341c2ea84.png", link: "https://download2284.mediafire.com/ii5ndblxc7ggLTDUQ_ihanRaPIUR2zJo2PBDiif4bRr2ulXV2XLqlrbGkHh7K4sosSNiNDc551OpUMTo_GkMXXOUAogPag35FmxC7rjMSJEvOuEVtSo_blYE4_e8dBUu3BLeinui6v7eKn1rkVYlvXnT2NiN-SK85Gtv3ezFRcYuiA/5lvbrnrlqtnm08c/%D8%B3%D9%83%D8%A7%D9%8A+%D8%A8%D9%84%D9%88%D9%83+.mcworld" },
+            { id: "lantern", name: "مود الانتيرن الصيني", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-15-32399c5a-45e6-4774-a4ef-fc8157778ea9.png", link: "https://download1649.mediafire.com/rknftz97fetgJCEhl3koG0pV0XTOskcc0e80qAMpRC5BIus9rdwQTEVHwsRxaBobdcDcOMivNn9rh6i7Oxie_UO9icRE2DZ0qIROdf5b8Hvz9mTLMoKOkIv5nzNGOkDwmrg0PfJ4RAq-c4uEa2eM38e5WiLWCHeu0i2Y8PD3AmuzDA/5zl2s5z3u5bww1y/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D9%8A%D8%B1%D9%86+%D8%A7%D9%84%D8%B5%D9%8A%D9%86%D9%8A+.mcpack" },
+            { id: "map-world", name: "ماب خريطة العالم", img: "https://images.weserv.nl/?url=iili.io/CEkuApn.md.png", link: "https://www.mediafire.com/file/v4a5xoc2j21pdsn/%25D9%2585%25D8%25A7%25D8%25A8_%25D8%25AE%25D8%25B1%25D9%258A%25D8%25B7%25D8%25A9_%25D8%25A7%25D9%2584%25D9%2585_.mcworld/file" },
+            { id: "spawn", name: "مود الاسبون", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-13-9421c042-3f8d-4deb-8bd3-63f92343fcef.webp", link: "https://www.mediafire.com/file/jw6itjsh2vcb41d/مود+الاسبون.mcworld/file" },
+            { id: "magic", name: "مود سحر كرافت", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-11-c4659a13-57c3-459a-89c3-cd9208cc422b.png", link: "https://www.mediafire.com/file/f5tulyguyqhdij3/%25D8%25B3%25D8%25AD%25D8%25B1_%25D9%2583%25D8%25B1%25D8%25A7%25D9%2581%25D8%25AA_.mcaddon/file" },
+            { id: "horror", name: "مود الرعب", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-a18e8d6b-787f-4ea9-a29f-223e25e47948.webp", link: "https://www.mediafire.com/file/5570wx2ac6zvwd4/مود_الرعب_.mcaddon/file" },
+            { id: "dino", name: "مود الديناصور", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-c127607f-0880-48b3-9ab8-adba4be81331.webp", link: "https://www.mediafire.com/file/dr3f3wtz8nnxd37/مود_الديناصور.mcaddon/file" },
+            { id: "drill", name: "مود الدريل", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-052f9825-8d9f-4452-bca6-3a5f0a3c96ba.jpg", link: "https://www.mediafire.com/file/ife8novip8dv03g/دريل_Legend_Hub.mcpack/file" },
+            { id: "guns", name: "مود الاسلحة الحقيقية", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-7e637dd6-219c-40ce-b0da-2dd24013b625.webp", link: "https://www.mediafire.com/file/30pgf2fayhhf4hm/أسلحة_حقيقية_(واقعية)_Legend_Hub/file" },
+            { id: "wiston", name: "مود الويستون", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9f1e3ed7-5721-470f-92a5-2fcb9c259923.jpg", link: "https://www.mediafire.com/file/sr3gt9b9f85qy33/ويستون_Legend_Hub.mcaddon/file" },
+            { id: "hammer", name: "مود الهمر", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9ebea467-3034-418a-9032-ebef6f0d7096.jpg", link: "https://www.mediafire.com/file/z8gvhyu1q0gjl2d/همر_Legend_Hub.zip/file" },
+            { id: "wand", name: "مود الواند", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-86308f6a-d84b-4d98-9de4-070f71cf7a13.jpg", link: "https://www.mediafire.com/file/sp9zoo1hn0pr5a5/واند_Legend_Hub.mcaddon/file" },
+            { id: "anim", name: "مود الانميشن", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-35593438-3f5b-4594-9deb-e4cd614e89ea.jpg", link: "https://www.mediafire.com/file/01rbobhezh8qfqk/انميشن_Legend_Hub.mcpack/file" },
+            { id: "carry", name: "مود حمل الموبات", img: "https://images.wes.erv.nl/?url=cdn.phototourl.com/free/2026-07-10-751acb95-bc15-496d-8381-ce8b4b613269.webp" || "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-751acb95-bc15-496d-8381-ce8b4b613269.webp", link: "https://www.mediafire.com/file/jtxz5wu8y3bqddh/حمل_الموبات_والحيوانات_Legend_Hub.mcpack/file" }
         ];
 
-        // عرض المودات في القائمة الرئيسية
-        function renderHomeMods(filter = 'All') {
-            const grid = document.getElementById('modsGrid');
-            grid.innerHTML = '';
+        const javaList = [
+            { id: "night-vision", name: "مود النايت فجن 26.1.2", img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-19-9bfe1583-6441-4d4d-beda-f6ed3fb72a1b.webp", link: "https://download2281.mediafire.com/t0w5ca5anf9ghbVnsX3v5f2OVtpiJbqZZRBolQoZy9x5p99El7gOVnVuwhqqr-LNBY5BiW-xG-2nEi8kIP7SKga5VabZOVJAZjnPfRPOdXPUMfJNcXJED75iUhwtlYTg_JnIo7lemqMeDNN9v191pb5J3LDry90HsxWTcVkZf9T9f0ky/2z094nhuuraf1ki/%D9%86%D8%A7%D9%8A%D8%AA+%D9%81%D8%AC%D9%86+%D9%84%D9%84%D8%AC%D8%A7%D9%81%D8%A1+26.1.2+.zip" }
+        ];
 
-            const filteredMods = filter === 'All' ? modsDatabase : modsDatabase.filter(m => m.platform === filter);
+        // Fix potential typo in carry image URL just in case
+        bedrockList[14].img = "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-751acb95-bc15-496d-8381-ce8b4b613269.webp";
 
-            if(filteredMods.length === 0) {
-                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-secondary); padding: 40px;">لا توجد مودات متاحة لهذا الجهاز حالياً.</div>`;
-                return;
+        function renderMods(list, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            list.forEach(mod => {
+                container.innerHTML += `
+                <div class="mod-card" id="${mod.id}">
+                    <div class="mod-img-wrapper">
+                        <img src="${mod.img}" class="mod-img" alt="${mod.name}" loading="lazy">
+                    </div>
+                    <div class="mod-info">
+                        <span class="mod-name">${mod.name}</span>
+                        <div class="mod-actions-group">
+                            <a href="${mod.link}" target="_blank" rel="noopener" class="btn download-btn">
+                                <i class="fas fa-download"></i> تحميل
+                            </a>
+                            <button class="btn copy-btn" onclick="copyModLink('${mod.id}')">
+                                <i class="fas fa-copy"></i> نسخ الرابط
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+            });
+        }
+
+        renderMods(bedrockList, 'bedrockSection');
+        renderMods(javaList, 'javaSection');
+
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const modId = urlParams.get('mod');
+            if (modId) {
+                const isJava = javaList.some(m => m.id === modId);
+                if (isJava) showSection('java', document.querySelector('.tab-btn[onclick*="java"]'));
+                else showSection('bedrock', document.querySelector('.tab-btn[onclick*="bedrock"]'));
+                
+                const element = document.getElementById(modId);
+                if (element) {
+                    setTimeout(() => {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        element.classList.add('highlight');
+                        setTimeout(() => element.classList.remove('highlight'), 2500);
+                    }, 400);
+                }
             }
+        };
 
-            filteredMods.forEach(mod => {
-                grid.innerHTML += `
-                    <div class="mod-card" onclick="openModDetails('${mod.id}')">
-                        <div class="card-img-wrapper">
-                            <img src="${mod.images[0]}" alt="${mod.title}" loading="lazy">
-                            <span class="card-badge">${mod.platform}</span>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">${mod.title}</h3>
-                            <div class="card-meta">
-                                <span>${mod.category}</span>
-                                <span><i class="fas fa-download"></i> ${mod.versions.length} إصدارات</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
+        function showSection(section, btn) {
+            document.getElementById('bedrockSection').style.display = (section === 'bedrock') ? 'grid' : 'none';
+            document.getElementById('javaSection').style.display = (section === 'java') ? 'grid' : 'none';
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            if(btn) btn.classList.add('active');
+        }
+
+        function copyModLink(modId) {
+            let fullLink = window.location.href.split('?')[0] + "?mod=" + modId;
+            navigator.clipboard.writeText(fullLink).then(() => {
+                const toast = document.getElementById("copyToast");
+                toast.classList.add("active");
+                setTimeout(() => {
+                    toast.classList.remove("active");
+                }, 3000);
             });
         }
 
-        // فلترة حسب الجهاز
-        function filterPlatform(platform) {
-            document.querySelectorAll('.platform-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            renderHomeMods(platform);
+        function searchMods() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let cards = document.getElementsByClassName('mod-card');
+            for (let i = 0; i < cards.length; i++) {
+                cards[i].style.display = cards[i].innerText.toLowerCase().includes(input) ? "flex" : "none";
+            }
         }
 
-        // فتح صفحة التفاصيل
-        function openModDetails(modId) {
-            const mod = modsDatabase.find(m => m.id === modId);
-            if(!mod) return;
-
-            document.getElementById('homeView').style.display = 'none';
-            document.getElementById('detailsView').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // تعبئة البيانات
-            document.getElementById('mainPreviewImg').src = mod.images[0];
-            document.getElementById('modDescriptionContent').innerText = mod.description;
-            
-            document.getElementById('metaCategory').innerText = mod.category;
-            document.getElementById('metaPlatform').innerText = mod.platform;
-            document.getElementById('metaVersion').innerText = mod.currentVersion;
-            document.getElementById('metaDate').innerText = mod.releaseDate;
-            
-            const authorLink = document.getElementById('metaAuthorLink');
-            authorLink.innerText = mod.author;
-            authorLink.href = mod.authorUrl;
-
-            // زر التحميل الرئيسي (يتحمل أحدث إصدار)
-            document.getElementById('primaryDownloadBtn').href = mod.versions[0].link;
-
-            // معرض الصور المصغرة
-            const thumbRow = document.getElementById('thumbnailsRow');
-            thumbRow.innerHTML = '';
-            mod.images.forEach((img, index) => {
-                thumbRow.innerHTML += `<img src="${img}" class="thumb-item ${index === 0 ? 'active' : ''}" onclick="changeMainImage('${img}', this)">`;
-            });
-
-            // قائمة الإصدارات
-            const versionsList = document.getElementById('versionsList');
-            versionsList.innerHTML = '';
-            mod.versions.forEach(ver => {
-                versionsList.innerHTML += `
-                    <div class="version-item" onclick="window.open('${ver.link}', '_blank')">
-                        <span>إصدار ${ver.version}</span>
-                        <i class="fas fa-download"></i>
-                    </div>
-                `;
-            });
-        }
-
-        // تغيير الصورة الكبرى عند الضغط على المصغرة
-        function changeMainImage(src, element) {
-            document.getElementById('mainPreviewImg').src = src;
-            document.querySelectorAll('.thumb-item').forEach(el => el.classList.remove('active'));
-            element.classList.add('active');
-        }
-
-        // العودة للرئيسية
-        function goBackToHome() {
-            document.getElementById('detailsView').style.display = 'none';
-            document.getElementById('homeView').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Lightbox تكبير الصورة
-        function openLightbox(src) {
-            const modal = document.getElementById('lightboxModal');
-            document.getElementById('lightboxImg').src = src;
-            modal.classList.add('active');
-        }
-        function closeLightbox() {
-            document.getElementById('lightboxModal').classList.remove('active');
-        }
-
-        // التشغيل الأولي
-        renderHomeMods();
+        // تأثير التموج عند الضغط على الأزرار
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('.btn, .tab-btn');
+            if (target) {
+                const rect = target.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple-effect');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                target.style.position = 'relative';
+                target.style.overflow = 'hidden';
+                target.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 500);
+            }
+        });
     </script>
 </body>
 </html>
