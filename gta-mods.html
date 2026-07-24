@@ -620,19 +620,49 @@
 - إضاءة جيدة 
 -----------------------------------------
 التثبيت في FiveM:
-أ - افتح الملف باستخدام 7zip أو Winrar أو أي برنامج آخر يسمح لك بفك ضغط هذا النوع من الملفات.
+أ - افتح الملف باستخدام 7zip أو Winrar.
 ب - فك ضغط الملف في مجلد الخريطة وابدأ من ملف server.cfg.
 
 التثبيت في وضع اللاعب الفردي:
 أ - افتح OpenIV وقم بتمكين وضع التحرير.
 ب - انتقل إلى المسار mods\update\x64\dlcpacks.
-ج - اسحب مجلد DLC الخاص بالخريطة إلى مجلد dlcpacks ثم انسخ اسم مجلد DLC هذا.
-د - ارجع إلى مجلد التحديث وانقر نقرًا مزدوجًا لفتح ملف update.rpf.
-هـ - افتح مجلد common\data، وابحث عن ملف dlclist.xml، وانقر عليه بزر الماوس الأيمن، ثم اختر "تحرير".
-و - انتقل إلى أسفل الملف، وانسخ السطر الأخير من التعليمات البرمجية، واضغط على مفتاح الإدخال، ثم الصقه في سطر جديد.
-ز - استبدل اسم DLC في السطر الجديد باسم مجلد DLC الخاص بخريطتك.
-ح - احفظ الملف. اكتمل التثبيت، شغّل اللعبة لاستخدام التعديل.`,
+ج - اسحب مجلد DLC الخاص بالخريطة إلى dlcpacks وقم بتحديث dlclist.xml.`,
                 downloadLink: "https://download1500.mediafire.com/ef6yt9gn1j3gXHybMH1oBheS1zf93TIH2bR54oI1LUbNLTZlFHzS-cESywPrJ4ZjqHZiDihVNbNyl28pHrKyJS7NUK9Eizit9A-PVvVrtmI8w5tiXuTJia40l4hhd1BlzbUIMOsxPG-yr2_QME4ap8rWA6EBA4e7CWvzkxG7xYw8JlQf/nt3eivb3rmvguu5/5b3aaf-LD_SmoilRig+SP+FIX+AGAIN.rar"
+            },
+            {
+                id: "ibn-alqanader-mod",
+                title: "مود ابن القنادر [إضافة حصرية / Ultimate Pack]",
+                category: "vehicles",
+                platform: "PC",
+                thumbnail: "https://res.cloudinary.com/dbahe7lxz/image/upload/v1784921012/idraaak/wblytxqj22cwoqqa2nsr.jpg",
+                gallery: [
+                    "https://res.cloudinary.com/dbahe7lxz/image/upload/v1784921012/idraaak/wblytxqj22cwoqqa2nsr.jpg",
+                    "https://res.cloudinary.com/dbahe7lxz/image/upload/v1784921064/idraaak/a7p1bkluf56beb1uhyj1.jpg"
+                ],
+                currentVersion: "2.0.0",
+                fileSize: "45.8 MB",
+                addedDate: "2026/07/24",
+                author: "ProDevs Team",
+                authorLink: "https://www.gta5-mods.com",
+                description: `الوصف: مود ابن القنادر الحصري لتحسين تجربة اللعب وإضافة مركبة خارقة مع تعديلات بصرية فريدة.
+صاحب المود: ProDevs Team (رابط الموقع الرسمي: https://www.gta5-mods.com)
+
+-----------------------------------------
+--سجل التغييرات--
+1.0 - الإصدار الأولي للمود
+1.5 - إضافة أصوات محرك واقعية وتعديل الفيزياء
+2.0 - التحديث الأخير وإصلاح توافقية الأونلاين و FiveM
+-----------------------------------------
+الميزات:
+- جودة رسومات عالية 4K
+- تخصيص كامل بالورشة
+- دعم وضع اللاعب الفردي و FiveM بالكامل
+-----------------------------------------
+طريقة التثبيت:
+1. قم بفك ضغط الملف باستخدام برنامج WinRAR.
+2. انساخ مجلد الإضافة وضعه في مسار ملفات الـ DLC الخاصة باللعبة عبر برنامج OpenIV.
+3. قم بتعديل ملف dlclist.xml وإضافة السطر البرمجي الخاص بالمود.`,
+                downloadLink: "https://www.mediafire.com"
             }
         ];
 
@@ -735,7 +765,7 @@
             }
 
             let formattedDesc = mod.description.replace(
-                "https://www.gta5-mods.com/maps/oil-rig-add-on-sp-fivem", 
+                mod.authorLink, 
                 `<a href="${mod.authorLink}" class="modal-author-link" target="_blank">${mod.authorLink}</a>`
             );
             document.getElementById('modalDescText').innerHTML = formattedDesc;
