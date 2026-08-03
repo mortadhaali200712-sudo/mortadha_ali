@@ -325,27 +325,6 @@
             text-align: right;
         }
 
-        .mod-stats-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border-glass);
-            border-bottom: 1px solid var(--border-glass);
-            padding: 8px 0;
-        }
-
-        .mod-stats-row div {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .mod-stats-row i {
-            color: var(--brand-primary);
-        }
-
         .mod-tags-container {
             display: flex;
             gap: 6px;
@@ -1197,7 +1176,7 @@
             return [...modsDatabase.bedrock, ...modsDatabase.java];
         }
 
-        // توليد البطاقات وعرضها في الصفحة الرئيسية
+        // توليد البطاقات وعرضها في الصفحة الرئيسية (بدون الإصدار والتقييم والتحميلات)
         function renderMods(list, containerId) {
             const container = document.getElementById(containerId);
             container.innerHTML = '';
@@ -1209,11 +1188,6 @@
                     </div>
                     <div class="mod-info">
                         <span class="mod-name">${mod.name}</span>
-                        <div class="mod-stats-row">
-                            <div><i class="fas fa-download"></i> ${mod.downloads}</div>
-                            <div><i class="fas fa-star" style="color: var(--warning-glow);"></i> ${mod.rating}</div>
-                            <div><i class="fas fa-code-branch"></i> ${mod.latestVersion}</div>
-                        </div>
                         <div class="mod-tags-container">
                             ${mod.tags.slice(0, 3).map(tag => `<span class="mini-tag">${tag}</span>`).join('')}
                         </div>
