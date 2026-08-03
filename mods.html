@@ -370,7 +370,7 @@
             transform: translateY(-2px);
         }
 
-        /* تصميم نافذة التفاصيل المنبثقة (Modal) */
+        /* تصميم نافذة التفاصيل والاصدارات المنبثقة (Modal) */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -431,7 +431,7 @@
         }
         .modal-header-img {
             width: 100%;
-            height: 260px;
+            height: 240px;
             border-radius: 18px;
             object-fit: cover;
             margin-bottom: 20px;
@@ -443,32 +443,48 @@
             margin-bottom: 15px;
         }
         .modal-section-title {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 800;
             color: var(--brand-primary);
-            margin: 25px 0 12px;
+            margin: 22px 0 10px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .updates-list {
+        
+        /* قائمة اختيار الإصدارات */
+        .versions-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
-        .update-item {
+        .version-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-glass);
-            padding: 12px 16px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
+            border-radius: 14px;
+            padding: 14px 18px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+            transition: var(--transition-swift);
         }
-        .update-item i {
-            color: var(--brand-primary);
+        .version-card:hover {
+            border-color: var(--brand-primary);
+            background: rgba(16, 185, 129, 0.04);
+        }
+        .version-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .version-name {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+        .version-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
         }
 
         /* تأثير التموج */
@@ -555,21 +571,20 @@
     <section id="bedrockSection" class="mods-grid-container"></section>
     <section id="javaSection" class="mods-grid-container" style="display: none;"></section>
 
-    <!-- نافذة تفاصيل المود وتحديثاته -->
+    <!-- نافذة تفاصيل المود واختيار الإصدارات -->
     <div id="modModal" class="modal-overlay" onclick="closeModal(event)">
         <div class="modal-container" id="modalContentBox">
             <button class="modal-close" onclick="closeModalDirect()"><i class="fas fa-times"></i></button>
             <img id="modalImg" src="" class="modal-header-img" alt="صورة المود">
             <h2 id="modalTitle" class="modal-title"></h2>
             
-            <div class="modal-section-title"><i class="fas fa-history"></i> سجل التحديثات</div>
-            <div id="modalUpdates" class="updates-list">
-                <!-- هنا يتم إضافة التحديثات تلقائياً -->
+            <div class="modal-section-title"><i class="fas fa-code-branch"></i> اختر الإصدار المناسب للتحميل</div>
+            <div id="modalVersions" class="versions-list">
+                <!-- هنا يتم إضافة الإصدارات تلقائياً -->
             </div>
 
-            <div style="margin-top: 30px; display: flex; gap: 12px;">
-                <a id="modalDownloadBtn" href="#" target="_blank" rel="noopener" class="btn download-btn" style="flex: 2;"><i class="fas fa-download"></i> تحميل المود</a>
-                <button id="modalCopyBtn" class="btn copy-btn" style="flex: 1;"><i class="fas fa-copy"></i> نسخ الرابط</button>
+            <div style="margin-top: 25px;">
+                <button id="modalCopyBtn" class="btn copy-btn" style="width: 100%;"><i class="fas fa-copy"></i> نسخ رابط المود بالكامل</button>
             </div>
         </div>
     </div>
@@ -581,147 +596,127 @@
     </div>
 
     <script>
+        // تمت إضافة مصفوفة "versions" لكل مود لكي تتمكن من إضافة عدة إصدارات لكل مود بكل سهولة
         const bedrockList = [
             { 
                 id: "space", 
                 name: "مود الفضاء", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-17-3329e4cb-b611-4d7f-99cb-b008bd43eca3.png", 
-                link: "https://download937.mediafire.com/bj6rn1umhpygOgROq2bvO-IUNUiUOfAn0Wx-FekYSvwooPmWGetqSgKIqvY7ndXkJD1QLIRk84-_KgiSK_1EinkkV26PXHV9n3NxX0DBKDp0gpMZJ2bKP_VxIAvIEDSYhfWdF50X_qc7sIKLeAoN1EcnczQKEt53HD7YGIMMwTWJ1ss/bvl0o7f1zv6rsjy/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D9%81%D8%B6%D8%A7%D8%A1+.mcaddon",
-                updates: [
-                    "إضافة كواكب جديدة وقابلة للاستكشاف.",
-                    "تحسين دروع الفضاء وأدوات التنفس.",
-                    "إصلاح الأخطاء وتقليل لاج اللعبة."
+                versions: [
+                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://download937.mediafire.com/bj6rn1umhpygOgROq2bvO-IUNUiUOfAn0Wx-FekYSvwooPmWGetqSgKIqvY7ndXkJD1QLIRk84-_KgiSK_1EinkkV26PXHV9n3NxX0DBKDp0gpMZJ2bKP_VxIAvIEDSYhfWdF50X_qc7sIKLeAoN1EcnczQKEt53HD7YGIMMwTWJ1ss/bvl0o7f1zv6rsjy/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D9%81%D8%B6%D8%A7%D8%A1+.mcaddon" },
+                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
                 ]
             },
             { 
                 id: "skyblock", 
                 name: "Skyblock 26.20", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-16-f4f8c00d-fa54-4665-a6a2-a70341c2ea84.png", 
-                link: "https://download2284.mediafire.com/ii5ndblxc7ggLTDUQ_ihanRaPIUR2zJo2PBDiif4bRr2ulXV2XLqlrbGkHh7K4sosSNiNDc551OpUMTo_GkMXXOUAogPag35FmxC7rjMSJEvOuEVtSo_blYE4_e8dBUu3BLeinui6v7eKn1rkVYlvXnT2NiN-SK85Gtv3ezFRcYuiA/5lvbrnrlqtnm08c/%D8%B3%D9%83%D8%A7%D9%8A+%D8%A8%D9%84%D9%88%D9%83+.mcworld",
-                updates: [
-                    "تحديث النظام الأساسي للإصدار 26.20.",
-                    "إضافة مهام جديدة وجوائز يومية.",
-                    "تعديل صعوبة الجزيرة."
+                versions: [
+                    { name: "الإصدار 26.20 (الرئيسي)", desc: "النسخة المحدثة مع المهام", link: "https://download2284.mediafire.com/ii5ndblxc7ggLTDUQ_ihanRaPIUR2zJo2PBDiif4bRr2ulXV2XLqlrbGkHh7K4sosSNiNDc551OpUMTo_GkMXXOUAogPag35FmxC7rjMSJEvOuEVtSo_blYE4_e8dBUu3BLeinui6v7eKn1rkVYlvXnT2NiN-SK85Gtv3ezFRcYuiA/5lvbrnrlqtnm08c/%D8%B3%D9%83%D8%A7%D9%8A+%D8%A8%D9%84%D9%88%D9%83+.mcworld" }
                 ]
             },
             { 
                 id: "lantern", 
                 name: "مود الانتيرن الصيني", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-15-32399c5a-45e6-4774-a4ef-fc8157778ea9.png", 
-                link: "https://download1649.mediafire.com/rknftz97fetgJCEhl3koG0pV0XTOskcc0e80qAMpRC5BIus9rdwQTEVHwsRxaBobdcDcOMivNn9rh6i7Oxie_UO9icRE2DZ0qIROdf5b8Hvz9mTLMoKOkIv5nzNGOkDwmrg0PfJ4RAq-c4uEa2eM38e5WiLWCHeu0i2Y8PD3AmuzDA/5zl2s5z3u5bww1y/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D9%8A%D8%B1%D9%86+%D8%A7%D9%84%D8%B5%D9%8A%D9%86%D9%8A+.mcpack",
-                updates: [
-                    "إضافة تصاميم جديدة للإضاءة التقليدية.",
-                    "تحسين الألوان لتناسب النمط الآسيوي."
+                versions: [
+                    { name: "الإصدار القياسي", desc: "جميع إصدارات بيدروك", link: "https://download1649.mediafire.com/rknftz97fetgJCEhl3koG0pV0XTOskcc0e80qAMpRC5BIus9rdwQTEVHwsRxaBobdcDcOMivNn9rh6i7Oxie_UO9icRE2DZ0qIROdf5b8Hvz9mTLMoKOkIv5nzNGOkDwmrg0PfJ4RAq-c4uEa2eM38e5WiLWCHeu0i2Y8PD3AmuzDA/5zl2s5z3u5bww1y/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D9%8A%D8%B1%D9%86+%D8%A7%D9%84%D8%B5%D9%8A%D9%86%D9%8A+.mcpack" }
                 ]
             },
             { 
                 id: "map-world", 
                 name: "ماب خريطة العالم", 
                 img: "https://images.weserv.nl/?url=iili.io/CEkuApn.md.png", 
-                link: "https://www.mediafire.com/file/v4a5xoc2j21pdsn/%25D9%2585%25D8%25A7%25D8%25A8_%25D8%25AE%25D8%25B1%25D9%258A%25D8%25B7%25D8%25A9_%25D8%25A7%25D9%2584%25D9%2585_.mcworld/file",
-                updates: [
-                    "تحديث تفاصيل القارات والدول بدقة أعلى."
+                versions: [
+                    { name: "النسخة الكاملة", desc: "خريطة العالم بدقة عالية", link: "https://www.mediafire.com/file/v4a5xoc2j21pdsn/%25D9%2585%25D8%25A7%25D8%25A8_%25D8%25AE%25D8%25B1%25D9%258A%25D8%25B7%25D8%25A9_%25D8%25A7%25D9%2584%25D9%2585_.mcworld/file" }
                 ]
             },
             { 
                 id: "spawn", 
                 name: "مود الاسبون", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-13-9421c042-3f8d-4deb-8bd3-63f92343fcef.webp", 
-                link: "https://www.mediafire.com/file/jw6itjsh2vcb41d/مود+الاسبون.mcworld/file",
-                updates: [
-                    "تحسين مكان ظهور اللاعبين وتجهيز منطقة البداية."
+                versions: [
+                    { name: "الإصدار الرسمي", desc: "تجهيز منطقة البداية", link: "https://www.mediafire.com/file/jw6itjsh2vcb41d/مود+الاسبون.mcworld/file" }
                 ]
             },
             { 
                 id: "magic", 
                 name: "مود سحر كرافت", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-11-c4659a13-57c3-459a-89c3-cd9208cc422b.png", 
-                link: "https://www.mediafire.com/file/f5tulyguyqhdij3/%25D8%25B3%25D8%25AD%25D8%25B1_%25D9%2583%25D8%25B1%25D8%25A7%25D9%2581%25D8%25AA_.mcaddon/file",
-                updates: [
-                    "إضافة تعاويذ سحرية جديدة وعصي قتالية."
+                versions: [
+                    { name: "إصدار التعاويذ الجديدة", desc: "النسخة المحدثة", link: "https://www.mediafire.com/file/f5tulyguyqhdij3/%25D8%25B3%25D8%25AD%25D8%25B1_%25D9%2583%25D8%25B1%25D8%25A7%25D9%2581%25D8%25AA_.mcaddon/file" }
                 ]
             },
             { 
                 id: "horror", 
                 name: "مود الرعب", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-a18e8d6b-787f-4ea9-a29f-223e25e47948.webp", 
-                link: "https://www.mediafire.com/file/5570wx2ac6zvwd4/مود_الرعب_.mcaddon/file",
-                updates: [
-                    "إضافة أصوات مخيفة وأجواء مظلمة مرعبة.",
-                    "إدراج وحش جديد يظهر في الظلام."
+                versions: [
+                    { name: "إصدار الليل المرعب", desc: "أصوات وأجواء مرعبة", link: "https://www.mediafire.com/file/5570wx2ac6zvwd4/مود_الرعب_.mcaddon/file" }
                 ]
             },
             { 
                 id: "dino", 
                 name: "مود الديناصور", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-c127607f-0880-48b3-9ab8-adba4be81331.webp", 
-                link: "https://www.mediafire.com/file/dr3f3wtz8nnxd37/مود_الديناصور.mcaddon/file",
-                updates: [
-                    "إضافة أنواع ديناصورات مفترسة جديدة.",
-                    "إمكانية ترويض بعض الديناصورات."
+                versions: [
+                    { name: "الإصدار المفترس", desc: "ديناصورات جديدة قابلة للترويض", link: "https://www.mediafire.com/file/dr3f3wtz8nnxd37/مود_الديناصور.mcaddon/file" }
                 ]
             },
             { 
                 id: "drill", 
                 name: "مود الدريل", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-052f9825-8d9f-4452-bca6-3a5f0a3c96ba.jpg", 
-                link: "https://www.mediafire.com/file/ife8novip8dv03g/دريل_Legend_Hub.mcpack/file",
-                updates: [
-                    "زيادة سرعة الحفر وتطوير دريل مطور."
+                versions: [
+                    { name: "إصدار Legend Hub", desc: "دريل مطور وسريع الحفر", link: "https://www.mediafire.com/file/ife8novip8dv03g/دريل_Legend_Hub.mcpack/file" }
                 ]
             },
             { 
                 id: "guns", 
                 name: "مود الاسلحة الحقيقية", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-7e637dd6-219c-40ce-b0da-2dd24013b625.webp", 
-                link: "https://www.mediafire.com/file/30pgf2fayhhf4hm/أسلحة_حقيقية_(واقعية)_Legend_Hub/file",
-                updates: [
-                    "إضافة أصوات إطلاق نار واقعية وتصاميم حديثة."
+                versions: [
+                    { name: "النسخة الواقعية", desc: "أسلحة بتصاميم حديثة وأصوات واقعية", link: "https://www.mediafire.com/file/30pgf2fayhhf4hm/أسلحة_حقيقية_(واقعية)_Legend_Hub/file" }
                 ]
             },
             { 
                 id: "wiston", 
                 name: "مود الويستون", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9f1e3ed7-5721-470f-92a5-2fcb9c259923.jpg", 
-                link: "https://www.mediafire.com/file/sr3gt9b9f85qy33/ويستون_Legend_Hub.mcaddon/file",
-                updates: [
-                    "تحسينات عامة على النظام وتقليل استهلاك الموارد."
+                versions: [
+                    { name: "الإصدار القياسي", desc: "تعديلات النظام العامة", link: "https://www.mediafire.com/file/sr3gt9b9f85qy33/ويستون_Legend_Hub.mcaddon/file" }
                 ]
             },
             { 
                 id: "hammer", 
                 name: "مود الهمر", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9ebea467-3034-418a-9032-ebef6f0d7096.jpg", 
-                link: "https://www.mediafire.com/file/z8gvhyu1q0gjl2d/همر_Legend_Hub.zip/file",
-                updates: [
-                    "إضافة تأثيرات تكسير المساحات الواسعة."
+                versions: [
+                    { name: "إصدار التكسير الواسع", desc: "مطرقة لتكسير الكتل بسرعة", link: "https://www.mediafire.com/file/z8gvhyu1q0gjl2d/همر_Legend_Hub.zip/file" }
                 ]
             },
             { 
                 id: "wand", 
                 name: "مود الواند", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-86308f6a-d84b-4d98-9de4-070f71cf7a13.jpg", 
-                link: "https://www.mediafire.com/file/sp9zoo1hn0pr5a5/واند_Legend_Hub.mcaddon/file",
-                updates: [
-                    "إضافة قدرات بناء سريعة باستخدام الواند."
+                versions: [
+                    { name: "إصدار البناء السريع", desc: "أداة الواند المساعدة للبناء", link: "https://www.mediafire.com/file/sp9zoo1hn0pr5a5/واند_Legend_Hub.mcaddon/file" }
                 ]
             },
             { 
                 id: "anim", 
                 name: "مود الانميشن", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-35593438-3f5b-4594-9deb-e4cd614e89ea.jpg", 
-                link: "https://www.mediafire.com/file/01rbobhezh8qfqk/انميشن_Legend_Hub.mcpack/file",
-                updates: [
-                    "تعديل حركات الشخصية لتكون أكثر سلاسة وواقعية."
+                versions: [
+                    { name: "الحركات السلسة v1", desc: "تعديل حركة الشخصية", link: "https://www.mediafire.com/file/01rbobhezh8qfqk/انميشن_Legend_Hub.mcpack/file" }
                 ]
             },
             { 
                 id: "carry", 
                 name: "مود حمل الموبات", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-751acb95-bc15-496d-8381-ce8b4b613269.webp", 
-                link: "https://www.mediafire.com/file/jtxz5wu8y3bqddh/حمل_الموبات_والحيوانات_Legend_Hub.mcpack/file",
-                updates: [
-                    "إمكانية حمل الحيوانات الكبيرة والموبات بسهولة."
+                versions: [
+                    { name: "إصدار حمل الحيوانات", desc: "نقل الحيوانات والموبات بكل سهولة", link: "https://www.mediafire.com/file/jtxz5wu8y3bqddh/حمل_الموبات_والحيوانات_Legend_Hub.mcpack/file" }
                 ]
             }
         ];
@@ -729,12 +724,11 @@
         const javaList = [
             { 
                 id: "night-vision", 
-                name: "مود النايت فجن 26.1.2", 
+                name: "مود النايت فجن", 
                 img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-19-9bfe1583-6441-4d4d-beda-f6ed3fb72a1b.webp", 
-                link: "https://download2281.mediafire.com/t0w5ca5anf9ghbVnsX3v5f2OVtpiJbqZZRBolQoZy9x5p99El7gOVnVuwhqqr-LNBY5BiW-xG-2nEi8kIP7SKga5VabZOVJAZjnPfRPOdXPUMfJNcXJED75iUhwtlYTg_JnIo7lemqMeDNN9v191pb5J3LDry90HsxWTcVkZf9T9f0ky/2z094nhuuraf1ki/%D9%86%D8%A7%D9%8A%D8%AA+%D9%81%D8%AC%D9%86+%D9%84%D9%84%D8%AC%D8%A7%D9%81%D8%A1+26.1.2+.zip",
-                updates: [
-                    "التوافق التام مع إصدار الجافا 26.1.2.",
-                    "إضاءة ليلية نقية بدون وميض مزعج."
+                versions: [
+                    { name: "إصدار الجافا 26.1.2", desc: "متوافق مع إصدارات 26.x", link: "https://download2281.mediafire.com/t0w5ca5anf9ghbVnsX3v5f2OVtpiJbqZZRBolQoZy9x5p99El7gOVnVuwhqqr-LNBY5BiW-xG-2nEi8kIP7SKga5VabZOVJAZjnPfRPOdXPUMfJNcXJED75iUhwtlYTg_JnIo7lemqMeDNN9v191pb5J3LDry90HsxWTcVkZf9T9f0ky/2z094nhuuraf1ki/%D9%86%D8%A7%D9%8A%D8%AA+%D9%81%D8%AC%D9%86+%D9%84%D9%84%D8%AC%D8%A7%D9%81%D8%A1+26.1.2+.zip" },
+                    { name: "إصدار الجافا القديم", desc: "متوافق مع إصدارات 1.20", link: "#" }
                 ]
             }
         ];
@@ -743,6 +737,8 @@
             const container = document.getElementById(containerId);
             container.innerHTML = '';
             list.forEach(mod => {
+                // استخدام أول إصدار للزر السريع المباشر في البطاقة
+                let defaultLink = mod.versions && mod.versions.length > 0 ? mod.versions[0].link : '#';
                 container.innerHTML += `
                 <div class="mod-card" id="${mod.id}" onclick="openModDetails('${mod.id}', '${containerId === 'bedrockSection' ? 'bedrock' : 'java'}')">
                     <div class="mod-img-wrapper">
@@ -751,11 +747,11 @@
                     <div class="mod-info">
                         <span class="mod-name">${mod.name}</span>
                         <div class="mod-actions-group">
-                            <a href="${mod.link}" target="_blank" rel="noopener" class="btn download-btn" onclick="event.stopPropagation()">
+                            <a href="${defaultLink}" target="_blank" rel="noopener" class="btn download-btn" onclick="event.stopPropagation()">
                                 <i class="fas fa-download"></i> تحميل
                             </a>
                             <button class="btn copy-btn" onclick="event.stopPropagation(); copyModLink('${mod.id}')">
-                                <i class="fas fa-copy"></i> نسخ الرابط
+                                <i class="fas fa-copy"></i> نسخ
                             </button>
                         </div>
                     </div>
@@ -773,21 +769,26 @@
 
             document.getElementById('modalImg').src = mod.img;
             document.getElementById('modalTitle').innerText = mod.name;
-            document.getElementById('modalDownloadBtn').href = mod.link;
             document.getElementById('modalCopyBtn').setAttribute('onclick', `copyModLink('${mod.id}')`);
 
-            const updatesContainer = document.getElementById('modalUpdates');
-            updatesContainer.innerHTML = '';
-            if (mod.updates && mod.updates.length > 0) {
-                mod.updates.forEach(update => {
-                    updatesContainer.innerHTML += `
-                        <div class="update-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>${update}</span>
+            const versionsContainer = document.getElementById('modalVersions');
+            versionsContainer.innerHTML = '';
+            
+            if (mod.versions && mod.versions.length > 0) {
+                mod.versions.forEach(ver => {
+                    versionsContainer.innerHTML += `
+                        <div class="version-card">
+                            <div class="version-info">
+                                <span class="version-name">${ver.name}</span>
+                                <span class="version-desc">${ver.desc}</span>
+                            </div>
+                            <a href="${ver.link}" target="_blank" rel="noopener" class="btn download-btn" style="padding: 10px 18px; font-size: 0.85rem;">
+                                <i class="fas fa-download"></i> تحميل الإصدار
+                            </a>
                         </div>`;
                 });
             } else {
-                updatesContainer.innerHTML = `<div class="update-item"><span>لا توجد تحديثات مضافة حالياً.</span></div>`;
+                versionsContainer.innerHTML = `<div class="version-card"><span class="version-desc">لا توجد إصدارات مضافة حالياً.</span></div>`;
             }
 
             document.getElementById('modModal').classList.add('active');
