@@ -236,7 +236,7 @@
             }
         }
 
-        /* بطاقة المود الفاخرة المطورة */
+        /* بطاقة المود (تحتوي على الصورة والاسم فقط) */
         .mod-card {
             background: var(--bg-surface);
             border: 1px solid var(--border-glass);
@@ -244,7 +244,7 @@
             padding: 18px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(20px);
@@ -297,9 +297,7 @@
         .mod-info {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            flex-grow: 1;
-            justify-content: space-between;
+            gap: 8px;
         }
 
         .mod-name {
@@ -312,29 +310,6 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-align: right;
-        }
-
-        .mod-tags-container {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            max-height: 28px;
-            overflow: hidden;
-        }
-
-        .mini-tag {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-        }
-
-        .mod-actions-group {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 8px;
-            margin-top: 4px;
         }
 
         .btn {
@@ -484,7 +459,6 @@
             color: var(--brand-primary);
         }
 
-        /* جدول الإصدارات (Versions) */
         .versions-table {
             width: 100%;
             border-collapse: collapse;
@@ -505,7 +479,6 @@
             background: rgba(255,255,255,0.03);
         }
 
-        /* سجل التحديثات Changelog */
         .changelog-box {
             background: rgba(0,0,0,0.2);
             border-radius: 12px;
@@ -517,7 +490,6 @@
             line-height: 1.6;
         }
 
-        /* الشريط الجانبي لتفاصيل المود */
         .details-sidebar {
             display: flex;
             flex-direction: column;
@@ -581,7 +553,6 @@
             font-weight: 700;
         }
 
-        /* أقسام مقترحة ومشابهة */
         .suggestions-section {
             margin-top: 50px;
         }
@@ -597,7 +568,6 @@
             }
         }
 
-        /* تأثير التموج (Ripple Effect) */
         .ripple-effect {
             position: absolute;
             background: rgba(255, 255, 255, 0.35);
@@ -613,7 +583,6 @@
             }
         }
 
-        /* إشعار Toast العصري */
         .toast-notification {
             visibility: hidden;
             background: var(--bg-glass);
@@ -655,14 +624,14 @@
         <div class="aurora-orb orb-two"></div>
     </div>
 
-    <!-- زر الرجوع للرئيسية أو الصفحة الرئيسية للمودات -->
+    <!-- زر الرجوع -->
     <div class="back-btn-container">
         <button id="backHomeBtn" class="back-btn" onclick="goBackToMain()">
             <i class="fas fa-arrow-right"></i> <span id="backBtnText">رجوع للرئيسية</span>
         </button>
     </div>
 
-    <!-- المحتوى الرئيسي (شبكة المودات) -->
+    <!-- المحتوى الرئيسي -->
     <div id="mainModsContainer">
         <!-- هيدر الصفحة والبحث -->
         <header class="page-header-container">
@@ -694,7 +663,6 @@
     </div>
 
     <script>
-        // نظام بيانات المودات الشامل (يعمل كقاعدة بيانات JSON متكاملة قابلة للتوسعة بسهولة)
         const modsDatabase = {
             "bedrock": [
                 {
@@ -720,10 +688,6 @@
                         "صواريخ قابلة للتصميم والصنع والانطلاق",
                         "نظام جاذبية واقعي ومعدل حسب الكوكب"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "قم بتحميل ملف الـ mcaddon واضغط عليه مرتين ليتم استيراده تلقائياً إلى لعبة Minecraft Bedrock."
                 },
                 {
@@ -749,10 +713,6 @@
                         "دعم اللعب الجماعي مع الأصدقاء بدون لاج",
                         "توازن دقيق للموارد الأساسية"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "قم بتحميل ملف الـ mcworld وافتح الملف ليتم استيراد العالم مباشرة للعبة."
                 },
                 {
@@ -777,10 +737,6 @@
                         "إضاءة ديناميكية واقعية",
                         "مناسبة للبناء والديكورات التقليدية والحديثة"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "قم بتحميل ملف mcpack وثبته في قائمة Resource Packs داخل اللعبة."
                 },
                 {
@@ -805,10 +761,6 @@
                         "تفاصيل معمارية دقيقة ومصممة بعناية",
                         "مساحات واسعة للاستكشاف واللعب مع الأصدقاء"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "حمل ملف الـ mcworld وافتحه للبدء مباشرة."
                 },
                 {
@@ -833,10 +785,6 @@
                         "أماكن مخصصة للمتاجر والبوابات",
                         "إضاءة وتنسيق احترافي"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "استورد ملف العالم مباشرة."
                 },
                 {
@@ -861,10 +809,6 @@
                         "عصي وأدوات سحرية قابلة للتطوير",
                         "زعوش وقوى سحرية جديدة في العالم"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "استورد ملف الـ mcaddon للعبة."
                 },
                 {
@@ -889,10 +833,6 @@
                         "مؤثرات صوتية مرعبة وبيئة مظلمة",
                         "أدوات نجاة وكشافات ضوئية متطورة"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "استورد حزمة الـ mcaddon."
                 },
                 {
@@ -917,10 +857,6 @@
                         "إمكانية ترويض وركوب الديناصورات الضخمة",
                         "نظام تكاثر وبيض ديناصورات واقعي"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "استورد ملف المود إلى اللعبة."
                 },
                 {
@@ -945,10 +881,6 @@
                         "قابلية التطوير وإضافة سرعات أعلى",
                         "متانة عالية وتحمل للصدمات"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "ثبت ملف mcpack في حزم الموارد."
                 },
                 {
@@ -973,10 +905,6 @@
                         "أصوات حقيقية ونظام تصويب احترافي",
                         "طخ وذخيرة مخصصة لكل سلاح"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "استورد المود للعبة كـ Behavior و Resource."
                 },
                 {
@@ -1000,10 +928,6 @@
                         "آليات ومكونات جديدة للبناء",
                         "تسهيل الأتمتة داخل اللعبة"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "استورد ملف الـ mcaddon."
                 },
                 {
@@ -1027,10 +951,6 @@
                         "تكسير بلوكات متعددة دفعة واحدة (3x3)",
                         "همر بمختلف خامات ماين كرافت (دايموند، نذرايت)"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "فك الضغط وثبت الملفات بالطريقة الاعتيادية."
                 },
                 {
@@ -1054,10 +974,6 @@
                         "نسخ ولصق البلوكات بسرعة",
                         "تسهيل عمليات البناء الضخمة للسيرفرات"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "استورد ملف الـ mcaddon."
                 },
                 {
@@ -1082,10 +998,6 @@
                         "طريقة ركض وسير واقعية جداً",
                         "توافق تام مع معظم المودات الأخرى"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "ثبت ملف mcpack في حزم الموارد."
                 },
                 {
@@ -1109,10 +1021,6 @@
                         "حمل أي موب أو حيوان بسهولة تامة",
                         "تسهيل نقل الحيوانات لحظائر المزارع"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "ثبت ملف الـ mcpack في حزم السلوك."
                 }
             ],
@@ -1139,21 +1047,16 @@
                         "تشغيل وإيقاف بضغطة زر واحدة مخصصة",
                         "خفيف جداً ولا يؤثر على أداء اللعبة (FPS)"
                     ],
-                    screenshots: [],
-                    youtubeVideo: "",
-                    versionsList: [],
-                    changelog: "",
                     installation: "ضع ملف الـ zip أو jar في مجلد mods الخاص بلعبة Minecraft Java مع تثبيت Fabric أو Forge."
                 }
             ]
         };
 
-        // دمج جميع الموبات للبحث السريع
         function getAllMods() {
             return [...modsDatabase.bedrock, ...modsDatabase.java];
         }
 
-        // توليد البطاقات وعرضها في الصفحة الرئيسية (بدون زر التفاصيل)
+        // توليد البطاقات: تحتوي على الصورة واسم المود فقط عند الضغط عليها تفتح التفاصيل
         function renderMods(list, containerId) {
             const container = document.getElementById(containerId);
             container.innerHTML = '';
@@ -1165,41 +1068,27 @@
                     </div>
                     <div class="mod-info">
                         <span class="mod-name">${mod.name}</span>
-                        <div class="mod-tags-container">
-                            ${mod.tags.slice(0, 3).map(tag => `<span class="mini-tag">${tag}</span>`).join('')}
-                        </div>
-                        <div class="mod-actions-group" onclick="event.stopPropagation()">
-                            <a href="${mod.link}" target="_blank" rel="noopener" class="btn download-btn">
-                                <i class="fas fa-download"></i> تحميل
-                            </a>
-                        </div>
                     </div>
                 </div>`;
             });
         }
 
-        // تهيئة العرض الأولي
         renderMods(modsDatabase.bedrock, 'bedrockSection');
         renderMods(modsDatabase.java, 'javaSection');
 
-        // فتح صفحة تفاصيل المود المتقدمة
         function openModDetails(modId) {
             const allMods = getAllMods();
             const mod = allMods.find(m => m.id === modId);
             if (!mod) return;
 
-            // تحديث URL بدون إعادة تحميل الصفحة
             window.history.pushState({ modId: modId }, "", `?mod=${modId}`);
 
-            // إخفاء الرئيسية وإظهار تفاصيل المود
             document.getElementById('mainModsContainer').style.display = 'none';
             const detailsView = document.getElementById('modDetailsView');
             detailsView.style.display = 'block';
 
-            // تغيير زر الرجوع
             document.getElementById('backBtnText').innerText = 'العودة للمودات';
 
-            // تصفية مودات مشابهة وأحدث
             const similarMods = allMods.filter(m => m.id !== modId && m.category === mod.category).slice(0, 3);
 
             detailsView.innerHTML = `
@@ -1209,7 +1098,6 @@
                 </div>
 
                 <div class="mod-details-grid">
-                    <!-- القسم الرئيسي التفصيلي -->
                     <div class="details-main-content">
                         <div class="glass-panel">
                             <h1 class="details-title">${mod.name}</h1>
@@ -1268,7 +1156,6 @@
                         </div>
                     </div>
 
-                    <!-- الشريط الجانبي (Sidebar) -->
                     <div class="details-sidebar">
                         <div class="glass-panel meta-group">
                             <h3 class="details-section-title" style="margin-bottom: 5px;"><i class="fas fa-info-circle"></i> معلومات الملف</h3>
@@ -1321,7 +1208,6 @@
                     </div>
                 </div>
 
-                <!-- مودات مشابهة ومقترحة -->
                 <div class="suggestions-section">
                     <h3 class="details-section-title"><i class="fas fa-th-large"></i> مودات مشابهة ومقترحة لك</h3>
                     <div class="suggestions-grid">
@@ -1340,7 +1226,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // العودة للصفحة الرئيسية للمودات
         function goBackToMain() {
             const detailsView = document.getElementById('modDetailsView');
             if (detailsView.style.display === 'block') {
@@ -1350,12 +1235,10 @@
                 window.history.pushState({}, "", window.location.pathname);
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                // العودة للرئيسية الفعلية للموقع
                 window.location.href = 'index.html';
             }
         }
 
-        // التحقق من وجود بارامتر مود في الرابط عند التحميل
         window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
             const modId = urlParams.get('mod');
@@ -1364,7 +1247,6 @@
             }
         };
 
-        // التبديل بين أقسام بيدروك وجافا
         function showSection(section, btn) {
             document.getElementById('bedrockSection').style.display = (section === 'bedrock') ? 'grid' : 'none';
             document.getElementById('javaSection').style.display = (section === 'java') ? 'grid' : 'none';
@@ -1372,7 +1254,6 @@
             if(btn) btn.classList.add('active');
         }
 
-        // نسخ رابط المود مع إشعار Toast
         function copyModLink(modId) {
             let fullLink = window.location.origin + window.location.pathname + "?mod=" + modId;
             navigator.clipboard.writeText(fullLink).then(() => {
@@ -1380,7 +1261,6 @@
             });
         }
 
-        // مشاركة المود
         function shareMod(modName) {
             if (navigator.share) {
                 navigator.share({
@@ -1401,7 +1281,6 @@
             }, 3000);
         }
 
-        // البحث الفوري في المودات
         function searchMods() {
             let input = document.getElementById('search').value.toLowerCase();
             let cards = document.getElementsByClassName('mod-card');
@@ -1410,7 +1289,6 @@
             }
         }
 
-        // تأثير التموج (Ripple Effect) على الأزرار
         document.addEventListener('click', function(e) {
             const target = e.target.closest('.btn, .tab-btn, .back-btn');
             if (target) {
