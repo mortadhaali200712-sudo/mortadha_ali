@@ -542,45 +542,6 @@
             color: var(--brand-primary);
         }
 
-        /* معرض الصور Slider مصغر أو شبكي متطور */
-        .screenshots-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-top: 15px;
-        }
-        .screenshots-grid img {
-            width: 100%;
-            height: 110px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            border: 1px solid var(--border-glass);
-            transition: var(--transition-swift);
-        }
-        .screenshots-grid img:hover {
-            transform: scale(1.05);
-            border-color: var(--brand-primary);
-        }
-
-        /* مشغل اليوتيوب */
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            border-radius: 14px;
-            overflow: hidden;
-            margin-top: 15px;
-            background: #000;
-        }
-        .video-container iframe {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
         /* جدول الإصدارات (Versions) */
         .versions-table {
             width: 100%;
@@ -818,17 +779,10 @@
                         "صواريخ قابلة للتصميم والصنع والانطلاق",
                         "نظام جاذبية واقعي ومعدل حسب الكوكب"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-17-3329e4cb-b611-4d7f-99cb-b008bd43eca3.png",
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-16-f4f8c00d-fa54-4665-a6a2-a70341c2ea84.png",
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-15-32399c5a-45e6-4774-a4ef-fc8157778ea9.png"
-                    ],
-                    youtubeVideo: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-                    versionsList: [
-                        { version: "v2.4.1", mc: "1.21.x", date: "2026-07-17", size: "18.4 MB", link: "#" },
-                        { version: "v2.3.0", mc: "1.20.x", date: "2026-06-01", size: "17.9 MB", link: "#" }
-                    ],
-                    changelog: "إصلاح الأخطاء البرمجية في نظام إطلاق الصواريخ وتحسين الأداء العام على الهواتف والأجهزة الذكية.",
+                    screenshots: [],
+                    youtubeVideo: "",
+                    versionsList: [],
+                    changelog: "",
                     installation: "قم بتحميل ملف الـ mcaddon واضغط عليه مرتين ليتم استيراده تلقائياً إلى لعبة Minecraft Bedrock."
                 },
                 {
@@ -855,14 +809,10 @@
                         "دعم اللعب الجماعي مع الأصدقاء بدون لاج",
                         "توازن دقيق للموارد الأساسية"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-16-f4f8c00d-fa54-4665-a6a2-a70341c2ea84.png"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v26.20", mc: "1.21+", date: "2026-07-16", size: "12.1 MB", link: "#" }
-                    ],
-                    changelog: "إضافة مهام جديدة متقدمة وتعديل معدل ظهور العناصر في الصندوق.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "قم بتحميل ملف الـ mcworld وافتح الملف ليتم استيراد العالم مباشرة للعبة."
                 },
                 {
@@ -888,14 +838,10 @@
                         "إضاءة ديناميكية واقعية",
                         "مناسبة للبناء والديكورات التقليدية والحديثة"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-15-32399c5a-45e6-4774-a4ef-fc8157778ea9.png"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v1.2", mc: "1.20+", date: "2026-07-15", size: "8.5 MB", link: "#" }
-                    ],
-                    changelog: "إضافة أنواع جديدة من الفوانيس المعلقة والمضيئة.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "قم بتحميل ملف mcpack وثبته في قائمة Resource Packs داخل اللعبة."
                 },
                 {
@@ -921,14 +867,10 @@
                         "تفاصيل معمارية دقيقة ومصممة بعناية",
                         "مساحات واسعة للاستكشاف واللعب مع الأصدقاء"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=iili.io/CEkuApn.md.png"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v3.0", mc: "1.20+", date: "2026-07-14", size: "45.0 MB", link: "#" }
-                    ],
-                    changelog: "تحديث معالم جديدة وتحسين الأداء العام.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "حمل ملف الـ mcworld وافتحه للبدء مباشرة."
                 },
                 {
@@ -954,14 +896,10 @@
                         "أماكن مخصصة للمتاجر والبوابات",
                         "إضاءة وتنسيق احترافي"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-13-9421c042-3f8d-4deb-8bd3-63f92343fcef.webp"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v1.0", mc: "1.20+", date: "2026-07-13", size: "6.2 MB", link: "#" }
-                    ],
-                    changelog: "الإصدار الأول الأولي.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "استورد ملف العالم مباشرة."
                 },
                 {
@@ -987,14 +925,10 @@
                         "عصي وأدوات سحرية قابلة للتطوير",
                         "زعوش وقوى سحرية جديدة في العالم"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-11-c4659a13-57c3-459a-89c3-cd9208cc422b.png"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v1.5", mc: "1.20+", date: "2026-07-11", size: "14.3 MB", link: "#" }
-                    ],
-                    changelog: "إضافة تعاويذ جديدة وتعديل قوة العصي.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "استورد ملف الـ mcaddon للعبة."
                 },
                 {
@@ -1020,14 +954,10 @@
                         "مؤثرات صوتية مرعبة وبيئة مظلمة",
                         "أدوات نجاة وكشافات ضوئية متطورة"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-a18e8d6b-787f-4ea9-a29f-223e25e47948.webp"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v2.0", mc: "1.20+", date: "2026-07-10", size: "22.0 MB", link: "#" }
-                    ],
-                    changelog: "زيادة رعب الكيانات وتحسين السلوك الذكي للمخلوقات.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "استورد حزمة الـ mcaddon."
                 },
                 {
@@ -1053,14 +983,10 @@
                         "إمكانية ترويض وركوب الديناصورات الضخمة",
                         "نظام تكاثر وبيض ديناصورات واقعي"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-c127607f-0880-48b3-9ab8-adba4be81331.webp"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v1.8", mc: "1.20+", date: "2026-07-10", size: "28.5 MB", link: "#" }
-                    ],
-                    changelog: "إضافة ديناصورات مفترسة جديدة وتعديل حركة المشي.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "استورد ملف المود إلى اللعبة."
                 },
                 {
@@ -1086,14 +1012,10 @@
                         "قابلية التطوير وإضافة سرعات أعلى",
                         "متانة عالية وتحمل للصدمات"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-052f9825-8d9f-4452-bca6-3a5f0a3c96ba.jpg"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v1.1", mc: "1.20+", date: "2026-07-10", size: "5.4 MB", link: "#" }
-                    ],
-                    changelog: "تحسين سرعة التعدين وإصلاح الأخطاء.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "ثبت ملف mcpack في حزم الموارد."
                 },
                 {
@@ -1119,14 +1041,10 @@
                         "أصوات حقيقية ونظام تصويب احترافي",
                         "طخ وذخيرة مخصصة لكل سلاح"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-7e637dd6-219c-40ce-b0da-2dd24013b625.webp"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v3.2", mc: "1.20+", date: "2026-07-10", size: "31.0 MB", link: "#" }
-                    ],
-                    changelog: "إضافة أسلحة جديدة وتعديل الارتداد.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "استورد المود للعبة كـ Behavior و Resource."
                 },
                 {
@@ -1151,14 +1069,10 @@
                         "آليات ومكونات جديدة للبناء",
                         "تسهيل الأتمتة داخل اللعبة"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9f1e3ed7-5721-470f-92a5-2fcb9c259923.jpg"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v1.0", mc: "1.20+", date: "2026-07-10", size: "7.1 MB", link: "#" }
-                    ],
-                    changelog: "الإصدار الأولي.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "استورد ملف الـ mcaddon."
                 },
                 {
@@ -1183,14 +1097,10 @@
                         "تكسير بلوكات متعددة دفعة واحدة (3x3)",
                         "همر بمختلف خامات ماين كرافت (دايموند، نذرايت)"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9ebea467-3034-418a-9032-ebef6f0d7096.jpg"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v1.2", mc: "1.20+", date: "2026-07-10", size: "4.8 MB", link: "#" }
-                    ],
-                    changelog: "إصلاح متانة الهمر.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "فك الضغط وثبت الملفات بالطريقة الاعتيادية."
                 },
                 {
@@ -1215,14 +1125,10 @@
                         "نسخ ولصق البلوكات بسرعة",
                         "تسهيل عمليات البناء الضخمة للسيرفرات"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-86308f6a-d84b-4d98-9de4-070f71cf7a13.jpg"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v1.0", mc: "1.20+", date: "2026-07-10", size: "3.9 MB", link: "#" }
-                    ],
-                    changelog: "الإصدار الأول.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "استورد ملف الـ mcaddon."
                 },
                 {
@@ -1248,14 +1154,10 @@
                         "طريقة ركض وسير واقعية جداً",
                         "توافق تام مع معظم المودات الأخرى"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-35593438-3f5b-4594-9deb-e4cd614e89ea.jpg"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v2.1", mc: "1.20+", date: "2026-07-10", size: "9.2 MB", link: "#" }
-                    ],
-                    changelog: "تحسين سلاسة الحركة وإزالة التعارضات.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "ثبت ملف mcpack في حزم الموارد."
                 },
                 {
@@ -1280,14 +1182,10 @@
                         "حمل أي موب أو حيوان بسهولة تامة",
                         "تسهيل نقل الحيوانات لحظائر المزارع"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-751acb95-bc15-496d-8381-ce8b4b613269.webp"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v1.4", mc: "1.20+", date: "2026-07-10", size: "4.5 MB", link: "#" }
-                    ],
-                    changelog: "إصلاح خطأ حمل بعض الموبات الكبيرة.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "ثبت ملف الـ mcpack في حزم السلوك."
                 }
             ],
@@ -1315,15 +1213,10 @@
                         "تشغيل وإيقاف بضغطة زر واحدة مخصصة",
                         "خفيف جداً ولا يؤثر على أداء اللعبة (FPS)"
                     ],
-                    screenshots: [
-                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-19-9bfe1583-6441-4d4d-beda-f6ed3fb72a1b.webp"
-                    ],
+                    screenshots: [],
                     youtubeVideo: "",
-                    versionsList: [
-                        { version: "v1.0.4", mc: "26.1.2 Java", date: "2026-07-19", size: "2.1 MB", link: "#" },
-                        { version: "v1.0.0", mc: "1.21 Java", date: "2026-06-15", size: "2.0 MB", link: "#" }
-                    ],
-                    changelog: "دعم الإصدارات الحديثة لجافا وتحسين التوافق مع مودات الأداء الأخرى.",
+                    versionsList: [],
+                    changelog: "",
                     installation: "ضع ملف الـ zip أو jar في مجلد mods الخاص بلعبة Minecraft Java مع تثبيت Fabric أو Forge."
                 }
             ]
@@ -1391,7 +1284,6 @@
 
             // تصفية مودات مشابهة وأحدث
             const similarMods = allMods.filter(m => m.id !== modId && m.category === mod.category).slice(0, 3);
-            const latestMods = allMods.filter(m => m.id !== modId).slice(0, 3);
 
             detailsView.innerHTML = `
                 <div class="mod-banner">
@@ -1419,23 +1311,15 @@
                         </div>
                         ` : ''}
 
-                        ${mod.screenshots && mod.screenshots.length > 0 ? `
                         <div class="glass-panel">
                             <h3 class="details-section-title"><i class="fas fa-images"></i> معرض الصور</h3>
-                            <div class="screenshots-grid">
-                                ${mod.screenshots.map(img => `<img src="${img}" alt="Screenshot" onclick="window.open('${img}', '_blank')">`).join('')}
-                            </div>
+                            <p class="description-text" style="color: var(--text-secondary); font-size: 0.95rem;">قريباً سيتم إضافة الصور...</p>
                         </div>
-                        ` : ''}
 
-                        ${mod.youtubeVideo ? `
                         <div class="glass-panel">
                             <h3 class="details-section-title"><i class="fab fa-youtube"></i> فيديو استعراض المود</h3>
-                            <div class="video-container">
-                                <iframe src="${mod.youtubeVideo}" allowfullscreen></iframe>
-                            </div>
+                            <p class="description-text" style="color: var(--text-secondary); font-size: 0.95rem;">قريباً سيتم إضافة فيديو الاستعراض...</p>
                         </div>
-                        ` : ''}
 
                         <div class="glass-panel">
                             <h3 class="details-section-title"><i class="fas fa-history"></i> جميع إصدارات المود وسجل التحديثات</h3>
@@ -1450,21 +1334,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    ${mod.versionsList.map(v => `
                                     <tr>
-                                        <td><strong>${v.version}</strong></td>
-                                        <td>${v.mc}</td>
-                                        <td>${v.date}</td>
-                                        <td>${v.size}</td>
-                                        <td><a href="${mod.link}" target="_blank" class="btn download-btn" style="padding: 6px 12px; font-size: 0.8rem;"><i class="fas fa-download"></i></a></td>
+                                        <td colspan="5" style="text-align: center; color: var(--text-secondary); padding: 20px;">قريباً سيتم إضافة الإصدارات...</td>
                                     </tr>
-                                    `).join('')}
                                 </tbody>
                             </table>
 
                             <h4 style="margin-top: 20px; font-weight: 800; color: var(--text-primary); font-size: 1.05rem;">سجل التحديثات الأخير (Changelog)</h4>
-                            <div class="changelog-box">
-                                ${mod.changelog}
+                            <div class="changelog-box" style="color: var(--text-secondary);">
+                                قريباً سيتم إضافة سجل التحديثات...
                             </div>
                         </div>
 
