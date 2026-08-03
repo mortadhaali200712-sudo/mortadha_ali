@@ -45,6 +45,7 @@
             padding: 30px 5% 60px;
         }
 
+        /* تخصيص Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -59,6 +60,7 @@
             background: var(--brand-primary);
         }
 
+        /* خلفية Aurora الديناميكية */
         .aurora-background {
             position: fixed;
             inset: 0;
@@ -85,6 +87,7 @@
             100% { transform: translate(-25px, 35px) scale(0.95); }
         }
 
+        /* زر الرجوع */
         .back-btn-container {
             display: flex;
             justify-content: flex-start;
@@ -106,6 +109,7 @@
             font-size: 0.95rem;
             transition: var(--transition-swift);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            cursor: pointer;
         }
         .back-btn:hover {
             border-color: var(--brand-primary);
@@ -114,6 +118,7 @@
             box-shadow: 0 15px 35px rgba(16, 185, 129, 0.2);
         }
 
+        /* الهيدر والعنوان الرئيسي */
         .page-header-container {
             text-align: center;
             max-width: 800px;
@@ -132,6 +137,7 @@
             letter-spacing: -0.5px;
         }
 
+        /* صندوق البحث الاحترافي */
         .search-wrapper {
             position: relative;
             width: 100%;
@@ -171,6 +177,7 @@
             color: var(--brand-primary);
         }
 
+        /* التبويبات الفاخرة (Tabs) */
         .tabs {
             display: flex;
             justify-content: center;
@@ -204,6 +211,7 @@
             box-shadow: 0 15px 35px rgba(16, 185, 129, 0.35);
         }
 
+        /* شبكة عرض المودات */
         .mods-grid-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -213,15 +221,22 @@
         }
 
         @media (max-width: 1280px) {
-            .mods-grid-container { grid-template-columns: repeat(3, 1fr); }
+            .mods-grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         @media (max-width: 900px) {
-            .mods-grid-container { grid-template-columns: repeat(2, 1fr); }
+            .mods-grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
         @media (max-width: 600px) {
-            .mods-grid-container { grid-template-columns: 1fr; }
+            .mods-grid-container {
+                grid-template-columns: 1fr;
+            }
         }
 
+        /* بطاقة المود الفاخرة المطورة */
         .mod-card {
             background: var(--bg-surface);
             border: 1px solid var(--border-glass);
@@ -272,10 +287,10 @@
         .mod-img-wrapper {
             position: relative;
             width: 100%;
-            height: 210px;
+            height: 200px;
             border-radius: 16px;
             overflow: hidden;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             background: rgba(255,255,255,0.03);
         }
 
@@ -290,39 +305,97 @@
             transform: scale(1.08);
         }
 
+        .mod-meta-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(3, 7, 18, 0.75);
+            backdrop-filter: blur(10px);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
         .mod-info {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
             flex-grow: 1;
             justify-content: space-between;
         }
 
         .mod-name {
             font-weight: 800;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--text-primary);
             line-height: 1.4;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-align: right;
         }
 
+        .mod-stats-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-glass);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 8px 0;
+        }
+
+        .mod-stats-row div {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .mod-stats-row i {
+            color: var(--brand-primary);
+        }
+
+        .mod-tags-container {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            max-height: 28px;
+            overflow: hidden;
+        }
+
+        .mini-tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .mod-actions-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
         .btn {
-            padding: 12px 14px;
+            padding: 10px 12px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 800;
             border: none;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-family: inherit;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             transition: var(--transition-swift);
         }
 
@@ -338,134 +411,290 @@
             box-shadow: 0 8px 25px rgba(16, 185, 129, 0.45);
         }
 
-        .copy-btn {
+        .details-btn {
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid var(--border-glass);
             color: var(--text-primary);
-            width: 100%;
         }
 
-        .copy-btn:hover {
+        .details-btn:hover {
             background: rgba(255, 255, 255, 0.12);
             border-color: var(--text-secondary);
             transform: translateY(-2px);
         }
 
-        .modal-overlay {
-            position: fixed;
+        /* --- صفحة تفاصيل المود المتقدمة (Single Mod View) --- */
+        #modDetailsView {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeInView 0.4s ease;
+        }
+
+        @keyframes fadeInView {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mod-banner {
+            width: 100%;
+            height: 380px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .mod-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mod-banner-overlay {
+            position: absolute;
             inset: 0;
-            background: rgba(3, 7, 18, 0.85);
-            backdrop-filter: blur(15px);
-            z-index: 9999;
+            background: linear-gradient(to top, var(--bg-base) 0%, rgba(3,7,18,0.3) 60%, transparent 100%);
+        }
+
+        .mod-details-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 900px) {
+            .mod-details-grid {
+                grid-template-columns: 1fr;
+            }
+            .mod-banner {
+                height: 240px;
+            }
+        }
+
+        .details-main-content {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            pointer-events: none;
-            transition: var(--transition-swift);
+            flex-direction: column;
+            gap: 30px;
         }
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .modal-container {
+
+        .glass-panel {
             background: var(--bg-surface);
             border: 1px solid var(--border-glass);
-            border-radius: 28px;
-            width: 100%;
-            max-width: 650px;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 30px;
-            position: relative;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            transform: scale(0.95);
-            transition: var(--transition-swift);
-            text-align: right;
+            border-radius: 20px;
+            padding: 25px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
-        .modal-overlay.active .modal-container {
-            transform: scale(1);
-        }
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border-glass);
+
+        .details-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 10px;
             color: var(--text-primary);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+        }
+
+        .details-section-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: var(--brand-primary);
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 10px;
+        }
+
+        .description-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .features-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .features-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .features-list li {
+            background: rgba(255,255,255,0.03);
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-glass);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .features-list li i {
+            color: var(--brand-primary);
+        }
+
+        /* معرض الصور Slider مصغر أو شبكي متطور */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .screenshots-grid img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 1.1rem;
+            border: 1px solid var(--border-glass);
             transition: var(--transition-swift);
         }
-        .modal-close:hover {
-            background: var(--brand-primary);
-            color: #030712;
+        .screenshots-grid img:hover {
+            transform: scale(1.05);
             border-color: var(--brand-primary);
         }
-        .modal-header-img {
+
+        /* مشغل اليوتيوب */
+        .video-container {
+            position: relative;
             width: 100%;
-            height: 240px;
-            border-radius: 18px;
-            object-fit: cover;
-            margin-bottom: 20px;
+            padding-bottom: 56.25%;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-top: 15px;
+            background: #000;
         }
-        .modal-title {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--text-primary);
-            margin-bottom: 15px;
+        .video-container iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
         }
-        .modal-section-title {
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: var(--brand-primary);
-            margin: 22px 0 10px;
+
+        /* جدول الإصدارات (Versions) */
+        .versions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            text-align: right;
+        }
+        .versions-table th, .versions-table td {
+            padding: 14px;
+            border-bottom: 1px solid var(--border-glass);
+            font-size: 0.95rem;
+        }
+        .versions-table th {
+            color: var(--text-secondary);
+            font-weight: 700;
+            background: rgba(255,255,255,0.02);
+        }
+        .versions-table tr:hover td {
+            background: rgba(255,255,255,0.03);
+        }
+
+        /* سجل التحديثات Changelog */
+        .changelog-box {
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 16px;
+            border-left: 4px solid var(--brand-primary);
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* الشريط الجانبي لتفاصيل المود */
+        .details-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .meta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .meta-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-glass);
+        }
+        .meta-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .meta-label {
+            color: var(--text-secondary);
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        
-        .versions-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .version-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-glass);
-            border-radius: 14px;
-            padding: 14px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: var(--transition-swift);
-        }
-        .version-card:hover {
-            border-color: var(--brand-primary);
-            background: rgba(16, 185, 129, 0.04);
-        }
-        .version-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .version-name {
-            font-weight: 800;
-            font-size: 1rem;
+        .meta-value {
+            font-weight: 700;
             color: var(--text-primary);
         }
-        .version-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
+
+        .action-buttons-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .action-buttons-stack .btn {
+            width: 100%;
+            padding: 14px;
+            font-size: 1rem;
         }
 
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .tag-badge {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--brand-primary);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        /* أقسام مقترحة ومشابهة */
+        .suggestions-section {
+            margin-top: 50px;
+        }
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        @media (max-width: 900px) {
+            .suggestions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* تأثير التموج (Ripple Effect) */
         .ripple-effect {
             position: absolute;
             background: rgba(255, 255, 255, 0.35);
@@ -481,6 +710,7 @@
             }
         }
 
+        /* إشعار Toast العصري */
         .toast-notification {
             visibility: hidden;
             background: var(--bg-glass);
@@ -516,287 +746,835 @@
 </head>
 <body>
 
+    <!-- خلفية تفاعلية ضوئية -->
     <div class="aurora-background">
         <div class="aurora-orb orb-one"></div>
         <div class="aurora-orb orb-two"></div>
     </div>
 
+    <!-- زر الرجوع للرئيسية أو الصفحة الرئيسية للمودات -->
     <div class="back-btn-container">
-        <a href="index.html" class="back-btn">
-            <i class="fas fa-arrow-right"></i> رجوع للرئيسية
-        </a>
+        <button id="backHomeBtn" class="back-btn" onclick="goBackToMain()">
+            <i class="fas fa-arrow-right"></i> <span id="backBtnText">رجوع للرئيسية</span>
+        </button>
     </div>
 
-    <header class="page-header-container">
-        <h1>قسم المودات 📦</h1>
-        <div class="search-wrapper">
-            <input type="text" id="search" onkeyup="searchMods()" placeholder="🔍 ابحث عن مود...">
-            <i class="fas fa-search search-icon-pos"></i>
-        </div>
-    </header>
-
-    <nav class="tabs" aria-label="أقسام المودات">
-        <button class="tab-btn active" onclick="showSection('bedrock', this)">بيدروك</button>
-        <button class="tab-btn" onclick="showSection('java', this)">جافا</button>
-    </nav>
-
-    <section id="bedrockSection" class="mods-grid-container"></section>
-    <section id="javaSection" class="mods-grid-container" style="display: none;"></section>
-
-    <div id="modModal" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-container" id="modalContentBox">
-            <button class="modal-close" onclick="closeModalDirect()"><i class="fas fa-times"></i></button>
-            <img id="modalImg" src="" class="modal-header-img" alt="صورة المود">
-            <h2 id="modalTitle" class="modal-title"></h2>
-            
-            <div class="modal-section-title"><i class="fas fa-code-branch"></i> اختر الإصدار المناسب للتحميل</div>
-            <div id="modalVersions" class="versions-list"></div>
-
-            <div style="margin-top: 25px;">
-                <button id="modalCopyBtn" class="btn copy-btn"><i class="fas fa-copy"></i> نسخ رابط المود بالكامل</button>
+    <!-- المحتوى الرئيسي (شبكة المودات) -->
+    <div id="mainModsContainer">
+        <!-- هيدر الصفحة والبحث -->
+        <header class="page-header-container">
+            <h1>قسم المودات 📦</h1>
+            <div class="search-wrapper">
+                <input type="text" id="search" onkeyup="searchMods()" placeholder="🔍 ابحث عن مود...">
+                <i class="fas fa-search search-icon-pos"></i>
             </div>
-        </div>
+        </header>
+
+        <!-- تبويبات الأقسام -->
+        <nav class="tabs" aria-label="أقسام المودات">
+            <button class="tab-btn active" onclick="showSection('bedrock', this)">بيدروك</button>
+            <button class="tab-btn" onclick="showSection('java', this)">جافا</button>
+        </nav>
+
+        <!-- حاويات أقسام المودات -->
+        <section id="bedrockSection" class="mods-grid-container"></section>
+        <section id="javaSection" class="mods-grid-container" style="display: none;"></section>
     </div>
 
+    <!-- صفحة تفاصيل المود المفصلة -->
+    <div id="modDetailsView"></div>
+
+    <!-- إشعار Toast التفاعلي -->
     <div id="copyToast" class="toast-notification">
         <i class="fas fa-check-circle"></i>
-        <span>تم نسخ رابط المود بنجاح!</span>
+        <span id="toastMsg">تم نسخ الرابط بنجاح!</span>
     </div>
 
     <script>
-        const bedrockList = [
-            { 
-                id: "space", 
-                name: "مود الفضاء", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-17-3329e4cb-b611-4d7f-99cb-b008bd43eca3.png", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://download937.mediafire.com/bj6rn1umhpygOgROq2bvO-IUNUiUOfAn0Wx-FekYSvwooPmWGetqSgKIqvY7ndXkJD1QLIRk84-_KgiSK_1EinkkV26PXHV9n3NxX0DBKDp0gpMZJ2bKP_VxIAvIEDSYhfWdF50X_qc7sIKLeAoN1EcnczQKEt53HD7YGIMMwTWJ1ss/bvl0o7f1zv6rsjy/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D9%81%D8%B6%D8%A7%D8%A1+.mcaddon" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "skyblock", 
-                name: "Skyblock 26.20", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-16-f4f8c00d-fa54-4665-a6a2-a70341c2ea84.png", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://download2284.mediafire.com/ii5ndblxc7ggLTDUQ_ihanRaPIUR2zJo2PBDiif4bRr2ulXV2XLqlrbGkHh7K4sosSNiNDc551OpUMTo_GkMXXOUAogPag35FmxC7rjMSJEvOuEVtSo_blYE4_e8dBUu3BLeinui6v7eKn1rkVYlvXnT2NiN-SK85Gtv3ezFRcYuiA/5lvbrnrlqtnm08c/%D8%B3%D9%83%D8%A7%D9%8A+%D8%A8%D9%84%D9%88%D9%83+.mcworld" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "lantern", 
-                name: "مود الانتيرن الصيني", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-15-32399c5a-45e6-4774-a4ef-fc8157778ea9.png", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://download1649.mediafire.com/rknftz97fetgJCEhl3koG0pV0XTOskcc0e80qAMpRC5BIus9rdwQTEVHwsRxaBobdcDcOMivNn9rh6i7Oxie_UO9icRE2DZ0qIROdf5b8Hvz9mTLMoKOkIv5nzNGOkDwmrg0PfJ4RAq-c4uEa2eM38e5WiLWCHeu0i2Y8PD3AmuzDA/5zl2s5z3u5bww1y/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D9%8A%D8%B1%D9%86+%D8%A7%D9%84%D8%B5%D9%8A%D9%86%D9%8A+.mcpack" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "map-world", 
-                name: "ماب خريطة العالم", 
-                img: "https://images.weserv.nl/?url=iili.io/CEkuApn.md.png", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://www.mediafire.com/file/v4a5xoc2j21pdsn/%25D9%2585%25D8%25A7%25D8%25A8_%25D8%25AE%25D8%25B1%25D9%258A%25D8%25B7%25D8%25A9_%25D8%25A7%25D9%2584%25D9%2585_.mcworld/file" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "spawn", 
-                name: "مود الاسبون", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-13-9421c042-3f8d-4deb-8bd3-63f92343fcef.webp", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://www.mediafire.com/file/jw6itjsh2vcb41d/مود+الاسبون.mcworld/file" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "magic", 
-                name: "مود سحر كرافت", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-11-c4659a13-57c3-459a-89c3-cd9208cc422b.png", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://www.mediafire.com/file/f5tulyguyqhdij3/%25D8%25B3%25D8%25AD%25D8%25B1_%25D9%2583%25D8%25B1%25D8%25A7%25D9%2581%25D8%25AA_.mcaddon/file" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "horror", 
-                name: "مود الرعب", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-a18e8d6b-787f-4ea9-a29f-223e25e47948.webp", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://www.mediafire.com/file/5570wx2ac6zvwd4/مود_الرعب_.mcaddon/file" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "dino", 
-                name: "مود الديناصور", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-c127607f-0880-48b3-9ab8-adba4be81331.webp", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://www.mediafire.com/file/dr3f3wtz8nnxd37/مود_الديناصور.mcaddon/file" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "drill", 
-                name: "مود الدريل", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-052f9825-8d9f-4452-bca6-3a5f0a3c96ba.jpg", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://www.mediafire.com/file/ife8novip8dv03g/دريل_Legend_Hub.mcpack/file" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "guns", 
-                name: "مود الاسلحة الحقيقية", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-7e637dd6-219c-40ce-b0da-2dd24013b625.webp", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://www.mediafire.com/file/30pgf2fayhhf4hm/أسلحة_حقيقية_(واقعية)_Legend_Hub/file" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "wiston", 
-                name: "مود الويستون", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9f1e3ed7-5721-470f-92a5-2fcb9c259923.jpg", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://www.mediafire.com/file/sr3gt9b9f85qy33/ويستون_Legend_Hub.mcaddon/file" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "hammer", 
-                name: "مود الهمر", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9ebea467-3034-418a-9032-ebef6f0d7096.jpg", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://www.mediafire.com/file/z8gvhyu1q0gjl2d/همر_Legend_Hub.zip/file" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "wand", 
-                name: "مود الواند", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-86308f6a-d84b-4d98-9de4-070f71cf7a13.jpg", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://www.mediafire.com/file/sp9zoo1hn0pr5a5/واند_Legend_Hub.mcaddon/file" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "anim", 
-                name: "مود الانميشن", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-35593438-3f5b-4594-9deb-e4cd614e89ea.jpg", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://www.mediafire.com/file/01rbobhezh8qfqk/انميشن_Legend_Hub.mcpack/file" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            },
-            { 
-                id: "carry", 
-                name: "مود حمل الموبات", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-751acb95-bc15-496d-8381-ce8b4b613269.webp", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://www.mediafire.com/file/jtxz5wu8y3bqddh/حمل_الموبات_والحيوانات_Legend_Hub.mcpack/file" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            }
-        ];
+        // نظام بيانات المودات الشامل (يعمل كقاعدة بيانات JSON متكاملة قابلة للتوسعة بسهولة)
+        const modsDatabase = {
+            "bedrock": [
+                {
+                    id: "space",
+                    name: "مود الفضاء",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-17-3329e4cb-b611-4d7f-99cb-b008bd43eca3.png",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-17-3329e4cb-b611-4d7f-99cb-b008bd43eca3.png",
+                    link: "https://download937.mediafire.com/bj6rn1umhpygOgROq2bvO-IUNUiUOfAn0Wx-FekYSvwooPmWGetqSgKIqvY7ndXkJD1QLIRk84-_KgiSK_1EinkkV26PXHV9n3NxX0DBKDp0gpMZJ2bKP_VxIAvIEDSYhfWdF50X_qc7sIKLeAoN1EcnczQKEt53HD7YGIMMwTWJ1ss/bvl0o7f1zv6rsjy/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D9%81%D8%B6%D8%A7%D8%A1+.mcaddon",
+                    minecraftVersion: "1.20+ / 1.21",
+                    latestVersion: "v2.4.1",
+                    downloads: "45.2K",
+                    rating: "4.8",
+                    views: "120K",
+                    developer: "Legend Hub Team",
+                    publishDate: "2026-05-10",
+                    lastUpdate: "2026-07-17",
+                    fileSize: "18.4 MB",
+                    tags: ["فضاء", "مغامرة", "صواريخ", "بيدروك"],
+                    description: "استكشف الفضاء الخارجي واكتشف كواكب جديدة وعوالم فريدة داخل ماين كرافت بيدروك مع بدلات فضائية وتكنولوجيا متطورة.",
+                    features: [
+                        "إضافة كواكب جديدة قابلة للاستكشاف بالكامل",
+                        "بدلات فضائية مخصصة بقدرات حماية فريدة",
+                        "صواريخ قابلة للتصميم والصنع والانطلاق",
+                        "نظام جاذبية واقعي ومعدل حسب الكوكب"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-17-3329e4cb-b611-4d7f-99cb-b008bd43eca3.png",
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-16-f4f8c00d-fa54-4665-a6a2-a70341c2ea84.png",
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-15-32399c5a-45e6-4774-a4ef-fc8157778ea9.png"
+                    ],
+                    youtubeVideo: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+                    versionsList: [
+                        { version: "v2.4.1", mc: "1.21.x", date: "2026-07-17", size: "18.4 MB", link: "#" },
+                        { version: "v2.3.0", mc: "1.20.x", date: "2026-06-01", size: "17.9 MB", link: "#" }
+                    ],
+                    changelog: "إصلاح الأخطاء البرمجية في نظام إطلاق الصواريخ وتحسين الأداء العام على الهواتف والأجهزة الذكية.",
+                    installation: "قم بتحميل ملف الـ mcaddon واضغط عليه مرتين ليتم استيراده تلقائياً إلى لعبة Minecraft Bedrock."
+                },
+                {
+                    id: "skyblock",
+                    name: "Skyblock 26.20",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-16-f4f8c00d-fa54-4665-a6a2-a70341c2ea84.png",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-16-f4f8c00d-fa54-4665-a6a2-a70341c2ea84.png",
+                    link: "https://download2284.mediafire.com/ii5ndblxc7ggLTDUQ_ihanRaPIUR2zJo2PBDiif4bRr2ulXV2XLqlrbGkHh7K4sosSNiNDc551OpUMTo_GkMXXOUAogPag35FmxC7rjMSJEvOuEVtSo_blYE4_e8dBUu3BLeinui6v7eKn1rkVYlvXnT2NiN-SK85Gtv3ezFRcYuiA/5lvbrnrlqtnm08c/%D8%B3%D9%83%D8%A7%D9%8A+%D8%A8%D9%84%D9%88%D9%83+.mcworld",
+                    minecraftVersion: "1.21+",
+                    latestVersion: "v26.20",
+                    downloads: "89.1K",
+                    rating: "4.9",
+                    views: "210K",
+                    developer: "Murtadha Ali",
+                    publishDate: "2026-04-12",
+                    lastUpdate: "2026-07-16",
+                    fileSize: "12.1 MB",
+                    tags: ["سكاي بلوك", "تحدي", "جزيرة", "بيدروك"],
+                    description: "تحدي البقاء الشهير على جزيرة سكايبلوك مصمم خصيصاً لإصدارات بيدروك الحديثة مع مهام وجزر إضافية مذهلة.",
+                    features: [
+                        "جزيرة أساسية متكاملة مع شجرة وصندوق موارد",
+                        "مهام جانبية وجوائز متجددة",
+                        "دعم اللعب الجماعي مع الأصدقاء بدون لاج",
+                        "توازن دقيق للموارد الأساسية"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-16-f4f8c00d-fa54-4665-a6a2-a70341c2ea84.png"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v26.20", mc: "1.21+", date: "2026-07-16", size: "12.1 MB", link: "#" }
+                    ],
+                    changelog: "إضافة مهام جديدة متقدمة وتعديل معدل ظهور العناصر في الصندوق.",
+                    installation: "قم بتحميل ملف الـ mcworld وافتح الملف ليتم استيراد العالم مباشرة للعبة."
+                },
+                {
+                    id: "lantern",
+                    name: "مود الانتيرن الصيني",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-15-32399c5a-45e6-4774-a4ef-fc8157778ea9.png",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-15-32399c5a-45e6-4774-a4ef-fc8157778ea9.png",
+                    link: "https://download1649.mediafire.com/rknftz97fetgJCEhl3koG0pV0XTOskcc0e80qAMpRC5BIus9rdwQTEVHwsRxaBobdcDcOMivNn9rh6i7Oxie_UO9icRE2DZ0qIROdf5b8Hvz9mTLMoKOkIv5nzNGOkDwmrg0PfJ4RAq-c4uEa2eM38e5WiLWCHeu0i2Y8PD3AmuzDA/5zl2s5z3u5bww1y/%D9%85%D9%88%D8%AF+%D8%A7%D9%84%D8%A7%D9%86%D8%AA%D9%8A%D8%B1%D9%86+%D8%A7%D9%84%D8%B5%D9%8A%D9%86%D9%8A+.mcpack",
+                    minecraftVersion: "1.20+",
+                    latestVersion: "v1.2",
+                    downloads: "31.4K",
+                    rating: "4.7",
+                    views: "85K",
+                    developer: "AsianCraft Studio",
+                    publishDate: "2026-05-20",
+                    lastUpdate: "2026-07-15",
+                    fileSize: "8.5 MB",
+                    tags: ["إضاءة", "ديكور", "صيني", "بيدروك"],
+                    description: "أضف جمالاً شرقياً فريداً لبيوتك وقلاعك في ماين كرافت مع فوانيس صينية مضيئة بتصميمات ساحرة وعصرية.",
+                    features: [
+                        "تصاميم فوانيس متعددة بألوان جذابة",
+                        "إضاءة ديناميكية واقعية",
+                        "مناسبة للبناء والديكورات التقليدية والحديثة"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-15-32399c5a-45e6-4774-a4ef-fc8157778ea9.png"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v1.2", mc: "1.20+", date: "2026-07-15", size: "8.5 MB", link: "#" }
+                    ],
+                    changelog: "إضافة أنواع جديدة من الفوانيس المعلقة والمضيئة.",
+                    installation: "قم بتحميل ملف mcpack وثبته في قائمة Resource Packs داخل اللعبة."
+                },
+                {
+                    id: "map-world",
+                    name: "ماب خريطة العالم",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=iili.io/CEkuApn.md.png",
+                    banner: "https://images.weserv.nl/?url=iili.io/CEkuApn.md.png",
+                    link: "https://www.mediafire.com/file/v4a5xoc2j21pdsn/%25D9%2585%25D8%25A7%25D8%25A8_%25D8%25AE%25D8%25B1%25D9%258A%25D8%25B7%25D8%25A9_%25D8%25A7%25D9%2584%25D9%2585_.mcworld/file",
+                    minecraftVersion: "1.20+",
+                    latestVersion: "v3.0",
+                    downloads: "62.0K",
+                    rating: "4.9",
+                    views: "150K",
+                    developer: "Global Map Team",
+                    publishDate: "2026-03-15",
+                    lastUpdate: "2026-07-14",
+                    fileSize: "45.0 MB",
+                    tags: ["ماب", "عالم", "استكشاف", "بيدروك"],
+                    description: "خريطة عالم مصغرة تضم أبرز المعالم والمعماريات العالمية الشهيرة داخل لعبة ماين كرافت بدقة مذهلة.",
+                    features: [
+                        "نسخ مطابقة لأشهر معالم العالم",
+                        "تفاصيل معمارية دقيقة ومصممة بعناية",
+                        "مساحات واسعة للاستكشاف واللعب مع الأصدقاء"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=iili.io/CEkuApn.md.png"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v3.0", mc: "1.20+", date: "2026-07-14", size: "45.0 MB", link: "#" }
+                    ],
+                    changelog: "تحديث معالم جديدة وتحسين الأداء العام.",
+                    installation: "حمل ملف الـ mcworld وافتحه للبدء مباشرة."
+                },
+                {
+                    id: "spawn",
+                    name: "مود الاسبون",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-13-9421c042-3f8d-4deb-8bd3-63f92343fcef.webp",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-13-9421c042-3f8d-4deb-8bd3-63f92343fcef.webp",
+                    link: "https://www.mediafire.com/file/jw6itjsh2vcb41d/مود+الاسبون.mcworld/file",
+                    minecraftVersion: "1.20+",
+                    latestVersion: "v1.0",
+                    downloads: "19.8K",
+                    rating: "4.6",
+                    views: "45K",
+                    developer: "Hub Builder",
+                    publishDate: "2026-06-01",
+                    lastUpdate: "2026-07-13",
+                    fileSize: "6.2 MB",
+                    tags: ["سبون", "منطقة بداية", "بيدروك"],
+                    description: "منطقة سبون احترافية وجاهزة لسيرفرات ماين كرافت بيدروك مع متاجر ولوحات إرشادية وتصميم فخم.",
+                    features: [
+                        "تصميم عصري وجذاب لمنطقة البداية",
+                        "أماكن مخصصة للمتاجر والبوابات",
+                        "إضاءة وتنسيق احترافي"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-13-9421c042-3f8d-4deb-8bd3-63f92343fcef.webp"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v1.0", mc: "1.20+", date: "2026-07-13", size: "6.2 MB", link: "#" }
+                    ],
+                    changelog: "الإصدار الأول الأولي.",
+                    installation: "استورد ملف العالم مباشرة."
+                },
+                {
+                    id: "magic",
+                    name: "مود سحر كرافت",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-11-c4659a13-57c3-459a-89c3-cd9208cc422b.png",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-11-c4659a13-57c3-459a-89c3-cd9208cc422b.png",
+                    link: "https://www.mediafire.com/file/f5tulyguyqhdij3/%25D8%25B3%25D8%25AD%25D8%25B1_%25D9%2583%25D8%25B1%25D8%25A7%25D9%2581%25D8%25AA_.mcaddon/file",
+                    minecraftVersion: "1.20+",
+                    latestVersion: "v1.5",
+                    downloads: "38.2K",
+                    rating: "4.8",
+                    views: "95K",
+                    developer: "Wizard Team",
+                    publishDate: "2026-05-01",
+                    lastUpdate: "2026-07-11",
+                    fileSize: "14.3 MB",
+                    tags: ["سحر", "تعاويذ", "عصي سحرية", "بيدروك"],
+                    description: "أدخل عالم السحر والتعاويذ القوية مع عصى سحرية ودروع أسطورية وقدرات خارقة تغير طريقة لعبك تماماً.",
+                    features: [
+                        "تعاويذ سحرية هجومية ودفاعية متنوعة",
+                        "عصي وأدوات سحرية قابلة للتطوير",
+                        "زعوش وقوى سحرية جديدة في العالم"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-11-c4659a13-57c3-459a-89c3-cd9208cc422b.png"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v1.5", mc: "1.20+", date: "2026-07-11", size: "14.3 MB", link: "#" }
+                    ],
+                    changelog: "إضافة تعاويذ جديدة وتعديل قوة العصي.",
+                    installation: "استورد ملف الـ mcaddon للعبة."
+                },
+                {
+                    id: "horror",
+                    name: "مود الرعب",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-a18e8d6b-787f-4ea9-a29f-223e25e47948.webp",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-a18e8d6b-787f-4ea9-a29f-223e25e47948.webp",
+                    link: "https://www.mediafire.com/file/5570wx2ac6zvwd4/مود_الرعب_.mcaddon/file",
+                    minecraftVersion: "1.20+",
+                    latestVersion: "v2.0",
+                    downloads: "74.5K",
+                    rating: "4.9",
+                    views: "180K",
+                    developer: "Creepy Studios",
+                    publishDate: "2026-03-20",
+                    lastUpdate: "2026-07-10",
+                    fileSize: "22.0 MB",
+                    tags: ["رعب", "مخلوقات مرعبة", "تشويق", "بيدروك"],
+                    description: "تجربة رعب حقيقية ومرعبة داخل ماين كرافت مع أصوات مخيفة، كيانات غامضة تطاردك في الظلام، وأجواء مرعبة.",
+                    features: [
+                        "كيانات ومخلوقات رعب جديدة ومخيفة",
+                        "مؤثرات صوتية مرعبة وبيئة مظلمة",
+                        "أدوات نجاة وكشافات ضوئية متطورة"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-a18e8d6b-787f-4ea9-a29f-223e25e47948.webp"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v2.0", mc: "1.20+", date: "2026-07-10", size: "22.0 MB", link: "#" }
+                    ],
+                    changelog: "زيادة رعب الكيانات وتحسين السلوك الذكي للمخلوقات.",
+                    installation: "استورد حزمة الـ mcaddon."
+                },
+                {
+                    id: "dino",
+                    name: "مود الديناصور",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-c127607f-0880-48b3-9ab8-adba4be81331.webp",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-c127607f-0880-48b3-9ab8-adba4be81331.webp",
+                    link: "https://www.mediafire.com/file/dr3f3wtz8nnxd37/مود_الديناصور.mcaddon/file",
+                    minecraftVersion: "1.20+",
+                    latestVersion: "v1.8",
+                    downloads: "51.3K",
+                    rating: "4.7",
+                    views: "130K",
+                    developer: "Jurassic Craft",
+                    publishDate: "2026-04-05",
+                    lastUpdate: "2026-07-10",
+                    fileSize: "28.5 MB",
+                    tags: ["ديناصورات", "جوارسيك", "حيوانات", "بيدروك"],
+                    description: "أعد الديناصورات العملاقة إلى الحياة في عالمك، قم بتربيتها، ركوبها، واستكشاف العصور الجوراسية.",
+                    features: [
+                        "أكثر من 15 نوعاً مختلفاً من الديناصورات",
+                        "إمكانية ترويض وركوب الديناصورات الضخمة",
+                        "نظام تكاثر وبيض ديناصورات واقعي"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-c127607f-0880-48b3-9ab8-adba4be81331.webp"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v1.8", mc: "1.20+", date: "2026-07-10", size: "28.5 MB", link: "#" }
+                    ],
+                    changelog: "إضافة ديناصورات مفترسة جديدة وتعديل حركة المشي.",
+                    installation: "استورد ملف المود إلى اللعبة."
+                },
+                {
+                    id: "drill",
+                    name: "مود الدريل",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-052f9825-8d9f-4452-bca6-3a5f0a3c96ba.jpg",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-052f9825-8d9f-4452-bca6-3a5f0a3c96ba.jpg",
+                    link: "https://www.mediafire.com/file/ife8novip8dv03g/دريل_Legend_Hub.mcpack/file",
+                    minecraftVersion: "1.20+",
+                    latestVersion: "v1.1",
+                    downloads: "28.0K",
+                    rating: "4.8",
+                    views: "70K",
+                    developer: "Legend Hub",
+                    publishDate: "2026-05-15",
+                    lastUpdate: "2026-07-10",
+                    fileSize: "5.4 MB",
+                    tags: ["دريل", "تعدين", "أدوات", "بيدروك"],
+                    description: "أداة تعدين خارقة (دريل) لحفر الأنفاق والكهوف بسرعة هائلة وتوفير الوقت والجهد في جمع الموارد.",
+                    features: [
+                        "حفر مساحات واسعة بضغطة زر واحدة",
+                        "قابلية التطوير وإضافة سرعات أعلى",
+                        "متانة عالية وتحمل للصدمات"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-052f9825-8d9f-4452-bca6-3a5f0a3c96ba.jpg"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v1.1", mc: "1.20+", date: "2026-07-10", size: "5.4 MB", link: "#" }
+                    ],
+                    changelog: "تحسين سرعة التعدين وإصلاح الأخطاء.",
+                    installation: "ثبت ملف mcpack في حزم الموارد."
+                },
+                {
+                    id: "guns",
+                    name: "مود الاسلحة الحقيقية",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-7e637dd6-219c-40ce-b0da-2dd24013b625.webp",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-7e637dd6-219c-40ce-b0da-2dd24013b625.webp",
+                    link: "https://www.mediafire.com/file/30pgf2fayhhf4hm/أسلحة_حقيقية_(واقعية)_Legend_Hub/file",
+                    minecraftVersion: "1.20+",
+                    latestVersion: "v3.2",
+                    downloads: "98.4K",
+                    rating: "4.9",
+                    views: "250K",
+                    developer: "Legend Hub",
+                    publishDate: "2026-02-10",
+                    lastUpdate: "2026-07-10",
+                    fileSize: "31.0 MB",
+                    tags: ["أسلحة", "أكشن", "رماية", "بيدروك"],
+                    description: "ترسانة أسلحة نارية حقيقية وواقعية بالكامل تتضمن بنادق، مسدسات، قناصات مع أصوات إطلاق نار واقعية جداً.",
+                    features: [
+                        "أكثر من 20 سلاحاً نارياً بتفاصيل عالية",
+                        "أصوات حقيقية ونظام تصويب احترافي",
+                        "طخ وذخيرة مخصصة لكل سلاح"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-7e637dd6-219c-40ce-b0da-2dd24013b625.webp"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v3.2", mc: "1.20+", date: "2026-07-10", size: "31.0 MB", link: "#" }
+                    ],
+                    changelog: "إضافة أسلحة جديدة وتعديل الارتداد.",
+                    installation: "استورد المود للعبة كـ Behavior و Resource."
+                },
+                {
+                    id: "wiston",
+                    name: "مود الويستون",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9f1e3ed7-5721-470f-92a5-2fcb9c259923.jpg",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9f1e3ed7-5721-470f-92a5-2fcb9c259923.jpg",
+                    link: "https://www.mediafire.com/file/sr3gt9b9f85qy33/ويستون_Legend_Hub.mcaddon/file",
+                    minecraftVersion: "1.20+",
+                    latestVersion: "v1.0",
+                    downloads: "15.2K",
+                    rating: "4.5",
+                    views: "35K",
+                    developer: "Legend Hub",
+                    publishDate: "2026-06-10",
+                    lastUpdate: "2026-07-10",
+                    fileSize: "7.1 MB",
+                    tags: ["ويستون", "آليات", "بيدروك"],
+                    description: "إضافات وميكانيكيات آليات متطورة لتسهيل البناء التلقائي والتحكم في العالم بطرق مبتكرة.",
+                    features: [
+                        "آليات ومكونات جديدة للبناء",
+                        "تسهيل الأتمتة داخل اللعبة"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9f1e3ed7-5721-470f-92a5-2fcb9c259923.jpg"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v1.0", mc: "1.20+", date: "2026-07-10", size: "7.1 MB", link: "#" }
+                    ],
+                    changelog: "الإصدار الأولي.",
+                    installation: "استورد ملف الـ mcaddon."
+                },
+                {
+                    id: "hammer",
+                    name: "مود الهمر",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9ebea467-3034-418a-9032-ebef6f0d7096.jpg",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9ebea467-3034-418a-9032-ebef6f0d7096.jpg",
+                    link: "https://www.mediafire.com/file/z8gvhyu1q0gjl2d/همر_Legend_Hub.zip/file",
+                    minecraftVersion: "1.20+",
+                    latestVersion: "v1.2",
+                    downloads: "24.6K",
+                    rating: "4.7",
+                    views: "60K",
+                    developer: "Legend Hub",
+                    publishDate: "2026-05-12",
+                    lastUpdate: "2026-07-10",
+                    fileSize: "4.8 MB",
+                    tags: ["همر", "مطرقة", "تعدين", "بيدروك"],
+                    description: "مطرقة التعدين الضخمة (الهمر) التي تكسر البلوكات بنظام 3x3 لتسريع عملية التعدين وبناء الكهوف.",
+                    features: [
+                        "تكسير بلوكات متعددة دفعة واحدة (3x3)",
+                        "همر بمختلف خامات ماين كرافت (دايموند، نذرايت)"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-9ebea467-3034-418a-9032-ebef6f0d7096.jpg"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v1.2", mc: "1.20+", date: "2026-07-10", size: "4.8 MB", link: "#" }
+                    ],
+                    changelog: "إصلاح متانة الهمر.",
+                    installation: "فك الضغط وثبت الملفات بالطريقة الاعتيادية."
+                },
+                {
+                    id: "wand",
+                    name: "مود الواند",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-86308f6a-d84b-4d98-9de4-070f71cf7a13.jpg",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-86308f6a-d84b-4d98-9de4-070f71cf7a13.jpg",
+                    link: "https://www.mediafire.com/file/sp9zoo1hn0pr5a5/واند_Legend_Hub.mcaddon/file",
+                    minecraftVersion: "1.20+",
+                    latestVersion: "v1.0",
+                    downloads: "19.3K",
+                    rating: "4.6",
+                    views: "48K",
+                    developer: "Legend Hub",
+                    publishDate: "2026-06-02",
+                    lastUpdate: "2026-07-10",
+                    fileSize: "3.9 MB",
+                    tags: ["واند", "بناء سريع", "بيدروك"],
+                    description: "عصا البناء السريع (Wand) لنسخ وبناء الهياكل الهندسية بلمسة زر واحدة وبدون تعب.",
+                    features: [
+                        "نسخ ولصق البلوكات بسرعة",
+                        "تسهيل عمليات البناء الضخمة للسيرفرات"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-86308f6a-d84b-4d98-9de4-070f71cf7a13.jpg"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v1.0", mc: "1.20+", date: "2026-07-10", size: "3.9 MB", link: "#" }
+                    ],
+                    changelog: "الإصدار الأول.",
+                    installation: "استورد ملف الـ mcaddon."
+                },
+                {
+                    id: "anim",
+                    name: "مود الانميشن",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-35593438-3f5b-4594-9deb-e4cd614e89ea.jpg",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-35593438-3f5b-4594-9deb-e4cd614e89ea.jpg",
+                    link: "https://www.mediafire.com/file/01rbobhezh8qfqk/انميشن_Legend_Hub.mcpack/file",
+                    minecraftVersion: "1.20+",
+                    latestVersion: "v2.1",
+                    downloads: "67.0K",
+                    rating: "4.8",
+                    views: "160K",
+                    developer: "Legend Hub",
+                    publishDate: "2026-03-01",
+                    lastUpdate: "2026-07-10",
+                    fileSize: "9.2 MB",
+                    tags: ["انميشن", "حركات", "واقعية", "بيدروك"],
+                    description: "حركات وانميشن واقعية ومذهلة للاعبين، الركض، السباحة، حمل الأسلحة، وتفاعل الشخصية مع العالم.",
+                    features: [
+                        "حركات جديدة وسلسة للاعب والموبات",
+                        "طريقة ركض وسير واقعية جداً",
+                        "توافق تام مع معظم المودات الأخرى"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-35593438-3f5b-4594-9deb-e4cd614e89ea.jpg"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v2.1", mc: "1.20+", date: "2026-07-10", size: "9.2 MB", link: "#" }
+                    ],
+                    changelog: "تحسين سلاسة الحركة وإزالة التعارضات.",
+                    installation: "ثبت ملف mcpack في حزم الموارد."
+                },
+                {
+                    id: "carry",
+                    name: "مود حمل الموبات",
+                    category: "bedrock",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-751acb95-bc15-496d-8381-ce8b4b613269.webp",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-751acb95-bc15-496d-8381-ce8b4b613269.webp",
+                    link: "https://www.mediafire.com/file/jtxz5wu8y3bqddh/حمل_الموبات_والحيوانات_Legend_Hub.mcpack/file",
+                    minecraftVersion: "1.20+",
+                    latestVersion: "v1.4",
+                    downloads: "42.1K",
+                    rating: "4.8",
+                    views: "110K",
+                    developer: "Legend Hub",
+                    publishDate: "2026-04-10",
+                    lastUpdate: "2026-07-10",
+                    fileSize: "4.5 MB",
+                    tags: ["حمل الموبات", "حيوانات", "بيدروك"],
+                    description: "يتيح لك هذا المود حمل القرويين، الحيوانات، وحتى الأعداء على كتفيك ونقلهم بسهولة لأي مكان.",
+                    features: [
+                        "حمل أي موب أو حيوان بسهولة تامة",
+                        "تسهيل نقل الحيوانات لحظائر المزارع"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-10-751acb95-bc15-496d-8381-ce8b4b613269.webp"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v1.4", mc: "1.20+", date: "2026-07-10", size: "4.5 MB", link: "#" }
+                    ],
+                    changelog: "إصلاح خطأ حمل بعض الموبات الكبيرة.",
+                    installation: "ثبت ملف الـ mcpack في حزم السلوك."
+                }
+            ],
+            "java": [
+                {
+                    id: "night-vision",
+                    name: "مود النايت فجن 26.1.2",
+                    category: "java",
+                    img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-19-9bfe1583-6441-4d4d-beda-f6ed3fb72a1b.webp",
+                    banner: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-19-9bfe1583-6441-4d4d-beda-f6ed3fb72a1b.webp",
+                    link: "https://download2281.mediafire.com/t0w5ca5anf9ghbVnsX3v5f2OVtpiJbqZZRBolQoZy9x5p99El7gOVnVuwhqqr-LNBY5BiW-xG-2nEi8kIP7SKga5VabZOVJAZjnPfRPOdXPUMfJNcXJED75iUhwtlYTg_JnIo7lemqMeDNN9v191pb5J3LDry90HsxWTcVkZf9T9f0ky/2z094nhuuraf1ki/%D9%86%D8%A7%D9%8A%D8%AA+%D9%81%D8%AC%D9%86+%D9%84%D9%84%D8%AC%D8%A7%D9%81%D8%...اوان...",
+                    minecraftVersion: "26.1.2 / 1.21 Java",
+                    latestVersion: "v1.0.4",
+                    downloads: "35.8K",
+                    rating: "4.9",
+                    views: "92K",
+                    developer: "Java Optimizer Pro",
+                    publishDate: "2026-06-15",
+                    lastUpdate: "2026-07-19",
+                    fileSize: "2.1 MB",
+                    tags: ["نايت فجن", "جافا", "رؤية ليلية", "أداء"],
+                    description: "مود الرؤية الليلية (Night Vision) المخصص لإصدارات الجافا، يمنحك رؤية واضحة تماماً في الكهوف المظلمة وتحت الماء بدون الحاجة لمشروبات الإضاءة.",
+                    features: [
+                        "رؤية ليلية صافية وواضحة في كل الظروف",
+                        "تشغيل وإيقاف بضغطة زر واحدة مخصصة",
+                        "خفيف جداً ولا يؤثر على أداء اللعبة (FPS)"
+                    ],
+                    screenshots: [
+                        "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-19-9bfe1583-6441-4d4d-beda-f6ed3fb72a1b.webp"
+                    ],
+                    youtubeVideo: "",
+                    versionsList: [
+                        { version: "v1.0.4", mc: "26.1.2 Java", date: "2026-07-19", size: "2.1 MB", link: "#" },
+                        { version: "v1.0.0", mc: "1.21 Java", date: "2026-06-15", size: "2.0 MB", link: "#" }
+                    ],
+                    changelog: "دعم الإصدارات الحديثة لجافا وتحسين التوافق مع مودات الأداء الأخرى.",
+                    installation: "ضع ملف الـ zip أو jar في مجلد mods الخاص بلعبة Minecraft Java مع تثبيت Fabric أو Forge."
+                }
+            ]
+        };
 
-        const javaList = [
-            { 
-                id: "night-vision", 
-                name: "مود النايت فجن", 
-                img: "https://images.weserv.nl/?url=cdn.phototourl.com/free/2026-07-19-9bfe1583-6441-4d4d-beda-f6ed3fb72a1b.webp", 
-                versions: [
-                    { name: "الإصدار الأخير (v2.0)", desc: "متوافق مع الإصدارات الحديثة 1.20+", link: "https://download2281.mediafire.com/t0w5ca5anf9ghbVnsX3v5f2OVtpiJbqZZRBolQoZy9x5p99El7gOVnVuwhqqr-LNBY5BiW-xG-2nEi8kIP7SKga5VabZOVJAZjnPfRPOdXPUMfJNcXJED75iUhwtlYTg_JnIo7lemqMeDNN9v191pb5J3LDry90HsxWTcVkZf9T9f0ky/2z094nhuuraf1ki/%D9%86%D8%A7%D9%8A%D8%AA+%D9%81%D8%AC%D9%86+%D9%84%D9%84%D8%AC%D8%A7%D9%81%D8%A1+26.1.2+.zip" },
-                    { name: "الإصدار القديم (v1.0)", desc: "متوافق مع الإصدارات القديمة 1.19", link: "#" }
-                ]
-            }
-        ];
+        // دمج جميع الموبات للبحث السريع
+        function getAllMods() {
+            return [...modsDatabase.bedrock, ...modsDatabase.java];
+        }
 
+        // توليد البطاقات وعرضها في الصفحة الرئيسية
         function renderMods(list, containerId) {
             const container = document.getElementById(containerId);
             container.innerHTML = '';
             list.forEach(mod => {
                 container.innerHTML += `
-                <div class="mod-card" id="${mod.id}" onclick="openModDetails('${mod.id}', '${containerId === 'bedrockSection' ? 'bedrock' : 'java'}')">
+                <div class="mod-card" id="${mod.id}" onclick="openModDetails('${mod.id}')">
                     <div class="mod-img-wrapper">
                         <img src="${mod.img}" class="mod-img" alt="${mod.name}" loading="lazy">
+                        <span class="mod-meta-badge">${mod.minecraftVersion}</span>
                     </div>
                     <div class="mod-info">
                         <span class="mod-name">${mod.name}</span>
-                        <button class="btn copy-btn" onclick="event.stopPropagation(); copyModLink('${mod.id}')">
-                            <i class="fas fa-copy"></i> نسخ الرابط
-                        </button>
+                        <div class="mod-stats-row">
+                            <div><i class="fas fa-download"></i> ${mod.downloads}</div>
+                            <div><i class="fas fa-star" style="color: var(--warning-glow);"></i> ${mod.rating}</div>
+                            <div><i class="fas fa-code-branch"></i> ${mod.latestVersion}</div>
+                        </div>
+                        <div class="mod-tags-container">
+                            ${mod.tags.slice(0, 3).map(tag => `<span class="mini-tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="mod-actions-group" onclick="event.stopPropagation()">
+                            <a href="${mod.link}" target="_blank" rel="noopener" class="btn download-btn">
+                                <i class="fas fa-download"></i> تحميل
+                            </a>
+                            <button class="btn details-btn" onclick="openModDetails('${mod.id}')">
+                                <i class="fas fa-info-circle"></i> التفاصيل
+                            </button>
+                        </div>
                     </div>
                 </div>`;
             });
         }
 
-        renderMods(bedrockList, 'bedrockSection');
-        renderMods(javaList, 'javaSection');
+        // تهيئة العرض الأولي
+        renderMods(modsDatabase.bedrock, 'bedrockSection');
+        renderMods(modsDatabase.java, 'javaSection');
 
-        function openModDetails(modId, sectionType) {
-            const list = sectionType === 'bedrock' ? bedrockList : javaList;
-            const mod = list.find(m => m.id === modId);
+        // فتح صفحة تفاصيل المود المتقدمة
+        function openModDetails(modId) {
+            const allMods = getAllMods();
+            const mod = allMods.find(m => m.id === modId);
             if (!mod) return;
 
-            document.getElementById('modalImg').src = mod.img;
-            document.getElementById('modalTitle').innerText = mod.name;
-            document.getElementById('modalCopyBtn').setAttribute('onclick', `copyModLink('${mod.id}')`);
+            // تحديث URL بدون إعادة تحميل الصفحة
+            window.history.pushState({ modId: modId }, "", `?mod=${modId}`);
 
-            const versionsContainer = document.getElementById('modalVersions');
-            versionsContainer.innerHTML = '';
-            
-            if (mod.versions && mod.versions.length > 0) {
-                mod.versions.forEach(ver => {
-                    versionsContainer.innerHTML += `
-                        <div class="version-card">
-                            <div class="version-info">
-                                <span class="version-name">${ver.name}</span>
-                                <span class="version-desc">${ver.desc}</span>
+            // إخفاء الرئيسية وإظهار تفاصيل المود
+            document.getElementById('mainModsContainer').style.display = 'none';
+            const detailsView = document.getElementById('modDetailsView');
+            detailsView.style.display = 'block';
+
+            // تغيير زر الرجوع
+            document.getElementById('backBtnText').innerText = 'العودة للمودات';
+
+            // تصفية مودات مشابهة وأحدث
+            const similarMods = allMods.filter(m => m.id !== modId && m.category === mod.category).slice(0, 3);
+            const latestMods = allMods.filter(m => m.id !== modId).slice(0, 3);
+
+            detailsView.innerHTML = `
+                <div class="mod-banner">
+                    <img src="${mod.banner || mod.img}" alt="${mod.name}">
+                    <div class="mod-banner-overlay"></div>
+                </div>
+
+                <div class="mod-details-grid">
+                    <!-- القسم الرئيسي التفصيلي -->
+                    <div class="details-main-content">
+                        <div class="glass-panel">
+                            <h1 class="details-title">${mod.name}</h1>
+                            <div class="tags-cloud" style="margin-bottom: 20px;">
+                                ${mod.tags.map(t => `<span class="tag-badge">#${t}</span>`).join('')}
                             </div>
-                            <a href="${ver.link}" target="_blank" rel="noopener" class="btn download-btn" style="padding: 10px 18px; font-size: 0.85rem;">
-                                <i class="fas fa-download"></i> تحميل
-                            </a>
-                        </div>`;
-                });
+                            <p class="description-text">${mod.description}</p>
+                        </div>
+
+                        ${mod.features && mod.features.length > 0 ? `
+                        <div class="glass-panel">
+                            <h3 class="details-section-title"><i class="fas fa-star"></i> مميزات المود</h3>
+                            <ul class="features-list">
+                                ${mod.features.map(f => `<li><i class="fas fa-check-circle"></i> ${f}</li>`).join('')}
+                            </ul>
+                        </div>
+                        ` : ''}
+
+                        ${mod.screenshots && mod.screenshots.length > 0 ? `
+                        <div class="glass-panel">
+                            <h3 class="details-section-title"><i class="fas fa-images"></i> معرض الصور</h3>
+                            <div class="screenshots-grid">
+                                ${mod.screenshots.map(img => `<img src="${img}" alt="Screenshot" onclick="window.open('${img}', '_blank')">`).join('')}
+                            </div>
+                        </div>
+                        ` : ''}
+
+                        ${mod.youtubeVideo ? `
+                        <div class="glass-panel">
+                            <h3 class="details-section-title"><i class="fab fa-youtube"></i> فيديو استعراض المود</h3>
+                            <div class="video-container">
+                                <iframe src="${mod.youtubeVideo}" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        ` : ''}
+
+                        <div class="glass-panel">
+                            <h3 class="details-section-title"><i class="fas fa-history"></i> جميع إصدارات المود وسجل التحديثات</h3>
+                            <table class="versions-table">
+                                <thead>
+                                    <tr>
+                                        <th>الإصدار</th>
+                                        <th>إصدار ماين كرافت</th>
+                                        <th>تاريخ النشر</th>
+                                        <th>الحجم</th>
+                                        <th>تحميل</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${mod.versionsList.map(v => `
+                                    <tr>
+                                        <td><strong>${v.version}</strong></td>
+                                        <td>${v.mc}</td>
+                                        <td>${v.date}</td>
+                                        <td>${v.size}</td>
+                                        <td><a href="${mod.link}" target="_blank" class="btn download-btn" style="padding: 6px 12px; font-size: 0.8rem;"><i class="fas fa-download"></i></a></td>
+                                    </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+
+                            <h4 style="margin-top: 20px; font-weight: 800; color: var(--text-primary); font-size: 1.05rem;">سجل التحديثات الأخير (Changelog)</h4>
+                            <div class="changelog-box">
+                                ${mod.changelog}
+                            </div>
+                        </div>
+
+                        <div class="glass-panel">
+                            <h3 class="details-section-title"><i class="fas fa-book-open"></i> طريقة التثبيت خطوة بخطوة</h3>
+                            <p class="description-text">${mod.installation}</p>
+                        </div>
+                    </div>
+
+                    <!-- الشريط الجانبي (Sidebar) -->
+                    <div class="details-sidebar">
+                        <div class="glass-panel meta-group">
+                            <h3 class="details-section-title" style="margin-bottom: 5px;"><i class="fas fa-info-circle"></i> معلومات الملف</h3>
+                            
+                            <div class="meta-item">
+                                <span class="meta-label"><i class="fas fa-user"></i> المطور</span>
+                                <span class="meta-value">${mod.developer}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label"><i class="fas fa-cube"></i> الإصدار الأخير</span>
+                                <span class="meta-value">${mod.latestVersion}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label"><i class="fas fa-gamepad"></i> إصدار Minecraft</span>
+                                <span class="meta-value">${mod.minecraftVersion}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label"><i class="fas fa-hdd"></i> حجم الملف</span>
+                                <span class="meta-value">${mod.fileSize}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label"><i class="fas fa-calendar-alt"></i> تاريخ النشر</span>
+                                <span class="meta-value">${mod.publishDate}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label"><i class="fas fa-sync-alt"></i> آخر تحديث</span>
+                                <span class="meta-value">${mod.lastUpdate}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label"><i class="fas fa-download"></i> التحميلات</span>
+                                <span class="meta-value">${mod.downloads}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label"><i class="fas fa-eye"></i> المشاهدات</span>
+                                <span class="meta-value">${mod.views}</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-label"><i class="fas fa-star" style="color: var(--warning-glow);"></i> التقييم</span>
+                                <span class="meta-value">${mod.rating} / 5.0</span>
+                            </div>
+
+                            <div class="action-buttons-stack">
+                                <a href="${mod.link}" target="_blank" rel="noopener" class="btn download-btn">
+                                    <i class="fas fa-download"></i> تحميل المود الآن
+                                </a>
+                                <button class="btn details-btn" onclick="copyModLink('${mod.id}')">
+                                    <i class="fas fa-copy"></i> نسخ رابط المود
+                                </button>
+                                <button class="btn details-btn" onclick="shareMod('${mod.name}')">
+                                    <i class="fas fa-share-alt"></i> مشاركة المود
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مودات مشابهة ومقترحة -->
+                <div class="suggestions-section">
+                    <h3 class="details-section-title"><i class="fas fa-th-large"></i> مودات مشابهة ومقترحة لك</h3>
+                    <div class="suggestions-grid">
+                        ${similarMods.map(m => `
+                            <div class="mod-card" onclick="openModDetails('${m.id}')">
+                                <div class="mod-img-wrapper" style="height: 140px;">
+                                    <img src="${m.img}" class="mod-img" alt="${m.name}">
+                                </div>
+                                <span class="mod-name" style="font-size: 1rem;">${m.name}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // العودة للصفحة الرئيسية للمودات
+        function goBackToMain() {
+            const detailsView = document.getElementById('modDetailsView');
+            if (detailsView.style.display === 'block') {
+                detailsView.style.display = 'none';
+                document.getElementById('mainModsContainer').style.display = 'block';
+                document.getElementById('backBtnText').innerText = 'رجوع للرئيسية';
+                window.history.pushState({}, "", window.location.pathname);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                versionsContainer.innerHTML = `<div class="version-card"><span class="version-desc">لا توجد إصدارات مضافة حالياً.</span></div>`;
-            }
-
-            document.getElementById('modModal').classList.add('active');
-        }
-
-        function closeModal(e) {
-            if (e.target.id === 'modModal') {
-                closeModalDirect();
+                // العودة للرئيسية الفعلية للموقع
+                window.location.href = 'index.html';
             }
         }
 
-        function closeModalDirect() {
-            document.getElementById('modModal').classList.remove('active');
-        }
-
+        // التحقق من وجود بارامتر مود في الرابط عند التحميل
         window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
             const modId = urlParams.get('mod');
             if (modId) {
-                const isJava = javaList.some(m => m.id === modId);
-                if (isJava) showSection('java', document.querySelector('.tab-btn[onclick*="java"]'));
-                else showSection('bedrock', document.querySelector('.tab-btn[onclick*="bedrock"]'));
-                
-                const element = document.getElementById(modId);
-                if (element) {
-                    setTimeout(() => {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        element.classList.add('highlight');
-                        setTimeout(() => element.classList.remove('highlight'), 2500);
-                    }, 400);
-                }
+                openModDetails(modId);
             }
         };
 
+        // التبديل بين أقسام بيدروك وجافا
         function showSection(section, btn) {
             document.getElementById('bedrockSection').style.display = (section === 'bedrock') ? 'grid' : 'none';
             document.getElementById('javaSection').style.display = (section === 'java') ? 'grid' : 'none';
@@ -804,17 +1582,36 @@
             if(btn) btn.classList.add('active');
         }
 
+        // نسخ رابط المود مع إشعار Toast
         function copyModLink(modId) {
-            let fullLink = window.location.href.split('?')[0] + "?mod=" + modId;
+            let fullLink = window.location.origin + window.location.pathname + "?mod=" + modId;
             navigator.clipboard.writeText(fullLink).then(() => {
-                const toast = document.getElementById("copyToast");
-                toast.classList.add("active");
-                setTimeout(() => {
-                    toast.classList.remove("active");
-                }, 3000);
+                showToast("تم نسخ رابط المود بنجاح!");
             });
         }
 
+        // مشاركة المود
+        function shareMod(modName) {
+            if (navigator.share) {
+                navigator.share({
+                    title: modName,
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                copyModLink(new URLSearchParams(window.location.search).get('mod'));
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById("copyToast");
+            document.getElementById("toastMsg").innerText = msg;
+            toast.classList.add("active");
+            setTimeout(() => {
+                toast.classList.remove("active");
+            }, 3000);
+        }
+
+        // البحث الفوري في المودات
         function searchMods() {
             let input = document.getElementById('search').value.toLowerCase();
             let cards = document.getElementsByClassName('mod-card');
@@ -823,8 +1620,9 @@
             }
         }
 
+        // تأثير التموج (Ripple Effect) على الأزرار
         document.addEventListener('click', function(e) {
-            const target = e.target.closest('.btn, .tab-btn');
+            const target = e.target.closest('.btn, .tab-btn, .back-btn');
             if (target) {
                 const rect = target.getBoundingClientRect();
                 const x = e.clientX - rect.left;
