@@ -1,114 +1,160 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="dark">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحميل الفيديو الفوري | Mortadha Ali</title>
+    <title>لعبة تفادي العقبات | Mortadha Ali</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
-        body { background-color: #030712; color: #f8fafc; font-family: 'Cairo', sans-serif; }
-        .glass { background: rgba(11, 19, 41, 0.9); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); }
+        body { background-color: #030712; color: #f8fafc; font-family: 'Cairo', sans-serif; overflow: hidden; user-select: none; }
+        canvas { background: linear-gradient(to bottom, #030712, #0b1329); display: block; margin: auto; box-shadow: 0 0 30px rgba(59, 130, 246, 0.2); border-radius: 16px; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between items-center p-4">
+<body class="flex flex-col items-center justify-center h-screen m-0">
 
-    <!-- Header -->
-    <header class="p-6 text-center w-full">
-        <h1 class="text-2xl font-black">Mortadha <span class="text-blue-500">Ali</span></h1>
-    </header>
+    <div class="text-center mb-3">
+        <h1 class="text-2xl font-black text-blue-500">لعبة الهروب من النيازك 🚀</h1>
+        <p class="text-gray-400 text-xs mt-1">حرك سفينتك بالماوس أو الأسهم لتفادي العقبات والنقاط الحمراء!</p>
+    </div>
 
-    <!-- Main Container -->
-    <main class="w-full max-w-md glass p-6 rounded-3xl shadow-2xl flex flex-col gap-5">
-        <div class="text-center">
-            <h2 class="text-xl font-bold mb-2">تحميل الفيديوهات بضغطة زر</h2>
-            <p class="text-gray-400 text-xs">ألصق الرابط لتظهر الصورة المصغرة ويتم التحميل المباشر.</p>
-        </div>
-
-        <!-- Input Section -->
-        <div class="flex flex-col gap-3">
-            <input id="urlInput" type="url" placeholder="ضع رابط الفيديو هنا..." class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 focus:outline-none focus:border-blue-500 text-sm text-white">
-            <button onclick="fetchVideoData()" id="fetchBtn" class="w-full bg-blue-600 hover:bg-blue-500 font-bold py-3.5 rounded-xl transition text-sm shadow-lg shadow-blue-600/30">
-                جلب الصورة المصغرة وتحميل
+    <div class="relative">
+        <canvas id="gameCanvas" width="450" height="600"></canvas>
+        
+        <!-- شاشة البداية / الخسارة -->
+        <div id="menuScreen" class="absolute inset-0 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center rounded-2xl gap-4">
+            <h2 id="menuTitle" class="text-3xl font-black text-white">تحدي الفضاء</h2>
+            <p id="finalScore" class="text-gray-400 text-sm hidden">نتيجتك: <span>0</span></p>
+            <button onclick="startGame()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3 rounded-xl shadow-lg shadow-blue-600/40 transition">
+                ابدأ اللعب الآن
             </button>
         </div>
-
-        <!-- Status Message -->
-        <div id="statusMsg" class="text-xs text-center text-blue-400 hidden p-2 bg-blue-500/10 rounded-lg"></div>
-
-        <!-- Result Section (الصورة المصغرة وزر التحميل الفعلي) -->
-        <div id="resultSection" class="hidden flex-col gap-4 border-t border-white/10 pt-4">
-            <div class="w-full aspect-video rounded-xl overflow-hidden bg-black shadow">
-                <img id="thumbnailImg" src="" alt="صورة الفيديو المصغرة" class="w-full h-full object-cover">
-            </div>
-            <h3 id="videoTitle" class="font-bold text-xs text-center line-clamp-2 text-gray-200"></h3>
-            
-            <!-- زر التحميل المباشر على الجهاز -->
-            <a id="downloadLink" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl text-center text-sm transition shadow-lg shadow-emerald-600/30 block">
-                تحميل الفيديو على الجهاز الآن
-            </a>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="text-center p-4 text-gray-600 text-xs">
-        © 2026 Mortadha Ali. جميع الحقوق محفوظة.
-    </footer>
+    </div>
 
     <script>
-        async function fetchVideoData() {
-            const url = document.getElementById('urlInput').value.trim();
-            const statusMsg = document.getElementById('statusMsg');
-            const resultSection = document.getElementById('resultSection');
-            const fetchBtn = document.getElementById('fetchBtn');
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
 
-            if (!url) {
-                alert('الرجاء إدخال رابط الفيديو أولاً!');
-                return;
+        let gameInterval, scoreInterval;
+        let score = 0;
+        let isPlaying = false;
+
+        // السفينة
+        let player = {
+            x: canvas.width / 2 - 20,
+            y: canvas.height - 70,
+            w: 40,
+            h: 40,
+            speed: 6,
+            dx: 0
+        };
+
+        // العقبات (النيازك)
+        let obstacles = [];
+        let obstacleTimer = 0;
+
+        // التحكم بالكيبورد
+        let keys = {};
+        window.addEventListener('keydown', (e) => keys[e.key] = true);
+        window.addEventListener('keyup', (e) => keys[e.key] = false);
+
+        // التحكم بالماوس أو اللمس
+        canvas.addEventListener('mousemove', (e) => {
+            if (!isPlaying) return;
+            const rect = canvas.getBoundingClientRect();
+            player.x = e.clientX - rect.left - player.w / 2;
+        });
+
+        function startGame() {
+            document.getElementById("menuScreen").classList.add("hidden");
+            document.getElementById("finalScore").classList.add("hidden");
+            obstacles = [];
+            score = 0;
+            player.x = canvas.width / 2 - player.w / 2;
+            obstacleTimer = 0;
+            isPlaying = true;
+
+            gameInterval = setInterval(update, 1000 / 60); // 60 FPS
+            scoreInterval = setInterval(() => score++, 1000);
+        }
+
+        function gameOver() {
+            isPlaying = false;
+            clearInterval(gameInterval);
+            clearInterval(scoreInterval);
+
+            document.getElementById("menuTitle").textContent = "خسرت يا وحش! 💥";
+            let scoreSpan = document.querySelector("#finalScore span");
+            scoreSpan.textContent = score;
+            document.getElementById("finalScore").classList.remove("hidden");
+            document.getElementById("menuScreen").classList.remove("hidden");
+        }
+
+        function update() {
+            // مسح الشاشة
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // تحريك السفينة بالكيبورد
+            if (keys['ArrowRight'] || keys['d']) player.x += player.speed;
+            if (keys['ArrowLeft'] || keys['a']) player.x -= player.speed;
+
+            // حدود الشاشة للسفينة
+            if (player.x < 0) player.x = 0;
+            if (player.x + player.w > canvas.width) player.x = canvas.width - player.w;
+
+            // رسم السفينة (شكل مثلث فخم)
+            ctx.fillStyle = "#3b82f6";
+            ctx.beginPath();
+            ctx.moveTo(player.x + player.w / 2, player.y);
+            ctx.lineTo(player.x, player.y + player.h);
+            ctx.lineTo(player.x + player.w, player.y + player.h);
+            ctx.closePath();
+            ctx.fill();
+
+            // توليد العقبات
+            obstacleTimer++;
+            if (obstacleTimer % 45 === 0) {
+                let size = Math.random() * 30 + 20;
+                obstacles.push({
+                    x: Math.random() * (canvas.width - size),
+                    y: -size,
+                    w: size,
+                    h: size,
+                    speed: Math.random() * 3 + 4 + (score / 10) // تزداد السرعة مع الوقت
+                });
             }
 
-            // تفعيل حالة التحميل المؤقتة
-            fetchBtn.disabled = true;
-            fetchBtn.textContent = "جاري جلب المعلومات...";
-            statusMsg.classList.remove('hidden');
-            statusMsg.textContent = "جاري الاتصال واستخراج الصورة المصغرة...";
-            resultSection.classList.add('hidden');
+            // تحديث ورسم العقبات
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                let obs = obstacles[i];
+                obs.y += obs.speed;
 
-            try {
-                // استخدام خدمة ربط موثوقة تستخرج البيانات وتتجاوز القيود
-                const response = await fetch(`https://co.wukko.me/api/json`, {
-                    method: 'POST',
-                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ url: url, vQuality: '720' })
-                });
+                // رسم العقبة (نیازك حمراء مدمرة)
+                ctx.fillStyle = "#ef4444";
+                ctx.beginPath();
+                ctx.arc(obs.x + obs.w / 2, obs.y + obs.h / 2, obs.w / 2, 0, Math.PI * 2);
+                ctx.fill();
 
-                const data = await response.json();
-
-                if (data.status === 'error' || (!data.url && !data.picker)) {
-                    throw new Error('تعذر جلب الفيديو، تأكد من صحة الرابط.');
+                // فحص الاصطدام
+                if (
+                    player.x < obs.x + obs.w &&
+                    player.x + player.w > obs.x &&
+                    player.y < obs.y + obs.h &&
+                    player.y + player.h > obs.y
+                ) {
+                    gameOver();
                 }
 
-                // رابط التحميل المباشر الحقيقي
-                const finalDownloadUrl = data.url || (data.picker ? data.picker[0].url : '#');
-
-                // عرض الصورة المصغرة والعنوان
-                document.getElementById('thumbnailImg').src = data.thumbnail || 'https://via.placeholder.com/640x360?text=No+Image';
-                document.getElementById('videoTitle').textContent = data.filename || 'فيديو بدون عنوان';
-                
-                // ربط زر التحميل برابط التنزيل المباشر
-                document.getElementById('downloadLink').href = finalDownloadUrl;
-
-                statusMsg.classList.add('hidden');
-                resultSection.classList.remove('hidden');
-
-            } catch (error) {
-                statusMsg.classList.remove('hidden');
-                statusMsg.className = "text-xs text-center text-red-400 p-2 bg-red-500/10 rounded-lg";
-                statusMsg.textContent = "عذراً، فشل جلب الرابط. تأكد من أن الرابط مدعوم وصحيح.";
-            } finally {
-                fetchBtn.disabled = false;
-                fetchBtn.textContent = "جلب الصورة المصغرة وتحميل";
+                // حذف العقبة إذا خرجت من الشاشة
+                if (obs.y > canvas.height) {
+                    obstacles.splice(i, 1);
+                }
             }
+
+            // عرض النقاط على الشاشة أثناء اللعب
+            ctx.fillStyle = "#ffffff";
+            ctx.font = "bold 18px 'Cairo', sans-serif";
+            ctx.fillText("النقاط: " + score, 20, 35);
         }
     </script>
 </body>
