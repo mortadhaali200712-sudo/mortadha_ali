@@ -3,104 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحميل فيديوهات وأدوات ملفات أونلاين | Mortadha Ali</title>
-    <meta name="description" content="أداة سريعة لتحليل وتحميل المحتوى المدعوم وتحويل الملفات والصور إلى روابط.">
-    <!-- Tailwind CSS عبر CDN للاستخدام المباشر -->
+    <title>تحميل الفيديوهات | Mortadha Ali</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { darkMode: 'class', theme: { extend: { colors: { darkbase: '#030712', surfacedark: '#0b1329' } } } }
     </script>
     <style>
-        body { background-color: #030712; color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .glass { background: rgba(11, 19, 41, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
+        body { background-color: #030712; color: #f8fafc; font-family: 'Cairo', sans-serif; }
+        .glass { background: rgba(11, 19, 41, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col justify-between">
 
     <!-- Header -->
-    <header class="p-6 flex justify-between items-center max-w-5xl mx-auto w-full">
+    <header class="p-6 flex justify-between items-center max-w-4xl mx-auto w-full">
         <h1 class="text-xl font-black tracking-wider">Mortadha <span class="text-blue-500">Ali</span></h1>
-        <nav class="flex gap-6 text-sm font-medium text-gray-400">
-            <a href="#" class="hover:text-white transition">الرئيسية</a>
-            <a href="#downloader" class="hover:text-white transition">تحميل الفيديو</a>
-            <span class="opacity-50 cursor-not-allowed">الأدوات</span>
-        </nav>
     </header>
 
-    <!-- Hero -->
+    <!-- Main Content -->
     <main class="flex-1 flex flex-col items-center justify-center p-4">
-        <div class="text-center max-w-2xl mb-12">
-            <h2 class="text-4xl md:text-5xl font-black mb-4">تحميل الفيديو بسهولة وسرعة</h2>
-            <p class="text-gray-400">ألصق رابط الفيديو للحصول على معلوماته وتحميله إذا كان المصدر وطريقة الوصول يسمحان بذلك.</p>
+        <div class="text-center max-w-xl mb-8">
+            <h2 class="text-3xl md:text-5xl font-black mb-4">تحميل الفيديو بسهولة وسرعة</h2>
+            <p class="text-gray-400 text-sm">ألصق رابط الفيديو للتعرف عليه وعرض الصورة المصغرة وتحميله فوراً.</p>
         </div>
 
-        <!-- Downloader Section -->
-        <section id="downloader" class="w-full max-w-xl glass p-8 rounded-3xl shadow-2xl">
+        <div class="w-full max-w-lg glass p-6 md:p-8 rounded-3xl shadow-2xl">
             <div class="flex flex-col gap-4">
-                <input id="urlInput" type="url" placeholder="ألصق رابط الفيديو هنا..." class="w-full bg-darkbase border border-white/10 rounded-2xl px-4 py-4 focus:outline-none focus:border-blue-500 transition">
-                <button onclick="analyzeVideo()" id="analyzeBtn" class="w-full bg-blue-600 hover:bg-blue-500 font-bold py-4 rounded-2xl transition shadow-lg shadow-blue-600/20">تحميل الفيديو</button>
+                <input id="urlInput" type="url" placeholder="ألصق رابط الفيديو هنا (يوتيوب، تيك توك...)" class="w-full bg-black/40 border border-white/10 rounded-2xl px-4 py-4 focus:outline-none focus:border-blue-500 transition text-sm">
+                <button onclick="handleProcess()" id="actionBtn" class="w-full bg-blue-600 hover:bg-blue-500 font-bold py-4 rounded-2xl transition shadow-lg shadow-blue-600/20 text-sm">
+                    تحليل الفيديو
+                </button>
             </div>
-            
-            <div id="status" class="mt-6 text-sm font-semibold hidden text-center"></div>
-            
-            <div id="result" class="mt-8 hidden flex-col gap-4 border-t border-white/10 pt-8">
-                <img id="thumb" src="" class="w-full rounded-xl aspect-video object-cover bg-black">
-                <h3 id="vidTitle" class="font-bold text-lg"></h3>
-                <div class="flex justify-between text-xs text-gray-400">
-                    <span id="vidPlatform"></span>
-                </div>
-                <a id="downloadBtn" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-center font-bold py-4 rounded-xl transition">تحميل الفيديو</a>
-            </div>
-        </section>
 
-        <!-- Tools Coming Soon -->
-        <div class="grid grid-cols-2 gap-4 mt-12 w-full max-w-xl text-center">
-            <div class="p-4 glass rounded-xl opacity-60">صورة لرابط (قريباً)</div>
-            <div class="p-4 glass rounded-xl opacity-60">ملف لرابط (قريباً)</div>
+            <div id="status" class="mt-4 text-xs font-semibold text-center hidden p-3 rounded-xl bg-white/5"></div>
+
+            <!-- Result Box (تظهر الصورة المصغرة والعنوان وزر التحميل الحقيقي) -->
+            <div id="resultBox" class="mt-6 hidden flex-col gap-4 border-t border-white/10 pt-6">
+                <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black shadow-md">
+                    <img id="vidThumb" src="" alt="Thumbnail" class="w-full h-full object-cover">
+                </div>
+                <h3 id="vidTitle" class="font-bold text-sm md:text-base leading-snug line-clamp-2"></h3>
+                
+                <!-- زر التحميل الحقيقي الفوري -->
+                <button onclick="triggerDownload()" id="downloadTriggerBtn" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-emerald-600/20 text-sm flex items-center justify-center gap-2">
+                    <span>تحميل الفيديو على الجهاز</span>
+                </button>
+            </div>
         </div>
     </main>
 
-    <script>
-        async function analyzeVideo() {
-            const url = document.getElementById('urlInput').value;
-            const status = document.getElementById('status');
-            const result = document.getElementById('result');
-            const btn = document.getElementById('analyzeBtn');
+    <!-- Footer -->
+    <footer class="text-center p-6 text-gray-600 text-xs">
+        © 2026 Mortadha Ali. جميع الحقوق محفوظة.
+    </footer>
 
-            if (!url) return alert('يرجى إدخال رابط');
+    <script>
+        let directDownloadUrl = "";
+
+        async function handleProcess() {
+            const url = document.getElementById('urlInput').value.trim();
+            const status = document.getElementById('status');
+            const resultBox = document.getElementById('resultBox');
+            const btn = document.getElementById('actionBtn');
+
+            if (!url) {
+                alert('الرجاء إدخال رابط صالح.');
+                return;
+            }
 
             btn.disabled = true;
-            status.className = "mt-6 text-blue-400 text-center";
-            status.textContent = "جاري تحليل الرابط...";
+            btn.textContent = "جاري التعرف على الفيديو...";
+            status.className = "mt-4 text-blue-400 text-center text-xs p-3 rounded-xl bg-blue-500/10";
+            status.textContent = "جاري الاتصال وجلب الصورة المصغرة...";
             status.classList.remove('hidden');
-            result.classList.add('hidden');
+            resultBox.classList.add('hidden');
 
             try {
-                const res = await fetch('https://co.wukko.me/api/json', {
+                // استخدام الـ API المعتمدة لتحليل البيانات الحقيقية
+                const response = await fetch('https://co.wukko.me/api/json', {
                     method: 'POST',
                     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ url: url })
+                    body: JSON.stringify({ url: url, vQuality: '720' })
                 });
 
-                const data = await res.json();
+                const data = await response.json();
 
                 if (data.status === 'error' || (!data.url && !data.picker)) {
-                    throw new Error();
+                    throw new Error('فشل جلب البيانات');
                 }
 
-                document.getElementById('vidTitle').textContent = data.filename || 'فيديو غير معروف';
-                document.getElementById('thumb').src = data.thumbnail || '';
-                document.getElementById('vidPlatform').textContent = "منصة مدعومة";
-                document.getElementById('downloadBtn').href = data.url || data.picker[0].url;
+                // حفظ رابط التحميل الحقيقي
+                directDownloadUrl = data.url || (data.picker ? data.picker[0].url : '');
 
-                result.classList.remove('hidden');
+                // عرض الصورة المصغرة الحقيقية والعنوان
+                document.getElementById('vidThumb').src = data.thumbnail || '';
+                document.getElementById('vidTitle').textContent = data.filename || 'فيديو بدون عنوان';
+
                 status.classList.add('hidden');
-            } catch (e) {
-                status.className = "mt-6 text-red-400 text-center";
-                status.textContent = "تعذر تحليل الرابط أو المنصة غير مدعومة.";
+                resultBox.classList.remove('hidden');
+            } catch (err) {
+                status.className = "mt-4 text-red-400 text-center text-xs p-3 rounded-xl bg-red-500/10";
+                status.textContent = "عذراً، هذا الرابط غير مدعوم أو فشل جلب معلوماته.";
             } finally {
                 btn.disabled = false;
+                btn.textContent = "تحليل الفيديو";
             }
+        }
+
+        // دالة تنفيذ التنزيل الحقيقي على الجهاز
+        function triggerDownload() {
+            if (!directDownloadUrl) return;
+            
+            // إنشاء عنصر رابط وهمي لفرض التحميل المباشر على الجهاز
+            const a = document.createElement('a');
+            a.href = directDownloadUrl;
+            a.target = '_blank';
+            a.download = 'video-mortadha-ali.mp4';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
         }
     </script>
 </body>
