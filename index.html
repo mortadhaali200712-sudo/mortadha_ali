@@ -93,7 +93,6 @@
         .status-msg.error { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: #ef4444; display: flex; }
         .status-msg.loading { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); color: var(--brand-primary); display: flex; }
 
-        /* صندوق عرض الفيديو والصورة وحجم التحميل */
         .video-result-box {
             display: none; background: var(--bg-base); border: 1px solid var(--border-glass);
             border-radius: 16px; padding: 16px; gap: 16px; align-items: center; text-align: start;
@@ -144,8 +143,8 @@
     </header>
 
     <section class="hero-section">
-        <h1 id="heroTitle">أداة تحميل الفيديوهات والملفات الذكية</h1>
-        <p id="heroDesc">ألصق رابط الفيديو لاستعراض صورته وتوليد روابط التحميل المباشر لجهازك بكل سهولة.</p>
+        <h1 id="heroTitle">تحميل الفيديوهات (يوتيوب، فيسبوك، انستغرام، تيك توك)</h1>
+        <p id="heroDesc">ألصق رابط أي فيديو لتحميله واستعراض صورته فوراً وبكل سهولة.</p>
     </section>
 
     <div style="max-width: 900px; margin: 0 auto 80px; padding: 0 20px;" id="workspace">
@@ -159,18 +158,17 @@
             <!-- Panel Video -->
             <div id="panel-video" class="tool-panel active">
                 <div class="input-group">
-                    <input type="url" id="videoUrlInput" class="main-input" placeholder="ألصق رابط يوتيوب أو فيديو هنا...">
+                    <input type="url" id="videoUrlInput" class="main-input" placeholder="ألصق رابط يوتيوب، فيسبوك، انستغرام، أو تيك توك هنا...">
                     <button class="btn-primary" onclick="analyzeVideo()"><i class="fas fa-bolt"></i> <span id="analyzeBtnText">جلب وتحميل</span></button>
                 </div>
-                <div id="videoLoading" class="status-msg loading"><i class="fas fa-spinner fa-spin"></i> <span id="loadingText">جاري استخراج بيانات الفيديو والصورة...</span></div>
-                <div id="videoError" class="status-msg error"><i class="fas fa-triangle-exclamation"></i> <span id="errorText">الرجاء إدخال رابط صحيح يبدأ بـ http أو https</span></div>
+                <div id="videoLoading" class="status-msg loading"><i class="fas fa-spinner fa-spin"></i> <span id="loadingText">جاري فحص الرابط واستعراض المحتوى...</span></div>
+                <div id="videoError" class="status-msg error"><i class="fas fa-triangle-exclamation"></i> <span id="errorText">الرجاء إدخال رابط فيديو صحيح</span></div>
                 
-                <!-- صندوق النتيجة مع عرض الصورة المصغرة وزر التحميل المباشر -->
                 <div id="videoResult" class="video-result-box">
                     <img id="resThumb" src="" class="video-thumb" alt="Video Thumbnail">
                     <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
-                        <h4 id="resTitle" style="font-size: 0.95rem; font-weight: 700;">تم استخراج الفيديو بنجاح!</h4>
-                        <p id="resPlatform" style="font-size: 0.8rem; color: var(--text-secondary);">اختر خيار التحميل لحفظه على جهازك</p>
+                        <h4 id="resTitle" style="font-size: 0.95rem; font-weight: 700;">تم التعرف على الفيديو بنجاح!</h4>
+                        <p id="resPlatform" style="font-size: 0.8rem; color: var(--text-secondary);">اضغط على زر التحميل للحفظ الفوري على جهازك</p>
                     </div>
                     <a id="resDownloadLink" href="#" target="_blank" class="btn-primary"><i class="fas fa-download"></i> <span id="downloadBtnText">تحميل الفيديو</span></a>
                 </div>
@@ -212,24 +210,20 @@
         let currentLang = 'ar';
         const translations = {
             ar: {
-                heroTitle: "أداة تحميل الفيديوهات والملفات الذكية",
-                heroDesc: "ألصق رابط الفيديو لاستعراض صورته وتوليد روابط التحميل المباشر لجهازك بكل سهولة.",
+                heroTitle: "تحميل الفيديوهات (يوتيوب، فيسبوك، انستغرام، تيك توك)",
+                heroDesc: "ألصق رابط أي فيديو لتحميله واستعراض صورته فوراً وبكل سهولة.",
                 analyzeBtnText: "جلب وتحميل",
-                loadingText: "جاري استخراج بيانات الفيديو والصورة...",
-                errorText: "الرجاء إدخال رابط صحيح يبدأ بـ http أو https",
-                downloadBtnText: "تحميل الفيديو",
-                resTitleText: "تم استخراج الفيديو بنجاح!",
-                resPlatformText: "اختر خيار التحميل لحفظه على جهازك"
+                loadingText: "جاري فحص الرابط واستعراض المحتوى...",
+                errorText: "الرجاء إدخال رابط فيديو صحيح",
+                downloadBtnText: "تحميل الفيديو"
             },
             en: {
-                heroTitle: "Smart Video & File Downloader",
-                heroDesc: "Paste video link to preview thumbnail and generate direct download links easily.",
+                heroTitle: "Download Videos (YouTube, Facebook, Instagram, TikTok)",
+                heroDesc: "Paste any video link to download and preview its thumbnail instantly.",
                 analyzeBtnText: "Fetch & Download",
-                loadingText: "Extracting video data and thumbnail...",
-                errorText: "Please enter a valid URL starting with http or https",
-                downloadBtnText: "Download Video",
-                resTitleText: "Video extracted successfully!",
-                resPlatformText: "Click download to save it to your device"
+                loadingText: "Processing URL & extracting content...",
+                errorText: "Please enter a valid video URL",
+                downloadBtnText: "Download Video"
             }
         };
 
@@ -264,7 +258,6 @@
             else if(type === 'file') { document.getElementById('panel-file').classList.add('active'); document.getElementById('tabFileBtn').classList.add('active'); }
         }
 
-        // دالة استخراج معرف يوتيوب لعرض صورته الحقيقية وتحميله
         function extractYouTubeId(url) {
             const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
             const match = url.match(regExp);
@@ -291,17 +284,22 @@
             setTimeout(() => {
                 loadingBox.style.display = 'none';
                 
-                // فحص ما إذا كان رابط يوتيوب لجلب صورته المصغرة الحقيقية
+                // تحديد المنصة وعرض الصورة المناسبة أو صورة يوتيوب المصغرة
                 const ytId = extractYouTubeId(url);
                 if(ytId) {
                     document.getElementById('resThumb').src = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+                } else if(url.includes('instagram.com')) {
+                    document.getElementById('resThumb').src = "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=300&auto=format&fit=crop&q=80";
+                } else if(url.includes('facebook.com') || url.includes('fb.watch')) {
+                    document.getElementById('resThumb').src = "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=300&auto=format&fit=crop&q=80";
+                } else if(url.includes('tiktok.com')) {
+                    document.getElementById('resThumb').src = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=300&auto=format&fit=crop&q=80";
                 } else {
-                    // صورة افتراضية في حال كان رابط منصة أخرى (تيك توك أو انستغرام)
                     document.getElementById('resThumb').src = "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=300&auto=format&fit=crop&q=80";
                 }
 
-                // ربط زر التحميل برابط مباشر جاهز للتنزيل
-                document.getElementById('resDownloadLink').href = `https://r.j2mate.com/en/search?q=${encodeURIComponent(url)}`;
+                // ربط زر التحميل بمحرك تحميل عام ومستقر يدعم يوتيوب، فيسبوك، انستغرام، وتيك توك
+                document.getElementById('resDownloadLink').href = `https://en.savefrom.net/1-youtube-downloader-36/?url=${encodeURIComponent(url)}`;
                 resultBox.classList.add('show');
             }, 500);
         }
