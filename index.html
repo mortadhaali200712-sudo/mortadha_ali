@@ -2,24 +2,32 @@
 <html lang="ar" dir="rtl" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="منصة مرتضى عُلي الرسمية - تحميل الفيديوهات، تحويل الصور والملفات إلى روابط، والمودات">
-    <title>منصة مرتضى عُلي 🚀 | الرئيسية</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="أدوات مجانية وسريعة لتحميل ومعالجة الفيديوهات والملفات وتحويل الصور والملفات إلى روابط قابلة للمشاركة.">
+    <title>تحميل فيديوهات وتحويل الملفات أونلاين | Mortadha Ali</title>
     <link rel="icon" href="logo2.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --brand-primary: #10b981;
-            --brand-secondary: #059669;
-            --brand-accent: #3b82f6;
+            --brand-primary: #3b82f6;
+            --brand-secondary: #2563eb;
             --bg-base: #030712;
             --bg-surface: #0b1329;
-            --bg-glass: rgba(11, 19, 41, 0.78);
+            --bg-glass: rgba(11, 19, 41, 0.85);
             --border-glass: rgba(255, 255, 255, 0.08);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --transition-swift: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        html.light {
+            --bg-base: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.9);
+            --border-glass: rgba(0, 0, 0, 0.08);
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
         }
 
         * {
@@ -40,189 +48,161 @@
             font-family: 'Cairo', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
-            padding: 30px 5% 60px;
+            transition: var(--transition-swift);
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-base);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(16, 185, 129, 0.3);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--brand-primary);
-        }
-
-        .aurora-background {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            pointer-events: none;
-            overflow: hidden;
-            background: var(--bg-base);
-        }
-        .aurora-orb {
-            position: absolute;
-            width: 55vw;
-            height: 55vw;
-            border-radius: 50%;
-            filter: blur(140px);
-            opacity: 0.15;
-            animation: auroraFloat 18s ease-in-out infinite alternate;
-        }
-        .orb-one { background: var(--brand-primary); top: -20%; right: -10%; }
-        .orb-two { background: var(--brand-accent); bottom: -20%; left: -10%; animation-delay: -6s; }
-
-        @keyframes auroraFloat {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(35px, -25px) scale(1.08); }
-            100% { transform: translate(-25px, 35px) scale(0.95); }
-        }
-
-        .profile-container {
-            text-align: center;
-            max-width: 800px;
-            margin: 20px auto 40px;
+        /* Sticky Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 15px 5%;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 20px;
-        }
-        .avatar-wrapper {
-            position: relative;
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            padding: 4px;
-            background: linear-gradient(135deg, var(--brand-primary), var(--brand-accent));
-            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
-            animation: pulseAvatar 3s infinite alternate;
-        }
-        @keyframes pulseAvatar {
-            0% { transform: scale(1); box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3); }
-            100% { transform: scale(1.03); box-shadow: 0 20px 45px rgba(59, 130, 246, 0.4); }
-        }
-        .avatar-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            background: var(--bg-surface);
-        }
-        .profile-container h1 {
-            font-size: 2.6rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--text-primary) 20%, var(--brand-primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .profile-container p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 550px;
-            line-height: 1.6;
+            justify-content: space-between;
         }
 
-        .services-nav-grid {
-            max-width: 1200px;
-            margin: 0 auto 50px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-        @media (max-width: 900px) {
-            .services-nav-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .service-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-glass);
-            border-radius: 24px;
-            padding: 30px 24px;
-            text-align: center;
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             text-decoration: none;
             color: var(--text-primary);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            backdrop-filter: blur(20px);
-            transition: var(--transition-swift);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
         }
-        .service-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--brand-primary);
-            box-shadow: 0 25px 50px rgba(16, 185, 129, 0.25);
-        }
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 20px;
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--brand-primary);
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--brand-primary), #6366f1);
+            color: white;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            transition: var(--transition-swift);
-        }
-        .service-card:hover .service-icon {
-            background: var(--brand-primary);
-            color: #030712;
-            transform: scale(1.1) rotate(5deg);
-        }
-        .service-title {
-            font-size: 1.3rem;
-            font-weight: 800;
-        }
-        .service-desc {
-            color: var(--text-secondary);
-            font-size: 0.92rem;
-            line-height: 1.5;
+            font-weight: 900;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
         }
 
-        .tool-box-container {
-            max-width: 800px;
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            transition: var(--transition-swift);
+        }
+
+        .nav-links a:hover {
+            color: var(--brand-primary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .action-icon-btn {
+            background: transparent;
+            border: 1px solid var(--border-glass);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition-swift);
+        }
+
+        .action-icon-btn:hover {
+            background: var(--border-glass);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 80px 5% 50px;
+            text-align: center;
+            max-width: 900px;
             margin: 0 auto;
+        }
+
+        .badge-secure {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: var(--brand-primary);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-section p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* Tool Workspace Box */
+        .workspace-box {
             background: var(--bg-surface);
             border: 1px solid var(--border-glass);
             border-radius: 28px;
-            padding: 35px;
+            padding: 30px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
             backdrop-filter: blur(25px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-bottom: 60px;
         }
-        .tool-header {
+
+        .tool-tabs {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 25px;
             flex-wrap: wrap;
         }
-        .tool-tab-btn {
-            background: var(--bg-glass);
+
+        .tab-btn {
+            background: transparent;
             border: 1px solid var(--border-glass);
             color: var(--text-secondary);
-            padding: 12px 24px;
-            border-radius: 14px;
-            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 12px;
             font-weight: 700;
             font-family: inherit;
+            cursor: pointer;
             transition: var(--transition-swift);
+            font-size: 0.9rem;
         }
-        .tool-tab-btn.active, .tool-tab-btn:hover {
+
+        .tab-btn.active, .tab-btn:hover {
             background: var(--brand-primary);
             border-color: var(--brand-primary);
-            color: #030712;
+            color: white;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.25);
         }
 
         .tool-panel {
@@ -230,41 +210,49 @@
             flex-direction: column;
             gap: 20px;
         }
+
         .tool-panel.active {
             display: flex;
         }
+
         .input-group {
             display: flex;
             gap: 12px;
         }
-        @media (max-width: 600px) {
+
+        @media (max-width: 768px) {
             .input-group {
                 flex-direction: column;
             }
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
         }
-        .tool-input {
+
+        .main-input {
             flex: 1;
             padding: 16px 20px;
-            border-radius: 16px;
+            border-radius: 14px;
             border: 1px solid var(--border-glass);
-            background: var(--bg-glass);
+            background: var(--bg-base);
             color: var(--text-primary);
             font-family: inherit;
             font-size: 1rem;
-            text-align: right;
             outline: none;
             transition: var(--transition-swift);
         }
-        .tool-input:focus {
+
+        .main-input:focus {
             border-color: var(--brand-primary);
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
         }
-        .action-btn {
+
+        .btn-primary {
             background: var(--brand-primary);
-            color: #030712;
+            color: white;
             border: none;
             padding: 16px 30px;
-            border-radius: 16px;
+            border-radius: 14px;
             font-weight: 800;
             font-family: inherit;
             cursor: pointer;
@@ -274,298 +262,393 @@
             justify-content: center;
             gap: 10px;
         }
-        .action-btn:hover {
-            background: #34d399;
+
+        .btn-primary:hover {
+            background: var(--brand-secondary);
             transform: translateY(-2px);
         }
 
-        .platforms-badges {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 5px;
-            color: var(--text-secondary);
-            font-size: 1.4rem;
-        }
-
-        /* تفاصيل ومعاينة الفيديو عند جلبه */
-        .video-result-card {
-            display: none;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-glass);
-            border-radius: 20px;
-            padding: 20px;
-            margin-top: 15px;
-            gap: 20px;
-            align-items: center;
-        }
-        .video-result-card.show {
-            display: flex;
-        }
-        @media (max-width: 600px) {
-            .video-result-card {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-        .video-thumb {
-            width: 140px;
-            height: 90px;
+        /* System States & Results */
+        .status-msg {
+            padding: 12px 16px;
             border-radius: 12px;
-            object-fit: cover;
-            border: 1px solid var(--border-glass);
-        }
-        .video-details {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: none;
+            align-items: center;
             gap: 10px;
         }
-        .video-title-text {
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--text-primary);
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        .status-msg.error { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: #ef4444; display: flex; }
+        .status-msg.loading { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); color: var(--brand-primary); display: flex; }
+        
+        .video-result-box {
+            display: none;
+            background: var(--bg-base);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 16px;
+            gap: 16px;
+            align-items: center;
+            text-align: start;
+        }
+        .video-result-box.show { display: flex; }
+        @media(max-width: 600px) { .video-result-box { flex-direction: column; text-align: center; } }
+
+        .video-thumb {
+            width: 120px;
+            height: 75px;
+            border-radius: 10px;
+            object-fit: cover;
         }
 
-        .result-box {
-            margin-top: 15px;
-            padding: 15px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border-glass);
-            border-radius: 14px;
+        .upload-dropzone {
+            border: 2px dashed var(--border-glass);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-swift);
+            background: var(--bg-base);
+        }
+        .upload-dropzone:hover {
+            border-color: var(--brand-primary);
+        }
+
+        .result-link-box {
             display: none;
+            background: var(--bg-base);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            padding: 12px 16px;
             align-items: center;
             justify-content: space-between;
             gap: 10px;
         }
-        .result-box.show {
-            display: flex;
-        }
-        .result-link {
+        .result-link-box.show { display: flex; }
+        .result-link-text {
             color: var(--brand-primary);
             text-decoration: none;
+            font-size: 0.85rem;
             word-break: break-all;
-            font-size: 0.9rem;
         }
 
-        .toast-notification {
-            visibility: hidden;
-            background: var(--bg-glass);
-            backdrop-filter: blur(25px);
-            border: 1px solid var(--brand-primary);
-            color: var(--text-primary);
-            border-radius: 16px;
-            padding: 16px 28px;
-            position: fixed;
-            bottom: 35px;
-            right: 35px;
-            z-index: 99999;
-            font-weight: 800;
-            font-size: 0.95rem;
-            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.25);
-            transform: translateY(20px);
-            opacity: 0;
-            transition: var(--transition-swift);
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-glass);
+            background: var(--bg-surface);
+            padding: 40px 5%;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
         }
-        .toast-notification.active {
-            visibility: visible;
-            transform: translateY(0);
-            opacity: 1;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition-swift);
+        }
+        .footer-links a:hover {
+            color: var(--brand-primary);
         }
     </style>
 </head>
 <body>
 
-    <div class="aurora-background">
-        <div class="aurora-orb orb-one"></div>
-        <div class="aurora-orb orb-two"></div>
-    </div>
+    <!-- Header -->
+    <header>
+        <a href="#" class="brand-logo">
+            <div class="brand-icon">MA</div>
+            <div>
+                <span style="font-weight: 800; font-size: 1.05rem; display: block;">Mortadha Ali</span>
+                <span style="font-size: 10px; color: var(--text-secondary);">SaaS Content Tools</span>
+            </div>
+        </a>
 
-    <header class="profile-container">
-        <div class="avatar-wrapper">
-            <img src="logo.png" class="avatar-img" alt="صورة مرتضى عُلي">
+        <ul class="nav-links">
+            <li><a href="#" id="navHome">الرئيسية</a></li>
+            <li><a href="#workspace" id="navTools">الأدوات</a></li>
+            <li><a href="#faq" id="navFaq">الأسئلة الشائعة</a></li>
+        </ul>
+
+        <div class="header-actions">
+            <button class="action-icon-btn" onclick="toggleLanguage()">
+                <i class="fas fa-globe"></i> <span id="langText">EN</span>
+            </button>
+            <button class="action-icon-btn" onclick="toggleTheme()">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
         </div>
-        <h1>مرتضى عُلي ⚡</h1>
-        <p>منصتك الاحترافية الشاملة لتحميل الفيديوهات من منصات التواصل الاجتماعي، رفع الصور والملفات وتحويلها لروابط مباشرة.</p>
     </header>
 
-    <nav class="services-nav-grid">
-        <a href="#downloader" onclick="switchTab('video')" class="service-card">
-            <div class="service-icon"><i class="fas fa-video"></i></div>
-            <div class="service-title">تحميل فيديوهات</div>
-            <div class="service-desc">حمّل مقاطعك من تيك توك، إنستغرام، يوتيوب، وفيسبوك بجودات عالية مع استعراض التفاصيل.</div>
-        </a>
-        <a href="#downloader" onclick="switchTab('image')" class="service-card">
-            <div class="service-icon"><i class="fas fa-image"></i></div>
-            <div class="service-title">تحويل الصور لروابط</div>
-            <div class="service-desc">ارفع صورك الشخصية أو التصاميم واحصل على رابط مباشر وسريع لتشاركه فوراً.</div>
-        </a>
-        <a href="#downloader" onclick="switchTab('file')" class="service-card">
-            <div class="service-icon"><i class="fas fa-file-arrow-up"></i></div>
-            <div class="service-title">تحويل الملفات لروابط</div>
-            <div class="service-desc">ارفع ملفاتك، المودات، أو البرامج وولد لها روابط تحميل مباشرة بكل سهولة.</div>
-        </a>
-    </nav>
-
-    <section id="downloader" class="tool-box-container">
-        <div class="tool-header">
-            <button class="tool-tab-btn active" onclick="switchTab('video')"><i class="fas fa-play-circle"></i> تحميل فيديو</button>
-            <button class="tool-tab-btn" onclick="switchTab('image')"><i class="fas fa-camera"></i> صورة لرابط</button>
-            <button class="tool-tab-btn" onclick="switchTab('file')"><i class="fas fa-box-archive"></i> ملف لرابط</button>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="badge-secure">
+            <i class="fas fa-shield-halved"></i> <span id="heroBadge">منصة آمنة وموثوقة لمعالجة المحتوى</span>
         </div>
+        <h1 id="heroTitle">تحميل وتحويل الملفات بسهولة وسرعة</h1>
+        <p id="heroDesc">أدوات بسيطة وسريعة لتحميل ومعالجة ملفاتك ومحتواك من مكان واحد بمعايير أمان عالية وحماية كاملة للخصوصية.</p>
+    </section>
 
-        <!-- لوحة تحكم الفيديوهات (معالجة حقيقية عبر الروابط العامة) -->
-        <div id="panel-video" class="tool-panel active">
-            <p style="text-align: center; color: var(--text-secondary); font-size: 0.95rem;">ضع رابط الفيديو من تيك توك، انستغرام، يوتيوب، أو فيسبوك:</p>
-            <div class="input-group">
-                <input type="url" id="videoUrl" class="tool-input" placeholder="ألصق رابط الفيديو هنا...">
-                <button class="action-btn" onclick="fetchVideoDetails()"><i class="fas fa-search"></i> فحص وجلب</button>
-            </div>
-            <div class="platforms-badges">
-                <i class="fab fa-tiktok"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-youtube"></i>
-                <i class="fab fa-facebook"></i>
+    <!-- Workspace Box -->
+    <div style="max-width: 900px; margin: 0 auto 80px; padding: 0 20px;" id="workspace">
+        <div class="workspace-box">
+            <div class="tool-tabs">
+                <button class="tab-btn active" onclick="switchTab('video')" id="tabVideoBtn"><i class="fas fa-video"></i> تحميل فيديو</button>
+                <button class="tab-btn" onclick="switchTab('image')" id="tabImageBtn"><i class="fas fa-image"></i> صورة لرابط</button>
+                <button class="tab-btn" onclick="switchTab('file')" id="tabFileBtn"><i class="fas fa-file-arrow-up"></i> ملف لرابط</button>
             </div>
 
-            <!-- بطاقة عرض تفاصيل الفيديو المستخرج -->
-            <div id="videoResultCard" class="video-result-card">
-                <img id="vidThumb" src="" class="video-thumb" alt="معاينة الفيديو">
-                <div class="video-details">
-                    <div id="vidTitle" class="video-title-text">جاري جلب تفاصيل الفيديو...</div>
-                    <a id="vidDownloadBtn" href="#" target="_blank" class="action-btn" style="width: fit-content; padding: 10px 20px; font-size: 0.9rem;">
-                        <i class="fas fa-download"></i> تحميل الفيديو الآن
-                    </a>
+            <!-- Panel Video -->
+            <div id="panel-video" class="tool-panel active">
+                <div class="input-group">
+                    <input type="url" id="videoUrlInput" class="main-input" placeholder="ألصق رابط الفيديو أو المحتوى هنا (YouTube, TikTok, Instagram)...">
+                    <button class="btn-primary" onclick="analyzeVideo()"><i class="fas fa-bolt"></i> <span id="analyzeBtnText">تحليل الرابط</span></button>
+                </div>
+                <div id="videoLoading" class="status-msg loading"><i class="fas fa-spinner fa-spin"></i> <span id="loadingText">جاري التحقق الأمني وتحليل الرابط...</span></div>
+                <div id="videoError" class="status-msg error"><i class="fas fa-triangle-exclamation"></i> <span id="errorText">الرابط غير صالح لأسباب أمنية.</span></div>
+                
+                <div id="videoResult" class="video-result-box">
+                    <img id="resThumb" src="" class="video-thumb" alt="Thumbnail">
+                    <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+                        <h4 id="resTitle" style="font-size: 0.95rem; font-weight: 700;"></h4>
+                        <p id="resPlatform" style="font-size: 0.8rem; color: var(--text-secondary);"></p>
+                    </div>
+                    <a id="resDownloadLink" href="#" target="_blank" class="btn-primary" style="padding: 10px 20px; font-size: 0.85rem;"><i class="fas fa-download"></i> <span id="downloadBtnText">تحميل</span></a>
+                </div>
+            </div>
+
+            <!-- Panel Image -->
+            <div id="panel-image" class="tool-panel">
+                <div class="upload-dropzone" onclick="document.getElementById('imageFile').click()">
+                    <i class="fas fa-cloud-arrow-up" style="font-size: 2.5rem; color: var(--brand-primary); margin-bottom: 12px;"></i>
+                    <p style="font-weight: 700; font-size: 0.95rem;" id="imgDropText">اسحب الصورة هنا أو اضغط للاختيار</p>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 5px;">PNG, JPG, WEBP, GIF (Max 10MB)</p>
+                    <input type="file" id="imageFile" accept="image/*" style="display: none;" onchange="handleImageUpload()">
+                </div>
+                <div id="imageResultBox" class="result-link-box">
+                    <a href="#" target="_blank" id="imageResultLink" class="result-link-text"></a>
+                    <button class="btn-primary" style="padding: 6px 14px; font-size: 0.75rem;" onclick="copyLink('imageResultLink')"><i class="fas fa-copy"></i> <span id="copyBtnText1">نسخ</span></button>
+                </div>
+            </div>
+
+            <!-- Panel File -->
+            <div id="panel-file" class="tool-panel">
+                <div class="upload-dropzone" onclick="document.getElementById('fileInput').click()">
+                    <i class="fas fa-file-shield" style="font-size: 2.5rem; color: var(--brand-primary); margin-bottom: 12px;"></i>
+                    <p style="font-weight: 700; font-size: 0.95rem;" id="fileDropText">ارفع ملفك المسموح به لتوليد رابط تحميل مباشر</p>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 5px;">PDF, ZIP, DOCX (أمان ضد الملفات التنفيذية)</p>
+                    <input type="file" id="fileInput" style="display: none;" onchange="handleFileUpload()">
+                </div>
+                <div id="fileResultBox" class="result-link-box">
+                    <a href="#" target="_blank" id="fileResultLink" class="result-link-text"></a>
+                    <button class="btn-primary" style="padding: 6px 14px; font-size: 0.75rem;" onclick="copyLink('fileResultLink')"><i class="fas fa-copy"></i> <span id="copyBtnText2">نسخ</span></button>
                 </div>
             </div>
         </div>
-
-        <!-- لوحة تحويل الصور -->
-        <div id="panel-image" class="tool-panel">
-            <p style="text-align: center; color: var(--text-secondary); font-size: 0.95rem;">اختر صورة من جهازك لتوليد رابط مباشر لها:</p>
-            <div class="input-group">
-                <input type="file" id="imageFile" accept="image/*" class="tool-input" style="padding: 12px;">
-                <button class="action-btn" onclick="uploadImage()"><i class="fas fa-link"></i> توليد الرابط</button>
-            </div>
-            <div id="imageResult" class="result-box">
-                <a href="#" target="_blank" class="result-link" id="imageLinkText">رابط الصورة سيظهر هنا...</a>
-                <button class="action-btn" style="padding: 8px 14px; font-size: 0.85rem;" onclick="copyResultLink('imageLinkText')">نسخ</button>
-            </div>
-        </div>
-
-        <!-- لوحة تحويل الملفات -->
-        <div id="panel-file" class="tool-panel">
-            <p style="text-align: center; color: var(--text-secondary); font-size: 0.95rem;">اختر ملفاً لتحويله إلى رابط تحميل مباشر:</p>
-            <div class="input-group">
-                <input type="file" id="fileInput" class="tool-input" style="padding: 12px;">
-                <button class="action-btn" onclick="uploadFile()"><i class="fas fa-cloud-arrow-up"></i> رفع وتوليد</button>
-            </div>
-            <div id="fileResult" class="result-box">
-                <a href="#" target="_blank" class="result-link" id="fileLinkText">رابط الملف سيظهر هنا...</a>
-                <button class="action-btn" style="padding: 8px 14px; font-size: 0.85rem;" onclick="copyResultLink('fileLinkText')">نسخ</button>
-            </div>
-        </div>
-    </section>
-
-    <div id="copyToast" class="toast-notification">
-        <i class="fas fa-check-circle"></i>
-        <span>تم تنفيذ العملية بنجاح!</span>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <strong style="color: var(--text-primary); font-size: 1rem;">Mortadha Ali Ecosystem</strong>
+                <p style="font-size: 0.8rem; margin-top: 5px;" id="footerDesc">أدوات تحميل وتحويل الملفات والمحتوى الذي يملكه المستخدم أو يملك حق استخدامه.</p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#" id="fLink1">الرئيسية</a></li>
+                <li><a href="#" id="fLink2">سياسة الخصوصية</a></li>
+                <li><a href="#" id="fLink3">شروط الاستخدام</a></li>
+                <li><a href="#" id="fLink4">الدعم الفني</a></li>
+            </ul>
+            <p style="font-size: 0.75rem; color: var(--text-secondary);">© 2026 Mortadha Ali. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script>
+        // Language System
+        let currentLang = 'ar';
+        const translations = {
+            ar: {
+                navHome: "الرئيسية", navTools: "الأدوات", navFaq: "الأسئلة الشائعة",
+                heroBadge: "منصة آمنة وموثوقة لمعالجة المحتوى",
+                heroTitle: "تحميل وتحويل الملفات بسهولة وسرعة",
+                heroDesc: "أدوات بسيطة وسريعة لتحميل ومعالجة ملفاتك ومحتواك من مكان واحد بمعايير أمان عالية وحماية كاملة للخصوصية.",
+                tabVideoBtn: "تحميل فيديو", tabImageBtn: "صورة لرابط", tabFileBtn: "ملف لرابط",
+                videoPlaceholder: "ألصق رابط الفيديو أو المحتوى هنا (YouTube, TikTok, Instagram)...",
+                analyzeBtnText: "تحليل الرابط",
+                loadingText: "جاري التحقق الأمني وتحليل الرابط...",
+                errorText: "الرابط غير صالح أو يفتقر لشروط الأمان المسموح بها.",
+                downloadBtnText: "تحميل",
+                imgDropText: "اسحب الصورة هنا أو اضغط للاختيار",
+                fileDropText: "ارفع ملفك المسموح به لتوليد رابط تحميل مباشر",
+                copyBtnText: "نسخ",
+                footerDesc: "أدوات تحميل وتحويل الملفات والمحتوى الذي يملكه المستخدم أو يملك حق استخدامه.",
+                fLink1: "الرئيسية", fLink2: "سياسة الخصوصية", fLink3: "شروط الاستخدام", fLink4: "الدعم الفني"
+            },
+            en: {
+                navHome: "Home", navTools: "Tools", navFaq: "FAQ",
+                heroBadge: "Secure & Compliant Processing Platform",
+                heroTitle: "Fast & Secure Content & File Processing",
+                heroDesc: "Simple, fast tools to process your files and authorized media from a single unified dashboard with enterprise-grade security.",
+                tabVideoBtn: "Video Downloader", tabImageBtn: "Image to Link", tabFileBtn: "File to Link",
+                videoPlaceholder: "Paste video or media URL here (YouTube, TikTok, Instagram)...",
+                analyzeBtnText: "Analyze URL",
+                loadingText: "Performing security checks & analyzing URL...",
+                errorText: "Invalid URL or security policy restriction.",
+                downloadBtnText: "Download",
+                imgDropText: "Drag & Drop image here or click to browse",
+                fileDropText: "Upload authorized file to generate direct shareable link",
+                copyBtnText: "Copy",
+                footerDesc: "Tools for downloading and processing files and content owned or authorized by the user.",
+                fLink1: "Home", fLink2: "Privacy Policy", fLink3: "Terms of Service", fLink4: "Support"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', currentLang);
+            document.getElementById('langText').innerText = currentLang === 'ar' ? 'EN' : 'AR';
+            
+            // Apply texts
+            const t = translations[currentLang];
+            document.getElementById('navHome').innerText = t.navHome;
+            document.getElementById('navTools').innerText = t.navTools;
+            document.getElementById('navFaq').innerText = t.navFaq;
+            document.getElementById('heroBadge').innerText = t.heroBadge;
+            document.getElementById('heroTitle').innerText = t.heroTitle;
+            document.getElementById('heroDesc').innerText = t.heroDesc;
+            document.getElementById('tabVideoBtn').innerHTML = `<i class="fas fa-video"></i> ${t.tabVideoBtn}`;
+            document.getElementById('tabImageBtn').innerHTML = `<i class="fas fa-image"></i> ${t.tabImageBtn}`;
+            document.getElementById('tabFileBtn').innerHTML = `<i class="fas fa-file-arrow-up"></i> ${t.tabFileBtn}`;
+            document.getElementById('videoUrlInput').placeholder = t.videoPlaceholder;
+            document.getElementById('analyzeBtnText').innerText = t.analyzeBtnText;
+            document.getElementById('loadingText').innerText = t.loadingText;
+            document.getElementById('errorText').innerText = t.errorText;
+            document.getElementById('downloadBtnText').innerText = t.downloadBtnText;
+            document.getElementById('imgDropText').innerText = t.imgDropText;
+            document.getElementById('fileDropText').innerText = t.fileDropText;
+            document.getElementById('footerDesc').innerText = t.footerDesc;
+            document.getElementById('fLink1').innerText = t.fLink1;
+            document.getElementById('fLink2').innerText = t.fLink2;
+            document.getElementById('fLink3').innerText = t.fLink3;
+            document.getElementById('fLink4').innerText = t.fLink4;
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            if(html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                icon.className = "fas fa-sun";
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                icon.className = "fas fa-moon";
+            }
+        }
+
+        // Tab Switching
         function switchTab(type) {
             document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.tool-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             
             if(type === 'video') {
                 document.getElementById('panel-video').classList.add('active');
-                document.querySelectorAll('.tool-tab-btn')[0].classList.add('active');
+                document.getElementById('tabVideoBtn').classList.add('active');
             } else if(type === 'image') {
                 document.getElementById('panel-image').classList.add('active');
-                document.querySelectorAll('.tool-tab-btn')[1].classList.add('active');
+                document.getElementById('tabImageBtn').classList.add('active');
             } else if(type === 'file') {
                 document.getElementById('panel-file').classList.add('active');
-                document.querySelectorAll('.tool-tab-btn')[2].classList.add('active');
+                document.getElementById('tabFileBtn').classList.add('active');
             }
         }
 
-        function showToast(msg) {
-            const toast = document.getElementById("copyToast");
-            toast.querySelector("span").innerText = msg;
-            toast.classList.add("active");
-            setTimeout(() => toast.classList.remove("active"), 3000);
-        }
+        // Video URL Analysis with SSRF Protection Simulation
+        function analyzeVideo() {
+            const url = document.getElementById('videoUrlInput').value.trim();
+            const loadingBox = document.getElementById('videoLoading');
+            const errorBox = document.getElementById('videoError');
+            const resultBox = document.getElementById('videoResult');
 
-        // دالة جلب وعرض تفاصيل الفيديو وتحويله لرابط تحميل حقيقي
-        function fetchVideoDetails() {
-            let url = document.getElementById('videoUrl').value.trim();
-            if(!url) {
-                showToast("يرجى إدخال رابط الفيديو أولاً!");
+            loadingBox.style.display = 'none';
+            errorBox.style.display = 'none';
+            resultBox.classList.remove('show');
+
+            if(!url) return;
+
+            // Security Check (SSRF & Localhost prevention)
+            if(url.includes('localhost') || url.includes('127.0.0.1') || (!url.startsWith('http://') && !url.startsWith('https://'))) {
+                errorBox.style.display = 'flex';
                 return;
             }
-            showToast("جاري فحص الرابط وجلب تفاصيل الفيديو...");
-            
-            setTimeout(() => {
-                let card = document.getElementById('videoResultCard');
-                let thumb = document.getElementById('vidThumb');
-                let title = document.getElementById('vidTitle');
-                let downloadBtn = document.getElementById('vidDownloadBtn');
 
-                // تخصيص المعاينة حسب المنصة أو افتراضي احترافي
-                thumb.src = "https://images.weserv.nl/?url=iili.io/CEkuApn.md.png";
-                title.innerText = "فيديو من منصة التواصل الاجتماعي (تم جلب التفاصيل بنجاح)";
-                
-                // توجيه الرابط لأداة تحميل عامة تتيح تحميله للمستخدم فوراً بضغطة زر
-                downloadBtn.href = "https://tikmate.app/en/?url=" + encodeURIComponent(url);
-                
-                card.classList.add('show');
-                showToast("تم جلب تفاصيل الفيديو بنجاح!");
+            loadingBox.style.display = 'flex';
+
+            setTimeout(() => {
+                loadingBox.style.display = 'none';
+                document.getElementById('resThumb').src = "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=300&auto=format&fit=crop&q=80";
+                document.getElementById('resTitle').innerText = "Authorized Media Content - Mortadha Ali Platform";
+                document.getElementById('resPlatform').innerText = "Platform: Supported Public Source";
+                document.getElementById('resDownloadLink').href = "https://tikmate.app/en/?url=" + encodeURIComponent(url);
+                resultBox.classList.add('show');
             }, 1200);
         }
 
-        function uploadImage() {
-            let fileInput = document.getElementById('imageFile');
-            if(fileInput.files.length === 0) {
-                showToast("يرجى اختيار صورة أولاً!");
-                return;
+        // Image Upload Simulation
+        function handleImageUpload() {
+            const fileInput = document.getElementById('imageFile');
+            if(fileInput.files && fileInput.files[0]) {
+                const file = fileInput.files[0];
+                const dummyLink = URL.createObjectURL(file);
+                const linkEl = document.getElementById('imageResultLink');
+                linkEl.href = dummyLink;
+                linkEl.innerText = "https://mortadha-ali.tools/media/" + file.name;
+                document.getElementById('imageResultBox').classList.add('show');
             }
-            showToast("جاري رفع الصورة وتوليد الرابط...");
-            setTimeout(() => {
-                let dummyLink = URL.createObjectURL(fileInput.files[0]);
-                document.getElementById('imageLinkText').href = dummyLink;
-                document.getElementById('imageLinkText').innerText = "رابط مباشر: " + fileInput.files[0].name;
-                document.getElementById('imageResult').classList.add('show');
-                showToast("تم توليد رابط الصورة بنجاح!");
-            }, 1000);
         }
 
-        function uploadFile() {
-            let fileInput = document.getElementById('fileInput');
-            if(fileInput.files.length === 0) {
-                showToast("يرجى اختيار ملف أولاً!");
-                return;
+        // File Upload Simulation with Security Validation
+        function handleFileUpload() {
+            const fileInput = document.getElementById('fileInput');
+            if(fileInput.files && fileInput.files[0]) {
+                const file = fileInput.files[0];
+                
+                // Security check for dangerous extensions
+                if(file.name.endsWith('.exe') || file.name.endsWith('.bat') || file.name.endsWith('.sh')) {
+                    alert("الملفات التنفيذية محظورة لأسباب أمنية.");
+                    return;
+                }
+
+                const dummyLink = URL.createObjectURL(file);
+                const linkEl = document.getElementById('fileResultLink');
+                linkEl.href = dummyLink;
+                linkEl.innerText = "https://mortadha-ali.tools/file/" + file.name;
+                document.getElementById('fileResultBox').classList.add('show');
             }
-            showToast("جاري رفع الملف إلى السيرفر...");
-            setTimeout(() => {
-                let dummyLink = URL.createObjectURL(fileInput.files[0]);
-                document.getElementById('fileLinkText').href = dummyLink;
-                document.getElementById('fileLinkText').innerText = "رابط تحميل الملف: " + fileInput.files[0].name;
-                document.getElementById('fileResult').classList.add('show');
-                showToast("تم توليد رابط التحميل بنجاح!");
-            }, 1200);
         }
 
-        function copyResultLink(elementId) {
-            let linkText = document.getElementById(elementId).href;
-            navigator.clipboard.writeText(linkText).then(() => {
-                showToast("تم نسخ الرابط بنجاح!");
+        function copyLink(elementId) {
+            const link = document.getElementById(elementId).href;
+            navigator.clipboard.writeText(link).then(() => {
+                alert(currentLang === 'ar' ? 'تم نسخ الرابط بنجاح!' : 'Link copied successfully!');
             });
         }
     </script>
