@@ -1,21 +1,44 @@
-const express = require('express');
-const cors = require('cors');
-const { ytdlp } = require('ytdl-exec'); // أو مكتبة تحليل روابط حقيقية
-const app = express();
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحميل الفيديوهات | Mortadha Ali</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-white min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="w-full max-w-md bg-gray-900 p-6 rounded-2xl shadow-xl border border-gray-800">
+        <h1 class="text-xl font-bold mb-4 text-center">موقع تحميل الفيديوهات الحقيقي</h1>
+        <input id="urlInput" type="url" placeholder="ضع الرابط هنا..." class="w-full p-3 bg-gray-800 border border-gray-700 rounded-xl mb-4 text-white focus:outline-none focus:border-blue-500">
+        <button onclick="startDownload()" class="w-full bg-blue-600 hover:bg-blue-500 font-bold p-3 rounded-xl transition">تحميل مباشر</button>
+        <div id="status" class="mt-4 text-center text-sm text-gray-400"></div>
+    </div>
 
-app.use(cors());
-app.use(express.json());
-app.use(express.static('public'));
+    <script>
+        async function startDownload() {
+            const url = document.getElementById('urlInput').value;
+            const status = document.getElementById('status');
+            if (!url) return alert('أدخل الرابط أولاً');
 
-app.post('/api/download', async (req, res) => {
-    const videoUrl = req.body.url;
-    try {
-        // السيرفر الحقيقي يقوم بسحب بيانات الفيديو أو رابط التحميل المباشر
-        // مثال باستخدام مكتبة سحب بيانات
-        res.json({ success: true, downloadUrl: videoUrl, title: "فيديو تجريبي" });
-    } catch (error) {
-        res.status(500).json({ success: false, error: "فشل التحليل" });
-    }
-});
+            status.textContent = "جاري المعالجة عبر السيرفر...";
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+            try {
+                const response = await fetch('/api/download', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    status.textContent = "جاري بدء التحميل على جهازك...";
+                    window.location.href = data.downloadUrl;
+                } else {
+                    status.textContent = "فشل التحميل.";
+                }
+            } catch (err) {
+                status.textContent = "حدث خطأ في الاتصال بالسيرفر.";
+            }
+        }
+    </script>
+</body>
+</html>
