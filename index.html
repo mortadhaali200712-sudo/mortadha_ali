@@ -2,328 +2,61 @@
 <html lang="ar" dir="rtl" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحميل الفيديوهات الذكية | Mortadha Ali</title>
-    <link rel="icon" href="logo2.png" type="image/png">
+    <title>تحميل الفيديوهات المباشر | Mortadha Ali</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --brand-primary: #3b82f6;
-            --brand-secondary: #2563eb;
-            --bg-base: #030712;
-            --bg-surface: #0b1329;
-            --bg-glass: rgba(11, 19, 41, 0.85);
-            --border-glass: rgba(255, 255, 255, 0.08);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --transition-swift: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        html.light {
-            --bg-base: #f8fafc;
-            --bg-surface: #ffffff;
-            --bg-glass: rgba(255, 255, 255, 0.9);
-            --border-glass: rgba(0, 0, 0, 0.08);
-            --text-primary: #0f172a;
-            --text-secondary: #64748b;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
-        html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-base); color: var(--text-primary); font-family: 'Cairo', sans-serif; min-height: 100vh; }
-
-        header {
-            position: sticky; top: 0; z-index: 1000; background: var(--bg-glass);
-            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-glass);
-            padding: 15px 5%; display: flex; align-items: center; justify-content: space-between;
-        }
-        .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-primary); }
-        .brand-icon {
-            width: 40px; height: 40px; background: linear-gradient(135deg, var(--brand-primary), #6366f1);
-            color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 900;
-        }
-        .nav-links { display: flex; gap: 25px; list-style: none; font-size: 0.9rem; font-weight: 600; }
-        .nav-links a { text-decoration: none; color: var(--text-secondary); transition: var(--transition-swift); }
-        .nav-links a:hover { color: var(--brand-primary); }
-
-        .header-actions { display: flex; gap: 10px; align-items: center; }
-        .action-icon-btn {
-            background: transparent; border: 1px solid var(--border-glass); color: var(--text-primary);
-            padding: 8px 12px; border-radius: 10px; cursor: pointer; font-size: 0.85rem; font-weight: 700;
-            display: flex; align-items: center; gap: 6px; transition: var(--transition-swift);
-        }
-        .action-icon-btn:hover { background: var(--border-glass); }
-
-        .hero-section { padding: 60px 5% 40px; text-align: center; max-width: 900px; margin: 0 auto; }
-        .hero-section h1 { font-size: 2.5rem; font-weight: 900; margin-bottom: 15px; }
-        .hero-section p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 30px; }
-
-        .workspace-box {
-            background: var(--bg-surface); border: 1px solid var(--border-glass); border-radius: 28px;
-            padding: 30px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); backdrop-filter: blur(25px); margin-bottom: 60px;
-        }
-        .tool-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
-        .tab-btn {
-            background: transparent; border: 1px solid var(--border-glass); color: var(--text-secondary);
-            padding: 10px 20px; border-radius: 12px; font-weight: 700; font-family: inherit; cursor: pointer; transition: var(--transition-swift);
-        }
-        .tab-btn.active, .tab-btn:hover { background: var(--brand-primary); border-color: var(--brand-primary); color: white; }
-
-        .tool-panel { display: none; flex-direction: column; gap: 20px; }
-        .tool-panel.active { display: flex; }
-
-        .input-group { display: flex; gap: 12px; }
-        @media (max-width: 768px) { .input-group { flex-direction: column; } }
-
-        .main-input {
-            flex: 1; padding: 16px 20px; border-radius: 14px; border: 1px solid var(--border-glass);
-            background: var(--bg-base); color: var(--text-primary); font-family: inherit; font-size: 1rem; outline: none;
-        }
-        .main-input:focus { border-color: var(--brand-primary); }
-
-        .btn-primary {
-            background: var(--brand-primary); color: white; border: none; padding: 16px 30px; border-radius: 14px;
-            font-weight: 800; font-family: inherit; cursor: pointer; transition: var(--transition-swift);
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;
-        }
-        .btn-primary:hover { background: var(--brand-secondary); }
-
-        .status-msg { padding: 12px 16px; border-radius: 12px; font-size: 0.85rem; font-weight: 700; display: none; align-items: center; gap: 10px; }
-        .status-msg.error { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: #ef4444; }
-
-        .video-result-box {
-            display: none; background: var(--bg-base); border: 1px solid var(--border-glass);
-            border-radius: 16px; padding: 20px; gap: 16px; flex-direction: column; text-align: center;
-        }
-        .video-result-box.show { display: flex; }
-
-        .preview-container { width: 100%; max-height: 350px; border-radius: 12px; overflow: hidden; background: #000; display: flex; justify-content: center; align-items: center; }
-        .preview-container img { width: 100%; max-height: 320px; object-fit: contain; }
-        .preview-container iframe { width: 100%; height: 315px; border: none; }
-
-        .upload-dropzone {
-            border: 2px dashed var(--border-glass); border-radius: 16px; padding: 40px; text-align: center;
-            cursor: pointer; transition: var(--transition-swift); background: var(--bg-base);
-        }
-        .upload-dropzone:hover { border-color: var(--brand-primary); }
-
-        .result-link-box {
-            display: none; background: var(--bg-base); border: 1px solid var(--border-glass);
-            border-radius: 12px; padding: 12px 16px; align-items: center; justify-content: space-between; gap: 10px;
-        }
-        .result-link-box.show { display: flex; }
-        .result-link-text { color: var(--brand-primary); text-decoration: none; font-size: 0.85rem; word-break: break-all; }
-
-        footer { border-top: 1px solid var(--border-glass); background: var(--bg-surface); padding: 30px 5%; text-align: center; font-size: 0.85rem; color: var(--text-secondary); }
+        :root { --primary: #3b82f6; --bg: #030712; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg); color: #fff; display: flex; justify-content: center; padding-top: 50px; }
+        .box { background: #0b1329; padding: 30px; border-radius: 20px; width: 100%; max-width: 500px; text-align: center; border: 1px solid #1f2937; }
+        input { width: 100%; padding: 15px; border-radius: 10px; border: 1px solid #374151; background: #030712; color: #fff; margin-bottom: 15px; box-sizing: border-box; }
+        .thumb { width: 100%; border-radius: 10px; margin-bottom: 15px; display: none; }
+        .btn { background: var(--primary); color: white; padding: 15px 30px; border: none; border-radius: 10px; cursor: pointer; width: 100%; font-weight: bold; }
+        #downloadArea { display: none; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="#" class="brand-logo">
-            <div class="brand-icon">MA</div>
-            <div>
-                <span style="font-weight: 800; font-size: 1.05rem; display: block;">Mortadha Ali</span>
-                <span style="font-size: 10px; color: var(--text-secondary);">SaaS Content Tools</span>
-            </div>
-        </a>
-        <ul class="nav-links">
-            <li><a href="#">الرئيسية</a></li>
-            <li><a href="#workspace">الأدوات</a></li>
-        </ul>
-        <div class="header-actions">
-            <button class="action-icon-btn" onclick="toggleLanguage()">
-                <i class="fas fa-globe"></i> <span id="langText">EN</span>
-            </button>
-            <button class="action-icon-btn" onclick="toggleTheme()">
-                <i class="fas fa-moon" id="themeIcon"></i>
-            </button>
-        </div>
-    </header>
+<div class="box">
+    <h2>تحميل الفيديو المباشر</h2>
+    <input type="url" id="urlInput" placeholder="ضع رابط الفيديو هنا (يوتيوب، تيك توك، إلخ)...">
+    <button class="btn" onclick="fetchVideo()">معاينة وتحميل</button>
 
-    <section class="hero-section">
-        <h1 id="heroTitle">تحميل ومعاينة الفيديوهات الذكية</h1>
-        <p id="heroDesc">يدعم يوتيوب، فيسبوك، انستغرام، وتيك توك. الصق الرابط لعرض المحتوى والتحميل الفوري.</p>
-    </section>
-
-    <div style="max-width: 900px; margin: 0 auto 80px; padding: 0 20px;" id="workspace">
-        <div class="workspace-box">
-            <div class="tool-tabs">
-                <button class="tab-btn active" onclick="switchTab('video')" id="tabVideoBtn"><i class="fas fa-video"></i> تحميل فيديو</button>
-                <button class="tab-btn" onclick="switchTab('image')" id="tabImageBtn"><i class="fas fa-image"></i> صورة لرابط</button>
-                <button class="tab-btn" onclick="switchTab('file')" id="tabFileBtn"><i class="fas fa-file-arrow-up"></i> ملف لرابط</button>
-            </div>
-
-            <!-- Panel Video -->
-            <div id="panel-video" class="tool-panel active">
-                <div class="input-group">
-                    <input type="url" id="videoUrlInput" class="main-input" placeholder="ألصق رابط يوتيوب، فيسبوك، انستغرام، أو تيك توك هنا...">
-                    <button class="btn-primary" onclick="handleVideoProcess()"><i class="fas fa-bolt"></i> <span id="analyzeBtnText">عرض وعمل المعاينة</span></button>
-                </div>
-                <div id="videoError" class="status-msg error"><i class="fas fa-triangle-exclamation"></i> <span id="errorText">الرجاء إدخال رابط صالح لإحدى المنصات المدعومة</span></div>
-                
-                <div id="videoResult" class="video-result-box">
-                    <div class="preview-container" id="previewContainer">
-                        <!-- تظهر المعاينة أو الصورة المصغرة هنا -->
-                    </div>
-                    <h4 id="resTitle" style="font-size: 1rem; font-weight: 700;">تم التعرف على الرابط بنجاح</h4>
-                    <a id="resDownloadBtn" href="#" target="_blank" class="btn-primary" style="width: 100%;"><i class="fas fa-download"></i> <span id="downloadBtnText">تحميل الفيديو بجودة عالية</span></a>
-                </div>
-            </div>
-
-            <!-- Panel Image -->
-            <div id="panel-image" class="tool-panel">
-                <div class="upload-dropzone" onclick="document.getElementById('imageFile').click()">
-                    <i class="fas fa-cloud-arrow-up" style="font-size: 2.5rem; color: var(--brand-primary); margin-bottom: 12px;"></i>
-                    <p style="font-weight: 700; font-size: 0.95rem;">اضغط لاختيار صورة أو اسحبها هنا</p>
-                    <input type="file" id="imageFile" accept="image/*" style="display: none;" onchange="handleImageUpload()">
-                </div>
-                <div id="imageResultBox" class="result-link-box">
-                    <a href="#" target="_blank" id="imageResultLink" class="result-link-text"></a>
-                    <button class="btn-primary" style="padding: 6px 14px; font-size: 0.75rem;" onclick="copyLink('imageResultLink')"><i class="fas fa-copy"></i> نسخ</button>
-                </div>
-            </div>
-
-            <!-- Panel File -->
-            <div id="panel-file" class="tool-panel">
-                <div class="upload-dropzone" onclick="document.getElementById('fileInput').click()">
-                    <i class="fas fa-file-shield" style="font-size: 2.5rem; color: var(--brand-primary); margin-bottom: 12px;"></i>
-                    <p style="font-weight: 700; font-size: 0.95rem;">اضغط لاختيار ملف لتوليد رابط مباشر</p>
-                    <input type="file" id="fileInput" style="display: none;" onchange="handleFileUpload()">
-                </div>
-                <div id="fileResultBox" class="result-link-box">
-                    <a href="#" target="_blank" id="fileResultLink" class="result-link-text"></a>
-                    <button class="btn-primary" style="padding: 6px 14px; font-size: 0.75rem;" onclick="copyLink('fileResultLink')"><i class="fas fa-copy"></i> نسخ</button>
-                </div>
-            </div>
-        </div>
+    <div id="downloadArea">
+        <img id="thumbImg" class="thumb" src="" alt="Thumbnail">
+        <a id="downloadLink" href="#" class="btn" style="background: #10b981; display: inline-block; text-decoration: none;">تنزيل الفيديو الآن</a>
     </div>
+</div>
 
-    <footer>
-        <p>© 2026 Mortadha Ali. All rights reserved.</p>
-    </footer>
-
-    <script>
-        let currentLang = 'ar';
-        const translations = {
-            ar: {
-                heroTitle: "تحميل ومعاينة الفيديوهات الذكية",
-                heroDesc: "يدعم يوتيوب، فيسبوك، انستغرام، وتيك توك. الصق الرابط لعرض المحتوى والتحميل الفوري.",
-                analyzeBtnText: "عرض وعمل المعاينة",
-                errorText: "الرجاء إدخال رابط صالح لإحدى المنصات المدعومة",
-                downloadBtnText: "تحميل الفيديو بجودة عالية"
-            },
-            en: {
-                heroTitle: "Smart Video Preview & Downloader",
-                heroDesc: "Supports YouTube, Facebook, Instagram, and TikTok. Paste link to preview and download.",
-                analyzeBtnText: "Preview Content",
-                errorText: "Please enter a valid URL for supported platforms",
-                downloadBtnText: "Download Video in HD"
-            }
-        };
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-            document.getElementById('langText').innerText = currentLang === 'ar' ? 'EN' : 'AR';
-            const t = translations[currentLang];
-            document.getElementById('heroTitle').innerText = t.heroTitle;
-            document.getElementById('heroDesc').innerText = t.heroDesc;
-            document.getElementById('analyzeBtnText').innerText = t.analyzeBtnText;
-            document.getElementById('errorText').innerText = t.errorText;
-            document.getElementById('downloadBtnText').innerText = t.downloadBtnText;
-        }
-
-        function toggleTheme() {
-            const html = document.documentElement;
-            const icon = document.getElementById('themeIcon');
-            if(html.classList.contains('dark')) {
-                html.classList.remove('dark'); html.classList.add('light'); icon.className = "fas fa-sun";
-            } else {
-                html.classList.remove('light'); html.classList.add('dark'); icon.className = "fas fa-moon";
-            }
-        }
-
-        function switchTab(type) {
-            document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            if(type === 'video') { document.getElementById('panel-video').classList.add('active'); document.getElementById('tabVideoBtn').classList.add('active'); }
-            else if(type === 'image') { document.getElementById('panel-image').classList.add('active'); document.getElementById('tabImageBtn').classList.add('active'); }
-            else if(type === 'file') { document.getElementById('panel-file').classList.add('active'); document.getElementById('tabFileBtn').classList.add('active'); }
-        }
-
-        function handleVideoProcess() {
-            const url = document.getElementById('videoUrlInput').value.trim();
-            const errorBox = document.getElementById('videoError');
-            const resultBox = document.getElementById('videoResult');
-            const previewContainer = document.getElementById('previewContainer');
-            const downloadBtn = document.getElementById('resDownloadBtn');
-
-            errorBox.style.display = 'none';
-            resultBox.classList.remove('show');
-            previewContainer.innerHTML = '';
-
-            if(!url || (!url.startsWith('http://') && !url.startsWith('https://'))) {
-                errorBox.style.display = 'flex';
-                return;
-            }
-
-            // فحص يوتيوب
-            const ytMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-            
-            // فحص تيك توك
-            const isTikTok = url.includes('tiktok.com');
-            // فحص انستغرام
-            const isInsta = url.includes('instagram.com');
-            // فحص فيسبوك
-            const isFacebook = url.includes('facebook.com') || url.includes('fb.watch');
-
-            if (ytMatch && ytMatch[1]) {
-                const videoId = ytMatch[1];
-                previewContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}" allowfullscreen></iframe>`;
-                downloadBtn.href = `https://www.ssyoutube.com/watch?v=${videoId}`;
-                resultBox.classList.add('show');
-            } else if (isTikTok || isInsta || isFacebook) {
-                // عرض صورة مصغرة افتراضية تناسب المنصات الاجتماعية مع زر تحميل موثوق
-                let thumbImg = "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&auto=format&fit=crop&q=80";
-                if(isTikTok) thumbImg = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80";
-                if(isInsta) thumbImg = "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=600&auto=format&fit=crop&q=80";
-                if(isFacebook) thumbImg = "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=600&auto=format&fit=crop&q=80";
-
-                previewContainer.innerHTML = `<img src="${thumbImg}" alt="Preview">`;
-                downloadBtn.href = `https://en.savefrom.net/1-youtube-downloader-36/?url=${encodeURIComponent(url)}`;
-                resultBox.classList.add('show');
-            } else {
-                errorBox.style.display = 'flex';
-            }
-        }
-
-        function handleImageUpload() {
-            const file = document.getElementById('imageFile').files[0];
-            if(file) {
-                const link = URL.createObjectURL(file);
-                const linkEl = document.getElementById('imageResultLink');
-                linkEl.href = link; linkEl.innerText = "https://mortadha-ali.tools/media/" + file.name;
-                document.getElementById('imageResultBox').classList.add('show');
-            }
-        }
-
-        function handleFileUpload() {
-            const file = document.getElementById('fileInput').files[0];
-            if(file) {
-                const link = URL.createObjectURL(file);
-                const linkEl = document.getElementById('fileResultLink');
-                linkEl.href = link; linkEl.innerText = "https://mortadha-ali.tools/file/" + file.name;
-                document.getElementById('fileResultBox').classList.add('show');
-            }
-        }
-
-        function copyLink(elementId) {
-            navigator.clipboard.writeText(document.getElementById(elementId).href).then(() => {
-                alert(currentLang === 'ar' ? 'تم نسخ الرابط بنجاح!' : 'Link copied successfully!');
+<script>
+    async function fetchVideo() {
+        const url = document.getElementById('urlInput').value;
+        const btn = document.querySelector('.btn');
+        const area = document.getElementById('downloadArea');
+        
+        btn.innerText = "جاري المعالجة...";
+        
+        // نستخدم API كبالت لجلب رابط التحميل المباشر
+        try {
+            const res = await fetch('https://co.wukko.me/api/json', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({ url: url, vQuality: '720' })
             });
+            const data = await res.json();
+            
+            if (data.url) {
+                document.getElementById('thumbImg').src = data.thumbnail || "";
+                document.getElementById('thumbImg').style.display = "block";
+                document.getElementById('downloadLink').href = data.url;
+                area.style.display = "block";
+                btn.innerText = "معاينة وتحميل";
+            } else {
+                alert("تعذر جلب الفيديو، تأكد من الرابط.");
+            }
+        } catch (e) {
+            alert("حدث خطأ تقني.");
         }
-    </script>
+    }
+</script>
 </body>
 </html>
